@@ -10,8 +10,8 @@ import image1 from '@/public/about-us-4-1.png'
 import image2 from '@/public/about-us-4-2.png'
 import image3 from '@/public/about-us-4-3.png'
 import CustomSpan from '@/app/components/shared/CustomSpan'
-import ResponsiveBanner from '@/app/components/shared/ResponsiveBanner'
 import { useAboutUsAnimations } from '@/app/hooks/useAboutUsAnimations'
+import { Stack } from '@mui/material'
 
 export default function Frame4() {
   const { banner5_1, banner5_2, banner5_3 } = useAboutUsAnimations()
@@ -60,8 +60,32 @@ export default function Frame4() {
     />
   )
   return (
-    <div className="flex">
-      <Box
+    <div className="bg-[#fff4e4]">
+      <p style={{ textAlign: 'center' }}>Partnerships</p>
+      <Stack
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-around',
+          gap: 5
+        }}
+      >
+
+        {Array(15).fill(0).map((_, index) =>
+          <Image
+            key={index}
+            width={200}
+            height={200}
+            src={image3}
+          />)}
+
+      </Stack>
+      {/* #fc9a14 */}
+      {/* display flex , flexwrap, justifyContent space around */}
+
+
+
+      {/* <Box
         mr={{ xs: 0, md: 2.5 }}
         flexDirection="column"
         justifyItems="center"
@@ -86,7 +110,7 @@ export default function Frame4() {
       >
         <Box mb={4}> {Image2}</Box>
         <Box width="66%">{Image3}</Box>
-      </Box>
-    </div>
+      </Box> */}
+    </div >
   )
 }
