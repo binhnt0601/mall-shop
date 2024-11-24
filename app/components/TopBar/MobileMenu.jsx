@@ -39,12 +39,12 @@ export default function MobileMenu({ menuItems }) {
         {isToggle ? <CloseRoundedIcon /> : <MenuIcon />}
       </IconButton>
       <Drawer
-        anchor="top"
+        anchor="left"
         open={isToggle}
         onClose={handleToggle}
         type="temporary"
         PaperProps={{
-          sx: { height: '100%', marginTop: '64px', paddingTop: '10px' }
+          sx: { width: '70%', marginTop: '64px', paddingTop: '10px' }
         }}
       >
         <Box>

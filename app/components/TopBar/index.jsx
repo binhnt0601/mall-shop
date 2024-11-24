@@ -11,9 +11,10 @@ import MobileMenu from './MobileMenu'
 import LogoBlockify from './LogoBlockify'
 
 const menuItems = [
-  { index: 0, label: 'About Us', href: '/' },
-  { index: 1, label: 'Service', href: '/service' },
-  { index: 2, label: 'Contact', href: '/contact' }
+  { index: 0, label: 'Home', href: '/' },
+  { index: 1, label: 'FAQs', href: '/service' },
+  { index: 2, label: 'Pitch Deck', href: '/contact' },
+  { index: 3, label: 'Tokenomics', href: '/' }
 ]
 
 function TopBar() {
