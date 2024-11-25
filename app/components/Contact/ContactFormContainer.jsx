@@ -7,8 +7,8 @@ import Stack from '@mui/material/Stack'
 
 import StatusComponent from '../Status/StatusComponent'
 
-import LocationIcon from '@/public/icons/location-icon.svg'
-import GlobalIcon from '@/public/icons/global-icon.svg'
+import LocationIcon from '@/assets/icons/location-icon.svg'
+import GlobalIcon from '@/assets/icons/global-icon.svg'
 
 const items = [
   {

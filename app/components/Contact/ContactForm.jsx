@@ -22,7 +22,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 import FormInput from "../shared/FormInput";
 
-import PaperPlaneIcon from "@/public/icons/paper-plane-icon.svg";
+import PaperPlaneIcon from "@/assets/icons/paper-plane-icon.svg";
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   "label + &": {
