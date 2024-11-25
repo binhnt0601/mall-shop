@@ -1,122 +1,100 @@
 /* eslint-disable no-console */
-'use client'
-import { useRef, useState } from 'react'
+"use client";
+import { useRef, useState } from "react";
 
-import { useForm } from 'react-hook-form'
-import emailjs from '@emailjs/browser'
-import { matchIsValidTel, MuiTelInput } from 'mui-tel-input'
-import Image from 'next/image'
-import { toast } from 'react-toastify'
-import { useSearchParams, useRouter } from 'next/navigation'
+import { useForm } from "react-hook-form";
+import emailjs from "@emailjs/browser";
+import Image from "next/image";
+import { toast } from "react-toastify";
+import { useSearchParams, useRouter } from "next/navigation";
 
-import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import InputBase from '@mui/material/InputBase'
-import Radio from '@mui/material/Radio'
-import RadioGroup from '@mui/material/RadioGroup'
-import Stack from '@mui/material/Stack'
-import TextField from '@mui/material/TextField'
-import Typography from '@mui/material/Typography'
-import { alpha, styled } from '@mui/material/styles'
-import CircularProgress from '@mui/material/CircularProgress'
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import InputBase from "@mui/material/InputBase";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import Stack from "@mui/material/Stack";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import { alpha, styled } from "@mui/material/styles";
+import CircularProgress from "@mui/material/CircularProgress";
 
-import FormInput from '../shared/FormInput'
+import FormInput from "../shared/FormInput";
 
-import PaperPlaneIcon from '@/public/icons/paper-plane-icon.svg'
+import PaperPlaneIcon from "@/public/icons/paper-plane-icon.svg";
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
-  'label + &': {
-    marginTop: theme.spacing(3)
+  "label + &": {
+    marginTop: theme.spacing(3),
   },
-  '& .MuiInputBase-input': {
+  "& .MuiInputBase-input": {
     borderRadius: 4,
-    position: 'relative',
-    border: '1px solid',
-    borderColor: '#E0E3E7',
-    padding: '10px 12px',
+    position: "relative",
+    border: "1px solid",
+    borderColor: "#E0E3E7",
+    padding: "10px 12px",
     transition: theme.transitions.create([
-      'border-color',
-      'background-color',
-      'box-shadow'
+      "border-color",
+      "background-color",
+      "box-shadow",
     ]),
-    '&:focus': {
+    "&:focus": {
       boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
-      borderColor: theme.palette.primary.main
-    }
-  }
-}))
-const BootstrapPhoneInput = styled(MuiTelInput)(({ theme }) => ({
-  'label + &': {
-    marginTop: theme.spacing(3)
+      borderColor: theme.palette.primary.main,
+    },
   },
-  '& .MuiInputBase-input': {
-    borderRadius: '1px 4px 4px 1px',
-    position: 'relative',
-    border: '1px solid',
-    borderColor: '#E0E3E7',
-    padding: '10px 12px',
-    transition: theme.transitions.create([
-      'border-color',
-      'background-color',
-      'box-shadow'
-    ]),
-    '&:focus': {
-      boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
-      borderColor: theme.palette.primary.main
-    }
-  }
-}))
+}));
 
 const BootstrapTextArea = styled(TextField)(({ theme }) => ({
   borderRadius: 4,
-  position: 'relative',
+  position: "relative",
   transition: theme.transitions.create([
-    'border-color',
-    'background-color',
-    'box-shadow'
+    "border-color",
+    "background-color",
+    "box-shadow",
   ]),
-  '&:focus': {
+  "&:focus": {
     boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
-    borderColor: theme.palette.primary.main
+    borderColor: theme.palette.primary.main,
   },
-  '& .MuiFormHelperText-root': {
-    backgroundColor: 'none'
-  }
-}))
+  "& .MuiFormHelperText-root": {
+    backgroundColor: "none",
+  },
+}));
 
 const ContactForm = () => {
-  const searchParams = useSearchParams()
-  const router = useRouter()
-  const [isLoading, setIsLoading] = useState(false)
-  const [radioSelected, setRadioSelected] = useState('email')
-  const form = useRef()
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const [radioSelected, setRadioSelected] = useState("email");
+  const form = useRef();
 
   const {
     control,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm({
     defaultValues: {
-      name: '',
-      email: '',
-      phone: '',
-      message: ''
-    }
-  })
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    },
+  });
 
   const handleRadioChange = (event) => {
-    setRadioSelected(event.target.value)
-  }
+    setRadioSelected(event.target.value);
+  };
 
   const onSubmit = (data) => {
-    setIsLoading(true)
+    setIsLoading(true);
     const payload = {
       from_name: data.name,
       name: data.name,
       message: data.message,
-      [radioSelected]: data[radioSelected]
-    }
+      [radioSelected]: data[radioSelected],
+    };
 
     emailjs
       .send(
@@ -124,37 +102,37 @@ const ContactForm = () => {
         process.env.NEXT_PUBLIC_MAIL_TEMPLATE_ID,
         payload,
         {
-          publicKey: process.env.NEXT_PUBLIC_MAIL_PUBLIC_KEY
+          publicKey: process.env.NEXT_PUBLIC_MAIL_PUBLIC_KEY,
         }
       )
       .then(
         () => {
-          console.log('SUCCESS!')
-          const params = new URLSearchParams(searchParams.toString())
-          params.set('status', 'success')
-          router.push('contact' + '?' + params.toString())
+          console.log("SUCCESS!");
+          const params = new URLSearchParams(searchParams.toString());
+          params.set("status", "success");
+          router.push("contact" + "?" + params.toString());
         },
         (error) => {
-          console.log('FAILED...', error)
-          toast.error('Oops something went wrong!')
-          setIsLoading(false)
+          console.log("FAILED...", error);
+          toast.error("Oops something went wrong!");
+          setIsLoading(false);
         }
-      )
-  }
+      );
+  };
 
   const phoneErrorText = (errors) => {
     return {
-      required: 'Phone number is required.',
-      validate: 'Invalid phone number format. Please check and try again.'
-    }[errors?.phone?.type]
-  }
+      required: "Phone number is required.",
+      validate: "Invalid phone number format. Please check and try again.",
+    }[errors?.phone?.type];
+  };
 
   const emailErrorText = (errors) => {
     return {
-      required: 'Email is required.',
-      pattern: 'Invalid email format. Please check and try again.'
-    }[errors?.email?.type]
-  }
+      required: "Email is required.",
+      pattern: "Invalid email format. Please check and try again.",
+    }[errors?.email?.type];
+  };
 
   return (
     <div className="w-[90%] mt-10 mb-5 md:mb-10 flex flex-col gap-3">
@@ -162,9 +140,9 @@ const ContactForm = () => {
         <Typography
           variant="body1"
           sx={{
-            color: '#000000',
-            lineHeight: '1.5rem',
-            letterSpacing: '-1.1%'
+            color: "#000000",
+            lineHeight: "1.5rem",
+            letterSpacing: "-1.1%",
           }}
         >
           Please select type contact
@@ -174,16 +152,16 @@ const ContactForm = () => {
           aria-labelledby="demo-row-radio-buttons-group-label"
           className="gap-14"
           sx={{
-            marginLeft: '4px',
-            '& .MuiButtonBase-root': {
-              padding: '4px'
+            marginLeft: "4px",
+            "& .MuiButtonBase-root": {
+              padding: "4px",
             },
-            '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)': {
-              color: 'black'
+            "& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)": {
+              color: "black",
             },
-            '& .MuiSvgIcon-root': {
-              fontSize: 16
-            }
+            "& .MuiSvgIcon-root": {
+              fontSize: 16,
+            },
           }}
           name="row-radio-buttons-group"
           value={radioSelected}
@@ -216,7 +194,7 @@ const ContactForm = () => {
             component={BootstrapInput}
           />
 
-          {radioSelected === 'email' && (
+          {radioSelected === "email" && (
             <FormInput
               id="email"
               name="email"
@@ -224,7 +202,7 @@ const ContactForm = () => {
               label="Your email"
               rules={{
                 required: true,
-                pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+                pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
               }}
               control={control}
               placeholder="Input your email"
@@ -233,17 +211,12 @@ const ContactForm = () => {
             />
           )}
 
-          {radioSelected === 'phone' && (
+          {radioSelected === "phone" && (
             <FormInput
               name="phone"
               label="Your phone"
               control={control}
-              rules={{
-                required: true,
-                validate: (value) => matchIsValidTel(value)
-              }}
               errors={errors}
-              component={BootstrapPhoneInput}
               placeholder="Input your phone"
               errorText={phoneErrorText(errors)}
             />
@@ -260,7 +233,7 @@ const ContactForm = () => {
             multiline
             rows={4.8}
             InputLabelProps={{
-              shrink: true
+              shrink: true,
             }}
           />
         </Stack>
@@ -286,17 +259,17 @@ const ContactForm = () => {
             )
           }
           sx={{
-            fontSize: '12px',
-            color: 'white',
-            padding: '8px',
-            textTransform: 'none'
+            fontSize: "12px",
+            color: "white",
+            padding: "8px",
+            textTransform: "none",
           }}
         >
           Send
         </Button>
       </Box>
     </div>
-  )
-}
+  );
+};
 
-export default ContactForm
+export default ContactForm;

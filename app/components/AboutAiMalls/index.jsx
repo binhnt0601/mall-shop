@@ -2,6 +2,10 @@ import React from "react";
 
 import Typography from "@mui/material/Typography";
 import { Stack } from "@mui/material";
+import Image from "next/image";
+import imageTest from "@/public/about-us-2-1.png";
+import ResponsiveBanner from "../shared/ResponsiveBanner";
+// import { useAboutUsAnimations } from "@/app/hooks/useAboutUsAnimations";
 
 const aboutContents = [
   {
@@ -25,6 +29,31 @@ const textProps = {
 };
 
 export default function AboutUs() {
+  // const { banner1 } = useAboutUsAnimations();
+
+  const image = (
+    <Image
+      // ref={banner1}
+      src={imageTest}
+      loading="lazy"
+      alt="image-2-1"
+      sizes="100vw"
+      style={{ width: "100%", height: "auto" }}
+    />
+  );
+
+  const headline = (
+    <Typography {...textProps} style={{ fontWeight: "bold" }}>
+      About <span style={{ color: "#fc9a14" }}>AiMalls</span>
+    </Typography>
+  );
+
+  const bodyText = aboutContents.map((item, index) => (
+    <p key={index} className={index > 0 ? "mt-3" : ""}>
+      {item.description}
+    </p>
+  ));
+
   return (
     <Stack
       display="flex"
@@ -33,14 +62,13 @@ export default function AboutUs() {
       padding="5px"
       className="md:w-1/2 w-full md:ml-14 ml-0"
     >
-      <Typography {...textProps} style={{ fontWeight: "bold" }}>
-        About <span style={{ color: "#fc9a14" }}>AiMalls</span>
-      </Typography>
-      {aboutContents.map((item, index) => (
-        <p key={index} className={index > 0 ? "mt-3" : ""}>
-          {item.description}
-        </p>
-      ))}
+      <ResponsiveBanner
+        id="card1"
+        headline={headline}
+        bodyText={bodyText}
+        media={image}
+        mediaWidth={60}
+      />
     </Stack>
   );
 }

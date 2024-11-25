@@ -1,21 +1,21 @@
-'use client'
+"use client";
 
-import React from 'react'
+import React from "react";
 
-import AppBar from '@mui/material/AppBar'
-import Toolbar from '@mui/material/Toolbar'
-import Container from '@mui/material/Container'
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Container from "@mui/material/Container";
 
-import DesktopMenu from './DesktopMenu'
-import MobileMenu from './MobileMenu'
-import LogoBlockify from './LogoBlockify'
+import DesktopMenu from "./DesktopMenu";
+import MobileMenu from "./MobileMenu";
+import LogoBlockify from "./LogoBlockify";
 
 const menuItems = [
-  { index: 0, label: 'Home', href: '/' },
-  { index: 1, label: 'FAQs', href: '/service' },
-  { index: 2, label: 'Pitch Deck', href: '/contact' },
-  { index: 3, label: 'Tokenomics', href: '/' }
-]
+  { index: 0, label: "Home", href: "/" },
+  { index: 1, label: "FAQs", href: "/service" },
+  { index: 2, label: "Pitch Deck", href: "/contact" },
+  { index: 3, label: "Tokenomics", href: "/" },
+];
 
 function TopBar() {
   return (
@@ -23,21 +23,21 @@ function TopBar() {
       id="navbar"
       position="fixed"
       sx={{
-        color: 'white',
-        background: 'white',
-        height: { xs: '4rem', sm: '5.5rem' },
-        zIndex: 9999
+        color: "white",
+        background: "white",
+        height: { xs: "4rem", sm: "5.5rem" },
+        zIndex: 9999,
       }}
     >
       <Container maxWidth="xl" className="h-full">
         <Toolbar
           disableGutters
           sx={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            height: '100%'
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            justifyContent: "space-between",
+            height: "100%",
           }}
         >
           <LogoBlockify />
@@ -48,6 +48,6 @@ function TopBar() {
         </Toolbar>
       </Container>
     </AppBar>
-  )
+  );
 }
-export default TopBar
+export default TopBar;

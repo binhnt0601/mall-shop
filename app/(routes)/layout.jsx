@@ -7,11 +7,11 @@ import { ThemeProvider } from "@mui/material/styles";
 
 import Footer from "../components/Footer";
 
-import TopBar from "@/app/components/TopBar";
 import theme from "@/app/theme";
 
 import "./globals.css";
 import { Stack } from "@mui/material";
+import TopBar from "../components/TopBar";
 
 export const metadata = {
   title: "Blockify",

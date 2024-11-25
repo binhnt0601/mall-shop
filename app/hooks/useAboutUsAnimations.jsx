@@ -7,7 +7,7 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const useAboutUsAnimations = () => {
+export const useAboutUsAnimations = () => {
   const animateBanner = (ref, triggerId, type) => {
     const direction = {
       left: { x: 500 },
@@ -57,5 +57,3 @@ const useAboutUsAnimations = () => {
     banner5_3,
   };
 };
-
-export default useAboutUsAnimations;
