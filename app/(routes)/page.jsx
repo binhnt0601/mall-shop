@@ -19,8 +19,8 @@ import FutureShopping from '@/components/FutureShopping';
 import BenefitsShopping from '@/components/BenefitsShopping';
 import Partnerships from '@/components/Partnerships';
 import FeaturedIn from '@/components/FeaturedIn';
-import FAQS from '@/components/FAQs/index';
-import RoadMap from '@/components/RoadMap/index';
+import FAQS from '@/components/FAQs';
+import RoadMap from '@/components/RoadMap';
 
 export default function Home() {
     const frames = [Frame2_1, Frame2_2, Frame2_3, Frame3];
