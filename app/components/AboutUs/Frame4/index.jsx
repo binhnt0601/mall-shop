@@ -89,33 +89,6 @@ export default function Frame4() {
             />
           </a>)}
       </Box>
-
-      {/* <Box
-        mr={{ xs: 0, md: 2.5 }}
-        flexDirection="column"
-        justifyItems="center"
-        sx={{ width: { xs: '100%', md: '50%' } }}
-      >
-        <ResponsiveBanner
-          id="card5"
-          headline={frame4Headline}
-          bodyText={frame4BodyText}
-          media={Image1}
-          mediaWidth={100}
-          align="bottom"
-        />
-      </Box>
-      <Box
-        id="card6"
-        position="relative"
-        display={{ xs: 'none', md: 'flex' }}
-        flexDirection="column"
-        overflow="hidden"
-        width="50%"
-      >
-        <Box mb={4}> {Image2}</Box>
-        <Box width="66%">{Image3}</Box>
-      </Box> */}
     </div >
   )
 }
