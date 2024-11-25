@@ -1,9 +1,5 @@
 import React from 'react';
 
-import Image from 'next/image';
-
-import logo from '@/assets/company-logo.png';
-
 export default function Partnerships() {
     return (
         <div className="w-full px-[72px] py-[50px]">
@@ -23,15 +19,10 @@ export default function Partnerships() {
                 {Array(15)
                     .fill(0)
                     .map((_, index) => (
-                        <Image
+                        <img
                             key={index}
-                            width={200}
-                            height={200}
-                            src={logo}
+                            src="https://fastly.picsum.photos/id/375/200/300.jpg?grayscale&hmac=EJ_gHztU6GOpq16CqZu5Zx0eWGoLEgISySgge7oSuzg"
                             alt="logo"
-                            onClick={() =>
-                                window.open('https://www.google.com', '_blank')
-                            }
                         />
                     ))}
             </div>

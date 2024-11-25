@@ -21,6 +21,7 @@ import Partnerships from '@/components/Partnerships';
 import FeaturedIn from '@/components/FeaturedIn';
 import FAQS from '@/components/FAQs';
 import RoadMap from '@/components/RoadMap';
+import ComprehensiveOverview from '@/components/ComprehensiveOverview';
 
 export default function Home() {
     const frames = [Frame2_1, Frame2_2, Frame2_3, Frame3];
@@ -49,6 +50,8 @@ export default function Home() {
                 imgSrc={Frame1Banner}
                 textBackground={<BenefitsShopping />}
             />
+
+            <ComprehensiveOverview />
             <Background imgSrc={Frame1Banner} textBackground={<RoadMap />} />
             <Background imgSrc={Frame1Banner} textBackground={<FAQS />} />
             {frames.map((Frame, index) => (

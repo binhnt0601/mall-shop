@@ -1,9 +1,5 @@
 import React from 'react';
 
-import Image from 'next/image';
-
-import logo from '@/assets/company-logo.png';
-
 export default function FeaturedIn() {
     return (
         <div className="w-full px-[72px] py-[50px]">
@@ -23,15 +19,10 @@ export default function FeaturedIn() {
                 {Array(32)
                     .fill(0)
                     .map((_, index) => (
-                        <Image
+                        <img
                             key={index}
-                            width={200}
-                            height={200}
-                            src={logo}
+                            src="https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U"
                             alt="logo"
-                            onClick={() =>
-                                window.open('https://www.google.com', '_blank')
-                            }
                         />
                     ))}
             </div>

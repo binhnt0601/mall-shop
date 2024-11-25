@@ -13,7 +13,7 @@ export default function AppOverview() {
     return (
         <div
             padding="5px"
-            className="w-full flex flex-col items-center gap-5 py-10"
+            className="w-full flex flex-col items-center gap-5 py-10 px-3 md:px-12"
         >
             {headline}
 

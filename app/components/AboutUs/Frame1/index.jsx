@@ -32,14 +32,14 @@ export default function Frame1() {
 
     return (
         <Stack
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
             color="white"
             padding="5px"
-            className="md:w-1/2 w-full md:items-start items-center md:ml-14 ml-0"
+            className="md:w-1/2 w-full md:items-start justify-center items-center md:mx-14 mx-12"
         >
-            <div className="md:flex hidden flex-col gap-3 absolute left-0 border border-l-0 border-amber-500 rounded-r-md p-2">
+            <div
+                className="md:flex hidden flex-col gap-3 absolute left-0 
+            border-2 border-l-0 border-[#fc9a14] rounded-r-md p-2"
+            >
                 {listSocialNetwork.map((item, index) => (
                     <SocialNetwork
                         key={item.id + index}
@@ -48,7 +48,7 @@ export default function Frame1() {
                     />
                 ))}
             </div>
-            <div className="max-w-xl p-3">
+            <div className="max-w-xl p-3 text-center md:text-start">
                 <Typography {...textProps} style={{ fontWeight: 'bold' }}>
                     Experience the{' '}
                     <span style={{ color: '#fc9a14' }}>Future of shopping</span>{' '}
@@ -59,12 +59,24 @@ export default function Frame1() {
                     uses intelligent algorithms.
                 </span>
             </div>
-            <div className="md:hidden flex gap-3 p-2 justify-center">
+            <div className="flex sm:flex-row flex-col gap-2 my-4">
+                <button className="uppercase bg-[#fc9a14] sm:w-[160px] w-full py-3 rounded-full">
+                    get started
+                </button>
+                <button className="uppercase bg-[#fc9a14] sm:w-[160px] w-full py-3 rounded-full">
+                    whitepaper
+                </button>
+                <button className="uppercase bg-[#fc9a14] sm:w-[160px] w-full py-3 rounded-full">
+                    one pager
+                </button>
+            </div>
+            <div className="md:hidden flex gap-3 p-2 justify-center mt-5">
                 {listSocialNetwork.map((item, index) => (
                     <SocialNetwork
                         key={item.id + index}
                         src={item.src}
                         href={item.href}
+                        size={30}
                     />
                 ))}
             </div>

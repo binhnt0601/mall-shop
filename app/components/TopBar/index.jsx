@@ -26,7 +26,7 @@ function TopBar() {
                 color: 'white',
                 background: 'white',
                 height: { xs: '4rem', sm: '5.5rem' },
-                zIndex: 9999,
+                zIndex: 1,
             }}
         >
             <Container maxWidth="xl" className="h-full">
