@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import { Stack } from '@mui/material';
 
 const StyledTypograpghy = styled(Typography)(({ color }) => ({
     color,
@@ -19,7 +18,7 @@ export default function DesktopMenu({ menuItems }) {
     const pathname = usePathname();
 
     return (
-        <Stack className="hidden md:flex">
+        <div className="hidden md:flex">
             {menuItems.map((menuItem) => {
                 return (
                     <Button key={menuItem.index}>
@@ -40,6 +39,6 @@ export default function DesktopMenu({ menuItems }) {
                     </Button>
                 );
             })}
-        </Stack>
+        </div>
     );
 }

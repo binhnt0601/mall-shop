@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import Drawer from '@mui/material/Drawer';
-import { Stack, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 
 import CustomLink from '../shared/CustomLink';
 
@@ -20,7 +20,7 @@ export default function MobileMenu({ menuItems }) {
     };
 
     return (
-        <Stack className="md:hidden flex">
+        <div className="md:hidden flex">
             <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -58,6 +58,6 @@ export default function MobileMenu({ menuItems }) {
                     ))}
                 </Box>
             </Drawer>
-        </Stack>
+        </div>
     );
 }
