@@ -7,7 +7,7 @@ import Image from 'next/image';
 import ResponsiveBanner from '../shared/ResponsiveBanner';
 
 import imageTest from '@/assets/about-us-2-1.png';
-// import { useAboutUsAnimations } from "@/app/hooks/useAboutUsAnimations";
+import { useAboutUsAnimations } from '@/hooks/useAboutUsAnimations';
 
 const aboutContents = [
     {
@@ -31,11 +31,11 @@ const textProps = {
 };
 
 export default function AboutUs() {
-    // const { banner1 } = useAboutUsAnimations();
+    const { banner1 } = useAboutUsAnimations();
 
     const image = (
         <Image
-            // ref={banner1}
+            ref={banner1}
             src={imageTest}
             loading="lazy"
             alt="image-2-1"
