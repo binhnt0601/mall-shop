@@ -16,7 +16,7 @@ export default function RoadMap() {
         >
             {headline}
             <Typography>
-                2023
+                <p style={{fontSize:'20px', fontWeight:'bold'}}>2023</p>
                 Q1
                 Validity: Aimalls : Concept and Idea Research, Planning, and Design Proposal
                 Q2
