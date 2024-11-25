@@ -38,7 +38,7 @@ export default function AboutUs() {
             ref={banner1}
             src={imageTest}
             loading="lazy"
-            alt="image-2-1"
+            alt="about us"
             sizes="100vw"
             style={{ width: '100%', height: 'auto' }}
         />
@@ -51,9 +51,9 @@ export default function AboutUs() {
     );
 
     const bodyText = aboutContents.map((item, index) => (
-        <p key={index} className={index > 0 ? 'mt-3' : ''}>
+        <Typography key={index} className={index > 0 ? 'mt-3' : ''}>
             {item.description}
-        </p>
+        </Typography>
     ));
 
     return (

@@ -9,7 +9,7 @@ import image2 from '@/assets/about-us-4-2.png'
 import image3 from '@/assets/about-us-4-3.png'
 import CustomSpan from '@/components/shared/CustomSpan'
 import { useAboutUsAnimations } from '@/hooks/useAboutUsAnimations'
-import { Stack } from '@mui/material'
+import { Box } from '@mui/material'
 
 export default function Frame4() {
   const { banner5_1, banner5_2, banner5_3 } = useAboutUsAnimations()
@@ -59,14 +59,14 @@ export default function Frame4() {
   )
   return (
     <div className="bg-[#fff4e4]">
-      <div style={{
+      <h4 style={{
         textAlign: 'center',
         fontSize: '40px',
         color: '#fc9a14',
         paddingBottom: '20px',
         fontFamily: 'Work Sans',
         fontWeight: 'bold'
-      }}>Partnerships</div>
+      }}>Partnerships</h4>
       <Box
         sx={{
           display: 'flex',
