@@ -89,10 +89,6 @@ export default function Frame4() {
             />
           </a>)}
       </Box>
-      {/* #fc9a14 */}
-      {/* display flex , flexwrap, justifyContent space around */}
-
-
 
       {/* <Box
         mr={{ xs: 0, md: 2.5 }}
