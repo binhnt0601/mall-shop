@@ -16,10 +16,6 @@ function ResponsiveBanner({
 }) {
     const { isMediumScreenWidth } = useViewPort();
 
-    const textWidth = ['left', 'right'].includes(align)
-        ? `${100 - mediaWidth}%`
-        : '100%';
-
     const spacing = (type) => {
         if (align.includes(type) && !isMediumScreenWidth) {
             return type === 'left' ? 12.25 : 2.5;
@@ -37,11 +33,6 @@ function ResponsiveBanner({
         <Box
             id={id}
             position="relative"
-            width={{
-                xs: '100%',
-                md: '100%',
-                lg: textWidth,
-            }}
             flexDirection="column"
             display="flex"
             justifyContent="flex-end"
@@ -83,7 +74,7 @@ function ResponsiveBanner({
     const mediaContent = (
         <Box
             position="relative"
-            width={{ xs: '100%', md: '100%', lg: `${mediaWidth}%` }}
+            width={`${mediaWidth}%`}
             height="100%"
             borderRadius={4}
             overflow="hidden"
@@ -103,8 +94,8 @@ function ResponsiveBanner({
             display="flex"
             width="100%"
         >
-            {textContent}
             {mediaContent}
+            {textContent}
         </Box>
     );
 }

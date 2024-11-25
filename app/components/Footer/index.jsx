@@ -4,6 +4,7 @@ import React from 'react';
 
 import Image from 'next/image';
 import { Box, Typography } from '@mui/material';
+import LogoImage from '@/assets/logo-vertical.png';
 
 function Footer() {
     return (
@@ -17,7 +18,7 @@ function Footer() {
                 <Image
                     width={80}
                     height={80}
-                    src={'/logo-vertical.png'}
+                    src={LogoImage}
                     alt="logo"
                 />
 

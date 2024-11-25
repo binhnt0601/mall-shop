@@ -1,13 +1,9 @@
 import React from 'react';
 
 import Typography from '@mui/material/Typography';
-import { Stack } from '@mui/material';
 import Image from 'next/image';
 
-import ResponsiveBanner from '../shared/ResponsiveBanner';
-
 import imageTest from '@/assets/about-us-2-1.png';
-import { useAboutUsAnimations } from '@/hooks/useAboutUsAnimations';
 
 const aboutContents = [
     {
@@ -31,19 +27,6 @@ const textProps = {
 };
 
 export default function AboutUs() {
-    const { banner1 } = useAboutUsAnimations();
-
-    const image = (
-        <Image
-            ref={banner1}
-            src={imageTest}
-            loading="lazy"
-            alt="image-2-1"
-            sizes="100vw"
-            style={{ width: '100%', height: 'auto' }}
-        />
-    );
-
     const headline = (
         <Typography {...textProps} style={{ fontWeight: 'bold' }}>
             About <span style={{ color: '#fc9a14' }}>AiMalls</span>
@@ -51,26 +34,27 @@ export default function AboutUs() {
     );
 
     const bodyText = aboutContents.map((item, index) => (
-        <p key={index} className={index > 0 ? 'mt-3' : ''}>
+        <Typography key={index} className={index > 0 ? 'mt-3' : ''}>
             {item.description}
-        </p>
+        </Typography>
     ));
 
     return (
-        <Stack
-            display="flex"
-            flexDirection="column"
-            color="white"
+        <div
             padding="5px"
-            className="md:w-1/2 w-full md:ml-14 ml-0"
+            className="md:p-14 p-8 flex md:flex-row flex-col items-center gap-5"
         >
-            <ResponsiveBanner
-                id="card1"
-                headline={headline}
-                bodyText={bodyText}
-                media={image}
-                mediaWidth={60}
+            <Image
+                src={imageTest}
+                loading="lazy"
+                alt="about us"
+                width={400}
+                height={400}
             />
-        </Stack>
+            <div className="md:w-1/2 w-full text-white">
+                {headline}
+                {bodyText}
+            </div>
+        </div>
     );
 }
