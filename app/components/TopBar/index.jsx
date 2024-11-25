@@ -42,9 +42,15 @@ function TopBar() {
                 >
                     <LogoBlockify />
 
-                    <MobileMenu menuItems={menuItems} />
+                    <div>
+                        <MobileMenu menuItems={menuItems} />
+                        <DesktopMenu menuItems={menuItems} />
+                    </div>
 
-                    <DesktopMenu menuItems={menuItems} />
+                    <div className="hidden gap-5 md:flex">
+                        <button className="text-[#fc9a14]">Login</button>
+                        <button className="text-[#fc9a14]">Register</button>
+                    </div>
                 </Toolbar>
             </Container>
         </AppBar>

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React from 'react';
 
@@ -13,16 +13,17 @@ import Frame2_1 from '@/components/AboutUs/Frame2/Frame2_1';
 import Frame2_2 from '@/components/AboutUs/Frame2/Frame2_2';
 import Frame2_3 from '@/components/AboutUs/Frame2/Frame2_3';
 import Frame3 from '@/components/AboutUs/Frame3';
-import Frame4 from '@/components/AboutUs/Frame4';
 import LicenseAcquired from '@/components/LicenseAcquired';
 import AppOverview from '@/components/AppOverview';
 import FutureShopping from '@/components/FutureShopping';
 import BenefitsShopping from '@/components/BenefitsShopping';
-import FAQS from '@/components/FAQs/index';
-import RoadMap from '@/components/RoadMap/index';
+import Partnerships from '@/components/Partnerships';
+import FeaturedIn from '@/components/FeaturedIn';
+import FAQS from '@/components/FAQs';
+import RoadMap from '@/components/RoadMap';
 
 export default function Home() {
-    const frames = [Frame2_1, Frame2_2, Frame2_3, Frame3, Frame4];
+    const frames = [Frame2_1, Frame2_2, Frame2_3, Frame3];
 
     return (
         <React.Fragment>
@@ -32,10 +33,22 @@ export default function Home() {
                 minHeight="calc(100vh - 64px)"
             />
             <Background imgSrc={Frame1Banner} textBackground={<AboutUs />} />
-            <Background imgSrc={Frame1Banner} textBackground={<LicenseAcquired />} />
-            <Background imgSrc={Frame1Banner} textBackground={<AppOverview />} />
-            <Background imgSrc={Frame1Banner} textBackground={<FutureShopping />} />
-            <Background imgSrc={Frame1Banner} textBackground={<BenefitsShopping />} />
+            <Background
+                imgSrc={Frame1Banner}
+                textBackground={<LicenseAcquired />}
+            />
+            <Background
+                imgSrc={Frame1Banner}
+                textBackground={<AppOverview />}
+            />
+            <Background
+                imgSrc={Frame1Banner}
+                textBackground={<FutureShopping />}
+            />
+            <Background
+                imgSrc={Frame1Banner}
+                textBackground={<BenefitsShopping />}
+            />
             <Background imgSrc={Frame1Banner} textBackground={<RoadMap />} />
             <Background imgSrc={Frame1Banner} textBackground={<FAQS />} />
             {frames.map((Frame, index) => (
@@ -43,6 +56,12 @@ export default function Home() {
                     <Frame />
                 </Box>
             ))}
+
+            <Background imgSrc={Frame1Banner} textBackground={<FeaturedIn />} />
+            <Background
+                imgSrc={Frame1Banner}
+                textBackground={<Partnerships />}
+            />
         </React.Fragment>
     );
 }

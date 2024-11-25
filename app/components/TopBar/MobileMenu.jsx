@@ -20,13 +20,7 @@ export default function MobileMenu({ menuItems }) {
     };
 
     return (
-        <Box
-            sx={{
-                flexGrow: 1,
-                display: { xs: 'flex', sm: 'none' },
-                justifyContent: 'flex-end',
-            }}
-        >
+        <div className="md:hidden flex">
             <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -64,6 +58,6 @@ export default function MobileMenu({ menuItems }) {
                     ))}
                 </Box>
             </Drawer>
-        </Box>
+        </div>
     );
 }
