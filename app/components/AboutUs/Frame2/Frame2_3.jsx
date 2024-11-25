@@ -4,7 +4,7 @@ import React from 'react'
 
 import Image from 'next/image'
 
-import image from '@/public/about-us-2-3.png'
+import image from '@/assets/about-us-2-3.png'
 import ResponsiveBanner from '@/app/components/shared/ResponsiveBanner'
 import CustomSpan from '@/app/components/shared/CustomSpan'
 import { useAboutUsAnimations } from '@/app/hooks/useAboutUsAnimations'

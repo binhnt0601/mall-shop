@@ -6,9 +6,9 @@ import Image from 'next/image'
 
 import Box from '@mui/material/Box'
 
-import image1 from '@/public/about-us-4-1.png'
-import image2 from '@/public/about-us-4-2.png'
-import image3 from '@/public/about-us-4-3.png'
+import image1 from '@/assets/about-us-4-1.png'
+import image2 from '@/assets/about-us-4-2.png'
+import image3 from '@/assets/about-us-4-3.png'
 import CustomSpan from '@/app/components/shared/CustomSpan'
 import { useAboutUsAnimations } from '@/app/hooks/useAboutUsAnimations'
 import { Stack } from '@mui/material'
