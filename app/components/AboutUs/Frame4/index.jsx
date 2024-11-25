@@ -61,25 +61,34 @@ export default function Frame4() {
   )
   return (
     <div className="bg-[#fff4e4]">
-      <p style={{ textAlign: 'center' }}>Partnerships</p>
-      <Stack
+      <div style={{
+        textAlign: 'center',
+        fontSize: '40px',
+        color: '#fc9a14',
+        paddingBottom: '20px',
+        fontFamily: 'Work Sans',
+        fontWeight: 'bold'
+      }}>Partnerships</div>
+      <Box
         sx={{
           display: 'flex',
           flexWrap: 'wrap',
           justifyContent: 'space-around',
-          gap: 5
+          gap: 3
         }}
       >
 
         {Array(15).fill(0).map((_, index) =>
-          <Image
-            key={index}
-            width={200}
-            height={200}
-            src={image3}
-          />)}
+          <a href="https://www.google.com" target="_blank">
+            <Image
 
-      </Stack>
+              key={index}
+              width={200}
+              height={200}
+              src={image3}
+            />
+          </a>)}
+      </Box>
       {/* #fc9a14 */}
       {/* display flex , flexwrap, justifyContent space around */}
 
