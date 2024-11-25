@@ -14,6 +14,10 @@ import Frame2_2 from '@/components/AboutUs/Frame2/Frame2_2';
 import Frame2_3 from '@/components/AboutUs/Frame2/Frame2_3';
 import Frame3 from '@/components/AboutUs/Frame3';
 import Frame4 from '@/components/AboutUs/Frame4';
+import LicenseAcquired from '@/components/LicenseAcquired';
+import AppOverview from '@/components/AppOverview';
+import FutureShopping from '@/components/FutureShopping';
+import BenefitsShopping from '@/components/BenefitsShopping';
 
 export default function Home() {
     const frames = [Frame2_1, Frame2_2, Frame2_3, Frame3, Frame4];
@@ -26,6 +30,10 @@ export default function Home() {
                 minHeight="calc(100vh - 64px)"
             />
             <Background imgSrc={Frame1Banner} textBackground={<AboutUs />} />
+            <Background imgSrc={Frame1Banner} textBackground={<LicenseAcquired />} />
+            <Background imgSrc={Frame1Banner} textBackground={<AppOverview />} />
+            <Background imgSrc={Frame1Banner} textBackground={<FutureShopping />} />
+            <Background imgSrc={Frame1Banner} textBackground={<BenefitsShopping />} />
 
             {frames.map((Frame, index) => (
                 <Box key={index} mb={{ xs: 4, md: 15 }}>
