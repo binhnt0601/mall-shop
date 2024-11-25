@@ -19,6 +19,8 @@ import FutureShopping from '@/components/FutureShopping';
 import BenefitsShopping from '@/components/BenefitsShopping';
 import Partnerships from '@/components/Partnerships';
 import FeaturedIn from '@/components/FeaturedIn';
+import FAQS from '@/components/FAQs/index';
+import RoadMap from '@/components/RoadMap/index';
 
 export default function Home() {
     const frames = [Frame2_1, Frame2_2, Frame2_3, Frame3];
@@ -47,6 +49,8 @@ export default function Home() {
                 imgSrc={Frame1Banner}
                 textBackground={<BenefitsShopping />}
             />
+            <Background imgSrc={Frame1Banner} textBackground={<RoadMap />} />
+            <Background imgSrc={Frame1Banner} textBackground={<FAQS />} />
             {frames.map((Frame, index) => (
                 <Box key={index} mb={{ xs: 4, md: 15 }}>
                     <Frame />
