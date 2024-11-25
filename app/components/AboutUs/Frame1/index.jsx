@@ -36,10 +36,7 @@ export default function Frame1() {
       justifyContent="center"
       color="white"
       padding="5px"
-      sx={{
-        width: { xs: "100%", md: "50%" },
-        margin: { xs: "0", md: "0 51px" },
-      }}
+      className="md:w-1/2 w-full md:items-start items-center md:ml-14 ml-0"
     >
       <div className="md:flex hidden flex-col gap-3 absolute left-0 border border-l-0 border-amber-500 rounded-r-md p-2">
         {listSocialNetwork.map((item, index) => (
@@ -50,15 +47,17 @@ export default function Frame1() {
           />
         ))}
       </div>
-      <Typography {...textProps} style={{ fontWeight: "bold" }}>
-        Experience the{" "}
-        <span style={{ color: "#fc9a14" }}>Future of shopping</span> with{" "}
-        <span style={{ color: "#fc9a14" }}>AI</span>
-      </Typography>
-      <span>
-        It is an AI-powered online mall, a platform and an app that uses
-        intelligent algorithms.
-      </span>
+      <div className="max-w-xl p-3">
+        <Typography {...textProps} style={{ fontWeight: "bold" }}>
+          Experience the{" "}
+          <span style={{ color: "#fc9a14" }}>Future of shopping</span> with{" "}
+          <span style={{ color: "#fc9a14" }}>AI</span>
+        </Typography>
+        <span>
+          It is an AI-powered online mall, a platform and an app that uses
+          intelligent algorithms.
+        </span>
+      </div>
       <div className="md:hidden flex gap-3 p-2 justify-center">
         {listSocialNetwork.map((item, index) => (
           <SocialNetwork

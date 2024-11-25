@@ -9,6 +9,7 @@ import Frame3 from "@/app/components/AboutUs/Frame3";
 import Frame4 from "@/app/components/AboutUs/Frame4";
 import Background from "../components/Background";
 import { Box } from "@mui/material";
+import AboutUs from "../components/AboutAiMalls";
 
 export const dynamic = "force-dynamic";
 
@@ -17,7 +18,12 @@ export default function Home() {
 
   return (
     <React.Fragment>
-      <Background imgSrc={Frame1Banner} textBackground={<Frame1 />} />
+      <Background
+        imgSrc={Frame1Banner}
+        textBackground={<Frame1 />}
+        minHeight="calc(100vh - 64px)"
+      />
+      <Background imgSrc={Frame1Banner} textBackground={<AboutUs />} />
 
       {frames.map((Frame, index) => (
         <Box key={index} mb={{ xs: 4, md: 15 }}>

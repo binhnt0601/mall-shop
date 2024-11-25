@@ -11,6 +11,7 @@ import TopBar from "@/app/components/TopBar";
 import theme from "@/app/theme";
 
 import "./globals.css";
+import { Stack } from "@mui/material";
 
 export const metadata = {
   title: "Blockify",
@@ -27,7 +28,13 @@ export default function RootLayout({ children }) {
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <TopBar />
-            {children}
+            <Stack
+              sx={{
+                marginTop: { xs: "4rem", sm: "5.5rem" },
+              }}
+            >
+              {children}
+            </Stack>
             <ToastContainer
               position="bottom-right"
               autoClose={3000}
