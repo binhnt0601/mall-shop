@@ -40,7 +40,7 @@ export default function TargetFutureShopping() {
   );
 
   return (
-    <Stack className="w-full pt-[50px] pb-[100px] items-center gap-5 bg-[#270f0b]">
+    <Stack className="w-full pt-[50px] pb-[100px] items-center gap-5 lg:px-24 bg-[#270f0b]">
       <div className="max-w-[640px] text-center">
         {headline}
         <Typography color="white">

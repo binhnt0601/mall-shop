@@ -35,7 +35,7 @@ export default function WelcomeScreen() {
       <Stack
         color="white"
         padding="5px"
-        className="md:items-start justify-center items-center md:mx-14 mx-12"
+        className="md:items-start justify-center items-center lg:mx-40 md:mx-14 mx-12"
         style={{ minHeight: "calc(100vh - 64px)" }}
       >
         <div

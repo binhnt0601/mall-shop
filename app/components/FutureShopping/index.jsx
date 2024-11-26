@@ -37,7 +37,7 @@ export default function FutureShopping() {
 
   return (
     <>
-      <div className="w-full flex lg:flex-row flex-col gap-5 py-10 md:px-14 text-white bg-[#270f0b]">
+      <div className="w-full flex lg:flex-row flex-col gap-5 py-10 lg:px-40  md:px-14 text-white bg-[#270f0b]">
         <div className="lg:w-[50%] w-full p-6">
           {headline}
           <Typography className="text-justify">

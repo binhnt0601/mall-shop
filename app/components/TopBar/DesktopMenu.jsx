@@ -1,7 +1,6 @@
 import React from "react";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
@@ -15,7 +14,6 @@ const StyledTypograpghy = styled(Typography)(({ color }) => ({
 }));
 
 export default function DesktopMenu({ menuItems }) {
-  const pathname = usePathname();
 
   return (
     <div className="hidden md:flex">
@@ -24,7 +22,7 @@ export default function DesktopMenu({ menuItems }) {
           <Button key={menuItem.index}>
             <Link href={menuItem.href}>
               <StyledTypograpghy
-                color={pathname === menuItem.href ? "" : "black"}
+                color="black"
                 sx={{
                   "&:hover": {
                     color: "#1ED760",

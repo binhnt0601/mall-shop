@@ -7,7 +7,7 @@ import { Typography } from "@mui/material";
 
 import SocialNetwork from "../SocialNetwork";
 
-import LogoImage from "@/assets/logo-vertical.png";
+import LogoImage from "@/assets/favicon.jpg";
 
 const listSocialNetwork = [
   {

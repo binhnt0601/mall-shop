@@ -42,7 +42,7 @@ export default function AboutUs() {
   return (
     <div
       padding="5px"
-      className="md:p-14 p-8 flex md:flex-row flex-col items-center gap-5 bg-[#270f0b]"
+      className="lg:px-40 md:p-14 p-8 flex md:flex-row flex-col items-center gap-5 bg-[#270f0b]"
     >
       <Image
         src={imageTest}

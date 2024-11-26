@@ -15,7 +15,7 @@ export default function Partnerships() {
       >
         Partnerships
       </h4>
-      <div className="flex flex-wrap justify-around gap-5">
+      <div className="flex flex-wrap justify-around md:gap-20 gap-5">
         {Array(15)
           .fill(0)
           .map((_, index) => (

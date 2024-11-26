@@ -40,14 +40,23 @@ const TechnologyAndTargetMarket = () => {
   );
 
   return (
-    <div className="bg-[#270f0b]">
-      <div>{headline}</div>
-      {data.map((item, index) => (
-        <div key={index}>
-          <Image width={50} height={50} src={item.img} alt="target" />
-          <Typography>{item.description}</Typography>
+    <div className="relative  bg-gradient-to-b from-[#3b2110] to-[#270f0b] min-h-[650px]">
+      <div className="absolute -bottom-32 right-1/2 translate-x-1/2 w-full lg:px-40 md:px-14 px-5">
+        <div
+          className="border-2 w-full border-[#fc9a14] rounded-2xl px-6 py-5
+        bg-gradient-to-r from-[#22405f] to-[#270f0b] text-white"
+        >
+          <div className="md:mx-40 mx:20 mb-5 text-center">{headline}</div>
+          <div className="md:ml-[40%] ml-0">
+            {data.map((item, index) => (
+              <div key={index} className="flex items-center gap-5 mb-5">
+                <Image width={50} height={50} src={item.img} alt="target" />
+                <Typography>{item.description}</Typography>
+              </div>
+            ))}
+          </div>
         </div>
-      ))}
+      </div>
     </div>
   );
 };
