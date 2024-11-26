@@ -24,9 +24,8 @@
       "error",
       {
         "semi": true,
-        "singleQuote": true,
         "endOfLine": "auto",
-        "tabWidth": 4,
+        "tabWidth": 2,
         "trailingComma": "all"
       }
     ],
@@ -85,13 +84,6 @@
       }
     ],
     "no-console": "warn",
-    "quotes": [
-      "error",
-      "single",
-      {
-        "avoidEscape": true
-      }
-    ],
     "no-alert": "error",
     "import/no-unresolved": 2,
     "@next/next/no-document-import-in-page": "off",
