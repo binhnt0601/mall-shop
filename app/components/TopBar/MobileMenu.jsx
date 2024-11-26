@@ -8,7 +8,7 @@ import Drawer from "@mui/material/Drawer";
 import { Stack, Typography } from "@mui/material";
 import Image from "next/image";
 
-import CustomLink from "../shared/CustomLink";
+import CustomLink from "../../components-shared/CustomLink";
 
 import LogoImage from "@/assets/favicon.jpg";
 
