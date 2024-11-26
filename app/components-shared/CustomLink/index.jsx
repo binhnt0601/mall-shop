@@ -10,11 +10,13 @@ function CustomLink({
   textDecoration = "none",
   padding = "0px",
   children,
+  target = "",
 }) {
   return (
     <Link
       href={to}
       style={{ textDecoration: textDecoration, padding: padding }}
+      target={target}
     >
       <Typography
         sx={{

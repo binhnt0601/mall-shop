@@ -17,8 +17,14 @@ const menuItems = [
     index: 2,
     label: "Pitch Deck",
     href: "https://cdn.aimalls.app/aimalls-pitchdeck.pdf",
+    target: "_blank",
   },
-  { index: 3, label: "Tokenomics", href: "https://google.com" },
+  {
+    index: 3,
+    label: "Tokenomics",
+    href: "https://google.com",
+    target: "_blank",
+  },
 ];
 
 function TopBar() {
