@@ -17,7 +17,7 @@ export default function FeaturedIn() {
                     fontWeight: 'bold',
                 }}
             >
-                Feature In
+                Featured In
             </h4>
             <div className="flex flex-wrap justify-around gap-5">
                 {Array(32)

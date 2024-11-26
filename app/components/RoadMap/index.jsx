@@ -15,8 +15,9 @@ export default function RoadMap() {
             className="w-full flex flex-col items-center gap-5 py-10"
         >
             {headline}
-            <Typography>
-                <p style={{fontSize:'20px', fontWeight:'bold'}}>2023</p>
+            <Typography
+                style={{ fontSize: '20px', fontWeight: 'bold' }}>
+                2023
                 Q1
                 Validity: Aimalls : Concept and Idea Research, Planning, and Design Proposal
                 Q2
