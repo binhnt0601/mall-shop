@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Partnerships() {
     return (
-        <div className="w-full px-[72px] py-[50px]">
+        <div className="w-full px-[72px] py-[50px] bg-[#fff3e3]">
             <h4
                 style={{
                     textAlign: 'center',

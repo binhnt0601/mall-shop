@@ -21,11 +21,7 @@ import TargetFutureShopping from '@/components/TargetFutureShopping';
 export default function Home() {
     return (
         <React.Fragment>
-            <Background
-                imgSrc={Frame1Banner}
-                textBackground={<WelcomeScreen />}
-                minHeight="calc(100vh - 64px)"
-            />
+            <WelcomeScreen />
             <AboutUs />
             <LicenseAcquired />
             <AppOverview />
@@ -35,11 +31,8 @@ export default function Home() {
             <ComprehensiveOverview />
             <Background imgSrc={Frame1Banner} textBackground={<RoadMap />} />
             <Background imgSrc={Frame1Banner} textBackground={<FAQS />} />
-            <Background imgSrc={Frame1Banner} textBackground={<FeaturedIn />} />
-            <Background
-                imgSrc={Frame1Banner}
-                textBackground={<Partnerships />}
-            />
+            <FeaturedIn />
+            <Partnerships />
         </React.Fragment>
     );
 }
