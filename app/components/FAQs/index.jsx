@@ -1,8 +1,7 @@
 import React from "react";
 
 import Typography from "@mui/material/Typography";
-import { Stack } from "@mui/material";
-import { Box } from "@mui/material";
+import { Stack, Box } from "@mui/material";
 
 export default function FAQS() {
   const headline = (
@@ -71,8 +70,8 @@ export default function FAQS() {
       </div>
 
       <div>
-        {data.map((item) => (
-          <Box>
+        {data.map((item, index) => (
+          <Box key={index}>
             <Typography
               style={{
                 color: "#fc9a14",
