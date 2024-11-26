@@ -2,17 +2,11 @@
 
 import React from 'react';
 
-import { Box } from '@mui/material';
-
-import Frame1 from '../components/AboutUs/Frame1';
+import WelcomeScreen from '../components/WelcomeScreen';
 import Background from '../components/Background';
-import AboutUs from '../components/AboutAiMalls';
+import AboutUs from '../components/AboutUs';
 
 import Frame1Banner from '@/assets/background.png';
-import Frame2_1 from '@/components/AboutUs/Frame2/Frame2_1';
-import Frame2_2 from '@/components/AboutUs/Frame2/Frame2_2';
-import Frame2_3 from '@/components/AboutUs/Frame2/Frame2_3';
-import Frame3 from '@/components/AboutUs/Frame3';
 import LicenseAcquired from '@/components/LicenseAcquired';
 import AppOverview from '@/components/AppOverview';
 import FutureShopping from '@/components/FutureShopping';
@@ -22,44 +16,25 @@ import FeaturedIn from '@/components/FeaturedIn';
 import FAQS from '@/components/FAQs';
 import RoadMap from '@/components/RoadMap';
 import ComprehensiveOverview from '@/components/ComprehensiveOverview';
+import TargetFutureShopping from '@/components/TargetFutureShopping';
 
 export default function Home() {
-    const frames = [Frame2_1, Frame2_2, Frame2_3, Frame3];
-
     return (
         <React.Fragment>
             <Background
                 imgSrc={Frame1Banner}
-                textBackground={<Frame1 />}
+                textBackground={<WelcomeScreen />}
                 minHeight="calc(100vh - 64px)"
             />
-            <Background imgSrc={Frame1Banner} textBackground={<AboutUs />} />
-            <Background
-                imgSrc={Frame1Banner}
-                textBackground={<LicenseAcquired />}
-            />
-            <Background
-                imgSrc={Frame1Banner}
-                textBackground={<AppOverview />}
-            />
-            <Background
-                imgSrc={Frame1Banner}
-                textBackground={<FutureShopping />}
-            />
-            <Background
-                imgSrc={Frame1Banner}
-                textBackground={<BenefitsShopping />}
-            />
-
+            <AboutUs />
+            <LicenseAcquired />
+            <AppOverview />
+            <FutureShopping />
+            <BenefitsShopping />
+            <TargetFutureShopping />
             <ComprehensiveOverview />
             <Background imgSrc={Frame1Banner} textBackground={<RoadMap />} />
             <Background imgSrc={Frame1Banner} textBackground={<FAQS />} />
-            {frames.map((Frame, index) => (
-                <Box key={index} mb={{ xs: 4, md: 15 }}>
-                    <Frame />
-                </Box>
-            ))}
-
             <Background imgSrc={Frame1Banner} textBackground={<FeaturedIn />} />
             <Background
                 imgSrc={Frame1Banner}

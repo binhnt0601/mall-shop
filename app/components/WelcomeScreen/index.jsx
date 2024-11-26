@@ -3,7 +3,7 @@ import React from 'react';
 import Typography from '@mui/material/Typography';
 import { Stack } from '@mui/material';
 
-import SocialNetwork from '../../SocialNetwork';
+import SocialNetwork from '../SocialNetwork';
 
 const listSocialNetwork = [
     {
@@ -23,7 +23,7 @@ const listSocialNetwork = [
     },
 ];
 
-export default function Frame1() {
+export default function WelcomeScreen() {
     const textProps = {
         sx: {
             fontSize: { xs: '30px', md: '50px' },
