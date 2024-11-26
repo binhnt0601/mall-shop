@@ -11,12 +11,13 @@ import "./globals.css";
 
 import theme from "@/theme";
 import TopBar from "@/components/TopBar";
+import Favicon from "@/assets/favicon.jpg";
 
 export const metadata = {
-  title: "Blockify",
-  description: "Blockify",
+  title: "AI Malls",
+  description: "AI Malls",
   icons: {
-    icon: "/company-logo.png",
+    icon: Favicon.src,
   },
 };
 

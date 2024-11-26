@@ -43,7 +43,7 @@ export default function BenefitsShopping() {
   );
 
   return (
-    <Stack className="w-full pt-[50px] pb-[100px] items-center gap-5">
+    <Stack className="w-full pt-[50px] pb-[100px] items-center gap-5 lg:px-24">
       <div className="max-w-[640px] text-center">
         {headline}
         <Typography>

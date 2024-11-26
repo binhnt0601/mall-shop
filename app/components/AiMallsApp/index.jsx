@@ -3,8 +3,8 @@ import { Typography } from "@mui/material";
 const AiMallsApp = () => {
   return (
     <div
-      className="text-white bg-[#270f0b] sm:px-[50px] px-4 pt-[50px] pb-[100px]"
-      style={{ minHeight: "calc(100vh - 64px)" }}
+      className="text-white bg-gradient-to-t from-[#3b2110] to-[#270f0b] lg:px-20 sm:px-[50px] px-4 pt-[50px] pb-[100px]"
+      style={{ minHeight: "600px" }}
     >
       <div className="bg-[rgba(0,0,0,.3)] rounded-[20px] p-[5px]">
         <Typography fontSize={40} fontWeight="bold" className="p-5">

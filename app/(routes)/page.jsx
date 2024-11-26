@@ -34,7 +34,9 @@ export default function Home() {
       <TechnologyAndTargetMarket />
       <ComprehensiveOverview />
       <Background imgSrc={Frame1Banner} textBackground={<RoadMap />} />
-      <Background imgSrc={Frame1Banner} textBackground={<FAQS />} />
+      <div id="faqs">
+        <Background imgSrc={Frame1Banner} textBackground={<FAQS />} />
+      </div>
       <FeaturedIn />
       <Partnerships />
     </React.Fragment>

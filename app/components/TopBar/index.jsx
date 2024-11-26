@@ -12,9 +12,13 @@ import LogoBlockify from "./LogoBlockify";
 
 const menuItems = [
   { index: 0, label: "Home", href: "/" },
-  { index: 1, label: "FAQs", href: "/service" },
-  { index: 2, label: "Pitch Deck", href: "/contact" },
-  { index: 3, label: "Tokenomics", href: "/" },
+  { index: 1, label: "FAQs", href: "#faqs" },
+  {
+    index: 2,
+    label: "Pitch Deck",
+    href: "https://cdn.aimalls.app/aimalls-pitchdeck.pdf",
+  },
+  { index: 3, label: "Tokenomics", href: "https://google.com" },
 ];
 
 function TopBar() {

@@ -7,13 +7,14 @@ export default function ComprehensiveOverview() {
     <Typography
       style={{ fontWeight: "bold", fontSize: 40, textAlign: "center" }}
     >
-      <p className="text-[#fc9a14]">Why Choose AiMalls?</p>
+      <span className="text-[#fc9a14]">Why Choose AiMalls?</span>
+      <br />
       <span>A Comprehensive Overview</span>
     </Typography>
   );
 
   return (
-    <div className="w-full flex flex-col items-center gap-5 py-10">
+    <div className="w-full flex flex-col items-center gap-5 py-10 mt-32">
       <div className="mb-5">{headline}</div>
       <div className="max-w-full md:max-w-[565px] md:px-0 px-5 mb-40">
         <Section1 />
