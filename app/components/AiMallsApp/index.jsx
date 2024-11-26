@@ -23,7 +23,7 @@ const AiMallsApp = () => {
           </li>
           <li className="text-[#fc9a14] mb-2">
             <span className="text-white ml-2">
-              hopping made easier and efficient
+              Shopping made easier and efficient
             </span>
           </li>
           <li className="text-[#fc9a14] mb-2">
