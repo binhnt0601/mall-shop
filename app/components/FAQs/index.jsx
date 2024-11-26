@@ -75,11 +75,15 @@ export default function FAQS() {
 
             <div>
                 {data.map((item) => (
-                    <Typography
-                        style={{ color: '#fc9a14', fontFamily: 'Work Sans', fontWeight: 'bold' }}>
-                        {item.question}
-                        {item.answer}
-                    </Typography>
+                    <Box>
+                        <Typography
+                            style={{ color: '#fc9a14', fontFamily: 'Work Sans', fontWeight: 'bold' }}>
+                            {item.question}
+                        </Typography>
+                        <Typography>
+                            {item.answer}
+                        </Typography>
+                    </Box>
                 ))}
             </div>
         </Stack>
