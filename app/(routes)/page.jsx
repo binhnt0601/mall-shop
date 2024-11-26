@@ -17,6 +17,8 @@ import FAQS from '@/components/FAQs';
 import RoadMap from '@/components/RoadMap';
 import ComprehensiveOverview from '@/components/ComprehensiveOverview';
 import TargetFutureShopping from '@/components/TargetFutureShopping';
+import AiMallsApp from '@/components/AiMallsApp';
+import TechnologyAndTargetMarket from '@/components/TechnologyAndTargetMarket';
 
 export default function Home() {
     return (
@@ -28,6 +30,8 @@ export default function Home() {
             <FutureShopping />
             <BenefitsShopping />
             <TargetFutureShopping />
+            <AiMallsApp />
+            <TechnologyAndTargetMarket />
             <ComprehensiveOverview />
             <Background imgSrc={Frame1Banner} textBackground={<RoadMap />} />
             <Background imgSrc={Frame1Banner} textBackground={<FAQS />} />
