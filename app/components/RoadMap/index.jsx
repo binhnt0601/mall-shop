@@ -11,55 +11,68 @@ export default function RoadMap() {
             Road Map
         </Typography>
     );
-    const data = [
-        {
-            year: '2023',
-            quarters: [
-                { quarter: '1', content: "Validity: Aimalls : Concept and Idea Research, Planning, and Design Proposal" },
-                { quarter: '2', content: "Community Building Social Media Marketing" },
-                { quarter: '3', content: "Design and Development of Aimalls Website Partnerships, Marketing Token Sale" },
-                { quarter: '4', content: "Exchange Listings, Token Audit (Safety) Marketing Development of Mobile app on iOS and Android AI Intergration" }
-            ]
+    const data_1 = [
 
-        },
-
-        {
-            year: '2024',
-            quarters: [
-                { quarter: '1', content: "Testing AI Integration Quality Assurance" },
-                { quarter: '2', content: "Launching Marketing Partnership Scaling" },
-                { quarter: '3', content: "SEO optimization, digital advertising campaigns, Google ads, Youtube ads" },
-                { quarter: '4', content: "Maintenance and Support" }
-            ]
-
-        },
+        { quarter: 'Q1', content: "Validity: Aimalls : Concept and Idea Research, Planning, and Design Proposal" },
+        { quarter: 'Q2', content: "Community Building Social Media Marketing" },
+        { quarter: 'Q3', content: "Design and Development of Aimalls Website Partnerships, Marketing Token Sale" },
+        { quarter: 'Q4', content: "Exchange Listings, Token Audit (Safety) Marketing Development of Mobile app on iOS and Android AI Intergration" },
     ];
+
+    const data_2 = [
+        { quarter: 'Q1', content: "Testing AI Integration Quality Assurance" },
+        { quarter: 'Q2', content: "Launching Marketing Partnership Scaling" },
+        { quarter: 'Q3', content: "SEO optimization, digital advertising campaigns, Google ads, Youtube ads" },
+        { quarter: 'Q4', content: "Maintenance and Support" }
+
+    ];
+
+
+
+
     return (
         <div
             padding="5px"
             className="w-full flex flex-col items-center gap-5 py-10"
         >
             {headline}
-            <Stack>
+            <Stack
+                style={{
+                    display: 'flex', flexDirection: 'row',
+                    flexWrap: 'wrap', justifyContent: 'space-around'
+                }}
+            >
 
 
                 <Box>
-                    <Typography style={{ fontSize: '40px', fontFamily: 'Work Sans', fontWeight: 'Bold' }}>
-                        {data[0].year}
+
+                    <Typography
+                        style={{color: "#fc9a14", fontSize: '40px', fontFamily: 'Work Sans', fontWeight: 'Bold' }}>
+                        2023
                     </Typography>
-                    {data.map(() => (
-                        <Typography>
-                            {data[0].quarters.quarter}
-                            <span>
-                                {data[0].quarters.content}
-                            </span>
-                        </Typography>
-                    ))}
+                    <Box>
+                        {data_1.map((item, index) => (
+                            <ul key={index} style={{ display: 'flex', flexDirection: 'column' }}>
+                                <li style={{color: "#fc9a14", fontSize: '40px', fontFamily: 'Work Sans', fontWeight: 'Bold' }}>{item.quarter}</li>
+                                <li>{item.content}</li>
+                            </ul>
+                        ))}
+                    </Box>
+
                 </Box>
                 <Box>
-                    <Typography style={{ fontSize: '40px', fontFamily: 'Work Sans', fontWeight: 'Bold' }}>
-                        {data[1].year}
+                    <Typography style={{color: "#fc9a14", fontSize: '40px', fontFamily: 'Work Sans', fontWeight: 'Bold' }}>
+                        2024
                     </Typography>
+
+                    {data_2.map((item, index) => (
+                        <Box>
+                            <ul key={index} style={{ display: 'flex', flexDirection: 'column' }}>
+                                <li style={{color: "#fc9a14", fontSize: '40px', fontFamily: 'Work Sans', fontWeight: 'Bold' }}>{item.quarter}</li>
+                                <li>{item.content}</li>
+                            </ul>
+                        </Box>
+                    ))}
                 </Box>
             </Stack>
         </div>
