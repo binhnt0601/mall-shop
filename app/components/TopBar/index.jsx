@@ -1,59 +1,59 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
 
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Container from '@mui/material/Container';
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Container from "@mui/material/Container";
 
-import DesktopMenu from './DesktopMenu';
-import MobileMenu from './MobileMenu';
-import LogoBlockify from './LogoBlockify';
+import DesktopMenu from "./DesktopMenu";
+import MobileMenu from "./MobileMenu";
+import LogoBlockify from "./LogoBlockify";
 
 const menuItems = [
-    { index: 0, label: 'Home', href: '/' },
-    { index: 1, label: 'FAQs', href: '/service' },
-    { index: 2, label: 'Pitch Deck', href: '/contact' },
-    { index: 3, label: 'Tokenomics', href: '/' },
+  { index: 0, label: "Home", href: "/" },
+  { index: 1, label: "FAQs", href: "/service" },
+  { index: 2, label: "Pitch Deck", href: "/contact" },
+  { index: 3, label: "Tokenomics", href: "/" },
 ];
 
 function TopBar() {
-    return (
-        <AppBar
-            id="navbar"
-            position="fixed"
-            sx={{
-                color: 'white',
-                background: 'white',
-                height: { xs: '4rem', sm: '5.5rem' },
-                zIndex: 2,
-            }}
+  return (
+    <AppBar
+      id="navbar"
+      position="fixed"
+      sx={{
+        color: "white",
+        background: "white",
+        height: { xs: "4rem", sm: "5.5rem" },
+        zIndex: 2,
+      }}
+    >
+      <Container maxWidth="xl" className="h-full">
+        <Toolbar
+          disableGutters
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            justifyContent: "space-between",
+            height: "100%",
+          }}
         >
-            <Container maxWidth="xl" className="h-full">
-                <Toolbar
-                    disableGutters
-                    sx={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        height: '100%',
-                    }}
-                >
-                    <LogoBlockify />
+          <LogoBlockify />
 
-                    <div>
-                        <MobileMenu menuItems={menuItems} />
-                        <DesktopMenu menuItems={menuItems} />
-                    </div>
+          <div>
+            <MobileMenu menuItems={menuItems} />
+            <DesktopMenu menuItems={menuItems} />
+          </div>
 
-                    <div className="hidden gap-5 md:flex">
-                        <button className="text-[#fc9a14]">Login</button>
-                        <button className="text-[#fc9a14]">Register</button>
-                    </div>
-                </Toolbar>
-            </Container>
-        </AppBar>
-    );
+          <div className="hidden gap-5 md:flex">
+            <button className="text-[#fc9a14]">Login</button>
+            <button className="text-[#fc9a14]">Register</button>
+          </div>
+        </Toolbar>
+      </Container>
+    </AppBar>
+  );
 }
 export default TopBar;
