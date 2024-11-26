@@ -3,7 +3,7 @@ import React from 'react';
 import Typography from '@mui/material/Typography';
 import { Stack } from '@mui/material';
 
-import SocialNetwork from '../../SocialNetwork';
+import SocialNetwork from '../SocialNetwork';
 
 const listSocialNetwork = [
     {
@@ -23,7 +23,7 @@ const listSocialNetwork = [
     },
 ];
 
-export default function Frame1() {
+export default function WelcomeScreen() {
     const textProps = {
         sx: {
             fontSize: { xs: '30px', md: '50px' },
@@ -31,55 +31,60 @@ export default function Frame1() {
     };
 
     return (
-        <Stack
-            color="white"
-            padding="5px"
-            className="md:w-1/2 w-full md:items-start justify-center items-center md:mx-14 mx-12"
-        >
-            <div
-                className="md:flex hidden flex-col gap-3 absolute left-0 
-            border-2 border-l-0 border-[#fc9a14] rounded-r-md p-2"
+        <div className="bg-gradient-to-b from-[#b26912] to-[#201211]">
+            <Stack
+                color="white"
+                padding="5px"
+                className="md:items-start justify-center items-center md:mx-14 mx-12"
+                style={{ minHeight: 'calc(100vh - 64px)' }}
             >
-                {listSocialNetwork.map((item, index) => (
-                    <SocialNetwork
-                        key={item.id + index}
-                        src={item.src}
-                        href={item.href}
-                    />
-                ))}
-            </div>
-            <div className="max-w-xl p-3 text-center md:text-start">
-                <Typography {...textProps} style={{ fontWeight: 'bold' }}>
-                    Experience the{' '}
-                    <span style={{ color: '#fc9a14' }}>Future of shopping</span>{' '}
-                    with <span style={{ color: '#fc9a14' }}>AI</span>
-                </Typography>
-                <span>
-                    It is an AI-powered online mall, a platform and an app that
-                    uses intelligent algorithms.
-                </span>
-            </div>
-            <div className="flex sm:flex-row flex-col gap-2 my-4">
-                <button className="uppercase bg-[#fc9a14] sm:w-[160px] w-full py-3 rounded-full">
-                    get started
-                </button>
-                <button className="uppercase bg-[#fc9a14] sm:w-[160px] w-full py-3 rounded-full">
-                    whitepaper
-                </button>
-                <button className="uppercase bg-[#fc9a14] sm:w-[160px] w-full py-3 rounded-full">
-                    one pager
-                </button>
-            </div>
-            <div className="md:hidden flex gap-3 p-2 justify-center mt-5">
-                {listSocialNetwork.map((item, index) => (
-                    <SocialNetwork
-                        key={item.id + index}
-                        src={item.src}
-                        href={item.href}
-                        size={30}
-                    />
-                ))}
-            </div>
-        </Stack>
+                <div
+                    className="md:flex hidden flex-col gap-3 absolute left-0 
+            border-2 border-l-0 border-[#fc9a14] rounded-r-md p-2"
+                >
+                    {listSocialNetwork.map((item, index) => (
+                        <SocialNetwork
+                            key={item.id + index}
+                            src={item.src}
+                            href={item.href}
+                        />
+                    ))}
+                </div>
+                <div className="max-w-xl p-3 text-center md:text-start">
+                    <Typography {...textProps} style={{ fontWeight: 'bold' }}>
+                        Experience the{' '}
+                        <span style={{ color: '#fc9a14' }}>
+                            Future of shopping
+                        </span>{' '}
+                        with <span style={{ color: '#fc9a14' }}>AI</span>
+                    </Typography>
+                    <span>
+                        It is an AI-powered online mall, a platform and an app
+                        that uses intelligent algorithms.
+                    </span>
+                </div>
+                <div className="flex sm:flex-row flex-col md:justify-start justify-center w-full gap-2 my-4">
+                    <button className="uppercase bg-[#fc9a14] sm:w-[160px] w-full py-3 rounded-full">
+                        get started
+                    </button>
+                    <button className="uppercase bg-[#fc9a14] sm:w-[160px] w-full py-3 rounded-full">
+                        whitepaper
+                    </button>
+                    <button className="uppercase bg-[#fc9a14] sm:w-[160px] w-full py-3 rounded-full">
+                        one pager
+                    </button>
+                </div>
+                <div className="md:hidden flex gap-3 p-2 justify-center mt-5">
+                    {listSocialNetwork.map((item, index) => (
+                        <SocialNetwork
+                            key={item.id + index}
+                            src={item.src}
+                            href={item.href}
+                            size={30}
+                        />
+                    ))}
+                </div>
+            </Stack>
+        </div>
     );
 }

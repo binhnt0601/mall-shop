@@ -43,8 +43,8 @@ export default function BenefitsShopping() {
     );
 
     return (
-        <Stack className="w-full md:px-14 px-8 pt-[50px] pb-[100px] items-center gap-5">
-            <div className="max-w-[640px]">
+        <Stack className="w-full pt-[50px] pb-[100px] items-center gap-5">
+            <div className="max-w-[640px] text-center">
                 {headline}
                 <Typography>
                     AIMalls is the ultimate shopping experience, powered by AI
@@ -52,11 +52,11 @@ export default function BenefitsShopping() {
                 </Typography>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div className="flex flex-wrap justify-center">
                 {data.map((item, index) => (
                     <Card
                         key={`card-item-${index}`}
-                        className="border-2 border-[#fc9a14]"
+                        className="border-2 border-[#fc9a14] md:w-[28%] sm:w-[40%] w-full m-5"
                     >
                         <img
                             src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
@@ -67,11 +67,13 @@ export default function BenefitsShopping() {
                             <Typography
                                 variant="h5"
                                 color="#fc9a14"
-                                className="mb-2"
+                                className="mb-2 text-center"
                             >
                                 {item.title}
                             </Typography>
-                            <Typography>{item.description}</Typography>
+                            <Typography className="text-justify">
+                                {item.description}
+                            </Typography>
                         </CardBody>
                     </Card>
                 ))}
