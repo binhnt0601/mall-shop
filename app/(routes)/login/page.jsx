@@ -1,41 +1,44 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 
 export const dynamic = "force-dynamic";
 
-// const loginForm = () => {
-//   const [email, setEmail] = useState('');
-//   const [password, setPasswordl] = useState('');
-//   const [error, setError] = useState('');
-// }
+export default function loginPage() {
+  const [email, setEmail] = useState('');
+  const [password, setPasswordl] = useState('');
+  const [error, setError] = useState('');
 
-// const handleSubmit = (event) => {
-//   event.preventDefault();
-//   if (!email || !password) {
-//     setError('Email and Password can not be empty');
-//     return;
-//   }
-//   if (email === 'user@example.com' && password === 'password123') {
-//     setError('');
-//     alert('Login successful!');
 
-//   } else {
-//     setError('Invalid email or password.');
-//   }
-// };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (!email || !password) {
+      setError('Email and Password can not be empty');
+      return;
+    }
+    if (email === 'user@example.com' && password === 'password123') {
+      setError('');
+      alert('Login successful!');
 
-const loginPage = () => {
+    } else {
+      setError('Invalid email or password.');
+    }
+  };
+
   return (
+
     <div className="login-container">
       <h2>Login</h2>
-      <form className="login-form">
+      <form onSubmit={handleSubmit} className="login-form">
         <div className="input-group">
           <label htmlFor="email">Email</label>
+          {error && <div className="error-message">{error}</div>}
           <input
             type="email"
             id="email"
             name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
             required
           />
@@ -61,6 +64,4 @@ const loginPage = () => {
       </form>
     </div>
   );
-};
-
-export default loginPage;
+}
