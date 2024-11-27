@@ -75,7 +75,7 @@ const missionData = [
 
 const Section2 = () => {
   return (
-    <div className="flex md:flex-row flex-col mx-32 border-2 border-[#fc9a14] rounded-3xl">
+    <div className="flex md:flex-row flex-col sm:mx-12 lg:mx-32 mx-5 border-2 border-[#fc9a14] rounded-3xl">
       {missionData.map((item, index) => (
         <div
           key={`mission-item-${index}`}
