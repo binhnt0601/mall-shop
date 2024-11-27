@@ -85,16 +85,16 @@ const RegisterPage = () => {
   });
 
   return (
-    <Stack className="!flex-row w-full h-dvh">
-      <div className="md:w-[65%] w-full bg-black flex flex-col justify-center items-center px-10">
+    <Stack className="!flex-row w-full min-h-dvh">
+      <div className="md:w-[65%] py-20 w-full bg-black flex flex-col justify-center items-center px-10">
         <div className="md:hidden mb-10">
           <LogoCompany width={181} height={124} />
         </div>
         <Typography
-          fontSize={40}
           fontWeight="bold"
           color="#fc9a14"
           textAlign="center"
+          className="sm:!text-[40px] !text-[32px]"
         >
           Sign up to add an Account
         </Typography>
