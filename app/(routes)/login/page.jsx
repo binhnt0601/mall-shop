@@ -8,7 +8,7 @@ import ServiceList from "@/components/ServiceList/ServiceList";
 
 export const dynamic = "force-dynamic";
 
-function ServicePage() {
+function LoginPage() {
   return (
     <Box className="pt-[60px] md:pt-[120px]">
       <HeadingText
@@ -28,4 +28,4 @@ function ServicePage() {
   );
 }
 
-export default ServicePage;
+export default LoginPage;
