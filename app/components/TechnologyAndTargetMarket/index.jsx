@@ -40,7 +40,7 @@ const TechnologyAndTargetMarket = () => {
   );
 
   return (
-    <div className="relative  bg-gradient-to-b from-[#3b2110] to-[#270f0b] min-h-[650px]">
+    <div className="relative  bg-gradient-to-b from-[#3b2110] to-[#270f0b] md:min-h-[1000px] xl:min-h-[650px] min-h-[850px]">
       <div className="absolute -bottom-32 right-1/2 translate-x-1/2 w-full lg:px-40 md:px-14 px-5">
         <div
           className="border-2 w-full border-[#fc9a14] rounded-2xl px-6 py-5
