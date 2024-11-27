@@ -12,30 +12,12 @@ import {
 import Link from "next/link";
 import EmailIcon from "@mui/icons-material/Email";
 import PasswordIcon from "@mui/icons-material/Lock";
+import GoogleIcon from "@mui/icons-material/Google";
 
 import LogoCompany from "@/components/TopBar/LogoCompany";
 
 export const dynamic = "force-dynamic";
 const LoginPage = () => {
-  // const [email, setEmail] = useState("");
-  // const [password, setPasswordl] = useState("");
-  // const [error, setError] = useState("");
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   if (!email || !password) {
-  //     setError("Email and Password can not be empty");
-
-  //     return;
-  //   }
-  //   if (email === "user@example.com" && password === "password123") {
-  //     setError("");
-  //     alert("Login successful!");
-  //   } else {
-  //     setError("Invalid email or password.");
-  //   }
-  // };
-
   return (
     <Stack className="!flex-row w-full h-dvh">
       <div className="md:w-[65%] w-full bg-black flex flex-col justify-center items-center">
@@ -44,7 +26,7 @@ const LoginPage = () => {
         </Typography>
         <div className="max-w-[460px] flex flex-col w-full gap-4 mt-10">
           <button className="bg-white w-full py-3 rounded-md font-bold">
-            Sign in With Google
+            <GoogleIcon width={20} height={20} alt="logo" /> Sign in With Google
           </button>
 
           <div className="flex justify-center">
@@ -120,20 +102,20 @@ const LoginPage = () => {
           <button className="text-white bg-[#fc9a14] w-full py-3 rounded-full mt-5">
             Login
           </button>
-          <div className="flex flex-col justify-spacearound items-center">
-            <Typography className=" text-[white] text-[20px]">
-              Don't have an account?
-              <Link
-                className="bg-[transparent] text-[#fc9a14] text-[20px] w-full py-3 rounded-full mt-5 text-right"
-                href="/register"
-              >
-                Register
-              </Link>
-            </Typography>
-          </div>
+
+          <Typography color="white" textAlign="center" className="md:hidden">
+            Don&apos;t have an account?
+            <Link
+              href="/register"
+              className="text-[17px] text-[#fc9a14] ml-3 font-medium"
+            >
+              Register
+            </Link>
+          </Typography>
         </div>
       </div>
-      <div className="md:flex hidden flex-col gap-5 justify-center items-center text-center 
+      <div
+        className="md:flex hidden flex-col gap-5 justify-center items-center text-center 
       p-5 w-[50%] bg-[#fc9a14] text-white"
       >
         <LogoCompany width={181} height={124} />
@@ -160,7 +142,6 @@ const LoginPage = () => {
           Register
         </Link>
       </div>
-
     </Stack>
   );
 };
