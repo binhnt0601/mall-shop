@@ -1,6 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+
+import { Stack } from "@mui/material";
+import { YouTubeEmbed } from "@next/third-parties/google";
 
 import WelcomeScreen from "../components/WelcomeScreen";
 import Background from "../components/Background";
@@ -19,10 +22,18 @@ import ComprehensiveOverview from "@/components/ComprehensiveOverview";
 import TargetFutureShopping from "@/components/TargetFutureShopping";
 import AiMallsApp from "@/components/AiMallsApp";
 import TechnologyAndTargetMarket from "@/components/TechnologyAndTargetMarket";
+import useViewPort from "@/hooks/useViewPort";
 
 export default function Home() {
+  const { isTablet } = useViewPort();
+  const [isShow, setIsShow] = useState(true);
+
   return (
-    <React.Fragment>
+    <Stack
+      sx={{
+        marginTop: "4rem",
+      }}
+    >
       <WelcomeScreen />
       <AboutUs />
       <LicenseAcquired />
@@ -34,11 +45,34 @@ export default function Home() {
       <TechnologyAndTargetMarket />
       <ComprehensiveOverview />
       <Background imgSrc={Frame1Banner} textBackground={<RoadMap />} />
-      <div id="faqs">
-        <Background imgSrc={Frame1Banner} textBackground={<FAQS />} />
-      </div>
+      <Background imgSrc={Frame1Banner} textBackground={<FAQS />} />
       <FeaturedIn />
       <Partnerships />
-    </React.Fragment>
+      {isShow && (
+        <div
+          className="sticky bottom-0 pr-5 z-50"
+          style={{ justifyItems: "right" }}
+        >
+          <button className="text-white" onClick={() => setIsShow(false)}>
+            [X]
+          </button>
+          {isTablet ? (
+            <YouTubeEmbed
+              videoid="aVv5aA8ZeDk"
+              width={160}
+              height={100}
+              params="autoplay=1&mute=1&controls=0"
+            />
+          ) : (
+            <YouTubeEmbed
+              videoid="aVv5aA8ZeDk"
+              width={300}
+              height={185}
+              params="autoplay=1&mute=1&controls=0"
+            />
+          )}
+        </div>
+      )}
+    </Stack>
   );
 }

@@ -61,11 +61,11 @@ export default function FAQS() {
   ];
 
   return (
-    <Stack>
-      <div
-        padding="5px"
-        className="w-full flex flex-col items-center gap-5 py-10"
-      >
+    <Stack
+      id="faqs"
+      className="text-white bg-[#270f0b] pb-10 lg:px-40 md:px-20 px-5"
+    >
+      <div className="w-full flex flex-col items-center gap-5 py-10">
         {headline}
       </div>
 
