@@ -1,31 +1,70 @@
 import React from "react";
 
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-
-import HeadingText from "@/components/HeadingText";
-import ServiceList from "@/components/ServiceList/ServiceList";
-
 export const dynamic = "force-dynamic";
 
-function LoginPage() {
-  return (
-    <Box className="pt-[60px] md:pt-[120px]">
-      <HeadingText
-        isUnderLine
-        title={
-          <span className="font-bold">
-            Our
-            <span className="text-app-green ml-4">service</span>
-          </span>
-        }
-      />
+// const loginForm = () => {
+//   const [email, setEmail] = useState('');
+//   const [password, setPasswordl] = useState('');
+//   const [error, setError] = useState('');
+// }
 
-      <Grid container spacing={3} rowSpacing={true ? 1 : 8}>
-        <ServiceList />
-      </Grid>
-    </Box>
+// const handleSubmit = (event) => {
+//   event.preventDefault();
+//   if (!email || !password) {
+//     setError('Email and Password can not be empty');
+//     return;
+//   }
+//   if (email === 'user@example.com' && password === 'password123') {
+//     setError('');
+//     alert('Login successful!');
+
+//   } else {
+//     setError('Invalid email or password.');
+//   }
+// };
+
+const loginPage = () => {
+  return (
+    <div className="login-container">
+      <h2>Login</h2>
+      <form className="login-form">
+
+        <div className="input-group">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            
+            
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+
+
+        <div className="input-group">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            
+            
+            placeholder="Enter your password"
+            required
+          />
+        </div>
+
+
+        <button style={{border:"1"}} type="submit">Login</button>
+        <p>
+        Don't have an account? <a href="/signup">Sign up</a>
+      </p>
+      </form>
+    </div>
   );
 }
 
-export default LoginPage;
+export default loginPage;
+
