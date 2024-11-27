@@ -5,6 +5,8 @@ import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import DesktopMenu from "./DesktopMenu";
 import MobileMenu from "./MobileMenu";
@@ -17,12 +19,20 @@ const menuItems = [
     index: 2,
     label: "Pitch Deck",
     href: "https://cdn.aimalls.app/aimalls-pitchdeck.pdf",
+    target: "_blank",
   },
-  { index: 3, label: "Tokenomics", href: "https://google.com" },
+  {
+    index: 3,
+    label: "Tokenomics",
+    href: "https://google.com",
+    target: "_blank",
+  },
 ];
 
 function TopBar() {
-  return (
+  const pathname = usePathname();
+
+  return pathname === "/" ? (
     <AppBar
       id="navbar"
       position="fixed"
@@ -52,12 +62,16 @@ function TopBar() {
           </div>
 
           <div className="hidden gap-5 md:flex">
-            <button className="text-[#fc9a14]">Login</button>
+            <Link href="/login" className="text-[#fc9a14]">
+              Login
+            </Link>
             <button className="text-[#fc9a14]">Register</button>
           </div>
         </Toolbar>
       </Container>
     </AppBar>
+  ) : (
+    <></>
   );
 }
 export default TopBar;

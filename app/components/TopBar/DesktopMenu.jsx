@@ -14,21 +14,13 @@ const StyledTypograpghy = styled(Typography)(({ color }) => ({
 }));
 
 export default function DesktopMenu({ menuItems }) {
-
   return (
     <div className="hidden md:flex">
       {menuItems.map((menuItem) => {
         return (
           <Button key={menuItem.index}>
-            <Link href={menuItem.href}>
-              <StyledTypograpghy
-                color="black"
-                sx={{
-                  "&:hover": {
-                    color: "#1ED760",
-                  },
-                }}
-              >
+            <Link href={menuItem.href} target={menuItem?.target || ""}>
+              <StyledTypograpghy color="black">
                 {menuItem.label}
               </StyledTypograpghy>
             </Link>

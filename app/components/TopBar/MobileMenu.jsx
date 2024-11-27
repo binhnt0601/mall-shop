@@ -51,7 +51,11 @@ export default function MobileMenu({ menuItems }) {
 
           {menuItems.map((menuItem) => (
             <div key={menuItem.index} className="w-full h-10 border-b">
-              <CustomLink to={menuItem.href} color="#fc9a14">
+              <CustomLink
+                to={menuItem.href}
+                color="#fc9a14"
+                target={menuItem.target}
+              >
                 <MenuItem
                   onClick={handleToggle}
                   style={{
