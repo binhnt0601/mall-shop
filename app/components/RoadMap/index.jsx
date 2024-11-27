@@ -98,7 +98,7 @@ export default function RoadMap() {
           </Typography>
 
           {data_2.map((item, index) => (
-            <Box>
+            <Box key={index}>
               <ul
                 key={index}
                 style={{ display: "flex", flexDirection: "column" }}
