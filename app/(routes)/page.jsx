@@ -49,10 +49,7 @@ export default function Home() {
       <FeaturedIn />
       <Partnerships />
       {isShow && (
-        <div
-          className="sticky bottom-0 pr-5 z-50"
-          style={{ justifyItems: "right" }}
-        >
+        <div className="fixed bottom-0 right-0 pr-5 z-50 text-right">
           <button className="text-white" onClick={() => setIsShow(false)}>
             [X]
           </button>
