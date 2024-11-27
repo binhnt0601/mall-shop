@@ -62,9 +62,6 @@ const LoginPage = () => {
           <button style={{ border: "1" }} type="submit">
             Login
           </button>
-          <p>
-            Don't have an account? <a href="/signup">Sign up</a>
-          </p>
         </form>
       </div>
       <div
