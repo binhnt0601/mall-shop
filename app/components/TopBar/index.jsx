@@ -10,7 +10,7 @@ import { usePathname } from "next/navigation";
 
 import DesktopMenu from "./DesktopMenu";
 import MobileMenu from "./MobileMenu";
-import LogoBlockify from "./LogoBlockify";
+import LogoCompany from "./LogoCompany";
 
 const menuItems = [
   { index: 0, label: "Home", href: "/" },
@@ -39,7 +39,7 @@ function TopBar() {
       sx={{
         color: "white",
         background: "white",
-        height: { xs: "4rem", sm: "5.5rem" },
+        height: "4rem",
         zIndex: 2,
       }}
     >
@@ -54,7 +54,7 @@ function TopBar() {
             height: "100%",
           }}
         >
-          <LogoBlockify />
+          <LogoCompany />
 
           <div>
             <MobileMenu menuItems={menuItems} />

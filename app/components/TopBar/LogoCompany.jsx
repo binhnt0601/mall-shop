@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 
 import LogoImage from "@/assets/favicon.jpg";
 
-export default function LogoBlockify() {
+export default function LogoCompany() {
   return (
     <Box sx={{ mr: "0.5em" }}>
       <Link href="/">

@@ -1,7 +1,6 @@
 import React from "react";
 
 import Typography from "@mui/material/Typography";
-import { Stack, Box } from "@mui/material";
 
 export default function RoadMap() {
   const headline = (
@@ -41,19 +40,12 @@ export default function RoadMap() {
 
   return (
     <div
-      padding="5px"
-      className="w-full flex flex-col items-center gap-5 py-10"
+      className="w-full flex flex-col items-center gap-5
+     pb-10 lg:px-52 md:px-20 px-5 text-white bg-[#270f0b]"
     >
       {headline}
-      <Stack
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
-          justifyContent: "space-around",
-        }}
-      >
-        <Box>
+      <div className="flex md:flex-row flex-col gap-5">
+        <div className="mt-10 flex-1">
           <Typography
             style={{
               color: "#fc9a14",
@@ -64,28 +56,26 @@ export default function RoadMap() {
           >
             2023
           </Typography>
-          <Box>
-            {data_1.map((item, index) => (
-              <ul
-                key={index}
-                style={{ display: "flex", flexDirection: "column" }}
+          {data_1.map((item, index) => (
+            <ul key={index} className="flex gap-3 items-center ml-5">
+              <li
+                style={{
+                  color: "#fc9a14",
+                  fontSize: "40px",
+                  fontFamily: "Work Sans",
+                  fontWeight: "Bold",
+                }}
               >
-                <li
-                  style={{
-                    color: "#fc9a14",
-                    fontSize: "40px",
-                    fontFamily: "Work Sans",
-                    fontWeight: "Bold",
-                  }}
-                >
-                  {item.quarter}
-                </li>
-                <li>{item.content}</li>
-              </ul>
-            ))}
-          </Box>
-        </Box>
-        <Box>
+                <span>{item.quarter}</span>
+              </li>
+              <li>
+                <span>{item.content}</span>
+              </li>
+            </ul>
+          ))}
+        </div>
+
+        <div className="md:mt-10 mt-0 flex-1">
           <Typography
             style={{
               color: "#fc9a14",
@@ -98,27 +88,24 @@ export default function RoadMap() {
           </Typography>
 
           {data_2.map((item, index) => (
-            <Box key={index}>
-              <ul
-                key={index}
-                style={{ display: "flex", flexDirection: "column" }}
+            <ul key={index} className="flex gap-3 items-center ml-5">
+              <li
+                style={{
+                  color: "#fc9a14",
+                  fontSize: "40px",
+                  fontFamily: "Work Sans",
+                  fontWeight: "Bold",
+                }}
               >
-                <li
-                  style={{
-                    color: "#fc9a14",
-                    fontSize: "40px",
-                    fontFamily: "Work Sans",
-                    fontWeight: "Bold",
-                  }}
-                >
-                  {item.quarter}
-                </li>
-                <li>{item.content}</li>
-              </ul>
-            </Box>
+                <span>{item.quarter}</span>
+              </li>
+              <li>
+                <span>{item.content}</span>
+              </li>
+            </ul>
           ))}
-        </Box>
-      </Stack>
+        </div>
+      </div>
     </div>
   );
 }

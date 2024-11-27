@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 export const dynamic = "force-dynamic";
@@ -28,20 +30,16 @@ const loginPage = () => {
     <div className="login-container">
       <h2>Login</h2>
       <form className="login-form">
-
         <div className="input-group">
           <label htmlFor="email">Email</label>
           <input
             type="email"
             id="email"
             name="email"
-            
-            
             placeholder="Enter your email"
             required
           />
         </div>
-
 
         <div className="input-group">
           <label htmlFor="password">Password</label>
@@ -49,22 +47,20 @@ const loginPage = () => {
             type="password"
             id="password"
             name="password"
-            
-            
             placeholder="Enter your password"
             required
           />
         </div>
 
-
-        <button style={{border:"1"}} type="submit">Login</button>
+        <button style={{ border: "1" }} type="submit">
+          Login
+        </button>
         <p>
-        Don't have an account? <a href="/signup">Sign up</a>
-      </p>
+          Don't have an account? <a href="/signup">Sign up</a>
+        </p>
       </form>
     </div>
   );
-}
+};
 
 export default loginPage;
-
