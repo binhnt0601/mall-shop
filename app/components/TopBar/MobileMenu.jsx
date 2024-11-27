@@ -7,6 +7,7 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import Drawer from "@mui/material/Drawer";
 import { Stack, Typography } from "@mui/material";
 import Image from "next/image";
+import Link from "next/link";
 
 import CustomLink from "../../components-shared/CustomLink";
 
@@ -74,7 +75,8 @@ export default function MobileMenu({ menuItems }) {
           </button>
 
           <div className="flex gap-5 text-[#fc9a14] mt-3">
-            <button>LOGIN</button>/<button>REGISTER</button>
+            <Link href="/login">LOGIN</Link>/
+            <Link href="/register">REGISTER</Link>
           </div>
         </Stack>
       </Drawer>

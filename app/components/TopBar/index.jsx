@@ -65,7 +65,9 @@ function TopBar() {
             <Link href="/login" className="text-[#fc9a14]">
               Login
             </Link>
-            <button className="text-[#fc9a14]">Register</button>
+            <Link href="/register" className="text-[#fc9a14]">
+              Register
+            </Link>
           </div>
         </Toolbar>
       </Container>

@@ -4,6 +4,7 @@ import React from "react";
 
 import Image from "next/image";
 import { Typography } from "@mui/material";
+import { usePathname } from "next/navigation";
 
 import SocialNetwork from "../SocialNetwork";
 
@@ -28,8 +29,12 @@ const listSocialNetwork = [
 ];
 
 function Footer() {
+  const pathname = usePathname();
+
   return (
-    <div className="bg-[#37231e] px-[51px] h-full">
+    <div
+      className={`${pathname === "/" ? "block" : "hidden"} bg-[#37231e] px-[51px] h-full`}
+    >
       <div className="flex md:flex-row flex-col px-[46px] py-5 justify-between items-center gap-3">
         <Image width={80} height={80} src={LogoImage} alt="logo" />
 

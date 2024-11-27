@@ -1,6 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+
+import { Stack } from "@mui/material";
 
 import WelcomeScreen from "../components/WelcomeScreen";
 import Background from "../components/Background";
@@ -21,8 +23,14 @@ import AiMallsApp from "@/components/AiMallsApp";
 import TechnologyAndTargetMarket from "@/components/TechnologyAndTargetMarket";
 
 export default function Home() {
+  const [isShow, setIsShow] = useState(true);
+
   return (
-    <React.Fragment>
+    <Stack
+      sx={{
+        marginTop: "4rem",
+      }}
+    >
       <WelcomeScreen />
       <AboutUs />
       <LicenseAcquired />
@@ -34,11 +42,24 @@ export default function Home() {
       <TechnologyAndTargetMarket />
       <ComprehensiveOverview />
       <Background imgSrc={Frame1Banner} textBackground={<RoadMap />} />
-      <div id="faqs">
-        <Background imgSrc={Frame1Banner} textBackground={<FAQS />} />
-      </div>
+      <Background imgSrc={Frame1Banner} textBackground={<FAQS />} />
       <FeaturedIn />
       <Partnerships />
-    </React.Fragment>
+      {isShow && (
+        <div
+          className="sticky bottom-0 p-5 z-50"
+          style={{ justifyItems: "right" }}
+        >
+          <button className="text-white" onClick={() => setIsShow(false)}>
+            [X]
+          </button>
+          <iframe
+            width="300"
+            height="185"
+            src="https://www.youtube.com/embed/aVv5aA8ZeDk?autoplay=1&mute=1&controls=0"
+          ></iframe>
+        </div>
+      )}
+    </Stack>
   );
 }

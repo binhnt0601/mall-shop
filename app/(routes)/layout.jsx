@@ -2,7 +2,6 @@ import React from "react";
 
 import { ToastContainer } from "react-toastify";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
-import { Stack } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 
 import Footer from "../components/Footer";
@@ -28,13 +27,7 @@ export default function RootLayout({ children }) {
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <TopBar />
-            <Stack
-              sx={{
-                marginTop: { xs: "4rem", sm: "5.5rem" },
-              }}
-            >
-              {children}
-            </Stack>
+            {children}
             <ToastContainer
               position="bottom-right"
               autoClose={3000}
