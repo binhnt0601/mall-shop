@@ -2,8 +2,16 @@
 
 import React from "react";
 
-import { Divider, Stack, TextField, Typography } from "@mui/material";
+import {
+  Divider,
+  InputAdornment,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import Link from "next/link";
+import EmailIcon from "@mui/icons-material/Email";
+import PasswordIcon from "@mui/icons-material/Lock";
 
 import LogoCompany from "@/components/TopBar/LogoCompany";
 
@@ -16,29 +24,104 @@ const RegisterPage = () => {
         <Typography fontSize={40} fontWeight="bold" color="#fc9a14">
           Sign up to add an Account
         </Typography>
-        <div className="max-w-[460px]">
-         
-            <button className="bg-white w-full py-3 rounded-lg">
-              Sign up With Google
-            </button>
-          
-          <div>
-            <TextField
-              variant="outlined"
-              label="Email"
-              className="bg-white rounded-lg w-full"
-            />
-            <TextField
-              variant="outlined"
-              label="Password"
-              className="bg-white rounded-lg w-full"
-            />
-            <TextField
-              variant="outlined"
-              label="Confirm Password"
-              className="bg-white rounded-lg w-full"
-            />
+        <div className="max-w-[460px] flex flex-col w-full gap-4 mt-10">
+          <button className="bg-white w-full py-3 rounded-md font-bold">
+            Sign in With Google
+          </button>
+
+          <div className="flex justify-center">
+            <div className="flex items-center justify-center w-[120px] gap-2">
+              <Divider className="h-[1px] w-full bg-white" />
+              <span className="text-white">or</span>
+              <Divider className="h-[1px] w-full bg-white" />
+            </div>
           </div>
+
+          <TextField
+            variant="outlined"
+            label="Email"
+            style={{
+              background: "rgba(255, 252, 252, 0.349)",
+            }}
+            className="rounded-md w-full"
+            InputLabelProps={{
+              style: {
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                width: "100%",
+                color: "white",
+              },
+            }}
+            InputProps={{
+              style: {
+                color: "white",
+              },
+              endAdornment: (
+                <InputAdornment position="end">
+                  <EmailIcon className="text-white" />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <TextField
+            variant="outlined"
+            label="Password"
+            style={{
+              background: "rgba(255, 252, 252, 0.349)",
+            }}
+            className="rounded-md w-full"
+            InputLabelProps={{
+              style: {
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                width: "100%",
+                color: "white",
+              },
+            }}
+            InputProps={{
+              style: {
+                color: "white",
+              },
+              endAdornment: (
+                <InputAdornment position="end">
+                  <PasswordIcon className="text-white" />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <TextField
+            variant="outlined"
+            label="Confirm Password"
+            style={{
+              background: "rgba(255, 252, 252, 0.349)",
+            }}
+            className="rounded-md w-full"
+            InputLabelProps={{
+              style: {
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                width: "100%",
+                color: "white",
+              },
+            }}
+            InputProps={{
+              style: {
+                color: "white",
+              },
+              endAdornment: (
+                <InputAdornment position="end">
+                  <PasswordIcon className="text-white" />
+                </InputAdornment>
+              ),
+            }}
+          />
+
+          <button className="text-white bg-[#fc9a14] w-full py-3 rounded-full mt-5">
+            Register
+          </button>
         </div>
       </div>
       <div
