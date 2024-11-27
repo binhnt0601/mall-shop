@@ -68,7 +68,7 @@ const LoginPage = () => {
         </form>
       </div>
       <div
-        className="flex flex-col gap-5 justify-center items-center text-center 
+        className="md:flex hidden flex-col gap-5 justify-center items-center text-center 
       p-5 w-[50%] bg-[#fc9a14] text-white"
       >
         <LogoCompany width={181} height={124} />
