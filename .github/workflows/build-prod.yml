@@ -29,5 +29,5 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: dist/                     # 👉 thư mục sau khi build
+          local-dir: ./                     # 👉 thư mục sau khi build
           server-dir: public_html/            # 👉 thư mục gốc website trên 123host
