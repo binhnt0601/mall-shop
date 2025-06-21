@@ -22,7 +22,7 @@ COPY --from=base /app/node_modules ./node_modules
 COPY . .
 
 # Copy .env.production to .env for production environment
-RUN rm -f .env.staging .env.local && cp .env.production .env
+# RUN rm -f .env.staging .env.local && cp .env.production .env
 
 # Install node-prune and other necessary tools
 RUN apk add --no-cache git curl \
@@ -38,7 +38,7 @@ WORKDIR /app
 
 # Copy necessary files for production
 COPY --from=build /app/public ./public
-COPY --from=build /app/.env.production ./.env
+# COPY --from=build /app/.env.production ./.env
 
 # Set mode "standalone" in file "next.config.js"
 COPY --from=build /app/.next/standalone ./
