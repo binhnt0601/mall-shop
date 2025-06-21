@@ -46,12 +46,12 @@ jobs:
           chmod 400 ~/.ssh/mall-shop.pem
           ssh-keyscan -H ${{ secrets.MALL_SHOP_IP }} >> ~/.ssh/known_hosts
 
-      - name: Deploy
+      - name: Deploy to EC2
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/mall-shop.pem ${{ secrets.MALL_SHOP_SSH_USERNAME }}@${{ secrets.MALL_SHOP_IP }} << 'EOF'
-          cd /home/www/mall-shop
-          docker rm -f mall-shop_fe || true
-          docker rmi -f ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APPNAME }}.prod || true
-          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APPNAME }}.prod
-          docker-compose up -d
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/mall-shop.pem \
+            ${{ secrets.MALL_SHOP_SSH_USERNAME }}@${{ secrets.MALL_SHOP_IP }} << EOF
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APPNAME }}:latest
+            docker stop mall-shop || true
+            docker rm mall-shop || true
+            docker run -d --name mall-shop -p 80:3000 ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APPNAME }}:latest
           EOF
