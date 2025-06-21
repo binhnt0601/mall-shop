@@ -15,10 +15,11 @@ jobs:
       - name: ⚙️ Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18  # Hoặc version phù hợp với project
+          node-version: 18 # Hoặc version phù hợp với project
 
       - name: 📦 Install dependencies
-        run: npm install
+        run: |
+          npm install --legacy-peer-deps
 
       - name: 🛠️ Build project
         run: npm run build
@@ -29,5 +30,5 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./                     # 👉 thư mục sau khi build
-          server-dir: public_html/            # 👉 thư mục gốc website trên 123host
+          local-dir: ./ # 👉 thư mục sau khi build
+          server-dir: public_html/ # 👉 thư mục gốc website trên 123host
