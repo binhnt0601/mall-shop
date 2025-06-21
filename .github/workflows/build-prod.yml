@@ -30,7 +30,8 @@ jobs:
           file: ./dockerfile.production
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APPNAME }}:latest
+          tags:
+            - ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APPNAME }}:latest
 
       - name: Verify image digest
         run: echo "Image digest: ${{ steps.docker_build.outputs.digest }}"
