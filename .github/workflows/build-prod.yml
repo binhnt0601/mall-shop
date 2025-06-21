@@ -39,17 +39,12 @@ jobs:
         run: |
           sudo apt-get update && sudo apt-get install -y openssh-client
 
-      - name: Add SSH Key
+      - name: Setup SSH Key
         run: |
           mkdir -p ~/.ssh
-          printf "%s" "${{ secrets.MALL_SHOP_SSH_PRIVATE_KEY }}" > ~/.ssh/mall-shop.pem
+          echo "${{ secrets.MALL_SHOP_SSH_PRIVATE_KEY }}" > ~/.ssh/mall-shop.pem
           chmod 400 ~/.ssh/mall-shop.pem
           ssh-keyscan -H ${{ secrets.MALL_SHOP_IP }} >> ~/.ssh/known_hosts
-
-      - name: Test SSH Connection
-        run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/mall-shop.pem \
-            ${{ secrets.MALL_SHOP_SSH_USERNAME }}@${{ secrets.MALL_SHOP_IP }} "echo 'SSH connection successful'"
 
       - name: Deploy
         run: |
