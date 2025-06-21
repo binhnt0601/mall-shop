@@ -1,9 +1,7 @@
-name: Build and Deploy DEV
-
+name: Build DEV
 on:
   push:
     branches: [main]
-
 jobs:
   Build:
     runs-on: ubuntu-latest
@@ -12,7 +10,6 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Docker Buildx
-        id: buildx
         uses: docker/setup-buildx-action@v2
 
       - name: Login to Docker Registry
@@ -29,10 +26,10 @@ jobs:
           file: ./dockerfile.production
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APPNAME }}:prod
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APPNAME }}.prod
 
-      - name: Verify image digest
-        run: echo "Image digest: ${{ steps.docker_build.outputs.digest }}"
+      - name: Verify
+        run: echo ${{ steps.docker_build.outputs.digest }}
 
   Deploy:
     runs-on: ubuntu-latest
@@ -49,14 +46,11 @@ jobs:
           chmod 400 ~/.ssh/mall-shop.pem
           ssh-keyscan -H ${{ secrets.MALL_SHOP_IP }} >> ~/.ssh/known_hosts
 
-      - name: Deploy to EC2
+      - name: Deploy
         run: |
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/mall-shop.pem \
-            ${{ secrets.MALL_SHOP_SSH_USERNAME }}@${{ secrets.MALL_SHOP_IP }} << 'EOF'
-            set -e
-            cd ~/mall-shop || mkdir ~/mall-shop && cd ~/mall-shop
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APPNAME }}:prod
-            docker stop mall-shop_fe || true
-            docker rm mall-shop_fe || true
-            docker run -d --name mall-shop_fe -p 80:3000 ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APPNAME }}:prod
-          EOF
+            ${{ secrets.MALL_SHOP_SSH_USERNAME }}@${{ secrets.MALL_SHOP_IP }} \
+            "cd home/www/mall-shop && \
+            docker rm -f mall-shop_fe || true && \
+            docker rmi -f ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APPNAME }}.prod || true && \
+            docker-compose up -d"
