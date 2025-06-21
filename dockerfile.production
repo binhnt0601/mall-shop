@@ -41,8 +41,8 @@ COPY --from=build /app/public ./public
 # COPY --from=build /app/.env.production ./.env
 
 # Set mode "standalone" in file "next.config.js"
-COPY --from=build /app/.next/standalone ./
-COPY --from=build /app/.next/static ./.next/static
+# COPY --from=build /app/.next/standalone ./
+# COPY --from=build /app/.next/static ./.next/static
 
 # Create a non-root user
 RUN addgroup --system --gid 1001 nodejs && \
