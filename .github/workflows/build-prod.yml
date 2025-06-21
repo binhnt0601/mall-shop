@@ -48,9 +48,10 @@ jobs:
 
       - name: Deploy
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/mall-shop.pem \
-            ${{ secrets.MALL_SHOP_SSH_USERNAME }}@${{ secrets.MALL_SHOP_IP }} \
-            "cd home/www/mall-shop && \
-            docker rm -f mall-shop_fe || true && \
-            docker rmi -f ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APPNAME }}.prod || true && \
-            docker-compose up -d"
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/mall-shop.pem ${{ secrets.MALL_SHOP_SSH_USERNAME }}@${{ secrets.MALL_SHOP_IP }} << 'EOF'
+          cd /home/www/mall-shop
+          docker rm -f mall-shop_fe || true
+          docker rmi -f ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APPNAME }}.prod || true
+          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APPNAME }}.prod
+          docker-compose up -d
+          EOF
