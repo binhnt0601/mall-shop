@@ -1,8 +1,16 @@
 const path = require("path");
 
-module.exports = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: false,
+  output: "standalone",
+  images: {
+    unoptimized: true,
+  },
   webpack: (config) => {
     config.resolve.alias["@"] = path.resolve(__dirname);
     return config;
   },
 };
+
+module.exports = nextConfig;
