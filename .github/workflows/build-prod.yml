@@ -26,7 +26,7 @@ jobs:
           file: ./dockerfile.production
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APPNAME }}.prod
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APPNAME }}
 
       - name: Verify
         run: echo ${{ steps.docker_build.outputs.digest }}
