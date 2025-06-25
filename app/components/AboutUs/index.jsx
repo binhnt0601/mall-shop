@@ -6,7 +6,7 @@ import Image from "next/image";
 const aboutContents = [
   {
     description:
-      "EngLisg Classis an AI-powered online mall or store, a platform and an app that uses intelligent algorithms to provide personalized shopping experiences.",
+      "EngLish Class an AI-powered online mall or store, a platform and an app that uses intelligent algorithms to provide personalized shopping experiences.",
   },
   {
     description:

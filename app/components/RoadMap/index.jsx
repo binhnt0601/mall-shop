@@ -12,13 +12,13 @@ export default function RoadMap() {
     {
       quarter: "Q1",
       content:
-        "Validity: EngLisg Class: Concept and Idea Research, Planning, and Design Proposal",
+        "Validity: EngLish Class: Concept and Idea Research, Planning, and Design Proposal",
     },
     { quarter: "Q2", content: "Community Building Social Media Marketing" },
     {
       quarter: "Q3",
       content:
-        "Design and Development of EngLisg ClassWebsite Partnerships, Marketing Token Sale",
+        "Design and Development of EngLish ClassWebsite Partnerships, Marketing Token Sale",
     },
     {
       quarter: "Q4",

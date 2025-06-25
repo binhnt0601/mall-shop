@@ -37,7 +37,7 @@ function Footer() {
         <Image width={80} height={80} src="favicon.jpg" alt="logo" />
 
         <Typography className="text-white">
-          © EngLisg ClassAll Rights Reserve
+          © EngLish ClassAll Rights Reserve
         </Typography>
 
         <div className="flex flex-wrap gap-5">

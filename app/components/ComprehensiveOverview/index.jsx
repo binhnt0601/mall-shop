@@ -33,17 +33,17 @@ const Section1 = () => {
         improved customer experience and increased efficiency.
       </Typography>
       <Typography>
-        EngLisg Classuse advanced Al technology to analyze sales and inventory
+        EngLish Classuse advanced Al technology to analyze sales and inventory
         data in real time, allowing them to make informed decisions about stock
         levels and product placement. This helps to improve overall security
         while also ensuring that customers get the best possible experience when
         shopping online.
       </Typography>
       <Typography>
-        Furthermore, EngLisg Classare available 24/7, meaning customers can shop
+        Furthermore, EngLish Classare available 24/7, meaning customers can shop
         whenever they want without having to worry about store opening hours.
         This makes it easier for customers to find the products they need when
-        they need them. All in all, EngLisg Classoffer a range of advantages
+        they need them. All in all, EngLish Classoffer a range of advantages
         over classic online stores that make them an attractive option for
         businesses looking to improve their customer service and increase their
         profits.
@@ -57,7 +57,7 @@ const missionData = [
     img: "https://dummyimage.com/70",
     title: "Our Goal",
     description:
-      "EngLisg Classshort-term goal is to attract sellers and buyers to the platforms and establish a reputation for providing a high-quality shopping experience. EngLisg Classlong-term goal is to become one of the leading online marketplaces worldwide.",
+      "EngLish Classshort-term goal is to attract sellers and buyers to the platforms and establish a reputation for providing a high-quality shopping experience. EngLish Classlong-term goal is to become one of the leading online marketplaces worldwide.",
   },
 
   {

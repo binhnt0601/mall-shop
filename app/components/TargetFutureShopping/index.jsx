@@ -13,7 +13,7 @@ const data = [
   {
     title: "Smarter Inventory Management",
     description:
-      "EngLisg Classhelps you manage your inventory more efficiently with automated stock tracking, order processing, and delivery management. You can also track customer orders in real-time to ensure seamless service.",
+      "EngLish Classhelps you manage your inventory more efficiently with automated stock tracking, order processing, and delivery management. You can also track customer orders in real-time to ensure seamless service.",
   },
   {
     title: "Secure Shopping Experience",
@@ -28,7 +28,7 @@ const data = [
   {
     title: "Scale Your Business",
     description:
-      "EngLisg Classoffers personalization features that allow you to build a relationship with your customers, getting in touch when it's most effective and maximizing conversions. Our products and technology provide the infrastructure for success.",
+      "EngLish Classoffers personalization features that allow you to build a relationship with your customers, getting in touch when it's most effective and maximizing conversions. Our products and technology provide the infrastructure for success.",
   },
 ];
 
@@ -44,7 +44,7 @@ export default function TargetFutureShopping() {
       <div className="max-w-[640px] text-center">
         {headline}
         <Typography color="white">
-          EngLisg Classis the ultimate shopping experience, powered by AI to
+          EngLish Classis the ultimate shopping experience, powered by AI to
           make your shopping easier, faster and more enjoyable.
         </Typography>
       </div>

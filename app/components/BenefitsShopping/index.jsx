@@ -8,7 +8,7 @@ const data = [
   {
     title: "Personalized Product Recommendations",
     description:
-      "EngLisg Classuses advanced Al algorithms to give you tailored product recommendations that are tailored to your individual needs. With this feature, you'll never have to worry about missing out on the perfect product for you.",
+      "EngLish Classuses advanced Al algorithms to give you tailored product recommendations that are tailored to your individual needs. With this feature, you'll never have to worry about missing out on the perfect product for you.",
   },
   {
     title: "Advanced Search Capabilities",
@@ -18,7 +18,7 @@ const data = [
   {
     title: "24/7 Availability",
     description:
-      "EngLisg Classis available 24/7, so you can shop when it's convenient for you. No matter where you are or what time it is, EngLisg Classhas got your back!",
+      "EngLish Classis available 24/7, so you can shop when it's convenient for you. No matter where you are or what time it is, EngLish Classhas got your back!",
   },
   {
     title: "Discover new Products on the Market",
@@ -28,7 +28,7 @@ const data = [
   {
     title: "Faster and easier Checkout",
     description:
-      "EngLisg Classcan streamline the checkout process, allowing shoppers to complete their purchases faster and easier.",
+      "EngLish Classcan streamline the checkout process, allowing shoppers to complete their purchases faster and easier.",
   },
 ];
 
@@ -47,7 +47,7 @@ export default function BenefitsShopping() {
       <div className="max-w-[640px] text-center">
         {headline}
         <Typography>
-          EngLisg Classis the ultimate shopping experience, powered by AI to
+          EngLish Classis the ultimate shopping experience, powered by AI to
           make your shopping easier, faster and more enjoyable.
         </Typography>
       </div>
