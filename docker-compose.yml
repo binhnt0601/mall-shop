@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-  frontend:
+  mall-shop:
     image: beenguyen0601/mall-shop:prod
     container_name: mall-shop
     restart: unless-stopped
