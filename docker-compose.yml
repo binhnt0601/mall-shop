@@ -6,7 +6,7 @@ services:
     container_name: mall-shop
     restart: unless-stopped
     env_file:
-      - .env 
+      - .env
     ports:
       - "3000:3000"
     networks:
@@ -14,4 +14,4 @@ services:
 
 networks:
   app-net:
-    external: true 
+    external: true
