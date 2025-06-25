@@ -9,7 +9,6 @@ import WelcomeScreen from "../components/WelcomeScreen";
 import Background from "../components/Background";
 import AboutUs from "../components/AboutUs";
 
-import Frame1Banner from "@/assets/background.png";
 import LicenseAcquired from "@/components/LicenseAcquired";
 import AppOverview from "@/components/AppOverview";
 import FutureShopping from "@/components/FutureShopping";
@@ -44,8 +43,8 @@ export default function Home() {
       <AiMallsApp />
       <TechnologyAndTargetMarket />
       <ComprehensiveOverview />
-      <Background imgSrc={Frame1Banner} textBackground={<RoadMap />} />
-      <Background imgSrc={Frame1Banner} textBackground={<FAQS />} />
+      <Background imgSrc="background.png" textBackground={<RoadMap />} />
+      <Background imgSrc="background.png" textBackground={<FAQS />} />
       <FeaturedIn />
       <Partnerships />
       {isShow && (

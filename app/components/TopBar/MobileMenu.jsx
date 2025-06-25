@@ -11,8 +11,6 @@ import Link from "next/link";
 
 import CustomLink from "../../components-shared/CustomLink";
 
-import LogoImage from "@/assets/favicon.jpg";
-
 export default function MobileMenu({ menuItems }) {
   const [isToggle, setIsToggle] = useState(false);
 
@@ -47,7 +45,7 @@ export default function MobileMenu({ menuItems }) {
       >
         <Stack className="items-center px-5">
           <div className="p-5">
-            <Image width={181} height={124} src={LogoImage} alt="logo" />
+            <Image width={181} height={124} src="/favicon.jpg" alt="logo" />
           </div>
 
           {menuItems.map((menuItem) => (

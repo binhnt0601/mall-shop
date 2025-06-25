@@ -3,8 +3,6 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 
-import imageTest from "@/assets/about-us-2-1.png";
-
 const aboutContents = [
   {
     description:
@@ -45,7 +43,7 @@ export default function AboutUs() {
       className="lg:px-40 md:p-14 p-8 flex md:flex-row flex-col items-center gap-5 bg-[#270f0b]"
     >
       <Image
-        src={imageTest}
+        src="/about-us-2-1.png"
         loading="lazy"
         alt="about us"
         width={400}

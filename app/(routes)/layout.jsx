@@ -10,13 +10,12 @@ import "./globals.css";
 
 import theme from "@/theme";
 import TopBar from "@/components/TopBar";
-import Favicon from "@/assets/favicon.jpg";
 
 export const metadata = {
   title: "AI Malls",
   description: "AI Malls",
   icons: {
-    icon: Favicon.src,
+    icon: "/favicon.jpg",
   },
 };
 

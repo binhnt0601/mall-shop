@@ -1,33 +1,31 @@
 import { Typography } from "@mui/material";
 import Image from "next/image";
 
-import TargetIcon from "@/assets/icons/target.svg";
-
 const data = [
   {
-    img: TargetIcon,
+    img: "/icons/target.svg",
     description:
       "AiMalls incorporating AI technologies like personalized recommendations, chatbots, and image recognition. It offers a better user experience, lower fees for sellers, and unique AI-powered features.",
   },
   {
-    img: TargetIcon,
+    img: "/icons/target.svg",
     description:
       "Our target audience is broad, but we plan to focus on millennial and Gen Z shoppers who are tech-savvy and value convenience and personalization in their shopping experience.",
   },
   {
-    img: TargetIcon,
+    img: "/icons/target.svg",
     description:
       "AiMalls is to implement an AI powered verification process in place for sellers to ensure that only legitimate businesses or individuals are selling products on the platform. It also have a system for managing product listings to prevent duplicates or inaccurate listings.",
   },
   {
-    img: TargetIcon,
+    img: "/icons/target.svg",
     description:
       "AiMalls will use secure payment processing systems to handle transactions and implement SSL encryption to protect user data. We will also add options to shop and pay using cryptocurrency.",
   },
   {
-    img: TargetIcon,
+    img: "/icons/target.svg",
     description:
-      "AiMalls will be using social media, influemcer marketing, and search engine optimization to attract and retain customers. It also offers incentives like loyalty programs and discounts to encourage repeat business.",
+      "AiMalls will be using social media, influencer marketing, and search engine optimization to attract and retain customers. It also offers incentives like loyalty programs and discounts to encourage repeat business.",
   },
 ];
 

@@ -8,8 +8,6 @@ import { usePathname } from "next/navigation";
 
 import SocialNetwork from "../SocialNetwork";
 
-import LogoImage from "@/assets/favicon.jpg";
-
 const listSocialNetwork = [
   {
     id: 1,
@@ -36,7 +34,7 @@ function Footer() {
       className={`${pathname === "/" ? "block" : "hidden"} bg-[#37231e] px-[51px] h-full`}
     >
       <div className="flex md:flex-row flex-col px-[46px] py-5 justify-between items-center gap-3">
-        <Image width={80} height={80} src={LogoImage} alt="logo" />
+        <Image width={80} height={80} src="favicon.jpg" alt="logo" />
 
         <Typography className="text-white">
           © AIMalls All Rights Reserve

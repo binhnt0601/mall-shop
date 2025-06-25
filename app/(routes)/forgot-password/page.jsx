@@ -6,8 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Stack, TextField } from "@mui/material";
 
-import ForgetIcon from "@/assets/icons/success.svg";
-
 export const dynamic = "force-dynamic";
 
 const loginPage = () => {
@@ -16,7 +14,7 @@ const loginPage = () => {
       className="justify-center items-center text-center
     px-5 text-white bg-gradient-to-br from-[red] to-[orange] h-dvh"
     >
-      <Image src={ForgetIcon} width={100} height={100} alt="icon" />
+      <Image src="/success.svg" width={100} height={100} alt="icon" />
       <p className="text-[50px] pt-[30px]">Yo! Forgot Your Password?</p>
       <span className="text-[30px]">
         No worries! Enter your email and we will send you a reset
