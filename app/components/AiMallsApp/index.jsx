@@ -8,7 +8,7 @@ const AiMallsApp = () => {
     >
       <div className="bg-[rgba(0,0,0,.3)] rounded-[20px] p-[5px]">
         <Typography fontSize={40} fontWeight="bold" className="p-5">
-          AiMalls App
+          EngLisg ClassApp
         </Typography>
         <Typography className="px-5">Feature</Typography>
         <ul className="list-outside list-disc ml-6 my-5">

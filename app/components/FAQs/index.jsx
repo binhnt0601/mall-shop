@@ -6,7 +6,7 @@ import { Stack, Box } from "@mui/material";
 export default function FAQS() {
   const headline = (
     <Typography style={{ fontWeight: "bold", fontSize: 40 }}>
-      AiMalls FAQs:
+      EngLisg ClassFAQs:
     </Typography>
   );
 
@@ -14,24 +14,24 @@ export default function FAQS() {
     {
       question: "Q: What is AiMalls?",
       answer:
-        "A: AiMalls is an AI powered online mall or store, a platform and an app that uses intelligent algorithms to provide personalized shopping experiences.",
+        "A: EngLisg Classis an AI powered online mall or store, a platform and an app that uses intelligent algorithms to provide personalized shopping experiences.",
     },
     {
-      question: "Q: What are the benefits will AiMalls bring?",
+      question: "Q: What are the benefits will EngLisg Classbring?",
       answer:
         "A: Personalized product recommendations, Chatbots for Customer Service, Automated Product Categorization, Mobile-Friendly design, Secure payment processing, Integration with Quality brands and dispute resolution.",
     },
     {
-      question: "Q: What advantages AiMalls has against its competitors?",
+      question: "Q: What advantages EngLisg Classhas against its competitors?",
       answer:
-        "A: Security, fast and reliable shipping for customers, AiMalls algorithms can help online stores/apps manage their inventory more efficiently, with AI-powered chatbots and virtual assistants it can provide good customer service 24/7, AiMalls offers competitive pricing and affiliate programs.",
+        "A: Security, fast and reliable shipping for customers, EngLisg Classalgorithms can help online stores/apps manage their inventory more efficiently, with AI-powered chatbots and virtual assistants it can provide good customer service 24/7, EngLisg Classoffers competitive pricing and affiliate programs.",
     },
     {
-      question: "Q: When is AiMalls Launching live?",
-      answer: "A: AiMalls is Launching in October.",
+      question: "Q: When is EngLisg ClassLaunching live?",
+      answer: "A: EngLisg Classis Launching in October.",
     },
     {
-      question: "Q: How can I participate in the AiMalls Launch?",
+      question: "Q: How can I participate in the EngLisg ClassLaunch?",
       answer:
         "A: Please wait further announcement regarding Public Sale and Exchange Listing Schedule (TBA).",
     },
@@ -41,7 +41,7 @@ export default function FAQS() {
         "A: Yes, here is the link : https://cdn.aimalls.app/whitepaper.pdf",
     },
     {
-      question: "Q: What is the ticker for AiMalls token?",
+      question: "Q: What is the ticker for EngLisg Classtoken?",
       answer: "A: It is $AIT",
     },
     {

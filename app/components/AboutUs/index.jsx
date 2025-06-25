@@ -6,7 +6,7 @@ import Image from "next/image";
 const aboutContents = [
   {
     description:
-      "AIMalls is an AI-powered online mall or store, a platform and an app that uses intelligent algorithms to provide personalized shopping experiences.",
+      "EngLisg Classis an AI-powered online mall or store, a platform and an app that uses intelligent algorithms to provide personalized shopping experiences.",
   },
   {
     description:

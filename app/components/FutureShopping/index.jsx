@@ -8,12 +8,12 @@ const data = [
   {
     title: "Experience personalized shopping",
     description:
-      "AiMalls uses intelligent algorithms to provide you with a personalized shopping experience. Get tailored product recommendations, faster search results, and more accurate pricing strategies that are designed to help you save time and money.",
+      "EngLisg Classuses intelligent algorithms to provide you with a personalized shopping experience. Get tailored product recommendations, faster search results, and more accurate pricing strategies that are designed to help you save time and money.",
   },
   {
     title: "Secure your purchases",
     description:
-      "We use advanced security measures to detect fraudulent activity and protect your data. AiMalls also offers efficient inventory management so you can rest assured that your purchases are safe.",
+      "We use advanced security measures to detect fraudulent activity and protect your data. EngLisg Classalso offers efficient inventory management so you can rest assured that your purchases are safe.",
   },
   {
     title: "Gain real-time insights",
@@ -23,7 +23,7 @@ const data = [
   {
     title: "Benefit from our platform",
     description:
-      "AiMalls offers benefits for both customers and merchants. Customers enjoy a secure online shopping experience while merchants benefit from access to powerful tools like market segmentation, pricing optimization, customer data tracking, customer loyalty programs.",
+      "EngLisg Classoffers benefits for both customers and merchants. Customers enjoy a secure online shopping experience while merchants benefit from access to powerful tools like market segmentation, pricing optimization, customer data tracking, customer loyalty programs.",
   },
 ];
 
@@ -41,11 +41,11 @@ export default function FutureShopping() {
         <div className="lg:w-[50%] w-full p-6">
           {headline}
           <Typography className="text-justify">
-            AiMalls is an AI-powered online mall that offers a personalized,
-            secure and hassle-free shopping experience. With intelligent
-            algorithms, you get faster and more accurate search results and
-            product recommendations, plus pricing strategy and 24/7 customer
-            service for both customers and merchants.
+            EngLisg Classis an AI-powered online mall that offers a
+            personalized, secure and hassle-free shopping experience. With
+            intelligent algorithms, you get faster and more accurate search
+            results and product recommendations, plus pricing strategy and 24/7
+            customer service for both customers and merchants.
           </Typography>
         </div>
 

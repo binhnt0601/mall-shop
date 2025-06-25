@@ -37,7 +37,7 @@ function Footer() {
         <Image width={80} height={80} src="favicon.jpg" alt="logo" />
 
         <Typography className="text-white">
-          © AIMalls All Rights Reserve
+          © EngLisg ClassAll Rights Reserve
         </Typography>
 
         <div className="flex flex-wrap gap-5">
