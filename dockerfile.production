@@ -1,33 +1,23 @@
-# Build BASE - Dependencies stage
-FROM node:20-alpine AS base
+# Stage 1: Build
+FROM node:18-alpine AS builder
 
 WORKDIR /app
-COPY package.json yarn.lock ./
-RUN apk add --no-cache git && yarn --frozen-lockfile && yarn cache clean
 
-# Build Image - Build stage
-FROM node:20-alpine AS build
+# Copy package files và cài đặt
+COPY package*.json ./
+RUN npm install
 
-WORKDIR /app
-COPY --from=base /app/node_modules ./node_modules
+# Copy toàn bộ mã nguồn và build
 COPY . .
-RUN yarn build && yarn cache clean
+RUN npm run build
 
-# Production Image
-FROM node:20-alpine AS production
+# Stage 2: Run
+FROM node:18-alpine
 
 WORKDIR /app
-COPY --from=build /app/.next/standalone ./
-COPY --from=build /app/.next/static ./.next/static
 
-# (Optional) Copy .env.production nếu dùng biến môi trường
-COPY --from=build /app/.env ./.env
+# Copy từ stage build
+COPY --from=builder /app ./
 
-RUN addgroup --system --gid 1001 nodejs && \
-    adduser --system --uid 1001 nextjs && \
-    chown -R nextjs:nodejs /app
-
-USER nextjs
 EXPOSE 3000
-
-CMD ["node", "server.js"]
+CMD ["yarn", "start"]
