@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  frontend:
+    image: beenguyen0601/mall-shop:prod
+    container_name: mall-shop
+    restart: unless-stopped
+    env_file:
+      - .env 
+    expose:
+      - "3000"
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    external: true 

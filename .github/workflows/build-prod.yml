@@ -51,6 +51,6 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/mall-shop.pem \
             ${{ secrets.MALL_SHOP_SSH_USERNAME }}@${{ secrets.MALL_SHOP_IP }} \
             "docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APPNAME }}:prod && \
-            docker stop mall-shop || true && \
-            docker rm mall-shop || true && \
-            docker run -d --name mall-shop -p 3000:3000 ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APPNAME }}:prod"
+            cd /home/www/english-class/fe-deploy && \
+            docker compose down && \
+            docker compose up -d"
