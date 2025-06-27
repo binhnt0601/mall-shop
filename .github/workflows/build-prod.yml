@@ -51,7 +51,11 @@ jobs:
       - name: Upload .env.production to EC2
         run: |
           scp -i ~/.ssh/mall-shop.pem .env.production ${{ secrets.MALL_SHOP_SSH_USERNAME }}@${{ secrets.MALL_SHOP_IP }}:/home/www/english-class/fe-deploy/.env.production
-
+      
+      - name: Upload docker-compose.yml to EC2
+        run: |
+          scp -i ~/.ssh/mall-shop.pem docker-compose.yml ${{ secrets.MALL_SHOP_SSH_USERNAME }}@${{ secrets.MALL_SHOP_IP }}:/home/www/english-class/fe-deploy/docker-compose.yml
+        
       - name: Deploy to EC2
         run: |
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/mall-shop.pem \
