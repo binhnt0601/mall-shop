@@ -5,13 +5,13 @@ export interface Pagination {
   total?: number;
 }
 
-export class QueryInput {
+export class QueryInput<T> {
   limit?: number;
   page?: number;
   offset?: number;
   search?: string;
   order?: any;
-  filter?: any;
+  filter?: Partial<T>;
 }
 
 export interface GetListData<T> {
