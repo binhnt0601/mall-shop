@@ -42,6 +42,10 @@ jobs:
           echo "${{ secrets.MALL_SHOP_SSH_PRIVATE_KEY }}" > ~/.ssh/mall-shop.pem
           chmod 400 ~/.ssh/mall-shop.pem
           ssh-keyscan -H ${{ secrets.MALL_SHOP_IP }} >> ~/.ssh/known_hosts
+          
+      - name: Upload .env to EC2
+        run: |
+          scp -i ~/.ssh/mall-shop.pem .env ${{ secrets.MALL_SHOP_SSH_USERNAME }}@${{ secrets.MALL_SHOP_IP }}:/home/www/english-class/fe-deploy/.env
 
       - name: Deploy to EC2
         run: |
