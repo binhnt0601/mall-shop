@@ -5,8 +5,7 @@ export interface Pagination {
   total?: number;
 }
 
-// eslint-disable-next-line unused-imports/no-unused-vars
-export class QueryInput<T> {
+export class QueryInput {
   limit?: number;
   page?: number;
   offset?: number;
@@ -27,4 +26,3 @@ export interface BaseModel {
   createdAt?: string;
   [x: string]: any;
 }
-
