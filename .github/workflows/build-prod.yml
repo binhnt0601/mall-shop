@@ -1,4 +1,5 @@
-name: Build DEV
+name: Build & Deploy production
+
 on:
   push:
     branches: [main]
