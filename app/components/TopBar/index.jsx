@@ -6,7 +6,6 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 import DesktopMenu from "./DesktopMenu";
 import MobileMenu from "./MobileMenu";
@@ -30,9 +29,7 @@ const menuItems = [
 ];
 
 function TopBar() {
-  const pathname = usePathname();
-
-  return pathname === "/" ? (
+  return (
     <AppBar
       id="navbar"
       position="fixed"
@@ -72,8 +69,6 @@ function TopBar() {
         </Toolbar>
       </Container>
     </AppBar>
-  ) : (
-    <></>
   );
 }
 export default TopBar;
