@@ -41,16 +41,16 @@ jobs:
           chmod 400 ~/.ssh/mall-shop.pem
           ssh-keyscan -H ${{ secrets.MALL_SHOP_IP }} >> ~/.ssh/known_hosts
 
-      - name: Create .env from secret
-        run: echo "${{ secrets.ENV_FILE }}" > .env
+      - name: Create .env.production from secret
+        run: echo "${{ secrets.ENV_FILE }}" > .env.production
 
-      - name: Debug .env existence
+      - name: Debug .env.production existence
         run: |
-          ls -l .env
-          
-      - name: Upload .env to EC2
+          ls -l .env.production
+
+      - name: Upload .env.production to EC2
         run: |
-          scp -i ~/.ssh/mall-shop.pem .env ${{ secrets.MALL_SHOP_SSH_USERNAME }}@${{ secrets.MALL_SHOP_IP }}:/home/www/english-class/fe-deploy/.env
+          scp -i ~/.ssh/mall-shop.pem .env.production ${{ secrets.MALL_SHOP_SSH_USERNAME }}@${{ secrets.MALL_SHOP_IP }}:/home/www/english-class/fe-deploy/.env.production
 
       - name: Deploy to EC2
         run: |
