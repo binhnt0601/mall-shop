@@ -41,9 +41,6 @@ jobs:
           chmod 400 ~/.ssh/mall-shop.pem
           ssh-keyscan -H ${{ secrets.MALL_SHOP_IP }} >> ~/.ssh/known_hosts
          
-      - name: Upload docker-compose.yml to EC2
-        run: scp -i ~/.ssh/mall-shop.pem docker-compose.yml ${{ secrets.MALL_SHOP_SSH_USERNAME }}@${{ secrets.MALL_SHOP_IP }}:/home/www/english-class/fe-deploy/docker-compose.yml
-        
       - name: Create .env.production from secret
         run: echo "${{ secrets.ENV_FILE }}" > .env.production
 
