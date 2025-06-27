@@ -14,10 +14,11 @@ import {
 import Link from "next/link";
 import EmailIcon from "@mui/icons-material/Email";
 import PasswordIcon from "@mui/icons-material/Lock";
-import { Bounce, toast } from "react-toastify";
 import GoogleIcon from "@mui/icons-material/Google";
+import { useRouter } from "next/navigation";
 
 import LogoCompany from "@/components/TopBar/LogoCompany";
+import { toast } from "@/helpers/toast";
 
 export const dynamic = "force-dynamic";
 
@@ -53,7 +54,6 @@ const BpIcon = styled("span")(({ theme }) => ({
     backgroundImage:
       "linear-gradient(180deg,hsla(0,0%,100%,.05),hsla(0,0%,100%,0))",
   }),
-  borderRadius: 50,
   borderWidth: 2,
   borderColor: "#fc9a14",
 }));
@@ -79,6 +79,12 @@ const BpCheckedIcon = styled(BpIcon)({
 });
 
 const RegisterPage = () => {
+  const router = useRouter();
+
+  const onLoginWithGoogle = async () => {
+    router.push(`${process.env.NEXT_PUBLIC_API_URI}/api/google`);
+  };
+
   const [isChecked, setIsChecked] = useState({
     termsAndConditions: false,
     privacyPolicy: false,
@@ -99,8 +105,15 @@ const RegisterPage = () => {
           Sign up to add an Account
         </Typography>
         <div className="max-w-[460px] flex flex-col w-full gap-4 mt-10">
-          <button className="bg-white w-full py-3 rounded-md font-bold">
-            <GoogleIcon width={20} height={20} alt="logo" /> Sign in With Google
+          <button
+            className="bg-white w-full py-3 rounded-md font-bold"
+            onClick={onLoginWithGoogle}
+          >
+            <GoogleIcon
+              style={{ fontSize: 20 }}
+              className="inline-block align-middle"
+            />
+            Sign in With Google
           </button>
 
           <div className="flex justify-center">
@@ -255,17 +268,7 @@ const RegisterPage = () => {
               ${!isChecked.privacyPolicy || !isChecked.termsAndConditions ? "opacity-50" : "opacity-1"}
               text-white bg-[#fc9a14] w-full py-3 rounded-full`}
             onClick={() => {
-              toast("Account Register successfully!", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-                transition: Bounce,
-              });
+              toast.success("Registration successful! Welcome to AI Malls!");
             }}
           >
             Register

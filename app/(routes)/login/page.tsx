@@ -2,22 +2,47 @@
 
 import React from "react";
 
-import {
-  Divider,
-  InputAdornment,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Divider, Stack, Typography } from "@mui/material";
 import Link from "next/link";
 import EmailIcon from "@mui/icons-material/Email";
 import PasswordIcon from "@mui/icons-material/Lock";
 import GoogleIcon from "@mui/icons-material/Google";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { useRouter } from "next/navigation";
 
 import LogoCompany from "@/components/TopBar/LogoCompany";
+import { useAuth } from "@/providers/auth-provider";
+import FormikTextField from "@/components/FormikTextField";
 
 export const dynamic = "force-dynamic";
+
+const validationSchema = Yup.object().shape({
+  email: Yup.string().email("Invalid email").required(`Enter your email`),
+  password: Yup.string()
+    .min(8, `Sorry, your password must be at least 8 characters`)
+    .required(`Enter your password`),
+});
+
 const LoginPage = () => {
+  const { login } = useAuth();
+  const router = useRouter();
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema,
+    onSubmit: async (values) => {
+      await login(values.email, values.password);
+    },
+  });
+
+  const onLoginWithGoogle = async () => {
+    router.push(`${process.env.NEXT_PUBLIC_API_URI}/api/google`);
+  };
+
   return (
     <Stack className="!flex-row w-full h-dvh">
       <div className="md:w-[65%] w-full bg-black flex flex-col justify-center items-center">
@@ -32,9 +57,20 @@ const LoginPage = () => {
         >
           Login to your Account
         </Typography>
-        <div className="max-w-[460px] flex flex-col w-full gap-4 mt-10">
-          <button className="bg-white w-full py-3 rounded-md font-bold">
-            <GoogleIcon width={20} height={20} alt="logo" /> Sign in With Google
+        <form
+          onSubmit={formik.handleSubmit}
+          className="max-w-[460px] flex flex-col w-full gap-4 mt-10"
+        >
+          <button
+            className="bg-white w-full py-3 rounded-md font-bold"
+            type="button"
+            onClick={onLoginWithGoogle}
+          >
+            <GoogleIcon
+              style={{ fontSize: 20 }}
+              className="inline-block align-middle"
+            />
+            Sign in With Google
           </button>
 
           <div className="flex justify-center">
@@ -45,59 +81,19 @@ const LoginPage = () => {
             </div>
           </div>
 
-          <TextField
-            variant="outlined"
+          <FormikTextField
+            formik={formik}
+            name="email"
             label="Email"
-            style={{
-              background: "rgba(255, 252, 252, 0.349)",
-            }}
-            className="rounded-md w-full"
-            InputLabelProps={{
-              style: {
-                textOverflow: "ellipsis",
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                width: "100%",
-                color: "white",
-              },
-            }}
-            InputProps={{
-              style: {
-                color: "white",
-              },
-              endAdornment: (
-                <InputAdornment position="end">
-                  <EmailIcon className="text-white" />
-                </InputAdornment>
-              ),
-            }}
+            icon={<EmailIcon className="text-white" />}
           />
-          <TextField
-            variant="outlined"
+
+          <FormikTextField
+            formik={formik}
+            name="password"
             label="Password"
-            style={{
-              background: "rgba(255, 252, 252, 0.349)",
-            }}
-            className="rounded-md w-full"
-            InputLabelProps={{
-              style: {
-                textOverflow: "ellipsis",
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                width: "100%",
-                color: "white",
-              },
-            }}
-            InputProps={{
-              style: {
-                color: "white",
-              },
-              endAdornment: (
-                <InputAdornment position="end">
-                  <PasswordIcon className="text-white" />
-                </InputAdornment>
-              ),
-            }}
+            type="password"
+            icon={<PasswordIcon className="text-white" />}
           />
 
           <Link
@@ -107,7 +103,10 @@ const LoginPage = () => {
             Forgot password?
           </Link>
 
-          <button className="text-white bg-[#fc9a14] w-full py-3 rounded-full mt-5">
+          <button
+            type="submit"
+            className="text-white bg-[#fc9a14] w-full py-3 rounded-full mt-5"
+          >
             Login
           </button>
 
@@ -120,7 +119,7 @@ const LoginPage = () => {
               Register
             </Link>
           </Typography>
-        </div>
+        </form>
       </div>
       <div
         className="md:flex hidden flex-col gap-5 justify-center items-center text-center 
