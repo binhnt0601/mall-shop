@@ -55,4 +55,4 @@ jobs:
             "docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APPNAME }}:prod && \
             cd /home/www/english-class/fe-deploy && \
             docker compose down && \
-            docker compose up -d"
+            docker compose up -d --build"
