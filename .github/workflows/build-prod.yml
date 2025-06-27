@@ -41,21 +41,17 @@ jobs:
           chmod 400 ~/.ssh/mall-shop.pem
           ssh-keyscan -H ${{ secrets.MALL_SHOP_IP }} >> ~/.ssh/known_hosts
 
+      - name: Upload docker-compose.yml to EC2
+        run: |
+          scp -i ~/.ssh/mall-shop.pem docker-compose.yml ${{ secrets.MALL_SHOP_SSH_USERNAME }}@${{ secrets.MALL_SHOP_IP }}:/home/www/english-class/fe-deploy/docker-compose.yml
+
       - name: Create .env.production from secret
         run: echo "${{ secrets.ENV_FILE }}" > .env.production
-
-      - name: Debug .env.production existence
-        run: |
-          ls -l .env.production
 
       - name: Upload .env.production to EC2
         run: |
           scp -i ~/.ssh/mall-shop.pem .env.production ${{ secrets.MALL_SHOP_SSH_USERNAME }}@${{ secrets.MALL_SHOP_IP }}:/home/www/english-class/fe-deploy/.env.production
-      
-      - name: Upload docker-compose.yml to EC2
-        run: |
-          scp -i ~/.ssh/mall-shop.pem docker-compose.yml ${{ secrets.MALL_SHOP_SSH_USERNAME }}@${{ secrets.MALL_SHOP_IP }}:/home/www/english-class/fe-deploy/docker-compose.yml
-        
+
       - name: Deploy to EC2
         run: |
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/mall-shop.pem \
