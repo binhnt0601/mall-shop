@@ -19,9 +19,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
 
-      - name: Create .env from secret
-        run: echo "${{ secrets.ENV_FILE }}" > .env
-
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v4
         with:
@@ -43,6 +40,13 @@ jobs:
           echo "${{ secrets.MALL_SHOP_SSH_PRIVATE_KEY }}" > ~/.ssh/mall-shop.pem
           chmod 400 ~/.ssh/mall-shop.pem
           ssh-keyscan -H ${{ secrets.MALL_SHOP_IP }} >> ~/.ssh/known_hosts
+
+      - name: Create .env from secret
+        run: echo "${{ secrets.ENV_FILE }}" > .env
+
+      - name: Debug .env existence
+        run: |
+          ls -l .env
           
       - name: Upload .env to EC2
         run: |
