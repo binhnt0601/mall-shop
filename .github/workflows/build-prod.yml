@@ -19,6 +19,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
 
+      - name: Create .env.production from secret
+        run: echo "${{ secrets.ENV_FILE }}" > .env.production
+
+      - name: Upload .env.production to EC2
+        run: |
+          scp -i ~/.ssh/mall-shop.pem .env.production ${{ secrets.MALL_SHOP_SSH_USERNAME }}@${{ secrets.MALL_SHOP_IP }}:/home/www/english-class/fe-deploy/.env.production
+
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v4
         with:
@@ -40,13 +47,6 @@ jobs:
           echo "${{ secrets.MALL_SHOP_SSH_PRIVATE_KEY }}" > ~/.ssh/mall-shop.pem
           chmod 400 ~/.ssh/mall-shop.pem
           ssh-keyscan -H ${{ secrets.MALL_SHOP_IP }} >> ~/.ssh/known_hosts
-         
-      - name: Create .env.production from secret
-        run: echo "${{ secrets.ENV_FILE }}" > .env.production
-
-      - name: Upload .env.production to EC2
-        run: |
-          scp -i ~/.ssh/mall-shop.pem .env.production ${{ secrets.MALL_SHOP_SSH_USERNAME }}@${{ secrets.MALL_SHOP_IP }}:/home/www/english-class/fe-deploy/.env.production
 
       - name: Deploy to EC2
         run: |
