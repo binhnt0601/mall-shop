@@ -24,7 +24,7 @@ jobs:
 
       - name: Upload .env.production to EC2
         run: |
-          scp -i ~/.ssh/mall-shop.pem .env.production ${{ secrets.MALL_SHOP_SSH_USERNAME }}@${{ secrets.MALL_SHOP_IP }}:/home/www/english-class/fe-deploy/.env.production
+          scp -i ~/.ssh/english-class.pem .env.production ${{ secrets.MALL_SHOP_SSH_USERNAME }}@${{ secrets.MALL_SHOP_IP }}:/home/www/english-class/fe-deploy/.env.production
 
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v4
