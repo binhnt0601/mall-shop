@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo } from "react";
 
 import {
   ApolloClient,
@@ -6,10 +6,10 @@ import {
   HttpLink,
   InMemoryCache,
   NormalizedCacheObject,
-} from '@apollo/client';
+} from "@apollo/client";
 
-import { AuthLink } from './auth';
-import { ErrorLink } from './error';
+import { AuthLink } from "./auth";
+import { ErrorLink } from "./error";
 
 let apolloClient: ApolloClient<NormalizedCacheObject>;
 
@@ -19,7 +19,7 @@ const uri = `${publicUri}/graphql`;
 
 function createApolloClient() {
   return new ApolloClient({
-    ssrMode: typeof window === 'undefined', // set to true for SSR
+    ssrMode: typeof window === "undefined", // set to true for SSR
     link: ApolloLink.from([
       ErrorLink as unknown as ApolloLink,
       AuthLink as unknown as ApolloLink,
@@ -49,15 +49,15 @@ export function initializeApollo(initialState = null) {
     // Restore the cache using the data passed from
     // getStaticProps/getServerSideProps combined with the existing cached data
     _apolloClient.cache.restore({
-      ...(typeof existingCache === 'object' && existingCache
+      ...(typeof existingCache === "object" && existingCache
         ? existingCache
         : {}),
-      ...(typeof initialState === 'object' && initialState ? initialState : {}),
+      ...(typeof initialState === "object" && initialState ? initialState : {}),
     });
   }
 
   // For SSG and SSR always create a new Apollo Client
-  if (typeof window === 'undefined') return _apolloClient;
+  if (typeof window === "undefined") return _apolloClient;
 
   // Create the Apollo Client once in the client
   if (!apolloClient) apolloClient = _apolloClient;

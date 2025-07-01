@@ -9,6 +9,7 @@ import CoursesSection from '@/modules/LandingPage/CoursesSection';
 import TestimonialsSection from '@/modules/LandingPage/TestimonialsSection';
 import CallToActionSection from '@/modules/LandingPage/CallToActionSection';
 import MainLayout from '@/layouts/MainLayout';
+import CourseRoadmap from '@/modules/LandingPage/CourseRoadmap';
 
 export default function Home() {
   const { isTablet } = useViewPort();
@@ -19,6 +20,7 @@ export default function Home() {
       <HeroSection />
       <FeaturesSection />
       <CoursesSection />
+      <CourseRoadmap />
       <TestimonialsSection />
       <CallToActionSection />
     </main>

@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic';
+import MainLayout from '@/layouts/MainLayout';
 import dynamicImport from 'next/dynamic';
 
 const LoginPageClient = dynamicImport(() => import('./LoginPageClient'), {
@@ -13,3 +14,7 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
+LoginPage.getLayout = function getLayout(page: any) {
+  return <MainLayout>{page}</MainLayout>;
+};

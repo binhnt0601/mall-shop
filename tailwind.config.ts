@@ -4,7 +4,7 @@ import withMT from '@material-tailwind/react/utils/withMT';
 module.exports = withMT({
   content: [
     './src/**/**/*.{js,ts,jsx,tsx,mdx}',
-    './node_modules/@material-tailwind/react/**/*.{js,ts,jsx,tsx}'
+    './node_modules/@material-tailwind/react/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
@@ -15,13 +15,13 @@ module.exports = withMT({
         lg: '1024px',
         xl: '1280px',
         '2xl': '1536px',
-    },
+      },
       animation: {
         'fade-in-up': 'fade-in-up 0.8s cubic-bezier(0.22,1,0.36,1) both',
       },
       keyframes: {
         'fade-in-up': {
-          '0%':   { opacity: '0', transform: 'translateY(40px)' },
+          '0%': { opacity: '0', transform: 'translateY(40px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
       },
@@ -40,4 +40,4 @@ module.exports = withMT({
     },
   },
   plugins: ['mtConfig'],
-})
+});

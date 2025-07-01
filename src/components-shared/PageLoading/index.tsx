@@ -1,11 +1,11 @@
-import { loadingUrl } from '@/helpers/brand';
+import { loadingUrl } from "@/helpers/brand";
 
 const PageLoading = ({ isLoading }: any) => {
   if (isLoading) {
     return (
       <div className="relative">
         {/* Content wrapper */}
-        <div className={isLoading ? 'pointer-events-none blur-sm' : ''}>
+        <div className={isLoading ? "pointer-events-none blur-sm" : ""}>
           {/* Your page content goes here */}
         </div>
 

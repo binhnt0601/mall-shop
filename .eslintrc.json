@@ -1,0 +1,29 @@
+{
+  "extends": ["next/core-web-vitals", "plugin:tailwindcss/recommended"],
+  "plugins": ["unused-imports"],
+  "settings": {
+    "tailwindcss": {
+      "callees": ["twMerge", "createTheme"],
+      "classRegex": "^(class(Name)|theme)?$"
+    }
+  },
+  "rules": {
+    "react-hooks/exhaustive-deps": "off",
+    "@next/next/no-img-element": "off",
+    "quotes": ["error", "single"],
+    "@next/next/no-html-link-for-pages": "off",
+    "@next/next/no-page-custom-font": "off",
+    // Tự động xóa import không sử dụng
+    "unused-imports/no-unused-imports": "error",
+    // Rename biến không sử dụng thành `_`
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ]
+  }
+}

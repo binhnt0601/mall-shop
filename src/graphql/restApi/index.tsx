@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosInstance } from "axios";
 
 import {
   createHeader,
@@ -6,13 +6,13 @@ import {
   getContentType,
   getCustomUrl,
   getPath,
-} from '@/helpers/restful';
+} from "@/helpers/restful";
 
 export const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URI,
   timeout: 1000,
   headers: {
-    Accept: 'application/json',
+    Accept: "application/json",
   },
 });
 
@@ -34,15 +34,15 @@ class RestfulApi {
   }
 
   public request = async (
-    method: string = 'GET',
-    route: string = '',
+    method: string = "GET",
+    route: string = "",
     payload: Payload = {},
   ): Promise<any> => {
     const path = getPath(payload.path);
     const params = createUrlParamFromObj(payload.params);
     const customUrl = getCustomUrl(payload.url);
     const contentType = getContentType(payload.type);
-    const baseHeaders = { 'Content-Type': contentType };
+    const baseHeaders = { "Content-Type": contentType };
     const headers = createHeader(payload.headers, baseHeaders);
     const url = customUrl.length > 0 ? customUrl : route + path + params;
     const data = payload.body ? payload.body : {};
@@ -65,19 +65,19 @@ class RestfulApi {
   };
 
   public get = (route: string) => (payload: Payload) =>
-    this.request('GET', route, payload);
+    this.request("GET", route, payload);
 
   public put = (route: string) => (payload: Payload) =>
-    this.request('PUT', route, payload);
+    this.request("PUT", route, payload);
 
   public post = (route: string) => (payload: Payload) =>
-    this.request('POST', route, payload);
+    this.request("POST", route, payload);
 
   public delete = (route: string) => (payload: Payload) =>
-    this.request('DELETE', route, payload);
+    this.request("DELETE", route, payload);
 
   public patch = (route: string) => (payload: Payload) =>
-    this.request('PATCH', route, payload);
+    this.request("PATCH", route, payload);
 }
 
 const api = new RestfulApi(axiosInstance);

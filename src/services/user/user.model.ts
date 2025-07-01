@@ -1,4 +1,4 @@
-import { BaseModel } from '@/helpers/base-model';
+import { BaseModel } from "@/helpers/base-model";
 
 type Payment = {
   bankName?: string;
@@ -39,52 +39,52 @@ export interface User extends BaseModel {
 }
 
 export enum UserRoles {
-  ADMIN = 'ADMIN',
-  MEMBER = 'MEMBER',
-  MERCHANT = 'MERCHANT',
+  ADMIN = "ADMIN",
+  MEMBER = "MEMBER",
+  MERCHANT = "MERCHANT",
 }
 
 export enum UserStatuses {
-  ACTIVE = 'ACTIVE',
-  INACTIVE = 'INACTIVE',
+  ACTIVE = "ACTIVE",
+  INACTIVE = "INACTIVE",
 }
 
 export enum UserServiceStatus {
-  FREE = 'FREE',
-  EXPIRED = 'EXPIRED',
-  PAID = 'PAID',
+  FREE = "FREE",
+  EXPIRED = "EXPIRED",
+  PAID = "PAID",
 }
 
 export const ROLES = {
-  ADMIN: 'ADMIN',
-  EDITOR: 'EDITOR',
-  MEMBER: 'MEMBER',
-  CUSTOMER: 'CUSTOMER',
-  ADMIN_EDITOR: ['ADMIN', 'EDITOR'],
-  ADMIN_MEMBER: ['ADMIN', 'MEMBER'],
-  ADMIN_MEMBER_EDITOR: ['ADMIN', 'EDITOR', 'MEMBER'],
-  ADMIN_MEMBER_CUSTOMER: ['ADMIN', 'MEMBER', 'CUSTOMER'],
+  ADMIN: "ADMIN",
+  EDITOR: "EDITOR",
+  MEMBER: "MEMBER",
+  CUSTOMER: "CUSTOMER",
+  ADMIN_EDITOR: ["ADMIN", "EDITOR"],
+  ADMIN_MEMBER: ["ADMIN", "MEMBER"],
+  ADMIN_MEMBER_EDITOR: ["ADMIN", "EDITOR", "MEMBER"],
+  ADMIN_MEMBER_CUSTOMER: ["ADMIN", "MEMBER", "CUSTOMER"],
 };
 
 export const setUserToken = (token: string, temp = false) => {
   // console.log('token',token);
   if (temp) {
-    sessionStorage.setItem('user-token', token);
+    sessionStorage.setItem("user-token", token);
   } else {
-    localStorage.setItem('user-token', token);
+    localStorage.setItem("user-token", token);
   }
 };
 
 export const clearUserToken = () => {
-  localStorage.removeItem('user-token');
-  sessionStorage.removeItem('user-token');
+  localStorage.removeItem("user-token");
+  sessionStorage.removeItem("user-token");
 };
 
 export const getUserToken = () => {
   return (
-    localStorage.getItem('user-token') ||
-    sessionStorage.getItem('user-token') ||
-    ''
+    localStorage.getItem("user-token") ||
+    sessionStorage.getItem("user-token") ||
+    ""
   );
 };
 
@@ -116,7 +116,7 @@ export type UpdateUserInput = {
 };
 
 export const UserInitialValues = {
-  name: '',
+  name: "",
   role: UserRoles.MEMBER,
-  email: '',
+  email: "",
 };

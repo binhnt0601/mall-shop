@@ -1,7 +1,7 @@
-'use client';
-import { createContext, useContext, useState } from 'react';
+"use client";
+import { createContext, useContext, useState } from "react";
 
-import PageLoading from '@/components-shared/PageLoading';
+import PageLoading from "@/components-shared/PageLoading";
 
 const LoadingContext = createContext<
   Partial<{

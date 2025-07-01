@@ -1,17 +1,23 @@
+import Link from 'next/link';
+
 export default function HeroSection() {
-    return (
-      <section className="relative overflow-hidden bg-gradient-to-r from-blue-500 to-indigo-600 px-6 py-24 text-center text-white">
-        <div className="mx-auto max-w-3xl">
-          <h1 className="mb-4 animate-fade-in-up text-4xl font-bold md:text-5xl">Chinh phục Tiếng Anh Dễ Dàng</h1>
-          <p className="mb-6 animate-fade-in-up text-lg delay-200 md:text-xl">
-            Khóa học tiếng Anh toàn diện giúp bạn tự tin giao tiếp và thi chứng chỉ.
-          </p>
-          <button className="rounded-full bg-white px-8 py-3 font-semibold text-blue-600 shadow-lg transition hover:scale-105">
-            Đăng ký ngay
+  return (
+    <section className='relative overflow-hidden bg-gradient-to-r from-blue-500 to-indigo-600 px-6 pt-24 pb-32 text-center text-white'>
+      <div className='mx-auto max-w-3xl relative z-10'>
+        <h1 className='mb-4 animate-fade-in-up text-4xl font-bold md:text-5xl'>
+          Master English with Ease
+        </h1>
+        <p className='mb-6 animate-fade-in-up text-lg delay-200 md:text-xl'>
+          A comprehensive English course that boosts your confidence in
+          communication and certification exams.
+        </p>
+        <Link href='/register'>
+          <button className='rounded-full bg-white px-8 py-3 font-semibold text-blue-600 shadow-lg transition hover:scale-105 cursor-pointer'>
+            Register Now
           </button>
-        </div>
-        <div className="absolute bottom-0 left-0 h-32 w-full bg-gradient-to-t from-white to-transparent"></div>
-      </section>
-    );
-  }
-  
+        </Link>
+      </div>
+      <div className='absolute bottom-0 left-0 h-32 w-full bg-gradient-to-t from-white to-transparent z-10'></div>
+    </section>
+  );
+}

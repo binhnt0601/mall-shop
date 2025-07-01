@@ -9,7 +9,7 @@ import {
   Stack,
   styled,
   TextField,
-  Typography
+  Typography,
 } from '@mui/material';
 import Link from 'next/link';
 import EmailIcon from '@mui/icons-material/Email';
@@ -17,8 +17,8 @@ import PasswordIcon from '@mui/icons-material/Lock';
 import GoogleIcon from '@mui/icons-material/Google';
 import { useRouter } from 'next/navigation';
 
-import LogoCompany from '@/components/Header/LogoCompany';
 import { toast } from '@/helpers/toast';
+import Image from 'next/image';
 
 const BpIcon = styled('span')(({ theme }) => ({
   borderRadius: 3,
@@ -31,29 +31,29 @@ const BpIcon = styled('span')(({ theme }) => ({
     'linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))',
   '.Mui-focusVisible &': {
     outline: '2px auto rgba(19,124,189,.6)',
-    outlineOffset: 2
+    outlineOffset: 2,
   },
   'input:hover ~ &': {
     backgroundColor: '#ebf1f5',
     ...theme.applyStyles('dark', {
-      backgroundColor: '#30404d'
-    })
+      backgroundColor: '#30404d',
+    }),
   },
   'input:disabled ~ &': {
     boxShadow: 'none',
     background: 'rgba(206,217,224,.5)',
     ...theme.applyStyles('dark', {
-      background: 'rgba(57,75,89,.5)'
-    })
+      background: 'rgba(57,75,89,.5)',
+    }),
   },
   ...theme.applyStyles('dark', {
     boxShadow: '0 0 0 1px rgb(16 22 26 / 40%)',
     backgroundColor: '#394b59',
     backgroundImage:
-      'linear-gradient(180deg,hsla(0,0%,100%,.05),hsla(0,0%,100%,0))'
+      'linear-gradient(180deg,hsla(0,0%,100%,.05),hsla(0,0%,100%,0))',
   }),
   borderWidth: 2,
-  borderColor: '#fc9a14'
+  borderColor: '#fc9a14',
 }));
 
 const BpCheckedIcon = styled(BpIcon)({
@@ -65,15 +65,15 @@ const BpCheckedIcon = styled(BpIcon)({
     width: 20,
     height: 20,
     backgroundImage:
-      'url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\'%3E%3Cpath' +
-      ' fill-rule=\'evenodd\' clip-rule=\'evenodd\' d=\'M12 5c-.28 0-.53.11-.71.29L7 9.59l-2.29-2.3a1.003 ' +
-      '1.003 0 00-1.42 1.42l3 3c.18.18.43.29.71.29s.53-.11.71-.29l5-5A1.003 1.003 0 0012 5z\' fill=\'%23fff\'/%3E%3C/svg%3E")',
-    content: '""'
+      "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath" +
+      " fill-rule='evenodd' clip-rule='evenodd' d='M12 5c-.28 0-.53.11-.71.29L7 9.59l-2.29-2.3a1.003 " +
+      "1.003 0 00-1.42 1.42l3 3c.18.18.43.29.71.29s.53-.11.71-.29l5-5A1.003 1.003 0 0012 5z' fill='%23fff'/%3E%3C/svg%3E\")",
+    content: '""',
   },
   'input:hover ~ &': {
-    backgroundColor: '#fc9a14'
+    backgroundColor: '#fc9a14',
   },
-  borderRadius: 50
+  borderRadius: 50,
 });
 
 const RegisterPageClient = ({ apiUri }: { apiUri: string }) => {
@@ -85,14 +85,14 @@ const RegisterPageClient = ({ apiUri }: { apiUri: string }) => {
 
   const [isChecked, setIsChecked] = useState({
     termsAndConditions: false,
-    privacyPolicy: false
+    privacyPolicy: false,
   });
 
   return (
     <Stack className='min-h-dvh w-full !flex-row'>
       <div className='flex w-full flex-col items-center justify-center bg-black px-10 py-20 md:w-[65%]'>
         <div className='mb-10 md:hidden'>
-          <LogoCompany width={181} height={124} />
+          <Image width={181} height={124} src='/logo.png' alt='Brand Logo' />
         </div>
         <Typography
           fontWeight='bold'
@@ -126,7 +126,7 @@ const RegisterPageClient = ({ apiUri }: { apiUri: string }) => {
             variant='outlined'
             label='Email'
             style={{
-              background: 'rgba(255, 252, 252, 0.349)'
+              background: 'rgba(255, 252, 252, 0.349)',
             }}
             className='w-full rounded-md'
             InputLabelProps={{
@@ -135,25 +135,25 @@ const RegisterPageClient = ({ apiUri }: { apiUri: string }) => {
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
                 width: '100%',
-                color: 'white'
-              }
+                color: 'white',
+              },
             }}
             InputProps={{
               style: {
-                color: 'white'
+                color: 'white',
               },
               endAdornment: (
                 <InputAdornment position='end'>
                   <EmailIcon className='text-white' />
                 </InputAdornment>
-              )
+              ),
             }}
           />
           <TextField
             variant='outlined'
             label='Password'
             style={{
-              background: 'rgba(255, 252, 252, 0.349)'
+              background: 'rgba(255, 252, 252, 0.349)',
             }}
             className='w-full rounded-md'
             InputLabelProps={{
@@ -162,25 +162,25 @@ const RegisterPageClient = ({ apiUri }: { apiUri: string }) => {
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
                 width: '100%',
-                color: 'white'
-              }
+                color: 'white',
+              },
             }}
             InputProps={{
               style: {
-                color: 'white'
+                color: 'white',
               },
               endAdornment: (
                 <InputAdornment position='end'>
                   <PasswordIcon className='text-white' />
                 </InputAdornment>
-              )
+              ),
             }}
           />
           <TextField
             variant='outlined'
             label='Confirm Password'
             style={{
-              background: 'rgba(255, 252, 252, 0.349)'
+              background: 'rgba(255, 252, 252, 0.349)',
             }}
             className='w-full rounded-md'
             InputLabelProps={{
@@ -189,18 +189,18 @@ const RegisterPageClient = ({ apiUri }: { apiUri: string }) => {
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
                 width: '100%',
-                color: 'white'
-              }
+                color: 'white',
+              },
             }}
             InputProps={{
               style: {
-                color: 'white'
+                color: 'white',
               },
               endAdornment: (
                 <InputAdornment position='end'>
                   <PasswordIcon className='text-white' />
                 </InputAdornment>
-              )
+              ),
             }}
           />
 
@@ -216,7 +216,7 @@ const RegisterPageClient = ({ apiUri }: { apiUri: string }) => {
                 onChange={(event) => {
                   setIsChecked((prev) => ({
                     ...prev,
-                    termsAndConditions: event.target.checked
+                    termsAndConditions: event.target.checked,
                   }));
                 }}
               />
@@ -225,7 +225,8 @@ const RegisterPageClient = ({ apiUri }: { apiUri: string }) => {
                 <a
                   className='text-[#fc9a14] underline'
                   target='_blank'
-                  href='https://aimalls.app/terms-and-conditions' rel="noreferrer"
+                  href='https://aimalls.app/terms-and-conditions'
+                  rel='noreferrer'
                 >
                   Terms and Conditions
                 </a>
@@ -243,7 +244,7 @@ const RegisterPageClient = ({ apiUri }: { apiUri: string }) => {
                 onChange={(event) => {
                   setIsChecked((prev) => ({
                     ...prev,
-                    privacyPolicy: event.target.checked
+                    privacyPolicy: event.target.checked,
                   }));
                 }}
               />
@@ -252,7 +253,8 @@ const RegisterPageClient = ({ apiUri }: { apiUri: string }) => {
                 <a
                   className='text-[#fc9a14] underline'
                   target='_blank'
-                  href='https://aimalls.app/privacy-policy' rel="noreferrer"
+                  href='https://aimalls.app/privacy-policy'
+                  rel='noreferrer'
                 >
                   Privacy Policy
                 </a>
@@ -287,7 +289,7 @@ const RegisterPageClient = ({ apiUri }: { apiUri: string }) => {
         className='hidden w-[35%] flex-col items-center justify-center gap-5 bg-[#fc9a14] 
       p-5 text-center text-white md:flex'
       >
-        <LogoCompany width={181} height={124} />
+        <Image width={181} height={124} src='/logo.png' alt='Brand Logo' />
         <Typography fontSize={40} fontWeight='bold'>
           Welcome Back!
         </Typography>

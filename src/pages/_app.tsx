@@ -1,26 +1,26 @@
-import React from 'react';
+import React from "react";
 
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from "@mui/material/styles";
 
-import './globals.css';
+import "./globals.css";
 
-import theme from '@/theme';
-import LoadingProvider from '@/providers/loading-provider';
-import AuthProvider from '@/providers/auth-provider';
-import { AppProps } from 'next/app';
+import theme from "@/theme";
+import LoadingProvider from "@/providers/loading-provider";
+import AuthProvider from "@/providers/auth-provider";
+import { AppProps } from "next/app";
 
-type NextPageWithLayout = AppProps['Component'] & {
-  getLayout?: (page: React.ReactElement) => React.ReactNode
-}
+type NextPageWithLayout = AppProps["Component"] & {
+  getLayout?: (page: React.ReactElement) => React.ReactNode;
+};
 
 export const metadata = {
-  title: 'English Class',
-  description: 'English Class',
+  title: "English Class",
+  description: "English Class",
   icons: {
-    icon: '/favicon.png'
-  }
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({ Component, pageProps }: AppProps) {

@@ -14,15 +14,16 @@ import { useLoader } from '@/providers/loading-provider';
 import { UserService } from '@/services/user/user.repo';
 import { toast } from '@/helpers/toast';
 import FormikTextField from '@/components-shared/FormikTextField';
+import MainLayout from '@/layouts/MainLayout';
 
 export const dynamic = 'force-dynamic';
 
 interface FormikValues {
-  email: string
+  email: string;
 }
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().email('Invalid email').required('Enter your email')
+  email: Yup.string().email('Invalid email').required('Enter your email'),
 });
 
 const ForgotPasswordPage = () => {
@@ -31,13 +32,13 @@ const ForgotPasswordPage = () => {
 
   const handleSubmit = async (
     values: FormikValues,
-    { setSubmitting }: FormikHelpers<FormikValues>
+    { setSubmitting }: FormikHelpers<FormikValues>,
   ) => {
     try {
       setLoading(true);
 
       await UserService.resetPassword({
-        email: values.email
+        email: values.email,
       });
 
       toast.success('Email sent successfully!');
@@ -46,7 +47,7 @@ const ForgotPasswordPage = () => {
       router.push(`/verify-email?email=${encodeURIComponent(values.email)}`);
     } catch (error: any) {
       toast.error(
-        error?.response?.data?.message || 'Failed to send reset email'
+        error?.response?.data?.message || 'Failed to send reset email',
       );
     } finally {
       setLoading(false);
@@ -56,10 +57,10 @@ const ForgotPasswordPage = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: ''
+      email: '',
     },
     validationSchema,
-    onSubmit: handleSubmit
+    onSubmit: handleSubmit,
   });
 
   return (
@@ -100,3 +101,7 @@ const ForgotPasswordPage = () => {
 };
 
 export default ForgotPasswordPage;
+
+ForgotPasswordPage.getLayout = function getLayout(page: any) {
+  return <MainLayout>{page}</MainLayout>;
+};
