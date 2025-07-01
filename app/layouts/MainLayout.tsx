@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
-import TopBar from "@/components/TopBar";
-import Footer from "@/components/Footer";
+import TopBar from '@/components/TopBar';
+import Footer from '@/components/Footer';
 
 interface LayoutProps {
   children: ReactNode;

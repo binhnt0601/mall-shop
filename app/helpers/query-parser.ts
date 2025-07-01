@@ -4,11 +4,11 @@ export function queryParser(
     hasBraces: false,
   },
 ): string | number | boolean | object | null {
-  if (typeof data === "string") {
+  if (typeof data === 'string') {
     if (data.match(/\n/g)) return `"""${data}"""`;
-    else if (data.startsWith("$")) return data;
+    else if (data.startsWith('$')) return data;
     else return `"${data}"`;
-  } else if (typeof data === "object") {
+  } else if (typeof data === 'object') {
     if (Array.isArray(data)) {
       let arr = [];
 
@@ -17,7 +17,7 @@ export function queryParser(
         arr.push(queryParser(item, { hasBraces: true }));
       }
 
-      return `[${arr.join(", ")}]`;
+      return `[${arr.join(', ')}]`;
     } else if (data instanceof Date) {
       return `"${data.toISOString()}"`;
     } else if (data instanceof File) {
@@ -30,7 +30,7 @@ export function queryParser(
         props.push(`${key}: ${queryParser(data[key], { hasBraces: true })}`);
       }
 
-      return hasBraces ? `{ ${props.join(", ")} }` : `${props.join(", ")}`;
+      return hasBraces ? `{ ${props.join(', ')} }` : `${props.join(', ')}`;
     }
   } else {
     return data;

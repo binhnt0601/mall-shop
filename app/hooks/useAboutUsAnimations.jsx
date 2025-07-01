@@ -1,9 +1,9 @@
-"use client";
-import { useRef } from "react";
+'use client';
+import { useRef } from 'react';
 
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,8 +20,8 @@ export const useAboutUsAnimations = () => {
       gsap.from(ref.current, {
         scrollTrigger: {
           trigger: triggerId,
-          start: "top bottom",
-          end: "100% 70%",
+          start: 'top bottom',
+          end: '100% 70%',
           scrub: 0.5,
         },
         ...direction,
@@ -38,13 +38,13 @@ export const useAboutUsAnimations = () => {
   const banner5_3 = useRef();
 
   useGSAP(() => {
-    animateBanner(banner1, "#card1", "left");
-    animateBanner(banner2, "#card2", "right");
-    animateBanner(banner3, "#card3", "left");
-    animateBanner(banner4, "#card4", "right");
-    animateBanner(banner5_1, "#card5", "right");
-    animateBanner(banner5_2, "#card6", "bottom");
-    animateBanner(banner5_3, "#card6", "top");
+    animateBanner(banner1, '#card1', 'left');
+    animateBanner(banner2, '#card2', 'right');
+    animateBanner(banner3, '#card3', 'left');
+    animateBanner(banner4, '#card4', 'right');
+    animateBanner(banner5_1, '#card5', 'right');
+    animateBanner(banner5_2, '#card6', 'bottom');
+    animateBanner(banner5_3, '#card6', 'top');
   }, []);
 
   return {

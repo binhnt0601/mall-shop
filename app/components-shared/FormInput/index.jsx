@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import PropTypes from "prop-types";
-import { Controller } from "react-hook-form";
-import FormControl from "@mui/material/FormControl";
-import Typography from "@mui/material/Typography";
-import FormHelperText from "@mui/material/FormHelperText";
+import PropTypes from 'prop-types';
+import { Controller } from 'react-hook-form';
+import FormControl from '@mui/material/FormControl';
+import Typography from '@mui/material/Typography';
+import FormHelperText from '@mui/material/FormHelperText';
 
 export default function FormInput(props) {
   const {
@@ -14,9 +14,9 @@ export default function FormInput(props) {
     rules = { required: false },
     placeholder,
     errors = {},
-    errorText = "",
+    errorText = '',
     component: Component,
-    defaultCountry = "VN",
+    defaultCountry = 'VN',
     multiline = false,
     rows = 1,
   } = props;
@@ -28,8 +28,8 @@ export default function FormInput(props) {
       <Typography
         variant="body1"
         sx={{
-          lineHeight: "30px",
-          letterSpacing: "-1.1%",
+          lineHeight: '30px',
+          letterSpacing: '-1.1%',
         }}
       >
         {label} {rules.required && <span className="text-red-600">*</span>}
@@ -50,7 +50,7 @@ export default function FormInput(props) {
         )}
       />
       {hasError && (
-        <FormHelperText sx={{ position: "absolute", bottom: "-20px" }} error>
+        <FormHelperText sx={{ position: 'absolute', bottom: '-20px' }} error>
           {errorText}
         </FormHelperText>
       )}

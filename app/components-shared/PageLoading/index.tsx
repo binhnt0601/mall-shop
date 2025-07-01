@@ -1,17 +1,17 @@
-import { loadingUrl } from "@/helpers/brand";
+import { loadingUrl } from '@/helpers/brand';
 
 const PageLoading = ({ isLoading }: any) => {
   if (isLoading) {
     return (
       <div className="relative">
         {/* Content wrapper */}
-        <div className={isLoading ? "pointer-events-none blur-sm" : ""}>
+        <div className={isLoading ? 'pointer-events-none blur-sm' : ''}>
           {/* Your page content goes here */}
         </div>
 
         {/* Loading screen */}
         {isLoading && (
-          <div className="fixed inset-0 z-100 flex items-center justify-center bg-black/20">
+          <div className="z-100 fixed inset-0 flex items-center justify-center bg-black/20">
             <div>
               <img src={loadingUrl} alt="loading" className="size-32" />
             </div>

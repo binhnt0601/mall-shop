@@ -1,17 +1,17 @@
-import { onError } from "apollo-link-error";
+import { onError } from 'apollo-link-error';
 
 export const ErrorLink = onError(({ graphQLErrors, networkError }) => {
   try {
-    let errorMessage = "";
+    let errorMessage = '';
 
     if (graphQLErrors) {
       graphQLErrors.map(({ message, locations, path }) => {
         console.error({ message, locations, path });
         errorMessage = `${message}`;
-        if (message === "Error, Unverified account") {
+        if (message === 'Error, Unverified account') {
           window.localStorage.clear();
-          if (window?.location?.pathname !== "/") {
-            window.location.assign("/");
+          if (window?.location?.pathname !== '/') {
+            window.location.assign('/');
           }
         }
       });
@@ -29,6 +29,6 @@ export const ErrorLink = onError(({ graphQLErrors, networkError }) => {
       }
     }
   } catch (error) {
-    console.error("ErrorLink caught an error:", error);
+    console.error('ErrorLink caught an error:', error);
   }
 });

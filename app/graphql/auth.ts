@@ -1,31 +1,31 @@
-import { setContext } from "apollo-link-context";
+import { setContext } from 'apollo-link-context';
 
 export function SetAuthToken(token: string, temp = false) {
   if (temp) {
-    sessionStorage.setItem("user-token", token);
+    sessionStorage.setItem('user-token', token);
   } else {
-    localStorage.setItem("user-token", token);
+    localStorage.setItem('user-token', token);
   }
 }
 export function ClearAuthToken() {
-  localStorage.removeItem("user-token");
-  sessionStorage.removeItem("user-token");
+  localStorage.removeItem('user-token');
+  sessionStorage.removeItem('user-token');
 }
 
 export function GetAuthToken() {
   return (
-    localStorage.getItem("user-token") ||
-    sessionStorage.getItem("user-token") ||
-    ""
+    localStorage.getItem('user-token') ||
+    sessionStorage.getItem('user-token') ||
+    ''
   );
 }
 
 export function GetIP() {
-  return localStorage.getItem("user-ip") || "";
+  return localStorage.getItem('user-ip') || '';
 }
 
 export function SetIP(ip: string) {
-  return localStorage.setItem("user-ip", ip);
+  return localStorage.setItem('user-ip', ip);
 }
 
 export const AuthLink = setContext((_, { headers }) => {
@@ -36,14 +36,14 @@ export const AuthLink = setContext((_, { headers }) => {
     const context = {
       headers: {
         ...headers,
-        ...(token && token !== "undefined"
+        ...(token && token !== 'undefined'
           ? {
-              "x-token": token,
+              'x-token': token,
             }
           : {}),
-        ...(ip && ip !== "undefined"
+        ...(ip && ip !== 'undefined'
           ? {
-              "x-forwarded-for": ip,
+              'x-forwarded-for': ip,
             }
           : {}),
       },

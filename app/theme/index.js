@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { Urbanist } from "next/font/google";
-import { createTheme } from "@mui/material/styles";
+import { Urbanist } from 'next/font/google';
+import { createTheme } from '@mui/material/styles';
 
 const urbanist = Urbanist({
-  weight: ["300", "400", "500", "700"],
-  subsets: ["latin"],
-  display: "swap",
+  weight: ['300', '400', '500', '700'],
+  subsets: ['latin'],
+  display: 'swap',
 });
 
 const theme = createTheme({
@@ -15,10 +15,10 @@ const theme = createTheme({
   },
   palette: {
     primary: {
-      main: "#fc9a14",
+      main: '#fc9a14',
     },
     error: {
-      main: "#d32f2f",
+      main: '#d32f2f',
     },
   },
 });
