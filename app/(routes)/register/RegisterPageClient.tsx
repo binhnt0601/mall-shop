@@ -263,7 +263,7 @@ const RegisterPageClient = ({ apiUri }: { apiUri: string }) => {
           <button
             disabled={!isChecked.privacyPolicy || !isChecked.termsAndConditions}
             className={`
-              ${!isChecked.privacyPolicy || !isChecked.termsAndConditions ? 'opacity-50' : 'opacity-1'}
+              ${!isChecked.privacyPolicy || !isChecked.termsAndConditions ? 'opacity-50' : 'opacity-100'}
               w-full rounded-full bg-[#fc9a14] py-3 text-white`}
             onClick={() => {
               toast.success('Registration successful! Welcome to AI Malls!');
