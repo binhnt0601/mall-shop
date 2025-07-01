@@ -19,12 +19,12 @@ module.exports = withMT({
         '2xl': '1536px',
     },
       animation: {
-        fadeInScaleUp: 'fadeInScaleUp 1s ease-out',
+        'fade-in-up': 'fade-in-up 0.8s cubic-bezier(0.22,1,0.36,1) both',
       },
       keyframes: {
-        fadeInScaleUp: {
-          from: { opacity: '0', transform: 'scale(0.3)' },
-          to: { opacity: '1', transform: 'scale(1.0)' },
+        'fade-in-up': {
+          '0%':   { opacity: '0', transform: 'translateY(40px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
         },
       },
       backgroundImage: {

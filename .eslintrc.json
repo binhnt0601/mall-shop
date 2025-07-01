@@ -11,18 +11,6 @@
     "react-hooks/exhaustive-deps": "off",
     "@next/next/no-img-element": "off",
     "quotes": ["error", "single"],
-    "tailwindcss/no-unnecessary-arbitrary-value": "off", 
-    // Tự động xóa import không sử dụng
-    "unused-imports/no-unused-imports": "error",
-    // Rename biến không sử dụng thành `_`
-    "unused-imports/no-unused-vars": [
-      "warn",
-      {
-        "vars": "all",
-        "varsIgnorePattern": "^_",
-        "args": "after-used",
-        "argsIgnorePattern": "^_"
-      }
-    ]
+    "tailwindcss/no-unnecessary-arbitrary-value": "off"
   }
 }
