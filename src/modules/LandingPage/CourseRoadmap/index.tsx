@@ -1,6 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
+import {
+  FaCheckCircle,
+  FaCalendarAlt,
+  FaUserGraduate,
+  FaLink,
+} from 'react-icons/fa';
 
 type Step = {
   step: number;
@@ -162,9 +168,10 @@ export default function CourseRoadmap() {
             onClick={() => setSelectedGroup(group)}
             className={`px-6 py-2 rounded-full font-semibold transition ${
               selectedGroup.groupTitle === group.groupTitle
-                ? 'bg-indigo-600 text-white'
+                ? 'bg-[#4f46e5] text-white'
                 : 'bg-gray-200 text-gray-700 hover:bg-indigo-500 hover:text-white'
             }`}
+            aria-label={`Select ${group.groupTitle} roadmap`}
           >
             {group.groupTitle}
           </button>
@@ -177,40 +184,56 @@ export default function CourseRoadmap() {
           ({ step, title, objectives, studyInfo, ctaLabel, ctaHref }) => (
             <div
               key={step}
-              className='relative rounded-lg border border-gray-300 p-8 shadow-sm hover:shadow-lg transition-transform duration-300 hover:-translate-y-1'
-              style={{ animation: 'fade-in-up 0.5s ease forwards' }}
+              className='relative rounded-lg border border-transparent p-8 shadow-md hover:shadow-lg transition transform hover:-translate-y-1 group bg-white hover:animate-border-fade'
             >
-              <div className='absolute -top-6 left-8 flex h-12 w-12 items-center justify-center rounded-full bg-indigo-600 text-white font-bold text-lg shadow-md'>
-                {step}
+              {/* Step Number */}
+              <div className='absolute -top-6 left-8 flex items-center gap-2 rounded-lg border border-indigo-300 bg-indigo-50 px-4 py-2 shadow-sm text-[#4f46e5] font-bold text-lg select-none group-hover:border-[#4f46e5] group-hover:bg-indigo-100 transition'>
+                <span className='rounded-full bg-indigo-100 w-8 h-8 flex items-center justify-center'>
+                  {step}
+                </span>
+                <span className='text-sm'>Khoá học</span>
+                <span className='text-lg font-semibold'>{title}</span>
               </div>
 
-              <h3 className='mb-4 mt-6 text-2xl font-semibold text-indigo-700'>
-                {title}
-              </h3>
-
-              <div className='mb-4'>
-                <h4 className='mb-2 font-semibold text-gray-800'>Objectives</h4>
-                <ul className='list-disc list-inside text-gray-700 space-y-1'>
+              {/* Objectives */}
+              <div className='mb-6 pt-8'>
+                <h4 className='mb-3 font-semibold text-gray-700 uppercase'>
+                  Mục tiêu
+                </h4>
+                <ul className='space-y-2 text-gray-700 text-sm'>
                   {objectives.map((obj, i) => (
-                    <li key={i}>{obj}</li>
+                    <li key={i} className='flex items-start gap-2'>
+                      <FaCheckCircle className='text-[#4f46e5] mt-1' />
+                      <span>{obj}</span>
+                    </li>
                   ))}
                 </ul>
               </div>
 
+              {/* Study Info */}
               <div className='mb-6'>
-                <h4 className='mb-2 font-semibold text-gray-800'>Study Info</h4>
-                <ul className='list-disc list-inside text-gray-700 space-y-1'>
+                <h4 className='mb-3 font-semibold text-gray-700 uppercase'>
+                  Thông tin học tập
+                </h4>
+                <ul className='space-y-3 text-gray-600 text-sm'>
                   {studyInfo.map((info, i) => (
-                    <li key={i}>{info}</li>
+                    <li key={i} className='flex items-center gap-3'>
+                      {i === 0 && <FaCalendarAlt className='text-[#4f46e5]' />}
+                      {i === 1 && <FaUserGraduate className='text-[#4f46e5]' />}
+                      {i === 2 && <FaLink className='text-[#4f46e5]' />}
+                      <span>{info}</span>
+                    </li>
                   ))}
                 </ul>
               </div>
 
+              {/* CTA */}
               <a
                 href={ctaHref}
-                className='inline-block rounded-full border border-indigo-600 bg-indigo-50 px-6 py-2 text-indigo-700 font-semibold shadow-sm transition hover:bg-indigo-600 hover:text-white'
+                className='inline-flex items-center gap-2 rounded border border-[#4f46e5] px-6 py-2 font-semibold text-[#4f46e5] shadow-sm transition hover:bg-[#4f46e5] hover:text-white'
                 aria-label={`${title} course details`}
               >
+                <FaLink />
                 {ctaLabel}
               </a>
             </div>
