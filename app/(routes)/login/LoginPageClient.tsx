@@ -1,27 +1,27 @@
-"use client";
+'use client';
 
-import React from "react";
+import React from 'react';
 
-import { Divider, Stack, Typography } from "@mui/material";
-import Link from "next/link";
-import EmailIcon from "@mui/icons-material/Email";
-import PasswordIcon from "@mui/icons-material/Lock";
-import GoogleIcon from "@mui/icons-material/Google";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { useRouter } from "next/navigation";
+import { Divider, Stack, Typography } from '@mui/material';
+import Link from 'next/link';
+import EmailIcon from '@mui/icons-material/Email';
+import PasswordIcon from '@mui/icons-material/Lock';
+import GoogleIcon from '@mui/icons-material/Google';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { useRouter } from 'next/navigation';
 
-import LogoCompany from "@/components/TopBar/LogoCompany";
-import { useAuth } from "@/providers/auth-provider";
-import FormikTextField from "@/components/FormikTextField";
+import LogoCompany from '@/components/TopBar/LogoCompany';
+import { useAuth } from '@/providers/auth-provider';
+import FormikTextField from '@/components/FormikTextField';
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid email").required(`Enter your email`),
+  email: Yup.string().email('Invalid email').required('Enter your email'),
   password: Yup.string()
-    .min(8, `Sorry, your password must be at least 8 characters`)
-    .required(`Enter your password`),
+    .min(8, 'Sorry, your password must be at least 8 characters')
+    .required('Enter your password'),
 });
 
 const LoginPageClient = ({ apiUri }: { apiUri: string }) => {
@@ -30,8 +30,8 @@ const LoginPageClient = ({ apiUri }: { apiUri: string }) => {
 
   const formik = useFormik({
     initialValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
     validationSchema,
     onSubmit: async (values) => {
@@ -44,9 +44,9 @@ const LoginPageClient = ({ apiUri }: { apiUri: string }) => {
   };
 
   return (
-    <Stack className="!flex-row w-full h-dvh">
-      <div className="md:w-[65%] w-full bg-black flex flex-col justify-center items-center">
-        <div className="md:hidden mb-10">
+    <Stack className="h-dvh w-full !flex-row">
+      <div className="flex w-full flex-col items-center justify-center bg-black md:w-[65%]">
+        <div className="mb-10 md:hidden">
           <LogoCompany width={181} height={124} />
         </div>
         <Typography
@@ -59,10 +59,10 @@ const LoginPageClient = ({ apiUri }: { apiUri: string }) => {
         </Typography>
         <form
           onSubmit={formik.handleSubmit}
-          className="max-w-[460px] flex flex-col w-full gap-4 mt-10"
+          className="mt-10 flex w-full max-w-[460px] flex-col gap-4"
         >
           <button
-            className="bg-white w-full py-3 rounded-md font-bold"
+            className="w-full rounded-md bg-white py-3 font-bold"
             type="button"
             onClick={onLoginWithGoogle}
           >
@@ -74,10 +74,10 @@ const LoginPageClient = ({ apiUri }: { apiUri: string }) => {
           </button>
 
           <div className="flex justify-center">
-            <div className="flex items-center justify-center w-[120px] gap-2">
-              <Divider className="h-[1px] w-full bg-white" />
+            <div className="flex w-[120px] items-center justify-center gap-2">
+              <Divider className="h-px w-full bg-white" />
               <span className="text-white">or</span>
-              <Divider className="h-[1px] w-full bg-white" />
+              <Divider className="h-px w-full bg-white" />
             </div>
           </div>
 
@@ -97,7 +97,7 @@ const LoginPageClient = ({ apiUri }: { apiUri: string }) => {
           />
 
           <Link
-            className="bg-[transparent] text-[#fc9a14] text-[14px] flex flex-row-reverse "
+            className="flex flex-row-reverse bg-transparent text-[14px] text-[#fc9a14] "
             href="/forgot-password"
           >
             Forgot password?
@@ -105,7 +105,7 @@ const LoginPageClient = ({ apiUri }: { apiUri: string }) => {
 
           <button
             type="submit"
-            className="text-white bg-[#fc9a14] w-full py-3 rounded-full mt-5"
+            className="mt-5 w-full rounded-full bg-[#fc9a14] py-3 text-white"
           >
             Login
           </button>
@@ -114,7 +114,7 @@ const LoginPageClient = ({ apiUri }: { apiUri: string }) => {
             Don&apos;t have an account?
             <Link
               href="/register"
-              className="text-[17px] text-[#fc9a14] ml-3 font-medium"
+              className="ml-3 text-[17px] font-medium text-[#fc9a14]"
             >
               Register
             </Link>
@@ -122,8 +122,8 @@ const LoginPageClient = ({ apiUri }: { apiUri: string }) => {
         </form>
       </div>
       <div
-        className="md:flex hidden flex-col gap-5 justify-center items-center text-center 
-      p-5 w-[50%] bg-[#fc9a14] text-white"
+        className="hidden w-[50%] flex-col items-center justify-center gap-5 bg-[#fc9a14] 
+      p-5 text-center text-white md:flex"
       >
         <LogoCompany width={181} height={124} />
         <Typography fontSize={40} fontWeight="bold">
@@ -136,14 +136,14 @@ const LoginPageClient = ({ apiUri }: { apiUri: string }) => {
           endless possibilities of AI malls.
         </Typography>
         <Link
-          className="bg-[white] text-[black] text-[20px] w-full py-3 rounded-full mt-5"
+          className="mt-5 w-full rounded-full bg-[white] py-3 text-[20px] text-[black]"
           href="/register"
         >
           Register
         </Link>
 
         <Link
-          className="bg-[transparent] text-[#fc9a14] text-[14px] w-full py-3 rounded-full mt-5 text-right"
+          className="mt-5 w-full rounded-full bg-transparent py-3 text-right text-[14px] text-[#fc9a14]"
           href="/register"
         >
           Register

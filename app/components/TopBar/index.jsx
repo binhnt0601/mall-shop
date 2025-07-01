@@ -1,30 +1,30 @@
-"use client";
+'use client';
 
-import React from "react";
+import React from 'react';
 
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Container from "@mui/material/Container";
-import Link from "next/link";
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Container from '@mui/material/Container';
+import Link from 'next/link';
 
-import DesktopMenu from "./DesktopMenu";
-import MobileMenu from "./MobileMenu";
-import LogoCompany from "./LogoCompany";
+import DesktopMenu from './DesktopMenu';
+import MobileMenu from './MobileMenu';
+import LogoCompany from './LogoCompany';
 
 const menuItems = [
-  { index: 0, label: "Home", href: "/" },
-  { index: 1, label: "FAQs", href: "#faqs" },
+  { index: 0, label: 'Home', href: '/' },
+  { index: 1, label: 'FAQs', href: '#faqs' },
   {
     index: 2,
-    label: "Pitch Deck",
-    href: "https://cdn.aimalls.app/aimalls-pitchdeck.pdf",
-    target: "_blank",
+    label: 'Pitch Deck',
+    href: 'https://cdn.aimalls.app/aimalls-pitchdeck.pdf',
+    target: '_blank',
   },
   {
     index: 3,
-    label: "Tokenomics",
-    href: "https://google.com",
-    target: "_blank",
+    label: 'Tokenomics',
+    href: 'https://google.com',
+    target: '_blank',
   },
 ];
 
@@ -34,9 +34,9 @@ function TopBar() {
       id="navbar"
       position="fixed"
       sx={{
-        color: "white",
-        background: "white",
-        height: "4rem",
+        color: 'white',
+        background: 'white',
+        height: '4rem',
         zIndex: 2,
       }}
     >
@@ -44,11 +44,11 @@ function TopBar() {
         <Toolbar
           disableGutters
           sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            justifyContent: "space-between",
-            height: "100%",
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            height: '100%',
           }}
         >
           <LogoCompany />

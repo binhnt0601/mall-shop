@@ -11,7 +11,7 @@ export default function LogoCompany({ width = 72, height = 50 }) {
         <Image
           width={width}
           height={height}
-          src="/favicon.jpg"
+          src="/favicon.png"
           alt="Brand Logo"
         />
       </Link>

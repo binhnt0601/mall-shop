@@ -1,44 +1,44 @@
-import React from "react";
+import React from 'react';
 
-import Typography from "@mui/material/Typography";
-import { Card, CardBody } from "@material-tailwind/react";
-import { Divider, Grid } from "@mui/material";
+import Typography from '@mui/material/Typography';
+import { Card, CardBody } from '@material-tailwind/react';
+import { Divider, Grid } from '@mui/material';
 
 const data = [
   {
-    title: "Experience personalized shopping",
+    title: 'Experience personalized shopping',
     description:
-      "EngLish Classuses intelligent algorithms to provide you with a personalized shopping experience. Get tailored product recommendations, faster search results, and more accurate pricing strategies that are designed to help you save time and money.",
+      'EngLish Classuses intelligent algorithms to provide you with a personalized shopping experience. Get tailored product recommendations, faster search results, and more accurate pricing strategies that are designed to help you save time and money.',
   },
   {
-    title: "Secure your purchases",
+    title: 'Secure your purchases',
     description:
-      "We use advanced security measures to detect fraudulent activity and protect your data. EngLish Classalso offers efficient inventory management so you can rest assured that your purchases are safe.",
+      'We use advanced security measures to detect fraudulent activity and protect your data. EngLish Classalso offers efficient inventory management so you can rest assured that your purchases are safe.',
   },
   {
-    title: "Gain real-time insights",
+    title: 'Gain real-time insights',
     description:
-      "Our real-time analytics insights give you the power to make informed decisions quickly. You'll have access to data-drived insights so you can take advantage of every opportunity that comes your way.",
+      'Our real-time analytics insights give you the power to make informed decisions quickly. You\'ll have access to data-drived insights so you can take advantage of every opportunity that comes your way.',
   },
   {
-    title: "Benefit from our platform",
+    title: 'Benefit from our platform',
     description:
-      "EngLish Classoffers benefits for both customers and merchants. Customers enjoy a secure online shopping experience while merchants benefit from access to powerful tools like market segmentation, pricing optimization, customer data tracking, customer loyalty programs.",
+      'EngLish Classoffers benefits for both customers and merchants. Customers enjoy a secure online shopping experience while merchants benefit from access to powerful tools like market segmentation, pricing optimization, customer data tracking, customer loyalty programs.',
   },
 ];
 
 export default function FutureShopping() {
   const headline = (
-    <Typography style={{ fontWeight: "bold", fontSize: 40 }}>
-      Welcome to the{" "}
-      <span style={{ color: "#fc9a14" }}>future of shopping</span>
+    <Typography style={{ fontWeight: 'bold', fontSize: 40 }}>
+      Welcome to the{' '}
+      <span style={{ color: '#fc9a14' }}>future of shopping</span>
     </Typography>
   );
 
   return (
     <>
-      <div className="w-full flex lg:flex-row flex-col gap-5 py-10 lg:px-40  md:px-14 text-white bg-[#270f0b]">
-        <div className="lg:w-[50%] w-full p-6">
+      <div className="flex w-full flex-col gap-5 bg-[#270f0b] py-10 text-white  md:px-14 lg:flex-row lg:px-40">
+        <div className="w-full p-6 lg:w-[50%]">
           {headline}
           <Typography className="text-justify">
             EngLish Classis an AI-powered online mall that offers a
@@ -52,7 +52,7 @@ export default function FutureShopping() {
         <Grid container>
           {data.map((item, index) => (
             <Grid key={`item-${index}`} item sm={6} xs={12}>
-              <Card className="text-white bg-transparent shadow-none">
+              <Card className="bg-transparent text-white shadow-none">
                 <CardBody className="flex flex-col gap-5">
                   <img src="https://dummyimage.com/70" alt="item" width={70} />
                   <Typography variant="h5" fontWeight="bold" color="#fc9a14">

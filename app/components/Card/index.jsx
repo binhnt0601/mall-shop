@@ -1,11 +1,11 @@
-import Image from "next/image";
-import Typography from "@mui/material/Typography";
-import CardContent from "@mui/material/CardContent";
+import Image from 'next/image';
+import Typography from '@mui/material/Typography';
+import CardContent from '@mui/material/CardContent';
 
 export default function Card({ imgSrc, title, description, size }) {
   return (
     <CardContent
-      className="bg-white flex flex-col items-center"
+      className="flex flex-col items-center bg-white"
       sx={{
         paddingX: 0,
       }}
@@ -23,7 +23,7 @@ export default function Card({ imgSrc, title, description, size }) {
         fontWeight="bold"
         gutterBottom
         variant="h6"
-        className={`${imgSrc ? "pt-6" : ""} pb-1 text-center`}
+        className={`${imgSrc ? 'pt-6' : ''} pb-1 text-center`}
       >
         {title}
       </Typography>

@@ -1,22 +1,22 @@
-import React from "react";
+import React from 'react';
 
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
-import { ThemeProvider } from "@mui/material/styles";
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
+import { ThemeProvider } from '@mui/material/styles';
 
-import Footer from "../components/Footer";
+import Footer from '../components/Footer';
 
-import "./globals.css";
+import './globals.css';
 
-import theme from "@/theme";
-import TopBar from "@/components/TopBar";
-import LoadingProvider from "@/providers/loading-provider";
-import AuthProvider from "@/providers/auth-provider";
+import theme from '@/theme';
+import TopBar from '@/components/TopBar';
+import LoadingProvider from '@/providers/loading-provider';
+import AuthProvider from '@/providers/auth-provider';
 
 export const metadata = {
-  title: "AI Malls",
-  description: "AI Malls",
+  title: 'English Class',
+  description: 'English Class',
   icons: {
-    icon: "/favicon.jpg",
+    icon: '/favicon.png',
   },
 };
 

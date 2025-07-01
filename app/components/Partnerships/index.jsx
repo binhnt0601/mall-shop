@@ -1,21 +1,21 @@
-import React from "react";
+import React from 'react';
 
 export default function Partnerships() {
   return (
-    <div className="w-full px-[72px] py-[50px] bg-[#fff3e3]">
+    <div className="w-full bg-[#fff3e3] px-[72px] py-[50px]">
       <h4
         style={{
-          textAlign: "center",
-          fontSize: "40px",
-          color: "#fc9a14",
-          paddingBottom: "20px",
-          fontFamily: "Work Sans",
-          fontWeight: "bold",
+          textAlign: 'center',
+          fontSize: '40px',
+          color: '#fc9a14',
+          paddingBottom: '20px',
+          fontFamily: 'Work Sans',
+          fontWeight: 'bold',
         }}
       >
         Partnerships
       </h4>
-      <div className="flex flex-wrap justify-around md:gap-20 gap-5">
+      <div className="flex flex-wrap justify-around gap-5 md:gap-20">
         {Array(15)
           .fill(0)
           .map((_, index) => (
