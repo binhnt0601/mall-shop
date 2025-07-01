@@ -1,11 +1,12 @@
 services:
   app:
-    build:
-      context: .
+    image: beenguyen0601/mall-shop:prod
     container_name: mall-shop
     restart: unless-stopped
     ports:
       - "3000:3000"
+    env_file:
+      - .env.production
     networks:
       - app-net
 

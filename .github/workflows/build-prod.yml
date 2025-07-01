@@ -40,7 +40,7 @@ jobs:
           echo "${{ secrets.MALL_SHOP_SSH_PRIVATE_KEY }}" > ~/.ssh/mall-shop.pem
           chmod 400 ~/.ssh/mall-shop.pem
           ssh-keyscan -H ${{ secrets.MALL_SHOP_IP }} >> ~/.ssh/known_hosts
-         
+
       - name: Create .env.production from secret
         run: echo "${{ secrets.ENV_FILE }}" > .env.production
 
