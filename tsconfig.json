@@ -17,8 +17,9 @@
         "name": "next"
       }
     ],
+    "baseUrl": "./",
     "paths": {
-      "@/*": ["./app/*"]
+      "@/*": ["./src/*", "modules/*"]
     }
   },
   "include": [
