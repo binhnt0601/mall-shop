@@ -11,7 +11,7 @@ const PageLoading = ({ isLoading }: any) => {
 
         {/* Loading screen */}
         {isLoading && (
-          <div className="z-100 fixed inset-0 flex items-center justify-center bg-black/20">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20">
             <div>
               <img src={loadingUrl} alt="loading" className="size-32" />
             </div>
