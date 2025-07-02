@@ -255,6 +255,5 @@ const TestimonialsPage = () => {
 export default TestimonialsPage;
 
 TestimonialsPage.getLayout = function getLayout(page: any) {
-  const MainLayout = require('@/layouts/MainLayout').default;
   return <MainLayout>{page}</MainLayout>;
 };

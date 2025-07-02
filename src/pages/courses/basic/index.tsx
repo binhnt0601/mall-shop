@@ -7,6 +7,7 @@ import DialogueSection from '@/modules/BasicCommunicationPage/DialogueSection';
 import QuizSection from '@/modules/BasicCommunicationPage/QuizSection';
 import VoiceRecorderSection from '@/modules/BasicCommunicationPage/VoiceRecorderSection';
 import ErrorSnackbar from '@/modules/BasicCommunicationPage/ErrorSnackbar';
+import MainLayout from '@/layouts/MainLayout';
 
 const BasicCommunicationPage = () => {
   // Lift error message to parent to show Snackbar globally
@@ -44,6 +45,5 @@ const BasicCommunicationPage = () => {
 export default BasicCommunicationPage;
 
 BasicCommunicationPage.getLayout = function getLayout(page: any) {
-  const MainLayout = require('@/layouts/MainLayout').default;
   return <MainLayout>{page}</MainLayout>;
 };

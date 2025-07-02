@@ -7,6 +7,7 @@ import IeltsQuiz from '@/modules/IeltsPage/IeltsQuiz';
 import IeltsAudio from '@/modules/IeltsPage/IeltsAudio';
 import IeltsFAQs from '@/modules/IeltsPage/IeltsFAQs';
 import IeltsRegister from '@/modules/IeltsPage/IeltsRegister';
+import MainLayout from '@/layouts/MainLayout';
 
 export default function IeltsPage() {
   return (
@@ -30,6 +31,5 @@ export default function IeltsPage() {
 }
 
 IeltsPage.getLayout = function getLayout(page: any) {
-  const MainLayout = require('@/layouts/MainLayout').default;
   return <MainLayout>{page}</MainLayout>;
 };

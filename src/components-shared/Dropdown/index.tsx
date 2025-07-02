@@ -1,3 +1,5 @@
+import clsx from 'clsx';
+import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
 import { FiChevronDown } from 'react-icons/fi';
 
@@ -13,6 +15,7 @@ interface DropdownProps {
 
 const Dropdown: React.FC<DropdownProps> = ({ label, items }) => {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <div
@@ -36,7 +39,9 @@ const Dropdown: React.FC<DropdownProps> = ({ label, items }) => {
             <li key={item.href}>
               <a
                 href={item.href}
-                className='flex items-center gap-2 rounded px-4 py-2 transition hover:bg-blue-50 hover:text-blue-700'
+                className={clsx(pathname === item.href
+                  && 'text-blue-700 font-bold underline'
+                  ,'flex items-center gap-2 rounded px-4 py-2 transition hover:bg-blue-50 hover:text-blue-700')}
               >
                 {item.label}
               </a>

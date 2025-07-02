@@ -333,6 +333,5 @@ const ContactPage = () => {
 export default ContactPage;
 
 ContactPage.getLayout = function getLayout(page: any) {
-  const MainLayout = require('@/layouts/MainLayout').default;
   return <MainLayout>{page}</MainLayout>;
 };
