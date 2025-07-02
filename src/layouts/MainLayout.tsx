@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 interface LayoutProps {
   children: ReactNode;
@@ -9,9 +9,9 @@ interface LayoutProps {
 
 export default function MainLayout({ children }: LayoutProps) {
   return (
-    <div>
+    <div className='flex flex-col min-h-screen'>
       <Header />
-      {children}
+      <div className='pt-[72px] flex-1'>{children}</div>
       <Footer />
     </div>
   );

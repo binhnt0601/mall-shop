@@ -26,6 +26,9 @@ const validationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Enter your email'),
 });
 
+const gradientFrom = 'from-blue-500';
+const gradientTo = 'to-indigo-600';
+
 const ForgotPasswordPage = () => {
   const router = useRouter();
   const { setLoading } = useLoader();
@@ -65,37 +68,59 @@ const ForgotPasswordPage = () => {
 
   return (
     <Stack
-      className='h-dvh items-center justify-center
-    bg-gradient-to-br from-[red] to-[orange] px-5 text-center text-white'
+      className={`h-dvh items-center justify-center bg-gradient-to-br ${gradientFrom} ${gradientTo} px-5 text-center`}
     >
-      <Image src='/icons/success.svg' width={100} height={100} alt='icon' />
-      <p className='pt-[30px] text-[50px]'>Yo! Forgot Your Password?</p>
-      <span className='text-[30px]'>
+      <p className='pt-[30px] text-[50px] text-white font-semibold'>
+        Yo! Forgot Your Password?
+      </p>
+      <span className='text-[30px] text-white max-w-md'>
         No worries! Enter your email and we will send you a reset
       </span>
       <form
         onSubmit={formik.handleSubmit}
-        className='mt-10 flex w-full max-w-[460px] flex-col gap-4'
+        className='mt-10 flex w-full max-w-[460px] flex-col gap-6 p-6 rounded-xl bg-white/10 backdrop-blur-sm shadow-lg'
       >
-        <Stack className='my-10 w-full items-center gap-5 sm:w-[420px]'>
+        <Stack className='w-full items-center gap-6 sm:w-[420px]'>
           <div className='w-full text-start'>
             <FormikTextField
               formik={formik}
               name='email'
               label='Email'
-              icon={<EmailIcon className='text-white' />}
+              icon={<EmailIcon className='text-white/70' />}
+              InputLabelProps={{ style: { color: 'rgba(255,255,255,0.8)' } }}
+              inputProps={{ className: 'text-white' }}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)', // nền input trong suốt nhẹ
+                  '& fieldset': { borderColor: 'rgba(255,255,255,0.3)' }, // viền mờ
+                  '&:hover fieldset': { borderColor: 'rgba(255,255,255,0.6)' }, // hover sáng hơn
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#A78BFA',
+                    borderWidth: 2,
+                  },
+                  color: 'white',
+                },
+                '& input': {
+                  color: 'white',
+                },
+              }}
             />
           </div>
           <button
-            className='w-full rounded-full bg-[#fc9a14] py-3 uppercase'
             type='submit'
+            className='w-full rounded-xl bg-gradient-to-r from-blue-600 to-indigo-700 py-3 text-white font-semibold shadow-md transition hover:from-blue-700 hover:to-indigo-800'
           >
-            SEND REQUEST
+            Send Request
           </button>
         </Stack>
       </form>
 
-      <Link href='/login'>BACK TO LOGIN</Link>
+      <Link
+        href='/login'
+        className='mt-4 text-white underline hover:text-gray-300'
+      >
+        Back to Login
+      </Link>
     </Stack>
   );
 };

@@ -1,24 +1,15 @@
-"use client";
-
-import { Urbanist } from "next/font/google";
-import { createTheme } from "@mui/material/styles";
-
-const urbanist = Urbanist({
-  weight: ["300", "400", "500", "700"],
-  subsets: ["latin"],
-  display: "swap",
-});
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
-  typography: {
-    fontFamily: urbanist.style.fontFamily,
-  },
   palette: {
     primary: {
-      main: "#fc9a14",
+      main: '#1e88e5',      
+      light: '#4a7ebd',     
+      dark: '#02385a',      
+      contrastText: '#fff',  
     },
-    error: {
-      main: "#d32f2f",
+    secondary: {
+      main: '#fc9a14',     
     },
   },
 });

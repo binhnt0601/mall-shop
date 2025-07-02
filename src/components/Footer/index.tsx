@@ -24,10 +24,8 @@ function Footer() {
   const year = getYear(now);
 
   return (
-    <div
-      className={`${pathname === '/' ? 'block' : 'hidden'} h-full px-[51px]`}
-    >
-      <div className='flex flex-col items-center justify-between gap-3 px-[46px] py-1 md:flex-row'>
+    <div className={`h-full px-[51px]`}>
+      <div className='flex flex-col items-center justify-between gap-3 md:flex-row'>
         <Image width={80} height={80} src='/favicon.png' alt='logo' />
 
         <Typography>©{year} English Class All Rights Reserved</Typography>

@@ -20,40 +20,31 @@ import { useRouter } from 'next/navigation';
 import { toast } from '@/helpers/toast';
 import Image from 'next/image';
 
+const lightPrimary = 'rgba(255, 255, 255, 0.1)';
+const textLight = 'rgba(255, 255, 255, 0.85)';
+
 const BpIcon = styled('span')(({ theme }) => ({
   borderRadius: 3,
   width: 22,
   height: 22,
   boxShadow:
-    'inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)',
-  backgroundColor: '#f5f8fa',
+    'inset 0 0 0 1px rgba(255 255 255 / 0.6), inset 0 -1px 0 rgba(255 255 255 / 0.3)',
+  backgroundColor: 'rgba(255 255 255 / 0.15)',
   backgroundImage:
     'linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))',
   '.Mui-focusVisible &': {
-    outline: '2px auto rgba(19,124,189,.6)',
+    outline: '2px auto rgba(252, 154, 20, 0.7)',
     outlineOffset: 2,
   },
   'input:hover ~ &': {
-    backgroundColor: '#ebf1f5',
-    ...theme.applyStyles('dark', {
-      backgroundColor: '#30404d',
-    }),
+    backgroundColor: 'rgba(252 154 20 / 0.4)',
   },
   'input:disabled ~ &': {
     boxShadow: 'none',
-    background: 'rgba(206,217,224,.5)',
-    ...theme.applyStyles('dark', {
-      background: 'rgba(57,75,89,.5)',
-    }),
+    background: 'rgba(255 255 255 / 0.1)',
   },
-  ...theme.applyStyles('dark', {
-    boxShadow: '0 0 0 1px rgb(16 22 26 / 40%)',
-    backgroundColor: '#394b59',
-    backgroundImage:
-      'linear-gradient(180deg,hsla(0,0%,100%,.05),hsla(0,0%,100%,0))',
-  }),
   borderWidth: 2,
-  borderColor: '#fc9a14',
+  borderColor: 'rgba(252, 154, 20, 0.8)',
 }));
 
 const BpCheckedIcon = styled(BpIcon)({
@@ -90,52 +81,53 @@ const RegisterPageClient = ({ apiUri }: { apiUri: string }) => {
 
   return (
     <Stack className='min-h-dvh w-full !flex-row'>
-      <div className='flex w-full flex-col items-center justify-center bg-black px-10 py-20 md:w-[65%]'>
-        <div className='mb-10 md:hidden'>
-          <Image width={181} height={124} src='/logo.png' alt='Brand Logo' />
+      {/* Left side - form */}
+      <div className='flex w-full flex-col items-center justify-center bg-gradient-to-r from-blue-500 to-indigo-600 px-10 py-20'>
+        <div className='md:hidden'>
+          <Image
+            width={181}
+            height={124}
+            src='/logo.png'
+            alt='Brand Logo'
+            className='drop-shadow-[0_4px_8px_rgba(255,255,255,0.5)]'
+          />
         </div>
         <Typography
           fontWeight='bold'
-          color='#fc9a14'
+          color='white'
           textAlign='center'
-          className='!text-[32px] sm:!text-[40px]'
+          className='!text-[32px] sm:!text-[40px] drop-shadow-md mb-3'
         >
-          Sign up to add an Account
+          Sign up to create an Account
         </Typography>
-        <div className='mt-10 flex w-full max-w-[460px] flex-col gap-4'>
+        <div className='flex w-full max-w-[460px] flex-col gap-6 mt-5'>
           <button
-            className='w-full rounded-md bg-white py-3 font-bold'
+            className='w-full rounded-md bg-white py-3 font-bold text-indigo-600 flex items-center justify-center gap-2 hover:bg-indigo-50 transition'
             onClick={onLoginWithGoogle}
           >
-            <GoogleIcon
-              style={{ fontSize: 20 }}
-              className='inline-block align-middle'
-            />
+            <GoogleIcon style={{ fontSize: 20 }} />
             Sign in With Google
           </button>
 
           <div className='flex justify-center'>
             <div className='flex w-[120px] items-center justify-center gap-2'>
               <Divider className='h-px w-full bg-white' />
-              <span className='text-white'>or</span>
+              <span className='text-white select-none'>or</span>
               <Divider className='h-px w-full bg-white' />
             </div>
           </div>
 
+          {/* Email Input */}
           <TextField
             variant='outlined'
             label='Email'
             style={{
-              background: 'rgba(255, 252, 252, 0.349)',
+              background: lightPrimary,
             }}
             className='w-full rounded-md'
             InputLabelProps={{
               style: {
-                textOverflow: 'ellipsis',
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                width: '100%',
-                color: 'white',
+                color: textLight,
               },
             }}
             InputProps={{
@@ -149,47 +141,19 @@ const RegisterPageClient = ({ apiUri }: { apiUri: string }) => {
               ),
             }}
           />
+
+          {/* Password Input */}
           <TextField
             variant='outlined'
             label='Password'
             style={{
-              background: 'rgba(255, 252, 252, 0.349)',
+              background: lightPrimary,
             }}
             className='w-full rounded-md'
+            type='password'
             InputLabelProps={{
               style: {
-                textOverflow: 'ellipsis',
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                width: '100%',
-                color: 'white',
-              },
-            }}
-            InputProps={{
-              style: {
-                color: 'white',
-              },
-              endAdornment: (
-                <InputAdornment position='end'>
-                  <PasswordIcon className='text-white' />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            variant='outlined'
-            label='Confirm Password'
-            style={{
-              background: 'rgba(255, 252, 252, 0.349)',
-            }}
-            className='w-full rounded-md'
-            InputLabelProps={{
-              style: {
-                textOverflow: 'ellipsis',
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                width: '100%',
-                color: 'white',
+                color: textLight,
               },
             }}
             InputProps={{
@@ -204,26 +168,53 @@ const RegisterPageClient = ({ apiUri }: { apiUri: string }) => {
             }}
           />
 
-          <div className='mt-5'>
-            <div className='flex items-center justify-center'>
+          {/* Confirm Password Input */}
+          <TextField
+            variant='outlined'
+            label='Confirm Password'
+            style={{
+              background: lightPrimary,
+            }}
+            className='w-full rounded-md'
+            type='password'
+            InputLabelProps={{
+              style: {
+                color: textLight,
+              },
+            }}
+            InputProps={{
+              style: {
+                color: 'white',
+              },
+              endAdornment: (
+                <InputAdornment position='end'>
+                  <PasswordIcon className='text-white' />
+                </InputAdornment>
+              ),
+            }}
+          />
+
+          {/* Checkbox Terms */}
+          <div className='space-y-4 mt-5'>
+            <div className='flex items-center gap-2'>
               <Checkbox
                 sx={{ '&:hover': { bgcolor: 'transparent' } }}
                 disableRipple
                 color='default'
                 checkedIcon={<BpCheckedIcon />}
                 icon={<BpIcon />}
-                inputProps={{ 'aria-label': 'Checkbox demo' }}
-                onChange={(event) => {
+                inputProps={{ 'aria-label': 'Terms and Conditions Checkbox' }}
+                onChange={(event) =>
                   setIsChecked((prev) => ({
                     ...prev,
                     termsAndConditions: event.target.checked,
-                  }));
-                }}
+                  }))
+                }
               />
-              <Typography className='text-white'>
+              <Typography className='text-white text-sm'>
                 I accept the{' '}
                 <a
-                  className='text-[#fc9a14] underline'
+                  className='text-[#fc9a14] underline hover:text-yellow-400 transition'
                   target='_blank'
                   href='https://aimalls.app/terms-and-conditions'
                   rel='noreferrer'
@@ -233,25 +224,25 @@ const RegisterPageClient = ({ apiUri }: { apiUri: string }) => {
               </Typography>
             </div>
 
-            <div className='flex items-center justify-center'>
+            <div className='flex items-center gap-2'>
               <Checkbox
                 sx={{ '&:hover': { bgcolor: 'transparent' } }}
                 disableRipple
                 color='default'
                 checkedIcon={<BpCheckedIcon />}
                 icon={<BpIcon />}
-                inputProps={{ 'aria-label': 'Checkbox demo' }}
-                onChange={(event) => {
+                inputProps={{ 'aria-label': 'Privacy Policy Checkbox' }}
+                onChange={(event) =>
                   setIsChecked((prev) => ({
                     ...prev,
                     privacyPolicy: event.target.checked,
-                  }));
-                }}
+                  }))
+                }
               />
-              <Typography className='text-white'>
+              <Typography className='text-white text-sm'>
                 I agree to the{' '}
                 <a
-                  className='text-[#fc9a14] underline'
+                  className='text-[#fc9a14] underline hover:text-yellow-400 transition'
                   target='_blank'
                   href='https://aimalls.app/privacy-policy'
                   rel='noreferrer'
@@ -262,11 +253,14 @@ const RegisterPageClient = ({ apiUri }: { apiUri: string }) => {
             </div>
           </div>
 
+          {/* Register button */}
           <button
             disabled={!isChecked.privacyPolicy || !isChecked.termsAndConditions}
-            className={`
-              ${!isChecked.privacyPolicy || !isChecked.termsAndConditions ? 'opacity-50' : 'opacity-100'}
-              w-full rounded-full bg-[#fc9a14] py-3 text-white`}
+            className={`${
+              !isChecked.privacyPolicy || !isChecked.termsAndConditions
+                ? 'opacity-50 cursor-not-allowed'
+                : 'opacity-100 cursor-pointer'
+            } w-full rounded-md bg-white py-3 font-bold text-indigo-600 flex items-center justify-center gap-2 hover:bg-indigo-50 transition`}
             onClick={() => {
               toast.success('Registration successful! Welcome to AI Malls!');
             }}
@@ -274,36 +268,17 @@ const RegisterPageClient = ({ apiUri }: { apiUri: string }) => {
             Register
           </button>
 
-          <Typography color='white' textAlign='center' className='md:hidden'>
-            Already Have an Account?{' '}
+          {/* Link Login for mobile */}
+          <Typography color='white' textAlign='center'>
+            Already have an account?{' '}
             <Link
               href='/login'
-              className='ml-3 text-[17px] font-medium text-[#fc9a14]'
+              className='ml-2 text-[17px] font-medium text-[#fc9a14] hover:text-yellow-400 transition'
             >
               Login
             </Link>
           </Typography>
         </div>
-      </div>
-      <div
-        className='hidden w-[35%] flex-col items-center justify-center gap-5 bg-[#fc9a14] 
-      p-5 text-center text-white md:flex'
-      >
-        <Image width={181} height={124} src='/logo.png' alt='Brand Logo' />
-        <Typography fontSize={40} fontWeight='bold'>
-          Welcome Back!
-        </Typography>
-        <Typography>
-          Rediscover the wonders of AI malls. Log in today and immerse yourself
-          in a world of seamless shopping, intelligent recommendations, and
-          delightful surprises. Your AI-powered retail adventure awaits!
-        </Typography>
-        <Link
-          className='mt-5 w-full rounded-full bg-[white] py-3 text-[20px] text-[black]'
-          href='/login'
-        >
-          Login
-        </Link>
       </div>
     </Stack>
   );
