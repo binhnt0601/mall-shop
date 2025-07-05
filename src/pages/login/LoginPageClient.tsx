@@ -17,7 +17,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 import { useAuth } from '@/providers/auth-provider';
 import FormikTextField from '@/components-shared/FormikTextField';
@@ -39,10 +39,7 @@ const LoginPageClient = ({ apiUri }: { apiUri: string }) => {
   const [showPassword, setShowPassword] = React.useState(false);
 
   const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-    },
+    initialValues: { email: '', password: '' },
     validationSchema,
     onSubmit: async (values) => {
       await login(values.email, values.password);
@@ -50,6 +47,7 @@ const LoginPageClient = ({ apiUri }: { apiUri: string }) => {
   });
 
   const onLoginWithGoogle = async () => {
+    localStorage.setItem('fallback-domain', router.asPath);
     router.push(`${apiUri}/api/google`);
   };
 
@@ -121,9 +119,7 @@ const LoginPageClient = ({ apiUri }: { apiUri: string }) => {
                 },
                 color: 'white',
               },
-              '& input': {
-                color: 'white',
-              },
+              '& input': { color: 'white' },
             }}
           />
 
@@ -147,9 +143,7 @@ const LoginPageClient = ({ apiUri }: { apiUri: string }) => {
                 },
                 color: 'white',
               },
-              '& input': {
-                color: 'white',
-              },
+              '& input': { color: 'white' },
             }}
             InputProps={{
               endAdornment: (

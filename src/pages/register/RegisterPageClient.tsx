@@ -15,7 +15,7 @@ import Link from 'next/link';
 import EmailIcon from '@mui/icons-material/Email';
 import PasswordIcon from '@mui/icons-material/Lock';
 import GoogleIcon from '@mui/icons-material/Google';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 import { toast } from '@/helpers/toast';
 import Image from 'next/image';
@@ -36,9 +36,7 @@ const BpIcon = styled('span')(({ theme }) => ({
     outline: '2px auto rgba(252, 154, 20, 0.7)',
     outlineOffset: 2,
   },
-  'input:hover ~ &': {
-    backgroundColor: 'rgba(252 154 20 / 0.4)',
-  },
+  'input:hover ~ &': { backgroundColor: 'rgba(252 154 20 / 0.4)' },
   'input:disabled ~ &': {
     boxShadow: 'none',
     background: 'rgba(255 255 255 / 0.1)',
@@ -61,9 +59,7 @@ const BpCheckedIcon = styled(BpIcon)({
       "1.003 0 00-1.42 1.42l3 3c.18.18.43.29.71.29s.53-.11.71-.29l5-5A1.003 1.003 0 0012 5z' fill='%23fff'/%3E%3C/svg%3E\")",
     content: '""',
   },
-  'input:hover ~ &': {
-    backgroundColor: '#fc9a14',
-  },
+  'input:hover ~ &': { backgroundColor: '#fc9a14' },
   borderRadius: 50,
 });
 
@@ -71,6 +67,7 @@ const RegisterPageClient = ({ apiUri }: { apiUri: string }) => {
   const router = useRouter();
 
   const onLoginWithGoogle = async () => {
+    localStorage.setItem('fallback-domain', router.asPath);
     router.push(`${apiUri}/api/google`);
   };
 
@@ -121,19 +118,11 @@ const RegisterPageClient = ({ apiUri }: { apiUri: string }) => {
           <TextField
             variant='outlined'
             label='Email'
-            style={{
-              background: lightPrimary,
-            }}
+            style={{ background: lightPrimary }}
             className='w-full rounded-md'
-            InputLabelProps={{
-              style: {
-                color: textLight,
-              },
-            }}
+            InputLabelProps={{ style: { color: textLight } }}
             InputProps={{
-              style: {
-                color: 'white',
-              },
+              style: { color: 'white' },
               endAdornment: (
                 <InputAdornment position='end'>
                   <EmailIcon className='text-white' />
@@ -146,20 +135,12 @@ const RegisterPageClient = ({ apiUri }: { apiUri: string }) => {
           <TextField
             variant='outlined'
             label='Password'
-            style={{
-              background: lightPrimary,
-            }}
+            style={{ background: lightPrimary }}
             className='w-full rounded-md'
             type='password'
-            InputLabelProps={{
-              style: {
-                color: textLight,
-              },
-            }}
+            InputLabelProps={{ style: { color: textLight } }}
             InputProps={{
-              style: {
-                color: 'white',
-              },
+              style: { color: 'white' },
               endAdornment: (
                 <InputAdornment position='end'>
                   <PasswordIcon className='text-white' />
@@ -172,20 +153,12 @@ const RegisterPageClient = ({ apiUri }: { apiUri: string }) => {
           <TextField
             variant='outlined'
             label='Confirm Password'
-            style={{
-              background: lightPrimary,
-            }}
+            style={{ background: lightPrimary }}
             className='w-full rounded-md'
             type='password'
-            InputLabelProps={{
-              style: {
-                color: textLight,
-              },
-            }}
+            InputLabelProps={{ style: { color: textLight } }}
             InputProps={{
-              style: {
-                color: 'white',
-              },
+              style: { color: 'white' },
               endAdornment: (
                 <InputAdornment position='end'>
                   <PasswordIcon className='text-white' />
