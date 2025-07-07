@@ -253,7 +253,6 @@ export class UserRepository extends CrudRepository<User> {
   async uploadImage(
     file: any,
     collectionFolder: string,
-    token: string,
     client: any,
   ) {
     const api = "uploadImage";
@@ -271,8 +270,6 @@ export class UserRepository extends CrudRepository<User> {
         collectionFolder: collectionFolder,
       },
     };
-
-    option.context = { headers: { "x-token": token } };
 
     const result = await client.mutate(option);
 

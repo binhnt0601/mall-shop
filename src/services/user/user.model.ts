@@ -66,28 +66,6 @@ export const ROLES = {
   ADMIN_MEMBER_CUSTOMER: ["ADMIN", "MEMBER", "CUSTOMER"],
 };
 
-export const setUserToken = (token: string, temp = false) => {
-  // console.log('token',token);
-  if (temp) {
-    sessionStorage.setItem("user-token", token);
-  } else {
-    localStorage.setItem("user-token", token);
-  }
-};
-
-export const clearUserToken = () => {
-  localStorage.removeItem("user-token");
-  sessionStorage.removeItem("user-token");
-};
-
-export const getUserToken = () => {
-  return (
-    localStorage.getItem("user-token") ||
-    sessionStorage.getItem("user-token") ||
-    ""
-  );
-};
-
 export const userRoleData = [
   { name: UserRoles.ADMIN, value: UserRoles.ADMIN },
   { name: UserRoles.MERCHANT, value: UserRoles.MERCHANT },

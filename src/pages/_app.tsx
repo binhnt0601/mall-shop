@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 
@@ -16,7 +16,10 @@ type NextPageWithLayout = AppProps['Component'] & {
   getLayout?: (page: React.ReactElement) => React.ReactNode;
 };
 
-export default function RootLayout({ Component, pageProps }: AppProps) {
+export default function RootLayout({ Component, pageProps }: any) {
+  const Layout = Component.Layout ? Component.Layout : Fragment;
+  const layoutProps = Component.LayoutProps ? Component.LayoutProps : {};
+
   const getLayout =
     (Component as NextPageWithLayout).getLayout || ((page) => page);
 
@@ -31,7 +34,9 @@ export default function RootLayout({ Component, pageProps }: AppProps) {
         <ThemeProvider theme={theme}>
           <LoadingProvider>
             <AuthProvider>
-              {getLayout(<Component {...pageProps} />)}
+              <Layout {...layoutProps}>
+                {getLayout(<Component {...pageProps} />)}
+              </Layout>
             </AuthProvider>
           </LoadingProvider>
         </ThemeProvider>

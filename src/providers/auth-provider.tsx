@@ -1,23 +1,19 @@
-"use client";
+'use client';
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from 'react';
 
-import { useLoader } from "./loading-provider";
+import { useLoader } from './loading-provider';
 
-import {
-  clearUserToken,
-  getUserToken,
-  setUserToken,
-  User,
-} from "../services/user/user.model";
-import { UserService } from "../services/user/user.repo";
+import { User } from '../services/user/user.model';
+import { UserService } from '../services/user/user.repo';
 
-import { toast } from "@/helpers/toast";
+import { toast } from '@/helpers/toast';
+import { ClearAuthToken, GetAuthToken, SetAuthToken } from '@/graphql/auth';
 
 export enum AuthStatuses {
-  NEW = "NEW",
-  LOADING = "LOADING",
-  LOADED = "LOADED",
+  NEW = 'NEW',
+  LOADING = 'LOADING',
+  LOADED = 'LOADED',
 }
 
 const AuthContext = createContext<
@@ -43,10 +39,11 @@ const AuthProvider = (props: any) => {
     try {
       setLoading(true);
       setAuthStatus(AuthStatuses.LOADING);
-      const token = getUserToken();
+      const token = GetAuthToken();
 
       if (token) {
         const result = await UserService.userGetMe(token);
+        console.log('🚀 ~ loadProfile ~ result:', result);
 
         setAuth(result.data.userGetMe);
       }
@@ -66,10 +63,10 @@ const AuthProvider = (props: any) => {
       const result = await UserService.signInUserByEmail(email, password);
       const { token } = result;
 
-      setUserToken(token);
+      SetAuthToken(token);
 
       // Load profile để check isFirstLogin
-      const profileResult = await UserService.userGetMe(token);
+      const profileResult = await UserService.userGetMe();
       const user = profileResult.data.userGetMe;
 
       setAuth(user);
@@ -77,27 +74,27 @@ const AuthProvider = (props: any) => {
       if (user?.isFirstLogin) {
         // Lưu tạm thời credentials cho first login
         localStorage.setItem(
-          "temp_login_credentials",
+          'temp_login_credentials',
           JSON.stringify({ email, password }),
         );
-        window.location.assign("/first-login");
+        window.location.assign('/first-login');
       } else {
-        window.location.assign("/dashboard");
+        window.location.assign('/dashboard');
       }
 
-      toast.success("Login successfully");
+      toast.success('Login successfully');
       setLoading(false);
       setAuthStatus(AuthStatuses.LOADED);
     } catch (error: any) {
       setLoading(false);
       setAuthStatus(AuthStatuses.LOADED);
-      toast.error(error?.message ?? "Login failed");
+      toast.error(error?.message ?? 'Login failed');
     }
   };
 
   const logout = () => {
-    clearUserToken();
-    window.location.assign("/");
+    // ClearAuthToken();
+    // window.location.assign('/');
   };
 
   return (

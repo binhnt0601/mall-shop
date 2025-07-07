@@ -83,13 +83,11 @@ export abstract class CrudRepository<
     query = { limit: 10 },
     fragment = this.shortFragment,
     cache = false,
-    token,
   }: {
     fragment?: string;
     query?: QueryInput<T>;
     cache?: boolean;
     projection?: string;
-    token?: string;
   } = {}): Promise<GetListData<T>> {
     if ((query as QueryInput<T>).limit === 0) {
       (query as QueryInput<T>).limit = 1000;
@@ -110,8 +108,6 @@ export abstract class CrudRepository<
       variables: { q: query },
       fetchPolicy: cache ? "cache-first" : "network-only",
     } as QueryOptions;
-
-    if (token) options.context = { headers: { "x-token": token } };
 
     const result = await this.apollo.query<any>(options);
 
@@ -140,12 +136,10 @@ export abstract class CrudRepository<
     id,
     fragment = this.fullFragment,
     cache = true,
-    token,
   }: {
     id: string;
     fragment?: string;
     cache?: boolean;
-    token?: string;
   }) {
     const options = {
       query: this.gql(
@@ -153,8 +147,6 @@ export abstract class CrudRepository<
       ),
       fetchPolicy: cache ? "cache-first" : "network-only",
     } as QueryOptions;
-
-    if (token) options.context = { headers: { "x-token": token } };
 
     const result = await this.apollo.query(options);
 
@@ -180,12 +172,10 @@ export abstract class CrudRepository<
     data,
     array,
     fragment = this.fullFragment,
-    token,
   }: {
     data?: Partial<T>;
     array?: Partial<T>[];
     fragment?: string;
-    token?: string;
   }) {
     if (data) {
       const options = {
@@ -199,8 +189,6 @@ export abstract class CrudRepository<
         fetchPolicy: "no-cache",
         variables: { data },
       } as MutationOptions;
-
-      if (token) options.context = { headers: { "x-token": token } };
 
       const result = await this.apollo.mutate(options);
 
@@ -217,8 +205,6 @@ export abstract class CrudRepository<
         mutation: this.gql(`${this.generateGQL("mutation", gQLs, "")}`),
         fetchPolicy: "no-cache",
       } as MutationOptions;
-
-      if (token) options.context = { headers: { "x-token": token } };
 
       const response = await this.apollo.mutate(options);
 
@@ -282,12 +268,10 @@ export abstract class CrudRepository<
     id,
     data,
     fragment = this.fullFragment,
-    token,
   }: {
     id: string;
     data: Partial<T>;
     fragment?: string;
-    token?: string;
   }) {
     const options = {
       mutation: this.gql(
@@ -301,8 +285,6 @@ export abstract class CrudRepository<
       fetchPolicy: "no-cache",
     } as MutationOptions;
 
-    if (token) options.context = { headers: { "x-token": token } };
-
     const result = await this.apollo.mutate(options);
 
     await this.clearStore();
@@ -315,17 +297,15 @@ export abstract class CrudRepository<
     id,
     data,
     fragment = this.shortFragment,
-    token,
   }: {
     id?: string;
     data: Partial<T>;
     fragment?: string;
-    token?: string;
   }) {
     if (id) {
-      return this.update({ id, data, fragment, token });
+      return this.update({ id, data, fragment });
     } else {
-      return this.create({ data, fragment, token });
+      return this.create({ data, fragment });
     }
   }
 
@@ -345,12 +325,10 @@ export abstract class CrudRepository<
     id,
     ids,
     fragment = this.shortFragment,
-    token,
   }: {
     id?: string;
     ids?: string[];
     fragment?: string;
-    token?: string;
   }) {
     if (id) {
       const options = {
@@ -362,8 +340,6 @@ export abstract class CrudRepository<
         ),
         fetchPolicy: "no-cache",
       } as MutationOptions;
-
-      if (token) options.context = { headers: { "x-token": token } };
 
       const result = await this.apollo.mutate(options);
 
@@ -382,8 +358,6 @@ export abstract class CrudRepository<
         ),
         fetchPolicy: "no-cache",
       } as MutationOptions;
-
-      if (token) options.context = { headers: { "x-token": token } };
 
       const result = await this.apollo.mutate(options);
 
