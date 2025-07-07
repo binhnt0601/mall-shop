@@ -93,8 +93,8 @@ const AuthProvider = (props: any) => {
   };
 
   const logout = () => {
-    // ClearAuthToken();
-    // window.location.assign('/');
+    ClearAuthToken();
+    window.location.assign('/');
   };
 
   return (
