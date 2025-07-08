@@ -158,14 +158,6 @@ const TestimonialsPage = () => {
             1200: { slidesPerView: 3 },
             1536: { slidesPerView: 4 },
           }}
-          effect='coverflow'
-          coverflowEffect={{
-            rotate: 50,
-            stretch: 0,
-            depth: 110,
-            modifier: 1,
-            slideShadows: true,
-          }}
           style={{
             paddingBottom: '40px',
             transitionTimingFunction: 'ease-in-out',

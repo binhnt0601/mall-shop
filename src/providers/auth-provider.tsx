@@ -52,7 +52,7 @@ const AuthProvider = (props: any) => {
     } catch (error) {
       console.log(error);
       setLoading(false);
-      logout();
+      // logout();
     }
   };
 

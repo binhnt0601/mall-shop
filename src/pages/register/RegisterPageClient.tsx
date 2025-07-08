@@ -67,7 +67,6 @@ const RegisterPageClient = ({ apiUri }: { apiUri: string }) => {
   const router = useRouter();
 
   const onLoginWithGoogle = async () => {
-    localStorage.setItem('fallback-domain', router.asPath);
     router.push(`${apiUri}/api/google`);
   };
 

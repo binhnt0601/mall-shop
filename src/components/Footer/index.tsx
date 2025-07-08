@@ -1,4 +1,3 @@
-import { usePathname } from 'next/navigation';
 import { FaFacebookF, FaTelegramPlane, FaTwitter } from 'react-icons/fa';
 
 import { getYear } from 'date-fns';
@@ -19,7 +18,6 @@ const listSocialNetwork = [
 ];
 
 function Footer() {
-  const pathname = usePathname();
   const now = new Date();
   const year = getYear(now);
 
