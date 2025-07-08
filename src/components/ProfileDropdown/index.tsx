@@ -7,6 +7,7 @@ import { useAuth } from '@/providers/auth-provider';
 import { useRouter } from 'next/router';
 import { MdPerson } from 'react-icons/md';
 import { BiLogOut } from 'react-icons/bi';
+import { Trans } from '@lingui/macro';
 
 const ProfileDropdown = () => {
   const { pathname } = useRouter();
@@ -55,25 +56,25 @@ const ProfileDropdown = () => {
       </button>
 
       {isOpen && (
-        <div className='absolute right-0 z-10 mt-2 w-36 origin-top-right rounded-md bg-white pb-3 shadow-lg'>
-          <div className='flex flex-col items-start gap-1 px-4'>
+        <div className='absolute right-0 z-10 origin-top-right rounded-md bg-white shadow-lg'>
+          <div className='flex flex-col items-start gap-1 p-4'>
             <Link
               href='/profile'
               className={clsx(
                 pathname === '/profile' && 'text-primary',
-                'hover:text-primary hover:font-medium flex gap-2 items-center',
-                'border-b pb-1 w-full',
+                'hover:text-[#FF7125] hover:font-medium flex gap-2 items-center',
+                'border-b pb-2 w-full text-nowrap',
               )}
             >
               <MdPerson />
-              <span>My profile</span>
+              <Trans>My profile</Trans>
             </Link>
             <button
-              className='flex items-center gap-2 rounded text-center hover:font-medium hover:text-primary'
+              className='flex items-center gap-2 rounded text-center hover:font-medium hover:text-[#FF7125] pt-1'
               onClick={logout}
             >
               <BiLogOut />
-              <span>Logout</span>
+              <Trans>Logout</Trans>
             </button>
           </div>
         </div>

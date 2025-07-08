@@ -1,3 +1,5 @@
+import { LOCALE_LABEL, SUPPORTED_LOCALES } from '@/helpers/locales';
+import { useActiveLocale } from '@/hooks/useActiveLocale';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import { useState, useRef, useEffect } from 'react';
@@ -5,7 +7,7 @@ import { HiChevronDown } from 'react-icons/hi';
 
 const LocaleDropdown = () => {
   const router = useRouter();
-  // const activeLocale = useActiveLocale();
+  const activeLocale = useActiveLocale();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -34,19 +36,21 @@ const LocaleDropdown = () => {
     setIsOpen(false);
   };
 
-  const renderLocaleItem = (locale: string) => (
-    <button
-      key={locale}
-      className={clsx(
-        'w-full text-left px-4 py-2 text-sm flex items-center gap-2 hover:bg-gray-100',
-        // locale === activeLocale && 'font-bold text-[#FF7125]',
-      )}
-      onClick={() => handleLocaleChange(locale)}
-    >
-      <img className='h-5' src={`/flags/${locale}.png`} alt={locale} />
-      {/* {LOCALE_LABEL()[locale]} */}
-    </button>
-  );
+  const renderLocaleItem = (locale: string) => {
+    return (
+      <button
+        key={locale}
+        className={clsx(
+          'w-full text-left px-4 py-2 text-sm flex items-center gap-2 hover:bg-gray-100',
+          locale === activeLocale && 'font-bold text-[#FF7125]',
+        )}
+        onClick={() => handleLocaleChange(locale)}
+      >
+        <img className='h-5' src={`/flags/${locale}.png`} alt={locale} />
+        {LOCALE_LABEL(locale)}
+      </button>
+    );
+  };
 
   return (
     <div className='relative inline-block text-left' ref={dropdownRef}>
@@ -56,8 +60,8 @@ const LocaleDropdown = () => {
       >
         <img
           className='h-4'
-          // src={`/flags/${activeLocale}.png`}
-          // alt={activeLocale}
+          src={`/flags/${activeLocale}.png`}
+          alt={activeLocale}
         />
         <HiChevronDown
           size={18}
@@ -70,7 +74,7 @@ const LocaleDropdown = () => {
 
       {isOpen && (
         <div className='absolute right-0 z-10 mt-2 w-36 origin-top-right rounded-md bg-white shadow-lg'>
-          {/* <div className='py-1'>{SUPPORTED_LOCALES.map(renderLocaleItem)}</div> */}
+          <div className='py-1'>{SUPPORTED_LOCALES.map(renderLocaleItem)}</div>
         </div>
       )}
     </div>

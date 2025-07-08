@@ -11,6 +11,7 @@ import LoadingProvider from '@/providers/loading-provider';
 import AuthProvider from '@/providers/auth-provider';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import { LanguageProvider } from '@/providers/language-provider';
 
 type NextPageWithLayout = AppProps['Component'] & {
   getLayout?: (page: React.ReactElement) => React.ReactNode;
@@ -33,11 +34,13 @@ export default function RootLayout({ Component, pageProps }: any) {
       <AppRouterCacheProvider>
         <ThemeProvider theme={theme}>
           <LoadingProvider>
-            <AuthProvider>
-              <Layout {...layoutProps}>
-                {getLayout(<Component {...pageProps} />)}
-              </Layout>
-            </AuthProvider>
+            <LanguageProvider>
+              <AuthProvider>
+                <Layout {...layoutProps}>
+                  {getLayout(<Component {...pageProps} />)}
+                </Layout>
+              </AuthProvider>
+            </LanguageProvider>
           </LoadingProvider>
         </ThemeProvider>
       </AppRouterCacheProvider>

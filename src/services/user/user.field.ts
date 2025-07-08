@@ -1,45 +1,61 @@
 export const userFields = `
-    id: String
-    email: String
-    role: String
-    name: String
-    phone: String
-    address: String
-    lastLoginAt: DateTime
-    activeAt: DateTime
-    status: String
-    isFirstLogin: Boolean
-    createdAt: DateTime
-    updatedAt: DateTime
-    referralCode: String
-    referrenceId: String
-    level: Int
-    sold: Int
-    countReferrence: Int
-    usdt: Float
-    usd: Float
-    vnd: Float
+  id: String
+  googleId: String
+  name: String
+  email: String
+  address: String
+  district: String
+  ward: String
+  city: String
+  phone: String
+  password: String
+  role: String
+  avatar: String
+  level: Int
+  lastLoginAt: DateTime
+  activeAt: DateTime
+  status: String
+  isFirstLogin: Boolean
+  referralCode: String
+  referrenceId: String
+  payment: PaymentType
+  createdAt: DateTime
+  updatedAt: DateTime
+`;
+
+export const paymentFields = `
+  bankName: String
+  accountBankName: String
+  bankNumber: String
+  walletAddress: String
 `;
 
 export const userQuery = `
-    id
-    email
-    role
-    name
-    phone
-    address
-    lastLoginAt
-    activeAt
-    status
-    isFirstLogin
-    createdAt
-    updatedAt
-    referralCode
-    referrenceId
-    level
-    sold
-    countReferrence
-    usdt
-    usd
-    vnd
- `;
+  id
+  googleId
+  name
+  email
+  address
+  district
+  ward
+  city
+  phone
+  password
+  role
+  avatar
+  level
+  lastLoginAt
+  activeAt
+  status
+  isFirstLogin
+  referralCode
+  referrenceId
+  payment {
+    bankName
+    accountBankName
+    bankNumber
+    walletAddress
+  }
+  createdAt
+  updatedAt
+`;

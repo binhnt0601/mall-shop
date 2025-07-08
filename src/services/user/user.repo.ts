@@ -1,31 +1,20 @@
-import { gql, MutationOptions, QueryOptions } from "@apollo/client/core";
-import md5 from "md5";
+import { gql, MutationOptions, QueryOptions } from '@apollo/client/core';
+import md5 from 'md5';
 
-import { userFields, userQuery } from "./user.field";
-import { User } from "./user.model";
+import { paymentFields, userFields, userQuery } from './user.field';
+import { User } from './user.model';
 
-import { CrudRepository } from "@/graphql/repo/crud";
+import { CrudRepository } from '@/graphql/repo/crud';
 
 export class UserRepository extends CrudRepository<User> {
-  apiName = "User";
+  apiName = 'User';
 
   shortFragment = this.parseFragment(`
     ${userFields}
   `);
   fullFragment = this.parseFragment(`
     ${userFields}
-    payment {
-      bankName
-      accountBankName
-      bankNumber
-      walletAddress
-    }
-    infoReferrence {
-      id
-      email
-      name
-      phone
-    }
+    payment ${paymentFields}
   `);
 
   referralFragment = this.parseFragment(`
@@ -76,7 +65,7 @@ export class UserRepository extends CrudRepository<User> {
   `);
 
   async signInUserByEmail(email: string, password: string) {
-    const api = "signInUserByEmail";
+    const api = 'signInUserByEmail';
 
     const option: MutationOptions = {
       mutation: gql`
@@ -89,7 +78,7 @@ export class UserRepository extends CrudRepository<User> {
       `,
     };
 
-    option.context = { headers: { "y-token": md5(password) } };
+    option.context = { headers: { 'y-token': md5(password) } };
 
     const result = await this.apollo.mutate(option);
 
@@ -108,7 +97,7 @@ export class UserRepository extends CrudRepository<User> {
     currentPassword: string;
     newPassword: string;
   }) {
-    const api = "updatePassword";
+    const api = 'updatePassword';
 
     currentPassword = md5(currentPassword);
     const option: MutationOptions = {
@@ -139,7 +128,7 @@ export class UserRepository extends CrudRepository<User> {
   }
 
   async resetPassword({ email }: { email?: string }) {
-    const api = "resetPassword";
+    const api = 'resetPassword';
 
     const option: MutationOptions = {
       mutation: gql`
@@ -168,7 +157,7 @@ export class UserRepository extends CrudRepository<User> {
   }
 
   async verifyResetCode({ email, code }: { email: string; code: string }) {
-    const api = "verifyResetCode";
+    const api = 'verifyResetCode';
 
     const option: MutationOptions = {
       mutation: gql`
@@ -207,7 +196,7 @@ export class UserRepository extends CrudRepository<User> {
     code: string;
     newPassword: string;
   }) {
-    const api = "confirmPasswordReset";
+    const api = 'confirmPasswordReset';
 
     const option: MutationOptions = {
       mutation: gql`
@@ -240,22 +229,18 @@ export class UserRepository extends CrudRepository<User> {
   }
 
   async userGetMe(token?: string) {
-    const api = "userGetMe";
+    const api = 'userGetMe';
     const option: QueryOptions = {
       query: gql`query {  ${api} { ${this.fullFragment} }}`,
     };
 
-    if (token) option.context = { headers: { "x-token": token } };
+    if (token) option.context = { headers: { 'x-token': token } };
 
     return await this.apollo.query(option);
   }
 
-  async uploadImage(
-    file: any,
-    collectionFolder: string,
-    client: any,
-  ) {
-    const api = "uploadImage";
+  async uploadImage(file: any, collectionFolder: string, client: any) {
+    const api = 'uploadImage';
 
     const option: MutationOptions = {
       mutation: gql`
@@ -279,7 +264,7 @@ export class UserRepository extends CrudRepository<User> {
   }
 
   async getReferralTree(getReferralTreeId?: string) {
-    const api = "getReferralTree";
+    const api = 'getReferralTree';
 
     const option: QueryOptions = {
       query: this.gql`
@@ -289,7 +274,7 @@ export class UserRepository extends CrudRepository<User> {
           }
         }
       `,
-      fetchPolicy: "no-cache",
+      fetchPolicy: 'no-cache',
       variables: {
         getReferralTreeId,
       },
@@ -308,8 +293,8 @@ export class UserRepository extends CrudRepository<User> {
     } = result.data[api];
 
     return [
-      ...referrals.map((r) => ({ ...r, id: r._id, source: "downline" })),
-      ...referredByChain.map((r) => ({ ...r, id: r._id, source: "upline" })),
+      ...referrals.map((r) => ({ ...r, id: r._id, source: 'downline' })),
+      ...referredByChain.map((r) => ({ ...r, id: r._id, source: 'upline' })),
     ];
   }
 }

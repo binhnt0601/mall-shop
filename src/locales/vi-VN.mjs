@@ -1,0 +1,1 @@
+/*eslint-disable*/export const messages=JSON.parse("{\"c0Kyne\":\"Hồ sơ của tôi\",\"fROFIL\":\"Tiếng Việt\",\"lYGfRP\":\"Tiếng Anh\",\"nOhz3x\":\"Đăng xuất\"}");
