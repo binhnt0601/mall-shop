@@ -1,4 +1,4 @@
-import { BaseModel } from "@/helpers/base-model";
+import { BaseModel } from '@/helpers/base-model';
 
 type Payment = {
   bankName?: string;
@@ -15,55 +15,58 @@ type InforReferrence = {
 };
 
 export interface User extends BaseModel {
+  googleId?: string;
   name?: string;
   email?: string;
+  address?: string;
+  district?: string;
+  ward?: string;
+  city?: string;
   phone?: string;
+  password?: string;
   role?: UserRoles;
+  avatar?: string;
+  level?: number;
   lastLoginAt?: Date;
   status?: UserStatuses;
   isFirstLogin?: boolean;
-  address?: string;
-  payment?: Payment;
-  infoReferrence?: InforReferrence;
   referralCode?: string;
   referrenceId?: string;
-  level?: number;
-  countReferrence?: number;
-  source?: string;
-
-  sold?: number;
-  total?: number;
-  usdt?: number;
-  usd?: number;
-  vnd?: number;
+  payment?: {
+    bankName?: string;
+    accountBankName?: string;
+    bankNumber?: string;
+    walletAddress?: string;
+  };
+  infoReferrence?: InforReferrence;
 }
 
 export enum UserRoles {
-  ADMIN = "ADMIN",
-  MEMBER = "MEMBER",
-  MERCHANT = "MERCHANT",
+  ADMIN = 'ADMIN',
+  MEMBER = 'MEMBER',
+  MERCHANT = 'MERCHANT',
 }
 
 export enum UserStatuses {
-  ACTIVE = "ACTIVE",
-  INACTIVE = "INACTIVE",
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
 }
 
 export enum UserServiceStatus {
-  FREE = "FREE",
-  EXPIRED = "EXPIRED",
-  PAID = "PAID",
+  FREE = 'FREE',
+  EXPIRED = 'EXPIRED',
+  PAID = 'PAID',
 }
 
 export const ROLES = {
-  ADMIN: "ADMIN",
-  EDITOR: "EDITOR",
-  MEMBER: "MEMBER",
-  CUSTOMER: "CUSTOMER",
-  ADMIN_EDITOR: ["ADMIN", "EDITOR"],
-  ADMIN_MEMBER: ["ADMIN", "MEMBER"],
-  ADMIN_MEMBER_EDITOR: ["ADMIN", "EDITOR", "MEMBER"],
-  ADMIN_MEMBER_CUSTOMER: ["ADMIN", "MEMBER", "CUSTOMER"],
+  ADMIN: 'ADMIN',
+  EDITOR: 'EDITOR',
+  MEMBER: 'MEMBER',
+  CUSTOMER: 'CUSTOMER',
+  ADMIN_EDITOR: ['ADMIN', 'EDITOR'],
+  ADMIN_MEMBER: ['ADMIN', 'MEMBER'],
+  ADMIN_MEMBER_EDITOR: ['ADMIN', 'EDITOR', 'MEMBER'],
+  ADMIN_MEMBER_CUSTOMER: ['ADMIN', 'MEMBER', 'CUSTOMER'],
 };
 
 export const userRoleData = [
@@ -94,7 +97,7 @@ export type UpdateUserInput = {
 };
 
 export const UserInitialValues = {
-  name: "",
+  name: '',
   role: UserRoles.MEMBER,
-  email: "",
+  email: '',
 };

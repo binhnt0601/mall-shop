@@ -18,7 +18,6 @@ export const userFields = `
   isFirstLogin: Boolean
   referralCode: String
   referrenceId: String
-  payment: PaymentType
   createdAt: DateTime
   updatedAt: DateTime
 `;
@@ -28,6 +27,13 @@ export const paymentFields = `
   accountBankName: String
   bankNumber: String
   walletAddress: String
+`;
+
+export const InfoReferrenceFields = `
+  id: String
+  email: String
+  name: String
+  phone: String
 `;
 
 export const userQuery = `

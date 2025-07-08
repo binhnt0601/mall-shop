@@ -42,7 +42,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose, menu }) => {
           <div className='flex items-center gap-3 rounded w-full hover:bg-blue-50'>
             <Avatar
               alt={auth?.name || auth?.email}
-              src={auth?.avatar || '/default-avatar.png'}
+              src={auth?.avatar || '/images/user/avatar.png'}
               sx={{ width: 32, height: 32 }}
             />
             <div className='text-left flex-1'>

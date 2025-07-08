@@ -1,7 +1,12 @@
 import { gql, MutationOptions, QueryOptions } from '@apollo/client/core';
 import md5 from 'md5';
 
-import { paymentFields, userFields, userQuery } from './user.field';
+import {
+  InfoReferrenceFields,
+  paymentFields,
+  userFields,
+  userQuery,
+} from './user.field';
 import { User } from './user.model';
 
 import { CrudRepository } from '@/graphql/repo/crud';
@@ -15,6 +20,7 @@ export class UserRepository extends CrudRepository<User> {
   fullFragment = this.parseFragment(`
     ${userFields}
     payment ${paymentFields}
+    infoReferrence ${InfoReferrenceFields}
   `);
 
   referralFragment = this.parseFragment(`
