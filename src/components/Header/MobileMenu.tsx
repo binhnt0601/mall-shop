@@ -3,6 +3,8 @@ import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { IoMdClose } from 'react-icons/io';
+import { useAuth } from '@/providers/auth-provider'; // chỉnh đúng path
+import { Avatar } from '@mui/material';
 
 interface MenuItem {
   label: string;
@@ -17,15 +19,17 @@ interface MobileMenuProps {
 }
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose, menu }) => {
+  const { auth, logout } = useAuth();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const pathname = usePathname();
+
+  const toggleUserMenu = () => setUserMenuOpen((v) => !v);
 
   return (
     <div
       className={`fixed inset-0 z-50 bg-black/30 md:hidden transition-opacity duration-300 ${
-        open
-          ? 'opacity-100 pointer-events-auto'
-          : 'opacity-0 pointer-events-none'
+        open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
       }`}
       onClick={onClose}
     >
@@ -39,9 +43,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose, menu }) => {
         <div className='flex items-center justify-between px-6 py-4 border-b'>
           <Link href='/' onClick={onClose} className='flex items-center gap-2'>
             <Image src='/favicon.png' width={36} height={36} alt='Logo' />
-            <span className='font-bold text-lg text-blue-700'>
-              EnglishClass
-            </span>
+            <span className='font-bold text-lg text-blue-700'>EnglishClass</span>
           </Link>
           <button
             className='p-2 text-2xl text-gray-600 hover:text-blue-700 rounded-full focus:outline-none'
@@ -51,17 +53,16 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose, menu }) => {
             <IoMdClose />
           </button>
         </div>
+
         {/* MENU */}
-        <div className='flex-1 flex flex-col gap-2 px-6 py-4'>
+        <div className='flex-1 flex flex-col gap-2 px-6 py-4 overflow-auto'>
           {menu.map((item) =>
             item.children ? (
               <div key={item.label}>
                 <button
                   className='flex w-full items-center justify-between gap-1 rounded px-3 py-2 hover:bg-blue-50'
                   onClick={() =>
-                    setOpenDropdown(
-                      openDropdown === item.label ? null : item.label,
-                    )
+                    setOpenDropdown(openDropdown === item.label ? null : item.label)
                   }
                 >
                   <span>{item.label}</span>
@@ -82,9 +83,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose, menu }) => {
                         key={sub.href}
                         href={sub.href ?? '#'}
                         className={`rounded px-3 py-2 hover:bg-blue-100 ${
-                          pathname === sub.href
-                            ? 'text-blue-700 font-bold underline'
-                            : ''
+                          pathname === sub.href ? 'text-blue-700 font-bold underline' : ''
                         }`}
                         onClick={onClose}
                       >
@@ -99,23 +98,64 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose, menu }) => {
                 key={item.href}
                 href={item.href ?? '#'}
                 className={`rounded px-3 py-2 hover:bg-blue-50 ${
-                  pathname === item.href
-                    ? 'text-blue-700 font-bold underline'
-                    : ''
+                  pathname === item.href ? 'text-blue-700 font-bold underline' : ''
                 }`}
                 onClick={onClose}
               >
                 {item.label}
               </Link>
-            ),
+            )
           )}
-          <Link
-            href='/login'
-            className='mt-4 rounded-full bg-blue-600 px-5 py-2 text-center font-semibold text-white transition hover:bg-blue-700'
-            onClick={onClose}
-          >
-            Login
-          </Link>
+
+          {/* User Info or Login button */}
+          {auth ? (
+            <div className='mt-4 border-t pt-4'>
+              <button
+                onClick={toggleUserMenu}
+                className='flex items-center gap-3 rounded px-3 py-2 w-full hover:bg-blue-50'
+              >
+                <Avatar
+                  alt={auth.name || auth.email}
+                  src={auth.avatar || '/default-avatar.png'}
+                  sx={{ width: 32, height: 32 }}
+                />
+                <div className='text-left flex-1'>
+                  <div className='font-semibold text-blue-700'>{auth.name || auth.email}</div>
+                  <div className='text-xs text-gray-500'>{auth.email}</div>
+                </div>
+                <svg width={16} height={16} fill='none' viewBox='0 0 24 24'>
+                  <path
+                    d={userMenuOpen ? 'M19 15l-7-7-7 7' : 'M7 10l5 5 5-5'}
+                    stroke='#2563eb'
+                    strokeWidth={2}
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                </svg>
+              </button>
+              {userMenuOpen && (
+                <div className='mt-2 flex flex-col rounded border border-gray-300 bg-white shadow-sm'>
+                  <button
+                    className='px-4 py-2 text-left text-red-600 hover:bg-red-50'
+                    onClick={() => {
+                      logout?.();
+                      onClose();
+                    }}
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link
+              href='/login'
+              className='mt-4 rounded-full bg-blue-600 px-5 py-2 text-center font-semibold text-white transition hover:bg-blue-700'
+              onClick={onClose}
+            >
+              Login
+            </Link>
+          )}
         </div>
       </nav>
     </div>
