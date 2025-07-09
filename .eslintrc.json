@@ -1,29 +1,42 @@
 {
-  "extends": ["next/core-web-vitals", "plugin:tailwindcss/recommended"],
-  "plugins": ["unused-imports"],
-  "settings": {
-    "tailwindcss": {
-      "callees": ["twMerge", "createTheme"],
-      "classRegex": "^(class(Name)|theme)?$"
-    }
-  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["react", "@typescript-eslint", "prettier", "import"],
+  "parser": "@typescript-eslint/parser",
   "rules": {
-    "react-hooks/exhaustive-deps": "off",
-    "@next/next/no-img-element": "off",
-    "quotes": ["error", "single"],
-    "@next/next/no-html-link-for-pages": "off",
-    "@next/next/no-page-custom-font": "off",
-    // Tự động xóa import không sử dụng
-    "unused-imports/no-unused-imports": "error",
-    // Rename biến không sử dụng thành `_`
-    "unused-imports/no-unused-vars": [
-      "warn",
+    "prettier/prettier": "error",
+    "import/order": [
+      "error",
       {
-        "vars": "all",
-        "varsIgnorePattern": "^_",
-        "args": "after-used",
-        "argsIgnorePattern": "^_"
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          ["parent", "sibling", "index"]
+        ],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "pathGroups": [
+          {
+            "pattern": "@/**",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["builtin", "external"]
       }
     ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }

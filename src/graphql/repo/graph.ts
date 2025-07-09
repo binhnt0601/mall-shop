@@ -1,14 +1,14 @@
 /* eslint-disable import/named */
-import { ApolloClient, NormalizedCacheObject } from "@apollo/client";
+import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 import {
   ApolloQueryResult,
   FetchResult,
   gql,
   MutationOptions,
   QueryOptions,
-} from "@apollo/client/core";
+} from '@apollo/client/core';
 
-import { initializeApollo } from "@/graphql/apollo-client";
+import { initializeApollo } from '@/graphql/apollo-client';
 
 export class GraphRepository {
   static instance: GraphRepository | null = null;
@@ -42,7 +42,7 @@ export class GraphRepository {
   }) {
     return this.apollo.query<any>({
       query: gql`
-        ${this.generateGQL("query", query, variablesParams)}
+        ${this.generateGQL('query', query, variablesParams)}
       `,
       variables: options?.variables,
       fetchPolicy: options?.fetchPolicy,
@@ -60,7 +60,7 @@ export class GraphRepository {
   }) {
     return this.apollo.watchQuery<any>({
       query: gql`
-        ${this.generateGQL("query", query, variablesParams)}
+        ${this.generateGQL('query', query, variablesParams)}
       `,
       variables: options?.variables,
       fetchPolicy: options?.fetchPolicy,
@@ -78,7 +78,7 @@ export class GraphRepository {
   }) {
     const result = await this.apollo.mutate<any>({
       mutation: gql`
-        ${this.generateGQL("mutation", mutation, variablesParams)}
+        ${this.generateGQL('mutation', mutation, variablesParams)}
       `,
       variables: options?.variables,
       fetchPolicy: options?.fetchPolicy,
@@ -88,16 +88,16 @@ export class GraphRepository {
     let clearStoreFlag = false;
     let mutationList = [];
 
-    if (typeof mutation === "string") {
+    if (typeof mutation === 'string') {
       mutationList.push(mutation.trim());
     } else {
       mutationList = mutation.map((x) => x.trim());
     }
     for (const m of mutationList) {
       if (
-        m.indexOf("create") === 0 ||
-        m.indexOf("delete") === 0 ||
-        m.indexOf("update") === 0
+        m.indexOf('create') === 0 ||
+        m.indexOf('delete') === 0 ||
+        m.indexOf('update') === 0
       ) {
         clearStoreFlag = true;
         break;
@@ -111,14 +111,14 @@ export class GraphRepository {
   }
 
   generateGQL(
-    type: "query" | "mutation",
+    type: 'query' | 'mutation',
     list: string[] | string,
-    variableParams: string = "",
+    variableParams: string = '',
   ) {
-    let gql = `${type}${variableParams || ""} {
+    let gql = `${type}${variableParams || ''} {
         `;
 
-    if (typeof list === "string") {
+    if (typeof list === 'string') {
       gql += `g0: ${list}
         `;
     } else {
@@ -128,7 +128,7 @@ export class GraphRepository {
     }
     gql += `
       }`;
-    gql = gql.replace(/\s{2,}/g, " ");
+    gql = gql.replace(/\s{2,}/g, ' ');
     // console.log(gql);
 
     return gql;
@@ -141,7 +141,7 @@ export class GraphRepository {
   handleError(result: ApolloQueryResult<any> | FetchResult) {
     if ((result as ApolloQueryResult<any>).error) {
       throw Error(
-        (result as ApolloQueryResult<any>).error?.message ?? "Unknown error",
+        (result as ApolloQueryResult<any>).error?.message ?? 'Unknown error',
       );
     }
     if (result.errors && result.errors.length > 0) {
@@ -151,16 +151,16 @@ export class GraphRepository {
 
   parseFragment = (fragment: string) => {
     const fragments = [];
-    const lines = fragment.trim().split("\n");
+    const lines = fragment.trim().split('\n');
 
     for (const line of lines) {
-      const parts = line.split(":");
+      const parts = line.split(':');
       const key = parts[0];
 
       fragments.push(key);
     }
 
-    return fragments.join(" ").trim();
+    return fragments.join(' ').trim();
   };
 }
 

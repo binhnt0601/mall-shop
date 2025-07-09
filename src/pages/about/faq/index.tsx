@@ -96,13 +96,19 @@ const FAQPageExpanded = () => {
   };
 
   return (
-    <Box sx={{ py: 8, backgroundColor: '#f0f4ff', minHeight: 'calc(100vh - 152px)' }}>
-      <Container maxWidth="md">
+    <Box
+      sx={{
+        py: 8,
+        backgroundColor: '#f0f4ff',
+        minHeight: 'calc(100vh - 152px)',
+      }}
+    >
+      <Container maxWidth='md'>
         <Typography
-          variant="h3"
-          color="#035a8e"
-          fontWeight="bold"
-          textAlign="center"
+          variant='h3'
+          color='#035a8e'
+          fontWeight='bold'
+          textAlign='center'
           gutterBottom
           sx={{ mb: 3 }}
         >
@@ -110,22 +116,23 @@ const FAQPageExpanded = () => {
         </Typography>
 
         <Typography
-          variant="h6"
-          color="#035a8e"
-          fontWeight="medium"
-          textAlign="center"
+          variant='h6'
+          color='#035a8e'
+          fontWeight='medium'
+          textAlign='center'
           mb={6}
           sx={{ fontStyle: 'italic', maxWidth: 700, mx: 'auto' }}
         >
-          Find answers to common questions about courses, registration, policies, and support.
+          Find answers to common questions about courses, registration,
+          policies, and support.
         </Typography>
 
         {faqSections.map(({ title, faqs }, i) => (
           <Box key={title} sx={{ mb: 4 }}>
             <Typography
-              variant="h5"
-              color="#fc9a14"
-              fontWeight="bold"
+              variant='h5'
+              color='#fc9a14'
+              fontWeight='bold'
               onClick={() => handleSectionToggle(i)}
               sx={{
                 cursor: 'pointer',
@@ -141,12 +148,13 @@ const FAQPageExpanded = () => {
               <ExpandMoreIcon
                 sx={{
                   transition: 'transform 0.3s',
-                  transform: expandedSection === i ? 'rotate(180deg)' : 'rotate(0deg)',
+                  transform:
+                    expandedSection === i ? 'rotate(180deg)' : 'rotate(0deg)',
                 }}
               />
             </Typography>
 
-            <Collapse in={expandedSection === i} timeout="auto" unmountOnExit>
+            <Collapse in={expandedSection === i} timeout='auto' unmountOnExit>
               {faqs.map(({ question, answer }, idx) => (
                 <Accordion
                   key={idx}
@@ -163,12 +171,18 @@ const FAQPageExpanded = () => {
                     aria-controls={`panel${i}-${idx}-content`}
                     id={`panel${i}-${idx}-header`}
                   >
-                    <Typography fontWeight="bold" color="#035a8e" fontSize="1.1rem">
+                    <Typography
+                      fontWeight='bold'
+                      color='#035a8e'
+                      fontSize='1.1rem'
+                    >
                       {question}
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                    <Typography sx={{ color: '#555', fontSize: '1rem', lineHeight: 1.6 }}>
+                    <Typography
+                      sx={{ color: '#555', fontSize: '1rem', lineHeight: 1.6 }}
+                    >
                       {answer}
                     </Typography>
                   </AccordionDetails>
@@ -178,7 +192,12 @@ const FAQPageExpanded = () => {
               {i === 0 && (
                 <>
                   <Divider sx={{ my: 4 }} />
-                  <Typography variant="h6" fontWeight="bold" color="#035a8e" mb={2}>
+                  <Typography
+                    variant='h6'
+                    fontWeight='bold'
+                    color='#035a8e'
+                    mb={2}
+                  >
                     Watch Our Course Overview Video
                   </Typography>
                   <Box
@@ -192,9 +211,9 @@ const FAQPageExpanded = () => {
                     }}
                   >
                     <iframe
-                      src="https://www.youtube.com/embed/4W_Zt2cbGlc"
-                      title="Course Overview"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      src='https://www.youtube.com/embed/4W_Zt2cbGlc'
+                      title='Course Overview'
+                      allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
                       allowFullScreen
                       style={{
                         position: 'absolute',
@@ -215,13 +234,13 @@ const FAQPageExpanded = () => {
         <Divider sx={{ my: 4 }} />
 
         <Typography
-          variant="subtitle1"
-          textAlign="center"
-          color="text.secondary"
+          variant='subtitle1'
+          textAlign='center'
+          color='text.secondary'
           sx={{ fontStyle: 'italic', fontSize: '1rem' }}
         >
           Still have questions? Reach out to our support team via{' '}
-          <MuiLink href="/contact" underline="hover" color="primary">
+          <MuiLink href='/contact' underline='hover' color='primary'>
             Contact Page
           </MuiLink>
           .

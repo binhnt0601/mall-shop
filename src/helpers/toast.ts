@@ -1,8 +1,8 @@
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2';
 
 const Toast = Swal.mixin({
   toast: true,
-  position: "top-end",
+  position: 'top-end',
   showConfirmButton: false,
   timer: 3000,
   timerProgressBar: true,
@@ -14,37 +14,37 @@ const Toast = Swal.mixin({
 
 const toastSuccess = (msg: string) => {
   Toast.fire({
-    icon: "success",
+    icon: 'success',
     title: msg,
-    background: "#3ea800ff",
-    color: "#ffffff",
+    background: '#3ea800ff',
+    color: '#ffffff',
   });
 };
 
 const toastError = (msg: string) => {
   Toast.fire({
-    icon: "error",
+    icon: 'error',
     title: msg,
-    background: "#b80000ff",
-    color: "#ffffff",
+    background: '#b80000ff',
+    color: '#ffffff',
   });
 };
 
 const toastWarning = (msg: string) => {
   Toast.fire({
-    icon: "warning",
+    icon: 'warning',
     title: msg,
-    background: "#b35300ff",
-    color: "#ffffff",
+    background: '#b35300ff',
+    color: '#ffffff',
   });
 };
 
 const toastInfo = (msg: string) => {
   Toast.fire({
-    icon: "info",
+    icon: 'info',
     title: msg,
-    background: "#0097c9ff",
-    color: "#ffffff",
+    background: '#0097c9ff',
+    color: '#ffffff',
   });
 };
 

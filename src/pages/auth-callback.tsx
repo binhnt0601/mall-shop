@@ -13,7 +13,6 @@ export default function AuthCallbackPage() {
     const token = router.query.token;
 
     if (typeof token === 'string') {
-
       SetAuthToken(token);
       router.replace('/');
     } else {

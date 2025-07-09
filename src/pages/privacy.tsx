@@ -1,10 +1,10 @@
-import MainLayout from "@/layouts/MainLayout";
+import MainLayout from '@/layouts/MainLayout';
 
 // pages/privacy.tsx
 export default function PrivacyPolicy() {
   return (
-    <div className="mx-auto max-w-2xl px-5 py-10">
-      <h1 className="mb-4 text-2xl font-bold">Privacy Policy</h1>
+    <div className='mx-auto max-w-2xl px-5 py-10'>
+      <h1 className='mb-4 text-2xl font-bold'>Privacy Policy</h1>
       <p>
         We are committed to protecting your personal information and will not
         share it with third parties. All data is used solely to improve user

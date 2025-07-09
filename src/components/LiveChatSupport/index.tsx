@@ -40,8 +40,7 @@ const LiveChatSupport = () => {
         ...prev,
         {
           from: 'bot',
-          text:
-            'Thank you for your message. Our support team will get back to you shortly.',
+          text: 'Thank you for your message. Our support team will get back to you shortly.',
         },
       ]);
     }, 1500);
@@ -126,7 +125,8 @@ const LiveChatSupport = () => {
                     p: 1.5,
                     maxWidth: '70%',
                     bgcolor: from === 'user' ? 'primary.main' : 'grey.300',
-                    color: from === 'user' ? 'primary.contrastText' : 'text.primary',
+                    color:
+                      from === 'user' ? 'primary.contrastText' : 'text.primary',
                   }}
                 >
                   {text}
