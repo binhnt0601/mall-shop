@@ -1,15 +1,13 @@
-'use client';
-
 import React from 'react';
-
 import {
-  Divider,
+  IconButton,
   Stack,
   Typography,
-  IconButton,
+  Divider,
   InputAdornment,
+  useMediaQuery,
 } from '@mui/material';
-import Link from 'next/link';
+import CloseIcon from '@mui/icons-material/Close';
 import EmailIcon from '@mui/icons-material/Email';
 import PasswordIcon from '@mui/icons-material/Lock';
 import GoogleIcon from '@mui/icons-material/Google';
@@ -18,12 +16,11 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useRouter } from 'next/router';
-
-import { useAuth } from '@/providers/auth-provider';
-import FormikTextField from '@/components-shared/FormikTextField';
+import Link from 'next/link';
 import Image from 'next/image';
 
-export const dynamic = 'force-dynamic';
+import FormikTextField from '@/components-shared/FormikTextField';
+import { useAuthStore } from '@/stores/auth/useAuthStore';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Enter your email'),
@@ -32,10 +29,20 @@ const validationSchema = Yup.object().shape({
     .required('Enter your password'),
 });
 
-const LoginPageClient = ({ apiUri }: { apiUri: string }) => {
-  const { login } = useAuth();
-  const router = useRouter();
+type LoginFormProps = {
+  apiUri: string;
+  onRegisterClick: () => void;
+  onClose: () => void;
+};
 
+export default function LoginForm({
+  apiUri,
+  onRegisterClick,
+  onClose,
+}: LoginFormProps) {
+  const { login } = useAuthStore();
+  const router = useRouter();
+  const isMobile = useMediaQuery('(max-width:900px)');
   const [showPassword, setShowPassword] = React.useState(false);
 
   const formik = useFormik({
@@ -43,44 +50,84 @@ const LoginPageClient = ({ apiUri }: { apiUri: string }) => {
     validationSchema,
     onSubmit: async (values) => {
       await login(values.email, values.password);
+      onClose?.();
     },
   });
 
-  const onLoginWithGoogle = async () => {
+  const onLoginWithGoogle = () => {
     router.push(`${apiUri}/api/google`);
   };
 
-  const handleClickShowPassword = () => {
-    setShowPassword((show) => !show);
-  };
-
   return (
-    <Stack className='h-dvh w-full !flex-row bg-gradient-radial from-blue-500 to-indigo-600'>
-      <div className='flex w-full flex-col items-center justify-center md:w-[65%] px-6 py-10'>
-        <div className='md:hidden'>
+    <Stack
+      direction={{ xs: 'column', md: 'row' }}
+      width='100%'
+      minHeight={{ xs: '100vh', md: 540 }}
+      sx={{
+        position: 'relative',
+        maxWidth: 830,
+        mx: 'auto',
+      }}
+    >
+      {/* Close button: always top-right */}
+      <IconButton
+        onClick={onClose}
+        sx={{
+          position: 'absolute',
+          top: 12,
+          right: 12,
+          color: '#fff',
+          bgcolor: 'rgba(255,255,255,0.08)',
+          '&:hover': { bgcolor: 'rgba(255,255,255,0.13)' },
+          zIndex: 10,
+        }}
+        aria-label='Close'
+      >
+        <CloseIcon />
+      </IconButton>
+      {/* Left: Form */}
+      <Stack
+        sx={{
+          px: { xs: 2, sm: 4, md: 5 },
+          py: { xs: 2.5, sm: 6, md: 7 },
+          width: { xs: '100%', md: '60%' },
+          bgcolor: 'transparent',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        {/* Logo mobile (and small tablet) */}
+        <Stack display={{ xs: 'flex', md: 'none' }} alignItems='center' mb={2}>
           <Image
-            width={181}
-            height={124}
+            width={120}
+            height={80}
             src='/logo.png'
             alt='Brand Logo'
-            className='drop-shadow-[0_4px_8px_rgba(255,255,255,0.5)]'
+            style={{ marginBottom: 4 }}
           />
-        </div>
+        </Stack>
 
         <Typography
-          fontSize={40}
+          fontSize={{ xs: 26, sm: 32, md: 36 }}
           fontWeight={700}
           lineHeight={1.2}
           color='white'
           textAlign='center'
-          className='drop-shadow-md mb-3'
+          mb={2}
+          sx={{ textShadow: '0 2px 8px rgba(0,0,0,0.12)' }}
         >
           Login to your Account
         </Typography>
 
         <form
           onSubmit={formik.handleSubmit}
-          className='mt-10 flex w-full max-w-[460px] flex-col gap-6'
+          style={{
+            width: '100%',
+            maxWidth: 420,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 24,
+          }}
         >
           <button
             className='w-full rounded-md bg-white py-3 font-bold text-indigo-600 flex items-center justify-center gap-2 hover:bg-indigo-50 transition'
@@ -91,12 +138,34 @@ const LoginPageClient = ({ apiUri }: { apiUri: string }) => {
             Sign in With Google
           </button>
 
-          <div className='flex justify-center'>
-            <div className='flex w-[120px] items-center justify-center gap-2'>
-              <Divider className='h-px w-full bg-white' />
-              <span className='text-white select-none'>or</span>
-              <Divider className='h-px w-full bg-white' />
-            </div>
+          <div
+            style={{ display: 'flex', justifyContent: 'center', width: '100%' }}
+          >
+            <Divider
+              sx={{
+                flex: 1,
+                borderColor: 'rgba(255,255,255,0.6)',
+                alignSelf: 'center',
+              }}
+            />
+            <Typography
+              sx={{
+                color: '#fff',
+                px: 2,
+                fontSize: 15,
+                userSelect: 'none',
+                fontWeight: 500,
+              }}
+            >
+              or
+            </Typography>
+            <Divider
+              sx={{
+                flex: 1,
+                borderColor: 'rgba(255,255,255,0.6)',
+                alignSelf: 'center',
+              }}
+            />
           </div>
 
           <FormikTextField
@@ -148,7 +217,7 @@ const LoginPageClient = ({ apiUri }: { apiUri: string }) => {
               endAdornment: (
                 <InputAdornment position='end'>
                   <IconButton
-                    onClick={handleClickShowPassword}
+                    onClick={() => setShowPassword((s) => !s)}
                     edge='end'
                     aria-label={
                       showPassword ? 'Hide password' : 'Show password'
@@ -178,51 +247,61 @@ const LoginPageClient = ({ apiUri }: { apiUri: string }) => {
             Login
           </button>
 
-          <Typography
-            color='white'
-            textAlign='center'
-            className='md:hidden mt-6'
-          >
-            Don&apos;t have an account?
-            <Link
-              href='/register'
-              className='ml-3 text-[17px] font-medium text-orange-400 hover:text-orange-500 transition'
-            >
-              Register
-            </Link>
-          </Typography>
+          {/* Register link on mobile */}
+          {isMobile && (
+            <Typography color='white' textAlign='center' sx={{ mt: 2 }}>
+              Don&apos;t have an account?{' '}
+              <span
+                className='ml-3 text-[17px] font-medium text-orange-400 hover:text-orange-500 transition cursor-pointer'
+                onClick={onRegisterClick}
+              >
+                Register
+              </span>
+            </Typography>
+          )}
         </form>
-      </div>
+      </Stack>
 
-      <div
-        className='hidden w-[50%] flex-col items-center justify-center gap-5
-        p-5 text-center text-white md:flex'
+      {/* Right: Welcome section, only show on md+ */}
+      <Stack
+        display={{ xs: 'none', md: 'flex' }}
+        sx={{
+          width: { md: '40%' },
+          minHeight: 540,
+          bgcolor: 'transparent',
+          color: '#fff',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          px: 4,
+          py: 5,
+          textAlign: 'center',
+          gap: 3,
+        }}
       >
         <Image
-          width={181}
-          height={124}
+          width={160}
+          height={100}
           src='/logo.png'
           alt='Brand Logo'
           className='drop-shadow-[0_4px_8px_rgba(255,255,255,0.5)]'
         />
-        <Typography fontSize={40} fontWeight='bold'>
+        <Typography fontSize={34} fontWeight='bold'>
           New Here?
         </Typography>
-        <Typography maxWidth={380}>
+        <Typography maxWidth={320}>
           Welcome to the future of shopping, where AI takes you on a
           personalized retail journey like never before. Sign up today and
           discover the extraordinary convenience, tailored experiences, and
           endless possibilities of AI malls.
         </Typography>
-        <Link
+        <button
           className='w-full rounded-md bg-white py-3 font-bold text-indigo-600 flex items-center justify-center gap-2 hover:bg-indigo-50 transition'
-          href='/register'
+          onClick={onRegisterClick}
         >
           Register
-        </Link>
-      </div>
+        </button>
+      </Stack>
     </Stack>
   );
-};
-
-export default LoginPageClient;
+}

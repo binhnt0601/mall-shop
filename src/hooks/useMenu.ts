@@ -1,20 +1,19 @@
 import { useEffect, useState } from 'react';
 
-import { useAuth } from '../providers/auth-provider';
 import { UserRoles } from '../services/user/user.model';
-import { getAdminMenu, getMemberMenu } from '@/constants/menu';
+import { getAdminMenu, getUserMenu } from '@/constants/menu';
+import { useAuthStore } from '@/stores/auth/useAuthStore';
 
 export type MenuData = {
   categoryCode?: string;
   code: string;
-  header: string;
   icon?: string;
   title: any;
   url?: any;
 };
 
 const useMenu = (): [MenuData[] | null, string[]] => {
-  const { auth } = useAuth();
+  const { auth } = useAuthStore();
   const [menu, setMenu] = useState<MenuData[] | null>(null);
   const [menuCategories, setMenuCategories] = useState<string[]>([]);
 
@@ -25,8 +24,8 @@ const useMenu = (): [MenuData[] | null, string[]] => {
     let menus: MenuData[] = [];
     if (auth?.role === UserRoles.ADMIN) {
       menus = getAdminMenu();
-    } else if (auth?.role === UserRoles.MEMBER) {
-      menus = getMemberMenu();
+    } else if (auth?.role === UserRoles.USER) {
+      menus = getUserMenu();
     }
 
     setMenuCategories(menus.map((i) => i.categoryCode || '').filter((i) => i));

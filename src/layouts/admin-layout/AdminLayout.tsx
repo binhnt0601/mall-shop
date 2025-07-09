@@ -1,17 +1,18 @@
 import { ReactNode, useEffect, useState } from 'react';
-import { AdminHeadSEO } from './AdminHeadSEO';
 import AdminSidebar from './AdminSidebar';
 import { GetAuthToken } from '@/graphql/auth';
 import { useRouter } from 'next/router';
-import { AuthStatuses, useAuth } from '@/providers/auth-provider';
 import AdminHeaderBar from './AdminHeaderbar';
+import PageHeader from '@/components/PageHeader';
+import { useAuthStore } from '@/stores/auth/useAuthStore';
+import { AuthStatuses } from '@/stores/auth/types';
 
 interface LayoutProps {
   children: ReactNode;
 }
 
 export default function MainLayout({ children }: LayoutProps) {
-  const { auth, authStatus, logout } = useAuth();
+  const { auth, authStatus, logout } = useAuthStore();
   const router = useRouter();
   const [collapseShow, setCollapseShow] = useState<boolean>(false);
 
@@ -37,14 +38,16 @@ export default function MainLayout({ children }: LayoutProps) {
 
   return (
     <>
-      <AdminHeadSEO />
       <AdminSidebar
         collapseShow={collapseShow}
         setCollapseShow={setCollapseShow}
       />
       <div className='flex flex-col min-h-screen md:ml-64 lg:ml-72'>
         <AdminHeaderBar setCollapseShow={setCollapseShow} />
-        <div className='pt-[61px] flex-1'>{children}</div>
+        <div className='mt-[61px] flex-1 p-5'>
+          <PageHeader />
+          {children}
+        </div>
       </div>
     </>
   );

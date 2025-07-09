@@ -6,6 +6,61 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: vi-VN\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/hooks/useStatusLabel.tsx
+msgid "Blocked"
+msgstr "Bị khóa"
+
+#: src/components/PageHeader/index.tsx
+msgid "Page"
+msgstr "Trang"
+
+#: src/constants/menu.ts
+msgid "User"
+msgstr "Người dùng"
+
+#: src/constants/menu.ts
+msgid "Dashboard"
+msgstr "Bảng điều khiển"
+
+#: src/constants/menu.ts
+msgid "SYSTEM"
+msgstr "HỆ THỐNG"
+
+#: src/constants/menu.ts
+msgid "Setting"
+msgstr "Cài đặt"
+
+#: src/constants/role.ts
+#: src/hooks/useStatusLabel.tsx
+msgid "Unknown"
+msgstr "Không xác định"
+
+#: src/hooks/useStatusLabel.tsx
+msgid "Active"
+msgstr "Hoạt động"
+
+#: src/hooks/useStatusLabel.tsx
+msgid "Inactive"
+msgstr "Ngừng hoạt động"
+
+#: src/constants/role.ts
+msgid "Admin"
+msgstr "Quản trị viên"
+
+#: src/hooks/useStatusLabel.tsx
+msgid "Pending"
+msgstr "Đang chờ"
+
+#: src/constants/role.ts
+msgid "Student"
+msgstr "Học viên"
 
 #: src/components/ProfileDropdown/index.tsx
 msgid "My profile"
@@ -15,10 +70,22 @@ msgstr "Hồ sơ của tôi"
 msgid "Vietnamese"
 msgstr "Tiếng Việt"
 
+#: src/components/PageHeader/index.tsx
+msgid "Home"
+msgstr "Trang chủ"
+
 #: src/helpers/locales.ts
 msgid "English"
 msgstr "Tiếng Anh"
 
+#: src/constants/role.ts
+msgid "Teacher"
+msgstr "Giáo viên"
+
 #: src/components/ProfileDropdown/index.tsx
 msgid "Logout"
 msgstr "Đăng xuất"
+
+#: src/constants/menu.ts
+msgid "MANAGEMENT"
+msgstr "QUẢN LÝ"

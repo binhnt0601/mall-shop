@@ -1,6 +1,7 @@
 import LocaleDropdown from '@/components/LocaleDropdown';
-import { useAuth } from '@/providers/auth-provider';
-import { UserRoles } from '@/services/user/user.model';
+import ProfileDropdown from '@/components/ProfileDropdown';
+import { useAuthStore } from '@/stores/auth/useAuthStore';
+import Link from 'next/link';
 import { Dispatch, SetStateAction } from 'react';
 import { FiMenu } from 'react-icons/fi';
 
@@ -9,20 +10,25 @@ interface Props {
 }
 
 const AdminHeaderBar: React.FC<Props> = ({ setCollapseShow }) => {
-  const { auth } = useAuth();
+  const { auth } = useAuthStore();
 
   return (
-    <div className='fixed inset-x-0 z-30 ml-0 bg-white px-10 py-3 shadow md:ml-64 lg:ml-72 mt-0'>
+    <div className='fixed inset-x-0 z-30 ml-0 bg-white px-5 lg:px-10 py-3 shadow md:ml-64 lg:ml-72 mt-0'>
       <div className='flex w-full items-center justify-between'>
-        <h1 className='py-1.5 font-medium'>
-          {[UserRoles.ADMIN, UserRoles.MEMBER].includes(
-            auth?.role as UserRoles,
-          ) ? (
-            <span>Admin Management</span>
-          ) : (
-            <span>Merchant Management</span>
-          )}
-        </h1>
+        <Link href='/'>
+          <img
+            src={'/logo.png'}
+            alt='logo'
+            width={46}
+            height={46}
+            className='block md:hidden'
+          />
+        </Link>
+
+        <div className='md:block hidden'>
+          <ProfileDropdown />
+        </div>
+
         {auth && (
           <div className='hidden md:flex items-center'>
             <LocaleDropdown />

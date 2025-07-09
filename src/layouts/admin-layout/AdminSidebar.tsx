@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { Dispatch, SetStateAction } from 'react';
 import AdminSidebarBranch from './AdminSidebarBranch';
 import AdminSidebarMenu from './AdminSidebarMenu';
+import ProfileDropdown from '@/components/ProfileDropdown';
 
 interface Props {
   collapseShow: boolean;
@@ -32,13 +33,14 @@ const AdminSidebar: React.FC<Props> = ({ collapseShow, setCollapseShow }) => {
           style={{ zIndex: 100 }}
           onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside sidebar
         >
-          <div className='px-5 pb-10 pt-6'>
-            <button
-              className='absolute right-4 top-4 text-lg'
-              onClick={() => setCollapseShow(false)}
-            >
+          <div className='flex justify-between p-4'>
+            <ProfileDropdown />
+            <button className='text-lg' onClick={() => setCollapseShow(false)}>
               ✕
             </button>
+          </div>
+          <hr className='border-t-2' />
+          <div className='p-5 pt-4'>
             <AdminSidebarBranch />
             <AdminSidebarMenu setCollapseShow={setCollapseShow} />
           </div>

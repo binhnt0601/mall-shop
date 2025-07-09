@@ -3,15 +3,15 @@ import { useState, useRef, useEffect } from 'react';
 import { HiChevronDown } from 'react-icons/hi';
 
 import Link from 'next/link';
-import { useAuth } from '@/providers/auth-provider';
 import { useRouter } from 'next/router';
 import { MdPerson } from 'react-icons/md';
 import { BiLogOut } from 'react-icons/bi';
 import { Trans } from '@lingui/macro';
+import { useAuthStore } from '@/stores/auth/useAuthStore';
 
 const ProfileDropdown = () => {
   const { pathname } = useRouter();
-  const { auth, logout } = useAuth();
+  const { auth, logout } = useAuthStore();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -32,7 +32,7 @@ const ProfileDropdown = () => {
     <div className='relative inline-block text-left' ref={dropdownRef}>
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className='flex items-center justify-center gap-1 rounded-md p-2 text-sm font-medium text-gray-700 hover:bg-gray-50'
+        className='flex items-center justify-center gap-1 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50'
       >
         <div className='relative inline-flex size-10 items-center justify-center overflow-hidden rounded-full bg-[#FF7125]'>
           <span className='font-medium text-white'>

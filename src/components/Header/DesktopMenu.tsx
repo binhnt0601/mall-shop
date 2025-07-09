@@ -3,8 +3,9 @@ import { usePathname } from 'next/navigation'; // App Router
 import Dropdown from '@/components-shared/Dropdown';
 import { Menu, MenuItem, Avatar, Button } from '@mui/material';
 import { UserRoles } from '@/services/user/user.model';
-import { useAuth } from '@/providers/auth-provider';
 import Link from 'next/link';
+import LoginModal from '../LoginModal';
+import { useAuthStore } from '@/stores/auth/useAuthStore';
 
 interface MenuItem {
   label: string;
@@ -18,7 +19,9 @@ interface DesktopMenuProps {
 
 const DesktopMenu: React.FC<DesktopMenuProps> = ({ menu }) => {
   const pathname = usePathname();
-  const { auth, logout } = useAuth();
+  const { auth, logout } = useAuthStore();
+
+  const [openModal, setOpenModal] = useState<boolean>(false);
 
   // Dropdown menu state
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -52,27 +55,31 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ menu }) => {
               }))}
             />
           ) : (
-            <a
+            <Link
               key={item.href}
-              href={item.href}
+              href={String(item.href)}
               className={
                 'transition hover:text-blue-600' +
                 (pathname === item.href ? ' text-blue-700 font-bold' : '')
               }
+              prefetch
             >
               {item.label}
-            </a>
+            </Link>
           ),
         )}
       </nav>
       <div className='md:block hidden'>
         {!auth ? (
-          <Link
-            href='/login'
-            className='ml-4 rounded-full bg-blue-600 px-5 py-2 font-semibold text-white transition hover:bg-blue-700 md:inline-block'
-          >
-            Login
-          </Link>
+          <>
+            <Button
+              onClick={() => setOpenModal(true)}
+              className='ml-4 rounded-full bg-blue-600 px-5 py-2 font-semibold text-white transition hover:bg-blue-700 md:inline-block'
+            >
+              Login
+            </Button>
+            <LoginModal open={openModal} onClose={() => setOpenModal(false)} />
+          </>
         ) : (
           <>
             <Button
@@ -111,11 +118,11 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ menu }) => {
               {auth.role === UserRoles.ADMIN && (
                 <MenuItem
                   component={Link}
-                  href='/dashboard'
+                  href='/manage/dashboard'
                   onClick={handleClose}
                   sx={{ fontWeight: 'bold' }}
                 >
-                  Admin Dashboard
+                  Management Site
                 </MenuItem>
               )}
               <MenuItem onClick={handleLogout} sx={{ color: 'red' }}>

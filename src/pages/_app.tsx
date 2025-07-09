@@ -1,49 +1,51 @@
-import React, { Fragment } from 'react';
-
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
-
-import { ThemeProvider } from '@mui/material/styles';
-
 import './globals.css';
 
-import theme from '@/theme';
-import LoadingProvider from '@/providers/loading-provider';
-import AuthProvider from '@/providers/auth-provider';
+import React, { Fragment, useEffect } from 'react';
 import { AppProps } from 'next/app';
-import Head from 'next/head';
-import { LanguageProvider } from '@/providers/language-provider';
+import { CacheProvider, EmotionCache } from '@emotion/react';
+
+import AppProviders from '@/providers/app-provider';
+import { useAuthStore } from '@/stores/auth/useAuthStore';
+import { GetAuthToken } from '@/graphql/auth';
+
+import createEmotionCache from '@/utils/createEmotionCache';
 
 type NextPageWithLayout = AppProps['Component'] & {
   getLayout?: (page: React.ReactElement) => React.ReactNode;
+  Layout?: React.ComponentType<any>;
+  LayoutProps?: Record<string, any>;
+  emotionCache?: EmotionCache;
 };
 
-export default function RootLayout({ Component, pageProps }: any) {
-  const Layout = Component.Layout ? Component.Layout : Fragment;
-  const layoutProps = Component.LayoutProps ? Component.LayoutProps : {};
+const clientSideEmotionCache = createEmotionCache();
+
+function MyApp(props: AppProps & { emotionCache?: EmotionCache }) {
+  const { Component, pageProps, emotionCache = clientSideEmotionCache } = props;
+
+  const { auth, loadProfile } = useAuthStore();
+  const token = GetAuthToken();
+
+  const Layout = (Component as NextPageWithLayout).Layout || Fragment;
+  const layoutProps = (Component as NextPageWithLayout).LayoutProps || {};
 
   const getLayout =
     (Component as NextPageWithLayout).getLayout || ((page) => page);
 
+  useEffect(() => {
+    if (token && !auth) {
+      loadProfile();
+    }
+  }, [auth, token, loadProfile]);
+
   return (
-    <>
-      <Head>
-        <title>English Class</title>
-        <meta name='description' content='English Class' />
-        <link rel='icon' href='/favicon.png' />
-      </Head>
-      <AppRouterCacheProvider>
-        <ThemeProvider theme={theme}>
-          <LoadingProvider>
-            <LanguageProvider>
-              <AuthProvider>
-                <Layout {...layoutProps}>
-                  {getLayout(<Component {...pageProps} />)}
-                </Layout>
-              </AuthProvider>
-            </LanguageProvider>
-          </LoadingProvider>
-        </ThemeProvider>
-      </AppRouterCacheProvider>
-    </>
+    <CacheProvider value={emotionCache}>
+      <AppProviders>
+        <Layout {...layoutProps}>
+          {getLayout(<Component {...pageProps} />)}
+        </Layout>
+      </AppProviders>
+    </CacheProvider>
   );
 }
+
+export default MyApp;

@@ -1,30 +1,29 @@
+import { t } from '@lingui/macro';
+
 export const getAdminMenu = () => [
   {
-    categoryCode: 'ADMIN',
+    categoryCode: t`MANAGEMENT`,
     code: 'user',
-    header: `Admin`,
     icon: 'user',
-    title: `Admin`,
-    url: '/admin/user',
+    title: t`User`,
+    url: '/manage/user',
   },
   {
-    categoryCode: 'SYSTEM',
+    categoryCode: t`SYSTEM`,
     code: 'setting',
-    header: `Setting`,
     icon: 'setting',
-    title: `Setting`,
+    title: t`Setting`,
     url: '/setting/COMMON',
   },
 ];
 
-export const getMemberMenu = () => [
+export const getUserMenu = () => [
   {
     categoryCode: 'MEMBER',
     code: 'user',
-    header: `Member`,
-    icon: 'admin',
-    title: `Admin`,
-    url: '/admin/user',
+    icon: 'user',
+    title: `User`,
+    url: '/manage/user',
   },
 ];
 
@@ -32,9 +31,8 @@ export const getDashboardOnlyMenu = () => [
   {
     categoryCode: '',
     code: 'dashboard',
-    header: `Overview`,
     icon: 'dashboard',
-    title: `Dashboard`,
-    url: '/dashboard',
+    title: t`Dashboard`,
+    url: '/manage/dashboard',
   },
 ];

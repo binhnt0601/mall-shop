@@ -6,6 +6,61 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: en-US\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/hooks/useStatusLabel.tsx
+msgid "Blocked"
+msgstr "Blocked"
+
+#: src/components/PageHeader/index.tsx
+msgid "Page"
+msgstr "Page"
+
+#: src/constants/menu.ts
+msgid "User"
+msgstr "User"
+
+#: src/constants/menu.ts
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: src/constants/menu.ts
+msgid "SYSTEM"
+msgstr "SYSTEM"
+
+#: src/constants/menu.ts
+msgid "Setting"
+msgstr "Setting"
+
+#: src/constants/role.ts
+#: src/hooks/useStatusLabel.tsx
+msgid "Unknown"
+msgstr "Unknown"
+
+#: src/hooks/useStatusLabel.tsx
+msgid "Active"
+msgstr "Active"
+
+#: src/hooks/useStatusLabel.tsx
+msgid "Inactive"
+msgstr "Inactive"
+
+#: src/constants/role.ts
+msgid "Admin"
+msgstr "Admin"
+
+#: src/hooks/useStatusLabel.tsx
+msgid "Pending"
+msgstr "Pending"
+
+#: src/constants/role.ts
+msgid "Student"
+msgstr "Student"
 
 #: src/components/ProfileDropdown/index.tsx
 msgid "My profile"
@@ -15,10 +70,23 @@ msgstr "My profile"
 msgid "Vietnamese"
 msgstr "Vietnamese"
 
+#: src/components/PageHeader/index.tsx
+#: src/components/PageHeader/index.tsx
+msgid "Home"
+msgstr "Home"
+
 #: src/helpers/locales.ts
 msgid "English"
 msgstr "English"
 
+#: src/constants/role.ts
+msgid "Teacher"
+msgstr "Teacher"
+
 #: src/components/ProfileDropdown/index.tsx
 msgid "Logout"
 msgstr "Logout"
+
+#: src/constants/menu.ts
+msgid "MANAGEMENT"
+msgstr "MANAGEMENT"

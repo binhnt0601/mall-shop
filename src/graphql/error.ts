@@ -1,34 +1,28 @@
-import { onError } from "apollo-link-error";
+import { toast } from '@/helpers/toast';
+import { onError } from 'apollo-link-error';
 
 export const ErrorLink = onError(({ graphQLErrors, networkError }) => {
   try {
-    let errorMessage = "";
-
     if (graphQLErrors) {
-      graphQLErrors.map(({ message, locations, path }) => {
+      graphQLErrors.forEach(({ message, locations, path }) => {
         console.error({ message, locations, path });
-        errorMessage = `${message}`;
-        if (message === "Error, Unverified account") {
+        if (message === 'Error, Unverified account') {
           window.localStorage.clear();
-          if (window?.location?.pathname !== "/") {
-            window.location.assign("/");
+          if (window?.location?.pathname !== '/') {
+            window.location.assign('/');
           }
+        } else {
+          toast.error(message);
         }
       });
     }
 
     if (networkError) {
-      const netErr = networkError as any;
-
-      if (netErr.error && netErr.error.errors) {
-        errorMessage = `[Network error]: ${netErr.error.errors[0].message}`;
-        networkError.message = netErr.error.errors[0].message;
-      } else {
-        errorMessage = `[Network error]: ${networkError}`;
-        networkError.message = errorMessage;
-      }
+      console.log('🚀 ~ ErrorLink ~ networkError:', networkError);
+      toast.error(`[Network error]: ${networkError.message || networkError}`);
     }
   } catch (error) {
-    console.error("ErrorLink caught an error:", error);
+    console.error('ErrorLink caught an error:', error);
+    toast.error('System error! Please try again later.');
   }
 });

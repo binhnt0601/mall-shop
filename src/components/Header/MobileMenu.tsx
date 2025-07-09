@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
-import { useAuth } from '@/providers/auth-provider'; // chỉnh đúng path
 import { Avatar } from '@mui/material';
+import { useAuthStore } from '@/stores/auth/useAuthStore';
 
 interface MenuItem {
   label: string;
@@ -18,7 +18,7 @@ interface MobileMenuProps {
 }
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose, menu }) => {
-  const { auth, logout } = useAuth();
+  const { auth, logout } = useAuthStore();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const pathname = usePathname();
 
@@ -126,10 +126,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose, menu }) => {
           {auth ? (
             <div className='flex flex-col'>
               <Link
-                href='/admin'
+                href='/manage/dashboard'
                 className='rounded px-3 py-2 hover:bg-blue-50'
               >
-                Admin Dashboard
+                Management Site
               </Link>
               <button
                 className='px-3 py-2 text-left text-red-600 hover:bg-red-50'

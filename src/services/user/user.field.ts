@@ -10,6 +10,7 @@ export const userFields = `
   phone: String
   password: String
   role: String
+  userType: String
   avatar: String
   level: Int
   lastLoginAt: DateTime
@@ -20,20 +21,6 @@ export const userFields = `
   referrenceId: String
   createdAt: DateTime
   updatedAt: DateTime
-`;
-
-export const paymentFields = `
-  bankName: String
-  accountBankName: String
-  bankNumber: String
-  walletAddress: String
-`;
-
-export const InfoReferrenceFields = `
-  id: String
-  email: String
-  name: String
-  phone: String
 `;
 
 export const userQuery = `
@@ -48,6 +35,7 @@ export const userQuery = `
   phone
   password
   role
+  userType
   avatar
   level
   lastLoginAt
@@ -56,12 +44,6 @@ export const userQuery = `
   isFirstLogin
   referralCode
   referrenceId
-  payment {
-    bankName
-    accountBankName
-    bankNumber
-    walletAddress
-  }
   createdAt
   updatedAt
 `;

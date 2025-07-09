@@ -11,6 +11,8 @@ const AdminSidebarMenu = ({ setCollapseShow }: any) => {
   const router = useRouter();
   const [menu, menuCategories] = useMenu();
 
+  const uniqueCategories = Array.from(new Set(menuCategories));
+
   const MenuItem = ({ menuData }: { menuData: MenuData }) => {
     const active =
       menuData.code === 'setting'
@@ -65,7 +67,7 @@ const AdminSidebarMenu = ({ setCollapseShow }: any) => {
           <MenuItem menuData={item} />
         </ul>
       ))}
-      {menuCategories.map((cate, i) => {
+      {uniqueCategories.map((cate, i) => {
         const cateMenu = menu.filter((m) => m?.categoryCode?.includes(cate));
 
         return (

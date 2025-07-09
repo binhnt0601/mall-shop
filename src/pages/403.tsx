@@ -17,7 +17,7 @@ const ForbiddenPage = () => {
           Try going back to dashboard
         </p>
         <div className='mt-8 flex justify-center'>
-          <Link href='/dashboard'>Go back Dashboard</Link>
+          <Link href='/manage/dashboard'>Go back Dashboard</Link>
         </div>
       </div>
     </section>

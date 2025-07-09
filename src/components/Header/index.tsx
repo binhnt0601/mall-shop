@@ -34,7 +34,7 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className='fixed w-full z-50 flex items-center justify-between bg-white px-8 shadow'>
+    <div className='fixed w-full z-50 flex items-center justify-between bg-white px-8 shadow h-[72px]'>
       {/* Logo */}
       <Link href='/'>
         <Image width={72} height={52} src='/favicon.png' alt='Brand Logo' />

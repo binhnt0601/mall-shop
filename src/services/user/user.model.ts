@@ -25,6 +25,7 @@ export interface User extends BaseModel {
   phone?: string;
   password?: string;
   role?: UserRoles;
+  userType?: UserTypes;
   avatar?: string;
   level?: number;
   lastLoginAt?: Date;
@@ -32,19 +33,18 @@ export interface User extends BaseModel {
   isFirstLogin?: boolean;
   referralCode?: string;
   referrenceId?: string;
-  payment?: {
-    bankName?: string;
-    accountBankName?: string;
-    bankNumber?: string;
-    walletAddress?: string;
-  };
+  payment?: Payment;
   infoReferrence?: InforReferrence;
 }
 
 export enum UserRoles {
   ADMIN = 'ADMIN',
-  MEMBER = 'MEMBER',
-  MERCHANT = 'MERCHANT',
+  USER = 'USER',
+}
+
+export enum UserTypes {
+  TEACHER = 'TEACHER',
+  STUDENT = 'STUDENT',
 }
 
 export enum UserStatuses {
@@ -62,20 +62,15 @@ export const ROLES = {
   ADMIN: 'ADMIN',
   EDITOR: 'EDITOR',
   MEMBER: 'MEMBER',
-  CUSTOMER: 'CUSTOMER',
   ADMIN_EDITOR: ['ADMIN', 'EDITOR'],
   ADMIN_MEMBER: ['ADMIN', 'MEMBER'],
   ADMIN_MEMBER_EDITOR: ['ADMIN', 'EDITOR', 'MEMBER'],
-  ADMIN_MEMBER_CUSTOMER: ['ADMIN', 'MEMBER', 'CUSTOMER'],
+  ADMIN_MEMBER_CUSTOMER: ['ADMIN', 'MEMBER'],
 };
 
 export const userRoleData = [
   { name: UserRoles.ADMIN, value: UserRoles.ADMIN },
-  { name: UserRoles.MERCHANT, value: UserRoles.MERCHANT },
-];
-
-export const merchantRoleData = [
-  { name: UserRoles.MERCHANT, value: UserRoles.MERCHANT },
+  { name: UserRoles.USER, value: UserRoles.USER },
 ];
 
 export const userStatusData = [
@@ -98,6 +93,6 @@ export type UpdateUserInput = {
 
 export const UserInitialValues = {
   name: '',
-  role: UserRoles.MEMBER,
+  role: UserRoles.USER,
   email: '',
 };
