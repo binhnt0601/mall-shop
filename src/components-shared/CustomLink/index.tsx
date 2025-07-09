@@ -1,16 +1,15 @@
-import React from 'react';
-
-import PropTypes from 'prop-types';
-import Link from 'next/link';
-import Typography from '@mui/material/Typography';
+import Typography from "@mui/material/Typography";
+import Link from "next/link";
+import PropTypes from "prop-types";
+import React from "react";
 
 function CustomLink({
-  to = '/',
-  color = 'white',
-  textDecoration = 'none',
-  padding = '0px',
+  to = "/",
+  color = "white",
+  textDecoration = "none",
+  padding = "0px",
   children,
-  target = '',
+  target = "",
 }: any) {
   return (
     <Link
@@ -21,8 +20,8 @@ function CustomLink({
       <Typography
         sx={{
           color: color,
-          transition: 'background-color 0.3s',
-          borderRadius: '4px',
+          transition: "background-color 0.3s",
+          borderRadius: "4px",
         }}
         fontWeight={600}
       >

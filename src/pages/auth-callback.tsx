@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
-import { useRouter } from 'next/router';
-import PageLoading from '@/components-shared/PageLoading';
-import { SetAuthToken } from '@/graphql/auth';
+import PageLoading from "@/components-shared/PageLoading";
+import { SetAuthToken } from "@/graphql/auth";
 
 export default function AuthCallbackPage() {
   const router = useRouter();
@@ -12,12 +12,12 @@ export default function AuthCallbackPage() {
 
     const token = router.query.token;
 
-    if (typeof token === 'string') {
+    if (typeof token === "string") {
       SetAuthToken(token);
-      router.replace('/');
+      router.replace("/");
     } else {
-      console.warn('No token found in query params.');
-      router.replace('/');
+      console.warn("No token found in query params.");
+      router.replace("/");
     }
   }, [router.isReady, router.query.token]);
 

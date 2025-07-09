@@ -1,16 +1,15 @@
-import './globals.css';
+import "./globals.css";
 
-import React, { Fragment, useEffect } from 'react';
-import { AppProps } from 'next/app';
-import { CacheProvider, EmotionCache } from '@emotion/react';
+import { CacheProvider, EmotionCache } from "@emotion/react";
+import { AppProps } from "next/app";
+import React, { Fragment, useEffect } from "react";
 
-import AppProviders from '@/providers/app-provider';
-import { useAuthStore } from '@/stores/auth/useAuthStore';
-import { GetAuthToken } from '@/graphql/auth';
+import { GetAuthToken } from "@/graphql/auth";
+import AppProviders from "@/providers/app-provider";
+import { useAuthStore } from "@/stores/auth/useAuthStore";
+import createEmotionCache from "@/utils/createEmotionCache";
 
-import createEmotionCache from '@/utils/createEmotionCache';
-
-type NextPageWithLayout = AppProps['Component'] & {
+type NextPageWithLayout = AppProps["Component"] & {
   getLayout?: (page: React.ReactElement) => React.ReactNode;
   Layout?: React.ComponentType<any>;
   LayoutProps?: Record<string, any>;

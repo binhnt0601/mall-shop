@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 export function useLocalStorage<T>(key: string, initialValue: T) {
   // State to store our value
@@ -6,7 +6,7 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
   const [storedValue, setStoredValue] = useState(() => {
     try {
       // Get from local storage by key
-      if (typeof window !== 'undefined') {
+      if (typeof window !== "undefined") {
         const item = window.localStorage.getItem(key);
 
         // Parse stored json or if none return initialValue
@@ -33,7 +33,7 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
 
       setStoredValue(valueToStore);
       // Save to local storage
-      if (typeof window !== 'undefined') {
+      if (typeof window !== "undefined") {
         window.localStorage.setItem(key, JSON.stringify(valueToStore));
       }
     } catch (error) {

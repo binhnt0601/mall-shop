@@ -1,9 +1,10 @@
-'use client';
+"use client";
 
-import React from 'react';
-import NProgress from 'nprogress';
-import PageLoading from '@/components-shared/PageLoading';
-import { useLoadingStore } from '@/stores/loadingStore';
+import NProgress from "nprogress";
+import React from "react";
+
+import PageLoading from "@/components-shared/PageLoading";
+import { useLoadingStore } from "@/stores/loadingStore";
 
 const LoadingProvider: React.FC<{ children: React.ReactNode }> = ({
   children,

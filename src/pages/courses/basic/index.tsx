@@ -1,29 +1,30 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { Box, Container } from '@mui/material';
-import HeaderSection from '@/modules/BasicCommunicationPage/HeaderSection';
-import DialogueSection from '@/modules/BasicCommunicationPage/DialogueSection';
-import QuizSection from '@/modules/BasicCommunicationPage/QuizSection';
-import VoiceRecorderSection from '@/modules/BasicCommunicationPage/VoiceRecorderSection';
-import ErrorSnackbar from '@/modules/BasicCommunicationPage/ErrorSnackbar';
-import MainLayout from '@/layouts/MainLayout';
+import { Box, Container } from "@mui/material";
+import React, { useState } from "react";
+
+import MainLayout from "@/layouts/MainLayout";
+import DialogueSection from "@/modules/BasicCommunicationPage/DialogueSection";
+import ErrorSnackbar from "@/modules/BasicCommunicationPage/ErrorSnackbar";
+import HeaderSection from "@/modules/BasicCommunicationPage/HeaderSection";
+import QuizSection from "@/modules/BasicCommunicationPage/QuizSection";
+import VoiceRecorderSection from "@/modules/BasicCommunicationPage/VoiceRecorderSection";
 
 const BasicCommunicationPage = () => {
   // Lift error message to parent to show Snackbar globally
-  const [errorMsg, setErrorMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState("");
 
   return (
     <Box
       sx={{
-        minHeight: 'calc(100vh - 152px)',
-        background: 'linear-gradient(135deg, #e0e7ff 0%, #f0f4ff 100%)',
+        minHeight: "calc(100vh - 152px)",
+        background: "linear-gradient(135deg, #e0e7ff 0%, #f0f4ff 100%)",
         py: { xs: 4, md: 8 },
-        position: 'relative',
-        overflowX: 'hidden',
+        position: "relative",
+        overflowX: "hidden",
       }}
     >
-      <Container maxWidth='lg' sx={{ position: 'relative', zIndex: 1 }}>
+      <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
         <HeaderSection />
 
         <DialogueSection />
@@ -35,7 +36,7 @@ const BasicCommunicationPage = () => {
         <ErrorSnackbar
           open={Boolean(errorMsg)}
           message={errorMsg}
-          onClose={() => setErrorMsg('')}
+          onClose={() => setErrorMsg("")}
         />
       </Container>
     </Box>

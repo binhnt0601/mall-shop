@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   PieChart,
   Pie,
@@ -6,20 +6,20 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-} from 'recharts';
+} from "recharts";
 
-const COLORS = ['#3b82f6', '#22c55e'];
+const COLORS = ["#3b82f6", "#22c55e"];
 
 export default function UserRatioPieChart({ data }: any) {
   return (
-    <ResponsiveContainer width='100%' height={250}>
+    <ResponsiveContainer width="100%" height={250}>
       <PieChart>
         <Pie
           data={data}
-          dataKey='value'
-          nameKey='name'
-          cx='50%'
-          cy='50%'
+          dataKey="value"
+          nameKey="name"
+          cx="50%"
+          cy="50%"
           outerRadius={80}
           innerRadius={40}
           label
@@ -29,7 +29,7 @@ export default function UserRatioPieChart({ data }: any) {
           ))}
         </Pie>
         <Tooltip />
-        <Legend verticalAlign='bottom' height={36} />
+        <Legend verticalAlign="bottom" height={36} />
       </PieChart>
     </ResponsiveContainer>
   );

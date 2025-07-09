@@ -1,5 +1,4 @@
-'use client';
-import React, { useState } from 'react';
+"use client";
 import {
   Box,
   Typography,
@@ -7,20 +6,21 @@ import {
   Button,
   MenuItem,
   Paper,
-} from '@mui/material';
+} from "@mui/material";
+import React, { useState } from "react";
 
 const courseOptions = [
-  { label: 'Beginner', value: 'beginner' },
-  { label: 'Intermediate', value: 'intermediate' },
-  { label: 'Advanced', value: 'advanced' },
-  { label: 'Conversation Practice', value: 'conversation' },
+  { label: "Beginner", value: "beginner" },
+  { label: "Intermediate", value: "intermediate" },
+  { label: "Advanced", value: "advanced" },
+  { label: "Conversation Practice", value: "conversation" },
 ];
 
 export default function IeltsRegister() {
   const [form, setForm] = useState({
-    fullName: '',
-    email: '',
-    course: '',
+    fullName: "",
+    email: "",
+    course: "",
   });
   const [submitted, setSubmitted] = useState(false);
 
@@ -36,19 +36,19 @@ export default function IeltsRegister() {
   };
 
   return (
-    <Box id='register' sx={{ mb: 8 }}>
+    <Box id="register" sx={{ mb: 8 }}>
       <Typography
-        variant='h4'
-        sx={{ mb: 3, fontWeight: 'bold', color: '#004d40' }}
+        variant="h4"
+        sx={{ mb: 3, fontWeight: "bold", color: "#004d40" }}
       >
         Register for IELTS Course
       </Typography>
       {!submitted ? (
-        <Paper sx={{ p: 4, maxWidth: 600, mx: 'auto' }} elevation={3}>
+        <Paper sx={{ p: 4, maxWidth: 600, mx: "auto" }} elevation={3}>
           <form onSubmit={handleSubmit}>
             <TextField
-              label='Full Name'
-              name='fullName'
+              label="Full Name"
+              name="fullName"
               value={form.fullName}
               onChange={handleChange}
               fullWidth
@@ -56,9 +56,9 @@ export default function IeltsRegister() {
               sx={{ mb: 3 }}
             />
             <TextField
-              label='Email Address'
-              name='email'
-              type='email'
+              label="Email Address"
+              name="email"
+              type="email"
               value={form.email}
               onChange={handleChange}
               fullWidth
@@ -67,8 +67,8 @@ export default function IeltsRegister() {
             />
             <TextField
               select
-              label='Select Course'
-              name='course'
+              label="Select Course"
+              name="course"
               value={form.course}
               onChange={handleChange}
               fullWidth
@@ -81,16 +81,16 @@ export default function IeltsRegister() {
                 </MenuItem>
               ))}
             </TextField>
-            <Button variant='contained' color='primary' fullWidth type='submit'>
+            <Button variant="contained" color="primary" fullWidth type="submit">
               Submit
             </Button>
           </form>
         </Paper>
       ) : (
         <Typography
-          variant='h6'
-          textAlign='center'
-          sx={{ color: '#00796b', mt: 3, fontWeight: 'bold' }}
+          variant="h6"
+          textAlign="center"
+          sx={{ color: "#00796b", mt: 3, fontWeight: "bold" }}
         >
           Thank you for registering! We will contact you soon.
         </Typography>

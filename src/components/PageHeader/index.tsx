@@ -1,16 +1,17 @@
-import BreadCrumbs from '@/components-shared/Breadcrumbs';
-import useMenu from '@/hooks/useMenu';
-import { t } from '@lingui/macro';
-import clsx from 'clsx';
-import { useRouter } from 'next/router';
-import React from 'react';
+import { t } from "@lingui/macro";
+import clsx from "clsx";
+import { useRouter } from "next/router";
+import React from "react";
+
+import BreadCrumbs from "@/components-shared/Breadcrumbs";
+import useMenu from "@/hooks/useMenu";
 
 interface PageHeaderProps {
   className?: string;
   children?: React.ReactNode;
 }
 
-const HOME_PATH = '/manage/dashboard';
+const HOME_PATH = "/manage/dashboard";
 
 const PageHeader: React.FC<PageHeaderProps> = ({ className, children }) => {
   const router = useRouter();
@@ -31,15 +32,15 @@ const PageHeader: React.FC<PageHeaderProps> = ({ className, children }) => {
     ];
   }, [router.pathname, menuItem]);
 
-  const isExcludedPath = ['/403', '/404'].includes(router.pathname);
+  const isExcludedPath = ["/403", "/404"].includes(router.pathname);
 
   if (isExcludedPath)
-    return <div className={clsx('mt-5', className)}>{children}</div>;
+    return <div className={clsx("mt-5", className)}>{children}</div>;
 
   return (
-    <div className='mb-5'>
+    <div className="mb-5">
       <BreadCrumbs breadcrumbs={breadcrumbs} />
-      <div className={clsx('mt-5', className)}>{children}</div>
+      <div className={clsx("mt-5", className)}>{children}</div>
     </div>
   );
 };

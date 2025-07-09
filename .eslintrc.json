@@ -5,10 +5,42 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended"
   ],
-  "plugins": ["react", "@typescript-eslint", "prettier", "import"],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "prettier",
+    "import",
+    "unused-imports"
+  ],
   "parser": "@typescript-eslint/parser",
   "rules": {
-    "prettier/prettier": "error",
+    "react-hooks/exhaustive-deps": "off",
+    "@next/next/no-img-element": "off",
+    "quotes": ["error", "double"],
+    "@next/next/no-html-link-for-pages": "off",
+    "@next/next/no-page-custom-font": "off",
+    // Tự động xóa import không sử dụng
+    "unused-imports/no-unused-imports": "error",
+    // Rename biến không sử dụng thành `_`
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "arrowParens": "always",
+        "singleQuote": false,
+        "jsxSingleQuote": false,
+        "tabWidth": 2,
+        "semi": true
+      }
+    ],
     "import/order": [
       "error",
       {
@@ -19,24 +51,23 @@
           ["parent", "sibling", "index"]
         ],
         "newlines-between": "always",
-        "alphabetize": {
-          "order": "asc",
-          "caseInsensitive": true
-        },
+        "alphabetize": { "order": "asc", "caseInsensitive": true },
         "pathGroups": [
-          {
-            "pattern": "@/**",
-            "group": "internal",
-            "position": "after"
-          }
+          { "pattern": "@/**", "group": "internal", "position": "after" }
         ],
         "pathGroupsExcludedImportTypes": ["builtin", "external"]
       }
-    ]
+    ],
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unused-vars": "warn"
   },
   "settings": {
-    "react": {
-      "version": "detect"
+    "react": { "version": "detect" },
+    "tailwindcss": {
+      "callees": ["clsx"],
+      "classRegex": "^(class(Name)|theme)?$"
     }
   }
 }

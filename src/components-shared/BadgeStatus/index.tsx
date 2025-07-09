@@ -1,5 +1,6 @@
-import { Chip } from '@mui/material';
-import { useStatusLabel } from '@/hooks/useStatusLabel';
+import { Chip } from "@mui/material";
+
+import { useStatusLabel } from "@/hooks/useStatusLabel";
 
 export function BadgeStatus({ status }: { status?: string }) {
   const { color, text, label } = useStatusLabel(status);
@@ -7,14 +8,14 @@ export function BadgeStatus({ status }: { status?: string }) {
   return (
     <Chip
       label={label}
-      size='small'
+      size="small"
       sx={{
         background: color,
         color: text,
         fontWeight: 500,
-        textTransform: 'capitalize',
+        textTransform: "capitalize",
       }}
-      variant='filled'
+      variant="filled"
     />
   );
 }

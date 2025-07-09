@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { Box, Paper, Typography } from '@mui/material';
+import { Paper, Typography } from "@mui/material";
+import React from "react";
 
-const dialogueAudioUrl = '/audio/basic-communication-dialogue.mp3';
+const dialogueAudioUrl = "/audio/basic-communication-dialogue.mp3";
 
 const DialogueSection = () => (
   <Paper
@@ -11,14 +11,14 @@ const DialogueSection = () => (
     sx={{
       p: 4,
       mb: 8,
-      backgroundColor: 'white',
+      backgroundColor: "white",
       borderRadius: 3,
       maxWidth: 900,
-      mx: 'auto',
-      boxShadow: '0 10px 25px rgba(3,90,142,0.12)',
+      mx: "auto",
+      boxShadow: "0 10px 25px rgba(3,90,142,0.12)",
     }}
   >
-    <Typography variant='h5' fontWeight='bold' mb={2} color='#035a8e'>
+    <Typography variant="h5" fontWeight="bold" mb={2} color="#035a8e">
       Sample Dialogue
     </Typography>
     <Typography sx={{ mb: 1 }}>
@@ -30,8 +30,8 @@ const DialogueSection = () => (
     <Typography sx={{ mb: 2 }}>
       <strong>Anna:</strong> I’m great, thanks for asking!
     </Typography>
-    <audio controls style={{ width: '100%', outline: 'none' }}>
-      <source src={dialogueAudioUrl} type='audio/mp3' />
+    <audio controls style={{ width: "100%", outline: "none" }}>
+      <source src={dialogueAudioUrl} type="audio/mp3" />
       Your browser does not support the audio element.
     </audio>
   </Paper>

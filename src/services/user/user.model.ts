@@ -1,4 +1,4 @@
-import { BaseModel } from '@/helpers/base-model';
+import { BaseModel } from "@/helpers/base-model";
 
 type Payment = {
   bankName?: string;
@@ -38,34 +38,34 @@ export interface User extends BaseModel {
 }
 
 export enum UserRoles {
-  ADMIN = 'ADMIN',
-  USER = 'USER',
+  ADMIN = "ADMIN",
+  USER = "USER",
 }
 
 export enum UserTypes {
-  TEACHER = 'TEACHER',
-  STUDENT = 'STUDENT',
+  TEACHER = "TEACHER",
+  STUDENT = "STUDENT",
 }
 
 export enum UserStatuses {
-  ACTIVE = 'ACTIVE',
-  INACTIVE = 'INACTIVE',
+  ACTIVE = "ACTIVE",
+  INACTIVE = "INACTIVE",
 }
 
 export enum UserServiceStatus {
-  FREE = 'FREE',
-  EXPIRED = 'EXPIRED',
-  PAID = 'PAID',
+  FREE = "FREE",
+  EXPIRED = "EXPIRED",
+  PAID = "PAID",
 }
 
 export const ROLES = {
-  ADMIN: 'ADMIN',
-  EDITOR: 'EDITOR',
-  MEMBER: 'MEMBER',
-  ADMIN_EDITOR: ['ADMIN', 'EDITOR'],
-  ADMIN_MEMBER: ['ADMIN', 'MEMBER'],
-  ADMIN_MEMBER_EDITOR: ['ADMIN', 'EDITOR', 'MEMBER'],
-  ADMIN_MEMBER_CUSTOMER: ['ADMIN', 'MEMBER'],
+  ADMIN: "ADMIN",
+  EDITOR: "EDITOR",
+  MEMBER: "MEMBER",
+  ADMIN_EDITOR: ["ADMIN", "EDITOR"],
+  ADMIN_MEMBER: ["ADMIN", "MEMBER"],
+  ADMIN_MEMBER_EDITOR: ["ADMIN", "EDITOR", "MEMBER"],
+  ADMIN_MEMBER_CUSTOMER: ["ADMIN", "MEMBER"],
 };
 
 export const userRoleData = [
@@ -92,7 +92,7 @@ export type UpdateUserInput = {
 };
 
 export const UserInitialValues = {
-  name: '',
+  name: "",
   role: UserRoles.USER,
-  email: '',
+  email: "",
 };

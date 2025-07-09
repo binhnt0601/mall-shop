@@ -1,11 +1,13 @@
-import { ReactNode, useEffect, useState } from 'react';
-import AdminSidebar from './AdminSidebar';
-import { GetAuthToken } from '@/graphql/auth';
-import { useRouter } from 'next/router';
-import AdminHeaderBar from './AdminHeaderbar';
-import PageHeader from '@/components/PageHeader';
-import { useAuthStore } from '@/stores/auth/useAuthStore';
-import { AuthStatuses } from '@/stores/auth/types';
+import { useRouter } from "next/router";
+import { ReactNode, useEffect, useState } from "react";
+
+import PageHeader from "@/components/PageHeader";
+import { GetAuthToken } from "@/graphql/auth";
+import { AuthStatuses } from "@/stores/auth/types";
+import { useAuthStore } from "@/stores/auth/useAuthStore";
+
+import AdminHeaderBar from "./AdminHeaderbar";
+import AdminSidebar from "./AdminSidebar";
 
 interface LayoutProps {
   children: ReactNode;
@@ -19,7 +21,7 @@ export default function MainLayout({ children }: LayoutProps) {
   useEffect(() => {
     const token = GetAuthToken();
     if (!token) {
-      window.location.assign('/signin');
+      window.location.assign("/signin");
     }
 
     if (authStatus === AuthStatuses.LOADED) {
@@ -29,10 +31,10 @@ export default function MainLayout({ children }: LayoutProps) {
     }
     if (
       auth?.isFirstLogin &&
-      router.pathname !== '/first-login' &&
+      router.pathname !== "/first-login" &&
       router.isReady
     ) {
-      router.replace('/first-login');
+      router.replace("/first-login");
     }
   }, [authStatus, auth, router.pathname, router.isReady]);
 
@@ -42,9 +44,9 @@ export default function MainLayout({ children }: LayoutProps) {
         collapseShow={collapseShow}
         setCollapseShow={setCollapseShow}
       />
-      <div className='flex flex-col min-h-screen md:ml-64 lg:ml-72'>
+      <div className="flex flex-col min-h-screen md:ml-64 lg:ml-72">
         <AdminHeaderBar setCollapseShow={setCollapseShow} />
-        <div className='mt-[61px] flex-1 p-5'>
+        <div className="mt-[61px] flex-1 p-5">
           <PageHeader />
           {children}
         </div>

@@ -1,6 +1,7 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import ChatIcon from "@mui/icons-material/Chat";
+import CloseIcon from "@mui/icons-material/Close";
 import {
   Box,
   IconButton,
@@ -10,37 +11,36 @@ import {
   Button,
   Stack,
   Fade,
-} from '@mui/material';
-import ChatIcon from '@mui/icons-material/Chat';
-import CloseIcon from '@mui/icons-material/Close';
+} from "@mui/material";
+import React, { useState, useEffect, useRef } from "react";
 
 const LiveChatSupport = () => {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { from: 'bot', text: 'Hi! How can we assist you today?' },
+    { from: "bot", text: "Hi! How can we assist you today?" },
   ]);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Scroll to bottom on new message
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   // Handle sending message
   const sendMessage = () => {
     if (!input.trim()) return;
 
-    setMessages((prev) => [...prev, { from: 'user', text: input.trim() }]);
-    setInput('');
+    setMessages((prev) => [...prev, { from: "user", text: input.trim() }]);
+    setInput("");
 
     // Simulate bot response with delay
     setTimeout(() => {
       setMessages((prev) => [
         ...prev,
         {
-          from: 'bot',
-          text: 'Thank you for your message. Our support team will get back to you shortly.',
+          from: "bot",
+          text: "Thank you for your message. Our support team will get back to you shortly.",
         },
       ]);
     }, 1500);
@@ -51,18 +51,18 @@ const LiveChatSupport = () => {
       {/* Floating button */}
       <IconButton
         onClick={() => setOpen((v) => !v)}
-        color='primary'
+        color="primary"
         sx={{
-          position: 'fixed',
+          position: "fixed",
           bottom: 24,
           right: 24,
-          bgcolor: 'primary.main',
-          color: 'white',
-          '&:hover': { bgcolor: 'primary.dark' },
+          bgcolor: "primary.main",
+          color: "white",
+          "&:hover": { bgcolor: "primary.dark" },
           zIndex: 1500,
           boxShadow: 3,
         }}
-        aria-label={open ? 'Close live chat' : 'Open live chat'}
+        aria-label={open ? "Close live chat" : "Open live chat"}
       >
         {open ? <CloseIcon /> : <ChatIcon />}
       </IconButton>
@@ -72,33 +72,33 @@ const LiveChatSupport = () => {
         <Paper
           elevation={8}
           sx={{
-            position: 'fixed',
+            position: "fixed",
             bottom: 80,
             right: 24,
             width: { xs: 320, sm: 400 },
             maxHeight: 450,
-            display: open ? 'flex' : 'none',
-            flexDirection: 'column',
+            display: open ? "flex" : "none",
+            flexDirection: "column",
             borderRadius: 2,
             boxShadow: 5,
-            backgroundColor: 'background.paper',
+            backgroundColor: "background.paper",
             zIndex: 1400,
           }}
-          role='region'
-          aria-live='polite'
-          aria-label='Live chat support'
+          role="region"
+          aria-live="polite"
+          aria-label="Live chat support"
         >
           <Box
             sx={{
               px: 2,
               py: 1,
-              backgroundColor: 'primary.main',
-              color: 'primary.contrastText',
+              backgroundColor: "primary.main",
+              color: "primary.contrastText",
               borderTopLeftRadius: 8,
               borderTopRightRadius: 8,
             }}
           >
-            <Typography variant='h6' fontWeight='bold'>
+            <Typography variant="h6" fontWeight="bold">
               Live Support
             </Typography>
           </Box>
@@ -106,27 +106,27 @@ const LiveChatSupport = () => {
           <Box
             sx={{
               flexGrow: 1,
-              overflowY: 'auto',
+              overflowY: "auto",
               p: 2,
-              bgcolor: 'grey.100',
+              bgcolor: "grey.100",
             }}
           >
             {messages.map(({ from, text }, idx) => (
               <Box
                 key={idx}
                 sx={{
-                  display: 'flex',
-                  justifyContent: from === 'user' ? 'flex-end' : 'flex-start',
+                  display: "flex",
+                  justifyContent: from === "user" ? "flex-end" : "flex-start",
                   mb: 1,
                 }}
               >
                 <Paper
                   sx={{
                     p: 1.5,
-                    maxWidth: '70%',
-                    bgcolor: from === 'user' ? 'primary.main' : 'grey.300',
+                    maxWidth: "70%",
+                    bgcolor: from === "user" ? "primary.main" : "grey.300",
                     color:
-                      from === 'user' ? 'primary.contrastText' : 'text.primary',
+                      from === "user" ? "primary.contrastText" : "text.primary",
                   }}
                 >
                   {text}
@@ -137,30 +137,30 @@ const LiveChatSupport = () => {
           </Box>
 
           <Stack
-            direction='row'
+            direction="row"
             spacing={1}
-            sx={{ p: 1, borderTop: '1px solid', borderColor: 'divider' }}
+            sx={{ p: 1, borderTop: "1px solid", borderColor: "divider" }}
           >
             <TextField
-              variant='outlined'
-              size='small'
-              placeholder='Type your message...'
+              variant="outlined"
+              size="small"
+              placeholder="Type your message..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => {
-                if (e.key === 'Enter') {
+                if (e.key === "Enter") {
                   e.preventDefault();
                   sendMessage();
                 }
               }}
               fullWidth
-              aria-label='Type your message'
+              aria-label="Type your message"
             />
             <Button
-              variant='contained'
-              color='primary'
+              variant="contained"
+              color="primary"
               onClick={sendMessage}
-              aria-label='Send message'
+              aria-label="Send message"
               disabled={!input.trim()}
             >
               Send

@@ -1,6 +1,5 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
 import {
   Box,
   Typography,
@@ -10,37 +9,38 @@ import {
   TextField,
   Button,
   Paper,
-} from '@mui/material';
-import { motion, AnimatePresence } from 'framer-motion';
+} from "@mui/material";
+import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect } from "react";
 
 const quizQuestions = [
   {
     id: 1,
-    type: 'multiple-choice',
-    question: 'How do you greet someone in the morning?',
-    options: ['Good evening', 'Good morning', 'Good night', 'Hello night'],
-    answer: 'Good morning',
+    type: "multiple-choice",
+    question: "How do you greet someone in the morning?",
+    options: ["Good evening", "Good morning", "Good night", "Hello night"],
+    answer: "Good morning",
   },
   {
     id: 2,
-    type: 'fill-blank',
-    question: 'Complete the sentence: "I ____ fine, thank you."',
-    answer: ['am', 'am.'],
+    type: "fill-blank",
+    question: "Complete the sentence: 'I ____ fine, thank you.'",
+    answer: ["am", "am."],
   },
   {
     id: 3,
-    type: 'order-sentence',
-    question: 'Arrange the words to form a correct sentence: "fine / am / I"',
-    words: ['fine', 'am', 'I'],
-    answer: ['I', 'am', 'fine'],
+    type: "order-sentence",
+    question: "Arrange the words to form a correct sentence: 'fine / am / I'",
+    words: ["fine", "am", "I"],
+    answer: ["I", "am", "fine"],
   },
 ];
 
 // shuffle helper
 const shuffle = <T,>(array: T[]) => {
-  let arr = [...array];
+  const arr = [...array];
   for (let i = arr.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
+    const j = Math.floor(Math.random() * (i + 1));
     [arr[i], arr[j]] = [arr[j], arr[i]];
   }
   return arr;
@@ -59,7 +59,7 @@ const QuizSection: React.FC<Props> = ({ setErrorMsg }) => {
   const [shuffledWords, setShuffledWords] = useState<string[]>([]);
 
   useEffect(() => {
-    const orderQ = quizQuestions.find((q) => q.type === 'order-sentence');
+    const orderQ = quizQuestions.find((q) => q.type === "order-sentence");
     if (orderQ && orderQ.words) {
       setShuffledWords(shuffle(orderQ.words));
     }
@@ -96,7 +96,7 @@ const QuizSection: React.FC<Props> = ({ setErrorMsg }) => {
     const question = quizQuestions[currentQuestion];
     const userAnswer = answers[question.id ?? currentQuestion];
     if (!userAnswer || (Array.isArray(userAnswer) && userAnswer.length === 0)) {
-      setErrorMsg('Please answer the question before proceeding.');
+      setErrorMsg("Please answer the question before proceeding.");
       return false;
     }
     return true;
@@ -116,7 +116,7 @@ const QuizSection: React.FC<Props> = ({ setErrorMsg }) => {
     if (currentQuestion > 0) {
       setCurrentQuestion(currentQuestion - 1);
       setShowResult(false);
-      setErrorMsg('');
+      setErrorMsg("");
     }
   };
 
@@ -124,11 +124,11 @@ const QuizSection: React.FC<Props> = ({ setErrorMsg }) => {
     let sc = 0;
     quizQuestions.forEach((q, i) => {
       const ans = answers[q.id ?? i];
-      if (q.type === 'multiple-choice') {
+      if (q.type === "multiple-choice") {
         if (ans === q.answer) sc++;
-      } else if (q.type === 'fill-blank') {
+      } else if (q.type === "fill-blank") {
         if (ans && q.answer.includes(ans.toLowerCase())) sc++;
-      } else if (q.type === 'order-sentence') {
+      } else if (q.type === "order-sentence") {
         if (
           Array.isArray(ans) &&
           ans.length === q.answer.length &&
@@ -146,18 +146,18 @@ const QuizSection: React.FC<Props> = ({ setErrorMsg }) => {
       elevation={3}
       sx={{
         p: 4,
-        backgroundColor: 'white',
+        backgroundColor: "white",
         borderRadius: 3,
         maxWidth: 900,
-        mx: 'auto',
-        boxShadow: '0 10px 25px rgba(3,90,142,0.12)',
+        mx: "auto",
+        boxShadow: "0 10px 25px rgba(3,90,142,0.12)",
       }}
     >
-      <Typography variant='h5' fontWeight='bold' mb={4} color='#035a8e'>
+      <Typography variant="h5" fontWeight="bold" mb={4} color="#035a8e">
         Interactive Quiz
       </Typography>
 
-      <AnimatePresence mode='wait'>
+      <AnimatePresence mode="wait">
         <motion.div
           key={currentQuestion}
           initial={{ opacity: 0, x: 50 }}
@@ -168,38 +168,38 @@ const QuizSection: React.FC<Props> = ({ setErrorMsg }) => {
           {(() => {
             const q = quizQuestions[currentQuestion];
             switch (q.type) {
-              case 'multiple-choice':
+              case "multiple-choice":
                 return (
                   <>
-                    <Typography fontWeight='medium' mb={2}>
+                    <Typography fontWeight="medium" mb={2}>
                       {currentQuestion + 1}. {q.question}
                     </Typography>
                     <RadioGroup
-                      value={answers[q.id] || ''}
+                      value={answers[q.id] || ""}
                       onChange={(e) => handleChangeMC(q.id, e.target.value)}
                     >
                       {q.options?.map((option) => (
                         <FormControlLabel
                           key={option}
                           value={option}
-                          control={<Radio color='primary' />}
+                          control={<Radio color="primary" />}
                           label={option}
                         />
                       ))}
                     </RadioGroup>
                   </>
                 );
-              case 'fill-blank':
+              case "fill-blank":
                 return (
                   <>
-                    <Typography fontWeight='medium' mb={2}>
+                    <Typography fontWeight="medium" mb={2}>
                       {currentQuestion + 1}. {q.question}
                     </Typography>
                     <TextField
                       fullWidth
-                      variant='outlined'
-                      placeholder='Type your answer here...'
-                      value={answers[q.id] || ''}
+                      variant="outlined"
+                      placeholder="Type your answer here..."
+                      value={answers[q.id] || ""}
                       onChange={(e) =>
                         handleChangeFillBlank(q.id, e.target.value)
                       }
@@ -207,16 +207,16 @@ const QuizSection: React.FC<Props> = ({ setErrorMsg }) => {
                     />
                   </>
                 );
-              case 'order-sentence':
+              case "order-sentence":
                 return (
                   <>
-                    <Typography fontWeight='medium' mb={2}>
+                    <Typography fontWeight="medium" mb={2}>
                       {currentQuestion + 1}. {q.question}
                     </Typography>
                     <Box
                       sx={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
+                        display: "flex",
+                        flexWrap: "wrap",
                         gap: 1,
                         mb: 2,
                       }}
@@ -226,18 +226,18 @@ const QuizSection: React.FC<Props> = ({ setErrorMsg }) => {
                         return (
                           <Button
                             key={word}
-                            variant={selected ? 'contained' : 'outlined'}
-                            color='primary'
-                            size='small'
+                            variant={selected ? "contained" : "outlined"}
+                            color="primary"
+                            size="small"
                             onClick={() => handleWordClick(word)}
-                            sx={{ cursor: 'pointer' }}
+                            sx={{ cursor: "pointer" }}
                           >
                             {word}
                           </Button>
                         );
                       })}
                     </Box>
-                    <Typography variant='body2' color='text.secondary'>
+                    <Typography variant="body2" color="text.secondary">
                       Click words to build the correct sentence in order.
                     </Typography>
                   </>
@@ -251,39 +251,39 @@ const QuizSection: React.FC<Props> = ({ setErrorMsg }) => {
 
       <Box
         sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
+          display: "flex",
+          justifyContent: "space-between",
           mt: 4,
           gap: 2,
-          flexWrap: 'wrap',
+          flexWrap: "wrap",
         }}
       >
         <Button
-          variant='outlined'
-          color='primary'
+          variant="outlined"
+          color="primary"
           disabled={currentQuestion === 0}
           onClick={handlePrev}
         >
           Previous
         </Button>
         {currentQuestion < quizQuestions.length - 1 && (
-          <Button variant='contained' color='primary' onClick={handleNext}>
+          <Button variant="contained" color="primary" onClick={handleNext}>
             Next
           </Button>
         )}
         {currentQuestion === quizQuestions.length - 1 && (
-          <Button variant='contained' color='success' onClick={handleNext}>
+          <Button variant="contained" color="success" onClick={handleNext}>
             Submit
           </Button>
         )}
       </Box>
 
       {showResult && (
-        <Box textAlign='center' mt={3}>
+        <Box textAlign="center" mt={3}>
           <Typography
-            variant='h6'
-            fontWeight='bold'
-            color={score >= quizQuestions.length / 2 ? 'green' : 'error'}
+            variant="h6"
+            fontWeight="bold"
+            color={score >= quizQuestions.length / 2 ? "green" : "error"}
           >
             Your Score: {score} / {quizQuestions.length}
           </Typography>

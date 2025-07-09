@@ -1,6 +1,5 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
 import {
   Box,
   Container,
@@ -12,23 +11,25 @@ import {
   MenuItem,
   Divider,
   Grid,
-} from '@mui/material';
-import MainLayout from '@/layouts/MainLayout';
+} from "@mui/material";
+import React, { useState } from "react";
+
+import MainLayout from "@/layouts/MainLayout";
 
 const courses = [
-  'Beginner',
-  'Intermediate',
-  'Advanced',
-  'Conversation Practice',
+  "Beginner",
+  "Intermediate",
+  "Advanced",
+  "Conversation Practice",
 ];
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    course: '',
-    message: '',
+    name: "",
+    email: "",
+    phone: "",
+    course: "",
+    message: "",
   });
 
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
@@ -36,19 +37,19 @@ const ContactPage = () => {
   const [snackbar, setSnackbar] = useState<{
     open: boolean;
     message: string;
-    severity: 'success' | 'error';
-  }>({ open: false, message: '', severity: 'success' });
+    severity: "success" | "error";
+  }>({ open: false, message: "", severity: "success" });
 
   const validate = () => {
     const errors: { [key: string]: string } = {};
-    if (!formData.name.trim()) errors.name = 'Name is required';
-    if (!formData.email.trim()) errors.email = 'Email is required';
+    if (!formData.name.trim()) errors.name = "Name is required";
+    if (!formData.email.trim()) errors.email = "Email is required";
     else if (!/\S+@\S+\.\S+/.test(formData.email))
-      errors.email = 'Invalid email';
+      errors.email = "Invalid email";
     if (formData.phone && !/^\+?[\d\s-]{7,15}$/.test(formData.phone))
-      errors.phone = 'Invalid phone number';
-    if (!formData.course) errors.course = 'Please select a course';
-    if (!formData.message.trim()) errors.message = 'Message is required';
+      errors.phone = "Invalid phone number";
+    if (!formData.course) errors.course = "Please select a course";
+    if (!formData.message.trim()) errors.message = "Message is required";
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
   };
@@ -59,7 +60,7 @@ const ContactPage = () => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     if (formErrors[name]) {
-      setFormErrors((prev) => ({ ...prev, [name]: '' }));
+      setFormErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
@@ -74,16 +75,16 @@ const ContactPage = () => {
 
       setSnackbar({
         open: true,
-        message: 'Message sent successfully!',
-        severity: 'success',
+        message: "Message sent successfully!",
+        severity: "success",
       });
 
-      setFormData({ name: '', email: '', phone: '', course: '', message: '' });
+      setFormData({ name: "", email: "", phone: "", course: "", message: "" });
     } catch (error) {
       setSnackbar({
         open: true,
-        message: 'Failed to send message. Please try again later.',
-        severity: 'error',
+        message: "Failed to send message. Please try again later.",
+        severity: "error",
       });
     } finally {
       setLoading(false);
@@ -94,7 +95,7 @@ const ContactPage = () => {
     _event?: React.SyntheticEvent | Event,
     reason?: string,
   ) => {
-    if (reason === 'clickaway') return;
+    if (reason === "clickaway") return;
     setSnackbar((prev) => ({ ...prev, open: false }));
   };
 
@@ -102,21 +103,21 @@ const ContactPage = () => {
     <Box
       sx={{
         py: 8,
-        minHeight: 'calc(100vh - 152px)',
-        backgroundColor: '#f0f4ff',
+        minHeight: "calc(100vh - 152px)",
+        backgroundColor: "#f0f4ff",
       }}
     >
-      <Container maxWidth='lg'>
+      <Container maxWidth="lg">
         <Typography
-          variant='h3'
-          color='#035a8e'
-          fontWeight='bold'
-          textAlign='center'
+          variant="h3"
+          color="#035a8e"
+          fontWeight="bold"
+          textAlign="center"
           gutterBottom
         >
           Contact Us
         </Typography>
-        <Typography variant='body1' textAlign='center' mb={6}>
+        <Typography variant="body1" textAlign="center" mb={6}>
           Have questions or feedback? Send us a message and we will get back to
           you soon.
         </Typography>
@@ -124,14 +125,14 @@ const ContactPage = () => {
         <Grid container spacing={6}>
           <Grid item xs={12} md={7}>
             <Box
-              component='form'
+              component="form"
               onSubmit={handleSubmit}
-              sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}
+              sx={{ display: "flex", flexDirection: "column", gap: 3 }}
               noValidate
             >
               <TextField
-                label='Full Name'
-                name='name'
+                label="Full Name"
+                name="name"
                 value={formData.name}
                 onChange={handleChange}
                 error={!!formErrors.name}
@@ -140,21 +141,21 @@ const ContactPage = () => {
                 fullWidth
                 InputProps={{
                   sx: {
-                    backgroundColor: 'rgba(255,255,255,0.15)',
-                    color: 'black',
-                    '& .MuiInputBase-input': {
-                      color: 'black',
+                    backgroundColor: "rgba(255,255,255,0.15)",
+                    color: "black",
+                    "& .MuiInputBase-input": {
+                      color: "black",
                     },
                   },
                 }}
                 InputLabelProps={{
-                  sx: { color: 'rgba(3,90,142,0.85)' },
+                  sx: { color: "rgba(3,90,142,0.85)" },
                 }}
               />
               <TextField
-                label='Email'
-                name='email'
-                type='email'
+                label="Email"
+                name="email"
+                type="email"
                 value={formData.email}
                 onChange={handleChange}
                 error={!!formErrors.email}
@@ -163,42 +164,42 @@ const ContactPage = () => {
                 fullWidth
                 InputProps={{
                   sx: {
-                    backgroundColor: 'rgba(255,255,255,0.15)',
-                    color: 'black',
-                    '& .MuiInputBase-input': {
-                      color: 'black',
+                    backgroundColor: "rgba(255,255,255,0.15)",
+                    color: "black",
+                    "& .MuiInputBase-input": {
+                      color: "black",
                     },
                   },
                 }}
                 InputLabelProps={{
-                  sx: { color: 'rgba(3,90,142,0.85)' },
+                  sx: { color: "rgba(3,90,142,0.85)" },
                 }}
               />
               <TextField
-                label='Phone Number'
-                name='phone'
+                label="Phone Number"
+                name="phone"
                 value={formData.phone}
                 onChange={handleChange}
                 error={!!formErrors.phone}
-                helperText={formErrors.phone || 'Optional'}
+                helperText={formErrors.phone || "Optional"}
                 fullWidth
                 InputProps={{
                   sx: {
-                    backgroundColor: 'rgba(255,255,255,0.15)',
-                    color: 'black',
-                    '& .MuiInputBase-input': {
-                      color: 'black',
+                    backgroundColor: "rgba(255,255,255,0.15)",
+                    color: "black",
+                    "& .MuiInputBase-input": {
+                      color: "black",
                     },
                   },
                 }}
                 InputLabelProps={{
-                  sx: { color: 'rgba(3,90,142,0.85)' },
+                  sx: { color: "rgba(3,90,142,0.85)" },
                 }}
               />
               <TextField
                 select
-                label='Select Course'
-                name='course'
+                label="Select Course"
+                name="course"
                 value={formData.course}
                 onChange={handleChange}
                 error={!!formErrors.course}
@@ -207,15 +208,15 @@ const ContactPage = () => {
                 fullWidth
                 InputProps={{
                   sx: {
-                    backgroundColor: 'rgba(255,255,255,0.15)',
-                    color: 'black',
-                    '& .MuiSelect-select': {
-                      color: 'black',
+                    backgroundColor: "rgba(255,255,255,0.15)",
+                    color: "black",
+                    "& .MuiSelect-select": {
+                      color: "black",
                     },
                   },
                 }}
                 InputLabelProps={{
-                  sx: { color: 'rgba(3,90,142,0.85)' },
+                  sx: { color: "rgba(3,90,142,0.85)" },
                 }}
               >
                 {courses.map((course) => (
@@ -225,8 +226,8 @@ const ContactPage = () => {
                 ))}
               </TextField>
               <TextField
-                label='Message'
-                name='message'
+                label="Message"
+                name="message"
                 multiline
                 minRows={4}
                 value={formData.message}
@@ -237,27 +238,27 @@ const ContactPage = () => {
                 fullWidth
                 InputProps={{
                   sx: {
-                    backgroundColor: 'rgba(255,255,255,0.15)',
-                    color: 'black',
-                    '& .MuiInputBase-input': {
-                      color: 'black',
+                    backgroundColor: "rgba(255,255,255,0.15)",
+                    color: "black",
+                    "& .MuiInputBase-input": {
+                      color: "black",
                     },
                   },
                 }}
                 InputLabelProps={{
-                  sx: { color: 'rgba(3,90,142,0.85)' },
+                  sx: { color: "rgba(3,90,142,0.85)" },
                 }}
               />
               <Button
-                type='submit'
-                variant='contained'
+                type="submit"
+                variant="contained"
                 disabled={loading}
                 sx={{
-                  backgroundColor: '#fc9a14',
-                  '&:hover': { backgroundColor: '#e38b0a' },
+                  backgroundColor: "#fc9a14",
+                  "&:hover": { backgroundColor: "#e38b0a" },
                 }}
               >
-                {loading ? 'Sending...' : 'Send Message'}
+                {loading ? "Sending..." : "Send Message"}
               </Button>
             </Box>
           </Grid>
@@ -265,44 +266,44 @@ const ContactPage = () => {
           <Grid item xs={12} md={5}>
             <Box
               sx={{
-                backgroundColor: '#035a8e',
-                color: '#fff',
+                backgroundColor: "#035a8e",
+                color: "#fff",
                 p: 4,
                 borderRadius: 2,
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
                 boxShadow: 3,
               }}
             >
               <Typography
-                variant='h5'
-                fontWeight='bold'
+                variant="h5"
+                fontWeight="bold"
                 mb={2}
-                textAlign='center'
+                textAlign="center"
               >
                 Contact Information
               </Typography>
-              <Typography variant='body1' mb={1}>
-                📞 Phone:{' '}
+              <Typography variant="body1" mb={1}>
+                📞 Phone:{" "}
                 <a
-                  href='tel:+1234567890'
-                  style={{ color: '#fc9a14', textDecoration: 'none' }}
+                  href="tel:+1234567890"
+                  style={{ color: "#fc9a14", textDecoration: "none" }}
                 >
                   +1 (234) 567-890
                 </a>
               </Typography>
-              <Typography variant='body1' mb={1}>
-                📧 Email:{' '}
+              <Typography variant="body1" mb={1}>
+                📧 Email:{" "}
                 <a
-                  href='mailto:info@englishclass.com'
-                  style={{ color: '#fc9a14', textDecoration: 'none' }}
+                  href="mailto:info@englishclass.com"
+                  style={{ color: "#fc9a14", textDecoration: "none" }}
                 >
                   info@englishclass.com
                 </a>
               </Typography>
-              <Typography variant='body1' mb={1}>
+              <Typography variant="body1" mb={1}>
                 📍 Address: 123 English St, Language City, USA
               </Typography>
             </Box>
@@ -316,12 +317,12 @@ const ContactPage = () => {
         open={snackbar.open}
         autoHideDuration={4000}
         onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       >
         <Alert
           severity={snackbar.severity}
           onClose={handleCloseSnackbar}
-          sx={{ width: '100%' }}
+          sx={{ width: "100%" }}
         >
           {snackbar.message}
         </Alert>

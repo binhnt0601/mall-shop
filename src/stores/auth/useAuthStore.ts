@@ -1,8 +1,10 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware'; // <-- import persist middleware
-import { AuthStatuses } from './types';
-import * as actions from './actions';
-import { User } from '@/services/user/user.model';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+
+import { User } from "@/services/user/user.model";
+
+import * as actions from "./actions";
+import { AuthStatuses } from "./types";
 
 interface AuthState {
   auth?: User;
@@ -18,7 +20,7 @@ interface AuthState {
 
 export const useAuthStore = create<AuthState>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       authStatus: AuthStatuses.NEW,
       auth: undefined,
       loading: false,
@@ -39,7 +41,7 @@ export const useAuthStore = create<AuthState>()(
       },
     }),
     {
-      name: 'auth-storage',
+      name: "auth-storage",
       partialize: (state) => ({
         auth: state.auth,
         authStatus: state.authStatus,

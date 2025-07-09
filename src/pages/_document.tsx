@@ -1,12 +1,13 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document';
-import createEmotionServer from '@emotion/server/create-instance';
-import createEmotionCache from '@/utils/createEmotionCache';
-import SeoHead from '@/components/SeoHead';
+import createEmotionServer from "@emotion/server/create-instance";
+import Document, { Html, Head, Main, NextScript } from "next/document";
+
+import SeoHead from "@/components/SeoHead";
+import createEmotionCache from "@/utils/createEmotionCache";
 
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang='en'>
+      <Html lang="en">
         <Head>
           {(this.props as any).emotionStyleTags}
           <SeoHead />
@@ -41,7 +42,7 @@ MyDocument.getInitialProps = async (ctx) => {
   const emotionStyles = extractCriticalToChunks(initialProps.html);
   const emotionStyleTags = emotionStyles.styles.map((style: any) => (
     <style
-      data-emotion={`${style.key} ${style.ids.join(' ')}`}
+      data-emotion={`${style.key} ${style.ids.join(" ")}`}
       key={style.key}
       // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: style.css }}

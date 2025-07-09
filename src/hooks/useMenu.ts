@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-import { UserRoles } from '../services/user/user.model';
-import { getAdminMenu, getUserMenu } from '@/constants/menu';
-import { useAuthStore } from '@/stores/auth/useAuthStore';
+import { getAdminMenu, getUserMenu } from "@/constants/menu";
+import { useAuthStore } from "@/stores/auth/useAuthStore";
+
+import { UserRoles } from "../services/user/user.model";
 
 export type MenuData = {
   categoryCode?: string;
@@ -28,7 +29,7 @@ const useMenu = (): [MenuData[] | null, string[]] => {
       menus = getUserMenu();
     }
 
-    setMenuCategories(menus.map((i) => i.categoryCode || '').filter((i) => i));
+    setMenuCategories(menus.map((i) => i.categoryCode || "").filter((i) => i));
 
     setMenu(menus);
   }, [auth?.role]);

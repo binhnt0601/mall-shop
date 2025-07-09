@@ -1,47 +1,48 @@
-import { useEffect, useState } from 'react';
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+
+import BadgeStatus from "@/components-shared/BadgeStatus";
 import CommonTable, {
   Column,
   FilterConfig,
-} from '@/components-shared/CommonTable';
-import { useRouter } from 'next/router';
-import AdminLayout from '@/layouts/admin-layout/AdminLayout';
-import { UserService } from '@/services/user/user.repo';
-import { User } from '@/services/user/user.model';
-import BadgeStatus from '@/components-shared/BadgeStatus';
+} from "@/components-shared/CommonTable";
+import AdminLayout from "@/layouts/admin-layout/AdminLayout";
+import { User } from "@/services/user/user.model";
+import { UserService } from "@/services/user/user.repo";
 
 const statusOptions = [
-  { label: 'All', value: 'ALL' },
-  { label: 'Active', value: 'ACTIVE' },
-  { label: 'Inactive', value: 'INACTIVE' },
+  { label: "All", value: "ALL" },
+  { label: "Active", value: "ACTIVE" },
+  { label: "Inactive", value: "INACTIVE" },
 ];
 
 const roleOptions = [
-  { label: 'All', value: 'ALL' },
-  { label: 'Admin', value: 'ADMIN' },
-  { label: 'Member', value: 'MEMBER' },
+  { label: "All", value: "ALL" },
+  { label: "Admin", value: "ADMIN" },
+  { label: "Member", value: "MEMBER" },
 ];
 
 const columns: Column<User>[] = [
-  { field: 'id', label: 'ID' },
-  { field: 'name', label: 'Full Name' },
-  { field: 'email', label: 'Email' },
-  { field: 'phone', label: 'Phone Number' },
-  { field: 'referralCode', label: 'ReferralCode' },
+  { field: "id", label: "ID" },
+  { field: "name", label: "Full Name" },
+  { field: "email", label: "Email" },
+  { field: "phone", label: "Phone Number" },
+  { field: "referralCode", label: "ReferralCode" },
   {
-    field: 'status',
-    label: 'Status',
-    align: 'center',
+    field: "status",
+    label: "Status",
+    align: "center",
     render: (row) => <BadgeStatus status={row.status} />,
   },
-  { field: 'role', label: 'Role', align: 'center' },
+  { field: "role", label: "Role", align: "center" },
 ];
 
 const UserManagePage = () => {
   const router = useRouter();
   const { query, pathname } = router;
-  const status = String(query.status || 'ALL');
-  const role = String(query.role || 'ALL');
-  const search = (query.search as string) || '';
+  const status = String(query.status || "ALL");
+  const role = String(query.role || "ALL");
+  const search = (query.search as string) || "";
   const [data, setData] = useState<User[]>([]);
   const [pagination, setPagination] = useState({
     page: 1,
@@ -61,8 +62,8 @@ const UserManagePage = () => {
     try {
       const offset = (page - 1) * length;
       const filter: any = {};
-      if (status !== 'ALL') filter.status = status;
-      if (role !== 'ALL') filter.role = role;
+      if (status !== "ALL") filter.status = status;
+      if (role !== "ALL") filter.role = role;
 
       const result = await UserService.getAll({
         query: {
@@ -83,7 +84,7 @@ const UserManagePage = () => {
         total: result.total,
       });
     } catch (error) {
-      console.error('error', error);
+      console.error("error", error);
     } finally {
       setLoading(false);
     }
@@ -96,37 +97,37 @@ const UserManagePage = () => {
 
   const handleFilterChange = (key: string, value: string) => {
     const newQuery = { ...query };
-    if (!value || value === 'ALL') delete newQuery[key];
+    if (!value || value === "ALL") delete newQuery[key];
     else newQuery[key] = value;
-    newQuery.page = '1';
+    newQuery.page = "1";
     setPagination((p) => ({ ...p, page: 1 }));
     router.push({ pathname, query: newQuery }, undefined, { shallow: true });
   };
 
   const filters: FilterConfig[] = [
     {
-      label: 'Search',
-      field: 'search',
+      label: "Search",
+      field: "search",
       value: search,
-      type: 'search',
-      onChange: (v: string) => handleFilterChange('search', v),
-      placeholder: 'Search by name, email...',
+      type: "search",
+      onChange: (v: string) => handleFilterChange("search", v),
+      placeholder: "Search by name, email...",
     },
     {
-      label: 'Status',
-      field: 'status',
+      label: "Status",
+      field: "status",
       value: status,
-      type: 'select',
+      type: "select",
       options: statusOptions,
-      onChange: (v: string) => handleFilterChange('status', v),
+      onChange: (v: string) => handleFilterChange("status", v),
     },
     {
-      label: 'Role',
-      field: 'role',
+      label: "Role",
+      field: "role",
       value: role,
-      type: 'select',
+      type: "select",
       options: roleOptions,
-      onChange: (v: string) => handleFilterChange('role', v),
+      onChange: (v: string) => handleFilterChange("role", v),
     },
   ];
 

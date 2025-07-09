@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Dialog } from '@mui/material';
-import LoginForm from './LoginForm';
-import RegisterForm from './RegisterForm';
+import { Dialog } from "@mui/material";
+import React, { useEffect, useState } from "react";
 
-type Screen = 'login' | 'register';
+import LoginForm from "./LoginForm";
+import RegisterForm from "./RegisterForm";
+
+type Screen = "login" | "register";
 
 type LoginModalProps = {
   screenView?: Screen;
@@ -14,14 +15,14 @@ type LoginModalProps = {
 export default function LoginModal({
   open,
   onClose,
-  screenView = 'login',
+  screenView = "login",
 }: LoginModalProps) {
-  const apiUri = process.env.NEXT_PUBLIC_API_URI || '';
+  const apiUri = process.env.NEXT_PUBLIC_API_URI || "";
 
   const [screen, setScreen] = useState<Screen>(screenView);
 
   const handleClose = () => {
-    setScreen('login');
+    setScreen("login");
     onClose?.();
   };
 
@@ -37,25 +38,25 @@ export default function LoginModal({
         sx: {
           maxWidth: 830,
           borderRadius: 3,
-          overflow: 'hidden',
+          overflow: "hidden",
           p: 0,
           boxShadow: 12,
-          background: 'linear-gradient(135deg, #3b82f6 40%, #6366f1 100%)',
+          background: "linear-gradient(135deg, #3b82f6 40%, #6366f1 100%)",
         },
       }}
       fullWidth
-      scroll='body'
+      scroll="body"
     >
-      {screen === 'login' ? (
+      {screen === "login" ? (
         <LoginForm
           apiUri={apiUri}
-          onRegisterClick={() => setScreen('register')}
+          onRegisterClick={() => setScreen("register")}
           onClose={handleClose}
         />
       ) : (
         <RegisterForm
           apiUri={apiUri}
-          onLoginClick={() => setScreen('login')}
+          onLoginClick={() => setScreen("login")}
           onClose={handleClose}
         />
       )}

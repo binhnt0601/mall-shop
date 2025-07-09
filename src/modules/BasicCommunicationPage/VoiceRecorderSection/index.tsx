@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import React, { useState, useRef } from 'react';
-import { Box, Button, IconButton, Paper, Typography } from '@mui/material';
-import MicIcon from '@mui/icons-material/Mic';
-import StopIcon from '@mui/icons-material/Stop';
-import ReplayIcon from '@mui/icons-material/Replay';
-import SendIcon from '@mui/icons-material/Send';
+import MicIcon from "@mui/icons-material/Mic";
+import ReplayIcon from "@mui/icons-material/Replay";
+import SendIcon from "@mui/icons-material/Send";
+import StopIcon from "@mui/icons-material/Stop";
+import { Box, Button, IconButton, Paper, Typography } from "@mui/material";
+import React, { useState, useRef } from "react";
 
 const VoiceRecorderSection = () => {
   const [isRecording, setIsRecording] = useState(false);
@@ -15,7 +15,7 @@ const VoiceRecorderSection = () => {
 
   const startRecording = () => {
     if (!navigator.mediaDevices) {
-      alert('Media Devices API not supported');
+      alert("Media Devices API not supported");
       return;
     }
     audioChunks.current = [];
@@ -29,13 +29,13 @@ const VoiceRecorderSection = () => {
           audioChunks.current.push(event.data);
         };
         mediaRecorder.current.onstop = () => {
-          const blob = new Blob(audioChunks.current, { type: 'audio/mp3' });
+          const blob = new Blob(audioChunks.current, { type: "audio/mp3" });
           const url = URL.createObjectURL(blob);
           setAudioURL(url);
           setIsRecording(false);
         };
       })
-      .catch(() => alert('Could not access microphone'));
+      .catch(() => alert("Could not access microphone"));
   };
 
   const stopRecording = () => {
@@ -53,26 +53,26 @@ const VoiceRecorderSection = () => {
         p: 4,
         mt: 8,
         maxWidth: 900,
-        mx: 'auto',
+        mx: "auto",
         borderRadius: 3,
-        boxShadow: '0 10px 25px rgba(3,90,142,0.12)',
-        backgroundColor: 'white',
+        boxShadow: "0 10px 25px rgba(3,90,142,0.12)",
+        backgroundColor: "white",
       }}
     >
-      <Typography variant='h5' fontWeight='bold' color='#035a8e' mb={3}>
+      <Typography variant="h5" fontWeight="bold" color="#035a8e" mb={3}>
         Practice Speaking - Voice Recorder
       </Typography>
-      <Typography mb={2} color='text.secondary'>
+      <Typography mb={2} color="text.secondary">
         Click start and practice speaking the sample dialogue above. Record your
         voice and listen back to improve your pronunciation.
       </Typography>
       <Box
-        sx={{ display: 'flex', alignItems: 'center', gap: 2, flexWrap: 'wrap' }}
+        sx={{ display: "flex", alignItems: "center", gap: 2, flexWrap: "wrap" }}
       >
         {!isRecording && (
           <Button
-            variant='contained'
-            color='primary'
+            variant="contained"
+            color="primary"
             startIcon={<MicIcon />}
             onClick={startRecording}
           >
@@ -81,8 +81,8 @@ const VoiceRecorderSection = () => {
         )}
         {isRecording && (
           <Button
-            variant='outlined'
-            color='error'
+            variant="outlined"
+            color="error"
             startIcon={<StopIcon />}
             onClick={stopRecording}
           >
@@ -93,17 +93,17 @@ const VoiceRecorderSection = () => {
           <>
             <audio src={audioURL} controls style={{ flex: 1, minWidth: 250 }} />
             <IconButton
-              color='primary'
+              color="primary"
               onClick={resetRecording}
-              aria-label='Reset recording'
+              aria-label="Reset recording"
             >
               <ReplayIcon />
             </IconButton>
             <Button
-              variant='contained'
-              color='success'
+              variant="contained"
+              color="success"
               startIcon={<SendIcon />}
-              onClick={() => alert('Voice sent! (simulate send)')}
+              onClick={() => alert("Voice sent! (simulate send)")}
             >
               Send Recording
             </Button>

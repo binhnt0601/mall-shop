@@ -1,6 +1,5 @@
-import React from 'react';
-
-import { TextField, InputAdornment, Typography } from '@mui/material';
+import { TextField, InputAdornment, Typography } from "@mui/material";
+import React from "react";
 
 interface FormikTextFieldProps {
   formik: any;
@@ -15,16 +14,16 @@ const FormikTextField: React.FC<FormikTextFieldProps> = ({
   formik,
   name,
   label,
-  type = 'text',
+  type = "text",
   icon,
   ...props
 }) => {
   const showError = formik.touched[name] && Boolean(formik.errors[name]);
 
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ width: "100%" }}>
       <TextField
-        variant='outlined'
+        variant="outlined"
         label={label}
         name={name}
         type={type}
@@ -32,30 +31,30 @@ const FormikTextField: React.FC<FormikTextFieldProps> = ({
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         error={showError}
-        style={{ background: 'rgba(255, 252, 252, 0.349)' }}
-        className='w-full rounded-md'
+        style={{ background: "rgba(255, 252, 252, 0.349)" }}
+        className="w-full rounded-md"
         InputLabelProps={{
           style: {
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            width: '100%',
-            color: 'white',
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            width: "100%",
+            color: "white",
           },
         }}
         InputProps={{
-          style: { color: 'white' },
+          style: { color: "white" },
           endAdornment: icon ? (
-            <InputAdornment position='end'>{icon}</InputAdornment>
+            <InputAdornment position="end">{icon}</InputAdornment>
           ) : undefined,
         }}
         {...props}
       />
       {showError && (
         <Typography
-          color='error'
-          variant='caption'
-          style={{ marginLeft: '10px' }}
+          color="error"
+          variant="caption"
+          style={{ marginLeft: "10px" }}
         >
           {formik.errors[name] as string}
         </Typography>

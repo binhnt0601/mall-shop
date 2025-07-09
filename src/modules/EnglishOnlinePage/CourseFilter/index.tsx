@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { Box, Button, Stack } from '@mui/material';
+import { Button, Stack } from "@mui/material";
+import React from "react";
 
 interface CourseFilterProps {
   selected: string;
@@ -15,14 +15,14 @@ export default function CourseFilter({
   onChange,
 }: CourseFilterProps) {
   return (
-    <Stack direction='row' spacing={2} justifyContent='center' mb={6}>
+    <Stack direction="row" spacing={2} justifyContent="center" mb={6}>
       {options.map((opt) => (
         <Button
           key={opt}
-          variant={opt === selected ? 'contained' : 'outlined'}
-          color='primary'
+          variant={opt === selected ? "contained" : "outlined"}
+          color="primary"
           onClick={() => onChange(opt)}
-          sx={{ textTransform: 'none', fontWeight: 'bold' }}
+          sx={{ textTransform: "none", fontWeight: "bold" }}
         >
           {opt}
         </Button>

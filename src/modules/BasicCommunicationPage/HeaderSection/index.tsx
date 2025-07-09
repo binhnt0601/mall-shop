@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { Box, Typography } from '@mui/material';
-import { motion, useViewportScroll, useTransform } from 'framer-motion';
+import { Typography } from "@mui/material";
+import { motion, useScroll, useTransform } from "framer-motion";
+import React from "react";
 
 const HeaderSection = () => {
-  const { scrollY } = useViewportScroll();
+  const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 300], [0, 50]);
   const y2 = useTransform(scrollY, [0, 300], [0, -50]);
 
@@ -13,42 +13,42 @@ const HeaderSection = () => {
     <>
       <motion.div
         style={{
-          position: 'absolute',
-          top: '-10%',
-          left: '-15%',
-          width: '130%',
+          position: "absolute",
+          top: "-10%",
+          left: "-15%",
+          width: "130%",
           height: 280,
           background:
-            'radial-gradient(circle at center, #8ca6db 30%, transparent 70%)',
+            "radial-gradient(circle at center, #8ca6db 30%, transparent 70%)",
           opacity: 0.4,
           y: y2,
-          pointerEvents: 'none',
-          borderRadius: '50%',
+          pointerEvents: "none",
+          borderRadius: "50%",
           zIndex: 0,
         }}
       />
       <motion.div style={{ y: y1 }}>
         <Typography
-          variant='h3'
-          color='#035a8e'
-          fontWeight='bold'
-          textAlign='center'
+          variant="h3"
+          color="#035a8e"
+          fontWeight="bold"
+          textAlign="center"
           gutterBottom
-          sx={{ mb: 3, position: 'relative', zIndex: 1 }}
+          sx={{ mb: 3, position: "relative", zIndex: 1 }}
         >
           Basic Communication in English
         </Typography>
         <Typography
-          variant='h6'
-          color='#035a8e'
-          fontWeight='medium'
-          textAlign='center'
+          variant="h6"
+          color="#035a8e"
+          fontWeight="medium"
+          textAlign="center"
           mb={6}
           sx={{
-            fontStyle: 'italic',
+            fontStyle: "italic",
             maxWidth: 700,
-            mx: 'auto',
-            position: 'relative',
+            mx: "auto",
+            position: "relative",
             zIndex: 1,
           }}
         >

@@ -1,4 +1,7 @@
-import React from 'react';
+import CloseIcon from "@mui/icons-material/Close";
+import EmailIcon from "@mui/icons-material/Email";
+import GoogleIcon from "@mui/icons-material/Google";
+import PasswordIcon from "@mui/icons-material/Lock";
 import {
   IconButton,
   Stack,
@@ -8,17 +11,15 @@ import {
   TextField,
   InputAdornment,
   useMediaQuery,
-} from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
-import EmailIcon from '@mui/icons-material/Email';
-import PasswordIcon from '@mui/icons-material/Lock';
-import GoogleIcon from '@mui/icons-material/Google';
-import { useRouter } from 'next/router';
-import Image from 'next/image';
-import { toast } from '@/helpers/toast';
+} from "@mui/material";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import React from "react";
 
-const TERMS_URL = 'https://aimalls.app/terms-and-conditions';
-const PRIVACY_URL = 'https://aimalls.app/privacy-policy';
+import { toast } from "@/helpers/toast";
+
+const TERMS_URL = "https://aimalls.app/terms-and-conditions";
+const PRIVACY_URL = "https://aimalls.app/privacy-policy";
 
 export default function RegisterForm({
   apiUri,
@@ -34,7 +35,7 @@ export default function RegisterForm({
     terms: false,
     privacy: false,
   });
-  const isMobile = useMediaQuery('(max-width:900px)');
+  const isMobile = useMediaQuery("(max-width:900px)");
 
   const handleCheck =
     (key: keyof typeof isChecked) =>
@@ -43,7 +44,7 @@ export default function RegisterForm({
     };
 
   const handleRegister = () => {
-    toast.success('Registration successful! Welcome to AI Malls!');
+    toast.success("Registration successful! Welcome to AI Malls!");
     // Call API register nếu cần
   };
 
@@ -55,28 +56,28 @@ export default function RegisterForm({
 
   return (
     <Stack
-      direction={{ xs: 'column', md: 'row' }}
-      width='100%'
-      minHeight={{ xs: '100vh', md: 540 }}
+      direction={{ xs: "column", md: "row" }}
+      width="100%"
+      minHeight={{ xs: "100vh", md: 540 }}
       sx={{
-        position: 'relative',
+        position: "relative",
         maxWidth: 830,
-        mx: 'auto',
+        mx: "auto",
       }}
     >
       {/* Close button */}
       <IconButton
         onClick={onClose}
         sx={{
-          position: 'absolute',
+          position: "absolute",
           top: 14,
           right: 14,
-          color: '#fff',
-          bgcolor: 'rgba(255,255,255,0.08)',
-          '&:hover': { bgcolor: 'rgba(255,255,255,0.13)' },
+          color: "#fff",
+          bgcolor: "rgba(255,255,255,0.08)",
+          "&:hover": { bgcolor: "rgba(255,255,255,0.13)" },
           zIndex: 10,
         }}
-        aria-label='Close'
+        aria-label="Close"
       >
         <CloseIcon />
       </IconButton>
@@ -85,20 +86,20 @@ export default function RegisterForm({
         sx={{
           px: { xs: 2, sm: 4, md: 5 },
           py: { xs: 2.5, sm: 6, md: 7 },
-          width: { xs: '100%', md: '60%' },
-          bgcolor: 'transparent',
-          justifyContent: 'center',
-          alignItems: 'center',
-          position: 'relative',
+          width: { xs: "100%", md: "60%" },
+          bgcolor: "transparent",
+          justifyContent: "center",
+          alignItems: "center",
+          position: "relative",
         }}
       >
         {/* Logo mobile */}
-        <Stack display={{ xs: 'flex', md: 'none' }} alignItems='center' mb={2}>
+        <Stack display={{ xs: "flex", md: "none" }} alignItems="center" mb={2}>
           <Image
             width={120}
             height={80}
-            src='/logo.png'
-            alt='Brand Logo'
+            src="/logo.png"
+            alt="Brand Logo"
             style={{ marginBottom: 4 }}
           />
         </Stack>
@@ -106,19 +107,19 @@ export default function RegisterForm({
           fontSize={{ xs: 26, sm: 32, md: 36 }}
           fontWeight={700}
           lineHeight={1.2}
-          color='white'
-          textAlign='center'
+          color="white"
+          textAlign="center"
           mb={2}
-          sx={{ textShadow: '0 2px 8px rgba(0,0,0,0.12)' }}
+          sx={{ textShadow: "0 2px 8px rgba(0,0,0,0.12)" }}
         >
           Sign up to create an Account
         </Typography>
         <form
           style={{
-            width: '100%',
+            width: "100%",
             maxWidth: 420,
-            display: 'flex',
-            flexDirection: 'column',
+            display: "flex",
+            flexDirection: "column",
             gap: 24,
           }}
           onSubmit={(e) => {
@@ -127,29 +128,29 @@ export default function RegisterForm({
           }}
         >
           <button
-            type='button'
-            className='w-full rounded-md bg-white py-3 font-bold text-indigo-600 flex items-center justify-center gap-2 hover:bg-indigo-50 transition'
+            type="button"
+            className="w-full rounded-md bg-white py-3 font-bold text-indigo-600 flex items-center justify-center gap-2 hover:bg-indigo-50 transition"
             onClick={handleGoogle}
           >
             <GoogleIcon style={{ fontSize: 20 }} />
             Sign in With Google
           </button>
           <div
-            style={{ display: 'flex', justifyContent: 'center', width: '100%' }}
+            style={{ display: "flex", justifyContent: "center", width: "100%" }}
           >
             <Divider
               sx={{
                 flex: 1,
-                borderColor: 'rgba(255,255,255,0.6)',
-                alignSelf: 'center',
+                borderColor: "rgba(255,255,255,0.6)",
+                alignSelf: "center",
               }}
             />
             <Typography
               sx={{
-                color: '#fff',
+                color: "#fff",
                 px: 2,
                 fontSize: 15,
-                userSelect: 'none',
+                userSelect: "none",
                 fontWeight: 500,
               }}
             >
@@ -158,105 +159,105 @@ export default function RegisterForm({
             <Divider
               sx={{
                 flex: 1,
-                borderColor: 'rgba(255,255,255,0.6)',
-                alignSelf: 'center',
+                borderColor: "rgba(255,255,255,0.6)",
+                alignSelf: "center",
               }}
             />
           </div>
 
           <TextField
-            variant='outlined'
-            label='Email'
-            autoComplete='email'
-            style={{ background: 'rgba(255, 255, 255, 0.1)' }}
-            className='w-full rounded-md'
-            InputLabelProps={{ style: { color: 'rgba(255,255,255,0.85)' } }}
+            variant="outlined"
+            label="Email"
+            autoComplete="email"
+            style={{ background: "rgba(255, 255, 255, 0.1)" }}
+            className="w-full rounded-md"
+            InputLabelProps={{ style: { color: "rgba(255,255,255,0.85)" } }}
             InputProps={{
-              style: { color: 'white' },
+              style: { color: "white" },
               endAdornment: (
-                <InputAdornment position='end'>
-                  <EmailIcon className='text-white' />
+                <InputAdornment position="end">
+                  <EmailIcon className="text-white" />
                 </InputAdornment>
               ),
             }}
           />
           <TextField
-            variant='outlined'
-            label='Password'
-            type='password'
-            autoComplete='new-password'
-            style={{ background: 'rgba(255, 255, 255, 0.1)' }}
-            className='w-full rounded-md'
-            InputLabelProps={{ style: { color: 'rgba(255,255,255,0.85)' } }}
+            variant="outlined"
+            label="Password"
+            type="password"
+            autoComplete="new-password"
+            style={{ background: "rgba(255, 255, 255, 0.1)" }}
+            className="w-full rounded-md"
+            InputLabelProps={{ style: { color: "rgba(255,255,255,0.85)" } }}
             InputProps={{
-              style: { color: 'white' },
+              style: { color: "white" },
               endAdornment: (
-                <InputAdornment position='end'>
-                  <PasswordIcon className='text-white' />
+                <InputAdornment position="end">
+                  <PasswordIcon className="text-white" />
                 </InputAdornment>
               ),
             }}
           />
           <TextField
-            variant='outlined'
-            label='Confirm Password'
-            type='password'
-            autoComplete='new-password'
-            style={{ background: 'rgba(255, 255, 255, 0.1)' }}
-            className='w-full rounded-md'
-            InputLabelProps={{ style: { color: 'rgba(255,255,255,0.85)' } }}
+            variant="outlined"
+            label="Confirm Password"
+            type="password"
+            autoComplete="new-password"
+            style={{ background: "rgba(255, 255, 255, 0.1)" }}
+            className="w-full rounded-md"
+            InputLabelProps={{ style: { color: "rgba(255,255,255,0.85)" } }}
             InputProps={{
-              style: { color: 'white' },
+              style: { color: "white" },
               endAdornment: (
-                <InputAdornment position='end'>
-                  <PasswordIcon className='text-white' />
+                <InputAdornment position="end">
+                  <PasswordIcon className="text-white" />
                 </InputAdornment>
               ),
             }}
           />
           <div
             style={{
-              display: 'flex',
-              flexDirection: 'column',
+              display: "flex",
+              flexDirection: "column",
               gap: 8,
               marginTop: 8,
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <Checkbox
-                sx={{ '&:hover': { bgcolor: 'transparent' } }}
+                sx={{ "&:hover": { bgcolor: "transparent" } }}
                 disableRipple
-                color='default'
+                color="default"
                 checked={isChecked.terms}
-                onChange={handleCheck('terms')}
+                onChange={handleCheck("terms")}
               />
-              <Typography className='text-white text-sm'>
-                I accept the{' '}
+              <Typography className="text-white text-sm">
+                I accept the{" "}
                 <a
-                  className='text-[#fc9a14] underline hover:text-yellow-400 transition'
-                  target='_blank'
+                  className="text-[#fc9a14] underline hover:text-yellow-400 transition"
+                  target="_blank"
                   href={TERMS_URL}
-                  rel='noreferrer'
+                  rel="noreferrer"
                 >
                   Terms and Conditions
                 </a>
               </Typography>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <Checkbox
-                sx={{ '&:hover': { bgcolor: 'transparent' } }}
+                sx={{ "&:hover": { bgcolor: "transparent" } }}
                 disableRipple
-                color='default'
+                color="default"
                 checked={isChecked.privacy}
-                onChange={handleCheck('privacy')}
+                onChange={handleCheck("privacy")}
               />
-              <Typography className='text-white text-sm'>
-                I agree to the{' '}
+              <Typography className="text-white text-sm">
+                I agree to the{" "}
                 <a
-                  className='text-[#fc9a14] underline hover:text-yellow-400 transition'
-                  target='_blank'
+                  className="text-[#fc9a14] underline hover:text-yellow-400 transition"
+                  target="_blank"
                   href={PRIVACY_URL}
-                  rel='noreferrer'
+                  rel="noreferrer"
                 >
                   Privacy Policy
                 </a>
@@ -264,22 +265,22 @@ export default function RegisterForm({
             </div>
           </div>
           <button
-            type='submit'
+            type="submit"
             disabled={disabled}
             className={`w-full rounded-md bg-white py-3 font-bold text-indigo-600 flex items-center justify-center gap-2 transition ${
               disabled
-                ? 'opacity-50 cursor-not-allowed'
-                : 'hover:bg-indigo-50 cursor-pointer'
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:bg-indigo-50 cursor-pointer"
             }`}
           >
             Register
           </button>
           {/* Login link on mobile */}
           {isMobile && (
-            <Typography color='white' textAlign='center' sx={{ mt: 2 }}>
-              Already have an account?{' '}
+            <Typography color="white" textAlign="center" sx={{ mt: 2 }}>
+              Already have an account?{" "}
               <span
-                className='ml-2 text-[17px] font-medium text-[#fc9a14] hover:text-yellow-400 transition cursor-pointer'
+                className="ml-2 text-[17px] font-medium text-[#fc9a14] hover:text-yellow-400 transition cursor-pointer"
                 onClick={onLoginClick}
               >
                 Login
@@ -290,29 +291,29 @@ export default function RegisterForm({
       </Stack>
       {/* Right: Welcome section, only on desktop */}
       <Stack
-        display={{ xs: 'none', md: 'flex' }}
+        display={{ xs: "none", md: "flex" }}
         sx={{
-          width: { md: '40%' },
+          width: { md: "40%" },
           minHeight: 540,
-          bgcolor: 'transparent',
-          color: '#fff',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
+          bgcolor: "transparent",
+          color: "#fff",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
           px: 4,
           py: 5,
-          textAlign: 'center',
+          textAlign: "center",
           gap: 3,
         }}
       >
         <Image
           width={160}
           height={100}
-          src='/logo.png'
-          alt='Brand Logo'
-          className='drop-shadow-[0_4px_8px_rgba(255,255,255,0.5)]'
+          src="/logo.png"
+          alt="Brand Logo"
+          className="drop-shadow-[0_4px_8px_rgba(255,255,255,0.5)]"
         />
-        <Typography fontSize={34} fontWeight='bold'>
+        <Typography fontSize={34} fontWeight="bold">
           Welcome Back!
         </Typography>
         <Typography maxWidth={320}>
@@ -320,7 +321,7 @@ export default function RegisterForm({
           your personalized dashboard, rewards, and more.
         </Typography>
         <button
-          className='w-full rounded-md bg-white py-3 font-bold text-indigo-600 flex items-center justify-center gap-2 hover:bg-indigo-50 transition'
+          className="w-full rounded-md bg-white py-3 font-bold text-indigo-600 flex items-center justify-center gap-2 hover:bg-indigo-50 transition"
           onClick={onLoginClick}
         >
           Login

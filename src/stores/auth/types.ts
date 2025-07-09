@@ -1,9 +1,9 @@
-import { User } from '@/services/user/user.model';
+import { User } from "@/services/user/user.model";
 
 export enum AuthStatuses {
-  NEW = 'NEW',
-  LOADING = 'LOADING',
-  LOADED = 'LOADED',
+  NEW = "NEW",
+  LOADING = "LOADING",
+  LOADED = "LOADED",
 }
 
 export interface AuthState {

@@ -6,8 +6,9 @@ import {
   Box,
   CircularProgress,
   Typography,
-} from '@mui/material';
-import { Column } from '.';
+} from "@mui/material";
+
+import { Column } from ".";
 
 type Props<T> = {
   columns: Column<T>[];
@@ -38,16 +39,16 @@ export default function TableBodyContent<T>({
             {columns.map((col, j) => (
               <TableCell
                 key={String(col.field) + j}
-                align={col.align || 'left'}
+                align={col.align || "left"}
               >
-                <Skeleton variant='rectangular' height={28} animation='wave' />
+                <Skeleton variant="rectangular" height={28} animation="wave" />
               </TableCell>
             ))}
           </TableRow>
         ))}
         <TableRow>
-          <TableCell colSpan={columns.length} align='center' sx={{ border: 0 }}>
-            <Box sx={{ py: 2, display: 'flex', justifyContent: 'center' }}>
+          <TableCell colSpan={columns.length} align="center" sx={{ border: 0 }}>
+            <Box sx={{ py: 2, display: "flex", justifyContent: "center" }}>
               <CircularProgress size={32} />
             </Box>
           </TableCell>
@@ -60,8 +61,8 @@ export default function TableBodyContent<T>({
     return (
       <TableBody>
         <TableRow>
-          <TableCell colSpan={columns.length} align='center'>
-            <Typography color='text.secondary'>{emptyText}</Typography>
+          <TableCell colSpan={columns.length} align="center">
+            <Typography color="text.secondary">{emptyText}</Typography>
           </TableCell>
         </TableRow>
       </TableBody>
@@ -75,15 +76,15 @@ export default function TableBodyContent<T>({
           {columns.map((col) => (
             <TableCell
               key={String(col.field)}
-              align={col.align || 'left'}
-              className='text-nowrap'
+              align={col.align || "left"}
+              className="text-nowrap"
             >
               {col.render
                 ? col.render(
                     row,
                     idx + (useServerPaging ? 0 : page * rowsPerPage),
                   )
-                : String(row[col.field] ?? '')}
+                : String(row[col.field] ?? "")}
             </TableCell>
           ))}
         </TableRow>

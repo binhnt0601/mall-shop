@@ -1,9 +1,10 @@
-import { UserService } from '@/services/user/user.repo';
-import { toast } from '@/helpers/toast';
-import { ClearAuthToken, GetAuthToken, SetAuthToken } from '@/graphql/auth';
-import { AuthStatuses } from './types';
-import { useLoadingStore } from '../loadingStore';
-import { useAuthStore } from './useAuthStore';
+import { ClearAuthToken, GetAuthToken, SetAuthToken } from "@/graphql/auth";
+import { toast } from "@/helpers/toast";
+import { UserService } from "@/services/user/user.repo";
+
+import { AuthStatuses } from "./types";
+import { useLoadingStore } from "../loadingStore";
+import { useAuthStore } from "./useAuthStore";
 
 export async function loadProfile() {
   const setLoading = useLoadingStore.getState().setLoading;
@@ -47,18 +48,18 @@ export async function login(email: string, password: string) {
 
     if (user?.isFirstLogin) {
       localStorage.setItem(
-        'temp_login_credentials',
+        "temp_login_credentials",
         JSON.stringify({ email, password }),
       );
-      window.location.assign('/first-login');
+      window.location.assign("/first-login");
     } else {
-      window.location.assign('/dashboard');
+      window.location.assign("/dashboard");
     }
 
-    toast.success('Login successfully');
+    toast.success("Login successfully");
     setAuthStatus(AuthStatuses.LOADED);
   } catch (error: any) {
-    toast.error(error?.message ?? 'Login failed');
+    toast.error(error?.message ?? "Login failed");
     setAuthStatus(AuthStatuses.LOADED);
   } finally {
     setLoading(false);
@@ -67,5 +68,5 @@ export async function login(email: string, password: string) {
 
 export function logout() {
   ClearAuthToken();
-  window.location.assign('/');
+  window.location.assign("/");
 }

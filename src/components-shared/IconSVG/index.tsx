@@ -1,5 +1,5 @@
-import clsx from 'clsx';
-import React from 'react';
+import clsx from "clsx";
+import React from "react";
 
 interface Props extends React.SVGProps<SVGSVGElement> {
   src: string;
@@ -10,16 +10,16 @@ interface Props extends React.SVGProps<SVGSVGElement> {
 const IconSVG: React.FC<Props> = ({ src, className, size = 24 }) => {
   return (
     <div
-      className={clsx(className, 'mask mask-icon')}
+      className={clsx(className, "mask mask-icon")}
       style={{
         maskImage: `url(${src})`,
         WebkitMaskImage: `url(${src})`,
-        maskSize: 'contain',
-        WebkitMaskSize: 'contain',
-        maskRepeat: 'no-repeat',
-        WebkitMaskRepeat: 'no-repeat',
-        maskPosition: 'center',
-        WebkitMaskPosition: 'center',
+        maskSize: "contain",
+        WebkitMaskSize: "contain",
+        maskRepeat: "no-repeat",
+        WebkitMaskRepeat: "no-repeat",
+        maskPosition: "center",
+        WebkitMaskPosition: "center",
         width: `${size}px`,
         height: `${size}px`,
       }}

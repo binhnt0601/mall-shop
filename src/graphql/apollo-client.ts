@@ -1,25 +1,23 @@
-import { useMemo } from 'react';
-
 import {
   ApolloClient,
   ApolloLink,
   HttpLink,
   InMemoryCache,
   NormalizedCacheObject,
-} from '@apollo/client';
+} from "@apollo/client";
+import { useMemo } from "react";
 
-import { AuthLink } from './auth';
-import { ErrorLink } from './error';
+import { AuthLink } from "./auth";
+import { ErrorLink } from "./error";
 
 let apolloClient: ApolloClient<NormalizedCacheObject>;
 
-// eslint-disable-next-line react-hooks/rules-of-hooks
 const publicUri = process.env.NEXT_PUBLIC_API_URI;
 const uri = `${publicUri}/graphql`;
 
 function createApolloClient() {
   return new ApolloClient({
-    ssrMode: typeof window === 'undefined',
+    ssrMode: typeof window === "undefined",
     link: ApolloLink.from([
       ErrorLink as unknown as ApolloLink,
       AuthLink as unknown as ApolloLink,
@@ -36,14 +34,14 @@ export function initializeApollo(initialState = null) {
     const existingCache = _apolloClient.extract();
 
     _apolloClient.cache.restore({
-      ...(typeof existingCache === 'object' && existingCache
+      ...(typeof existingCache === "object" && existingCache
         ? existingCache
         : {}),
-      ...(typeof initialState === 'object' && initialState ? initialState : {}),
+      ...(typeof initialState === "object" && initialState ? initialState : {}),
     });
   }
 
-  if (typeof window === 'undefined') return _apolloClient;
+  if (typeof window === "undefined") return _apolloClient;
 
   if (!apolloClient) apolloClient = _apolloClient;
 

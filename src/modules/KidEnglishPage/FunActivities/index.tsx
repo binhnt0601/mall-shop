@@ -1,27 +1,27 @@
-'use client';
-import React from 'react';
-import { Box, Typography, Grid, Paper } from '@mui/material';
+"use client";
+import { Box, Typography, Grid, Paper } from "@mui/material";
+import React from "react";
 
 const funActivities = [
   {
-    title: 'Interactive Games',
+    title: "Interactive Games",
     description:
-      'Play games that reinforce vocabulary and grammar while keeping kids engaged and entertained.',
+      "Play games that reinforce vocabulary and grammar while keeping kids engaged and entertained.",
   },
   {
-    title: 'Story Time',
+    title: "Story Time",
     description:
-      'Enjoy captivating stories with colorful illustrations and simple text, perfect for young learners.',
+      "Enjoy captivating stories with colorful illustrations and simple text, perfect for young learners.",
   },
   {
-    title: 'Songs & Rhymes',
+    title: "Songs & Rhymes",
     description:
-      'Learn English naturally through fun songs and rhymes that improve pronunciation and rhythm.',
+      "Learn English naturally through fun songs and rhymes that improve pronunciation and rhythm.",
   },
   {
-    title: 'Creative Drawing',
+    title: "Creative Drawing",
     description:
-      'Combine art and language skills by drawing and describing pictures related to lessons.',
+      "Combine art and language skills by drawing and describing pictures related to lessons.",
   },
 ];
 
@@ -29,8 +29,8 @@ export default function KidEnglishFunActivities() {
   return (
     <Box sx={{ mb: 8 }}>
       <Typography
-        variant='h4'
-        sx={{ mb: 4, fontWeight: 'bold', color: '#6d4c41' }}
+        variant="h4"
+        sx={{ mb: 4, fontWeight: "bold", color: "#6d4c41" }}
       >
         Fun Learning Activities
       </Typography>
@@ -42,18 +42,18 @@ export default function KidEnglishFunActivities() {
               sx={{
                 p: 3,
                 borderRadius: 3,
-                backgroundColor: '#fff3e0',
-                color: '#6d4c41',
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
+                backgroundColor: "#fff3e0",
+                color: "#6d4c41",
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
               }}
             >
-              <Typography variant='h6' fontWeight='bold' gutterBottom>
+              <Typography variant="h6" fontWeight="bold" gutterBottom>
                 {title}
               </Typography>
-              <Typography variant='body2'>{description}</Typography>
+              <Typography variant="body2">{description}</Typography>
             </Paper>
           </Grid>
         ))}

@@ -1,19 +1,19 @@
-export const getPath = (path = '') => (path ? `/${path}` : '');
+export const getPath = (path = "") => (path ? `/${path}` : "");
 export const createUrlParamFromObj = (params: any = null) => {
-  if (!params) return '';
+  if (!params) return "";
   const result: any[] = [];
 
   Object.keys(params).map((key) => result.push(`${key}=${params[key]}`));
 
-  return `?${result.join('&')}`;
+  return `?${result.join("&")}`;
 };
-export const getCustomUrl = (url = '') => url;
-export const getContentType = (type = '') => {
+export const getCustomUrl = (url = "") => url;
+export const getContentType = (type = "") => {
   switch (type) {
-    case 'form-data':
-      return 'multipart/form-data';
+    case "form-data":
+      return "multipart/form-data";
     default:
-      return 'application/json';
+      return "application/json";
   }
 };
 export const createHeader = (value = {}, base = {}) => ({

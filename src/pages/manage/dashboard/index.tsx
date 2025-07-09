@@ -1,30 +1,29 @@
-import ProfileDropdown from '@/components/ProfileDropdown';
-import { ROLE_LABELS } from '@/constants/role';
-import AdminLayout from '@/layouts/admin-layout/AdminLayout';
-import DashboardCharts from '@/modules/DashboardPage/DashboardChart';
-import DashboardStats from '@/modules/DashboardPage/DashboardStats';
-import { useAuthStore } from '@/stores/auth/useAuthStore';
-import { t } from '@lingui/macro';
-import React, { useMemo } from 'react';
+import React, { useMemo } from "react";
+
+import { ROLE_LABELS } from "@/constants/role";
+import AdminLayout from "@/layouts/admin-layout/AdminLayout";
+import DashboardCharts from "@/modules/DashboardPage/DashboardChart";
+import DashboardStats from "@/modules/DashboardPage/DashboardStats";
+import { useAuthStore } from "@/stores/auth/useAuthStore";
 
 const DashboardAdmin = () => {
   const { auth } = useAuthStore();
 
   const renderUserRole = useMemo(() => {
     if (!auth) return null;
-    if (auth.role === 'ADMIN') return ROLE_LABELS().ADMIN;
+    if (auth.role === "ADMIN") return ROLE_LABELS().ADMIN;
     if (auth.userType && ROLE_LABELS()[auth.userType])
       return ROLE_LABELS()[auth.userType];
     return ROLE_LABELS().UNKNOWN;
   }, [auth]);
 
   return (
-    <div className='p-8 bg-gray-50 min-h-screen'>
-      <div className='flex flex-wrap-reverse items-center justify-center sm:justify-between mb-8'>
-        <h1 className='text-2xl font-bold'>
+    <div className="p-8 bg-gray-50 min-h-screen">
+      <div className="flex flex-wrap-reverse items-center justify-center sm:justify-between mb-8">
+        <h1 className="text-2xl font-bold">
           Welcome back, {renderUserRole} 👋
         </h1>
-        <p className='text-gray-500 mt-1'>Here’s your dashboard overview.</p>
+        <p className="text-gray-500 mt-1">Here’s your dashboard overview.</p>
       </div>
 
       <DashboardStats />

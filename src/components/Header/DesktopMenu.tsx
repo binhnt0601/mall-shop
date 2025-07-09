@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
-import { usePathname } from 'next/navigation'; // App Router
-import Dropdown from '@/components-shared/Dropdown';
-import { Menu, MenuItem, Avatar, Button } from '@mui/material';
-import { UserRoles } from '@/services/user/user.model';
-import Link from 'next/link';
-import LoginModal from '../LoginModal';
-import { useAuthStore } from '@/stores/auth/useAuthStore';
+import { Menu, MenuItem, Avatar, Button } from "@mui/material";
+import Link from "next/link";
+import { usePathname } from "next/navigation"; // App Router
+import React, { useState } from "react";
+
+import Dropdown from "@/components-shared/Dropdown";
+import { UserRoles } from "@/services/user/user.model";
+import { useAuthStore } from "@/stores/auth/useAuthStore";
+
+import LoginModal from "../LoginModal";
 
 interface MenuItem {
   label: string;
@@ -42,7 +44,7 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ menu }) => {
 
   return (
     <>
-      <nav className='hidden items-center gap-4 md:flex lg:gap-8'>
+      <nav className="hidden items-center gap-4 md:flex lg:gap-8">
         {menu.map((item) =>
           item.children ? (
             <Dropdown
@@ -50,7 +52,7 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ menu }) => {
               label={item.label}
               items={item.children.map((child) => ({
                 ...child,
-                href: child.href ?? '#',
+                href: child.href ?? "#",
                 active: pathname === child.href,
               }))}
             />
@@ -59,8 +61,8 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ menu }) => {
               key={item.href}
               href={String(item.href)}
               className={
-                'transition hover:text-blue-600' +
-                (pathname === item.href ? ' text-blue-700 font-bold' : '')
+                "transition hover:text-blue-600" +
+                (pathname === item.href ? " text-blue-700 font-bold" : "")
               }
               prefetch
             >
@@ -69,12 +71,12 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ menu }) => {
           ),
         )}
       </nav>
-      <div className='md:block hidden'>
+      <div className="md:block hidden">
         {!auth ? (
           <>
             <Button
               onClick={() => setOpenModal(true)}
-              className='ml-4 rounded-full bg-blue-600 px-5 py-2 font-semibold text-white transition hover:bg-blue-700 md:inline-block'
+              className="ml-4 rounded-full bg-blue-600 px-5 py-2 font-semibold text-white transition hover:bg-blue-700 md:inline-block"
             >
               Login
             </Button>
@@ -84,32 +86,32 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ menu }) => {
           <>
             <Button
               onClick={handleClick}
-              aria-controls={open ? 'user-menu' : undefined}
-              aria-haspopup='true'
-              aria-expanded={open ? 'true' : undefined}
-              className='ml-4 hidden md:flex items-center gap-2 text-blue-700'
+              aria-controls={open ? "user-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              className="ml-4 hidden md:flex items-center gap-2 text-blue-700"
             >
               <Avatar
                 alt={auth.name || auth.email}
-                src={auth.avatar || '/default-avatar.png'}
+                src={auth.avatar || "/default-avatar.png"}
                 sx={{ width: 32, height: 32 }}
               />
-              <div className='flex flex-col items-start'>
-                <span className='font-semibold'>{auth.name}</span>
+              <div className="flex flex-col items-start">
+                <span className="font-semibold">{auth.name}</span>
               </div>
             </Button>
             <Menu
-              id='user-menu'
+              id="user-menu"
               anchorEl={anchorEl}
               open={open}
               onClose={handleClose}
               anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'right',
+                vertical: "bottom",
+                horizontal: "right",
               }}
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
               }}
               PaperProps={{
                 sx: { minWidth: 150, py: 1 },
@@ -118,14 +120,14 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ menu }) => {
               {auth.role === UserRoles.ADMIN && (
                 <MenuItem
                   component={Link}
-                  href='/manage/dashboard'
+                  href="/manage/dashboard"
                   onClick={handleClose}
-                  sx={{ fontWeight: 'bold' }}
+                  sx={{ fontWeight: "bold" }}
                 >
                   Management Site
                 </MenuItem>
               )}
-              <MenuItem onClick={handleLogout} sx={{ color: 'red' }}>
+              <MenuItem onClick={handleLogout} sx={{ color: "red" }}>
                 Logout
               </MenuItem>
             </Menu>

@@ -9,15 +9,16 @@ import {
   MenuItem,
   OutlinedInput,
   TablePagination,
-} from '@mui/material';
-import { useEffect, useMemo, useState } from 'react';
-import TableHeader from './TableHeader';
-import TableBodyContent from './TableBodyContent';
+} from "@mui/material";
+import { useEffect, useMemo, useState } from "react";
+
+import TableBodyContent from "./TableBodyContent";
+import TableHeader from "./TableHeader";
 
 export type Column<T = any> = {
   field: keyof T;
   label: string;
-  align?: 'left' | 'right' | 'center';
+  align?: "left" | "right" | "center";
   render?: (row: T, idx: number) => React.ReactNode;
 };
 
@@ -27,7 +28,7 @@ export type FilterConfig<T = any> = {
   field: keyof T | string;
   value: string;
   options?: FilterOption[];
-  type?: 'select' | 'search';
+  type?: "select" | "search";
   onChange: (val: string) => void;
   placeholder?: string;
 };
@@ -61,7 +62,7 @@ export default function CommonTable<T extends object>({
   rowsPerPageOptions = [5, 10, 25, 50, 100],
   defaultRowsPerPage = 10,
   dense = false,
-  emptyText = 'No data',
+  emptyText = "No data",
 }: CommonTableProps<T>) {
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState(defaultRowsPerPage);
@@ -96,7 +97,7 @@ export default function CommonTable<T extends object>({
   const filteredData = useMemo(() => {
     let filtered = data;
     filters.forEach((f) => {
-      if (f.type !== 'search' && f.value && f.value !== 'ALL') {
+      if (f.type !== "search" && f.value && f.value !== "ALL") {
         filtered = filtered.filter(
           (item) => String(item[f.field as keyof T]) === f.value,
         );
@@ -117,36 +118,36 @@ export default function CommonTable<T extends object>({
   useEffect(() => {
     if (!useServerPaging) setPage(0);
     // eslint-disable-next-line
-  }, [filters.map((f) => f.value).join(',')]);
+  }, [filters.map((f) => f.value).join(",")]);
 
   return (
     <Paper
-      sx={{ width: '100%', overflow: 'hidden', p: 2, position: 'relative' }}
+      sx={{ width: "100%", overflow: "hidden", p: 2, position: "relative" }}
     >
-      <Stack direction='row' spacing={2} alignItems='center' mb={2}>
+      <Stack direction="row" spacing={2} alignItems="center" mb={2}>
         {filters.map((filter) =>
-          filter.type === 'search' ? (
+          filter.type === "search" ? (
             <FormControl
-              size='small'
+              size="small"
               key={String(filter.field)}
               sx={{ minWidth: 200 }}
-              variant='outlined'
+              variant="outlined"
             >
               <OutlinedInput
                 id={String(filter.field)}
-                type='search'
+                type="search"
                 value={filter.value}
                 onChange={(e) => filter.onChange(e.target.value)}
                 placeholder={filter.placeholder || filter.label}
-                sx={{ bgcolor: '#fff' }}
+                sx={{ bgcolor: "#fff" }}
               />
             </FormControl>
           ) : (
-            <FormControl size='small' key={String(filter.field)}>
+            <FormControl size="small" key={String(filter.field)}>
               <InputLabel>{filter.label}</InputLabel>
               <Select
                 label={filter.label}
-                value={filter.value || 'ALL'}
+                value={filter.value || "ALL"}
                 onChange={(e) => filter.onChange(e.target.value)}
                 sx={{ minWidth: 120, fontWeight: 500 }}
               >
@@ -162,7 +163,7 @@ export default function CommonTable<T extends object>({
       </Stack>
 
       <TableContainer>
-        <Table size={dense ? 'small' : 'medium'}>
+        <Table size={dense ? "small" : "medium"}>
           <TableHeader columns={columns} />
           <TableBodyContent
             columns={columns}
@@ -179,13 +180,13 @@ export default function CommonTable<T extends object>({
 
       <TablePagination
         rowsPerPageOptions={rowsPerPageOptions}
-        component='div'
+        component="div"
         count={useServerPaging ? (pagination?.total ?? 0) : filteredData.length}
         rowsPerPage={useServerPaging ? pagination!.limit : rowsPerPage}
         page={useServerPaging ? pagination!.page - 1 : page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
-        labelRowsPerPage='Rows per page:'
+        labelRowsPerPage="Rows per page:"
       />
     </Paper>
   );

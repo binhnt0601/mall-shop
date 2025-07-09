@@ -1,18 +1,17 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { i18n } from "@lingui/core";
+import { I18nProvider } from "@lingui/react";
+import { en, ko, PluralCategory } from "make-plural/plurals";
+import { ReactNode, useEffect, useState } from "react";
 
-import { i18n } from '@lingui/core';
-import { I18nProvider } from '@lingui/react';
-import { en, ko, PluralCategory } from 'make-plural/plurals';
-
-import { DEFAULT_LOCALE, SupportedLocale } from '@/helpers/locales';
+import { DEFAULT_LOCALE, SupportedLocale } from "@/helpers/locales";
 
 type LocalePlural = {
   [key in SupportedLocale]: (n: number, ordinal?: boolean) => PluralCategory;
 };
 
 const plurals: LocalePlural = {
-  'en-US': en,
-  'ko-KR': ko,
+  "en-US": en,
+  "ko-KR": ko,
   pseudo: en,
 };
 
@@ -22,7 +21,9 @@ export async function dynamicActivate(locale: SupportedLocale) {
     const catalog = await import(`../locales/${locale}`);
 
     i18n.load(locale, catalog.messages || catalog.default.messages);
-  } catch (e) {}
+  } catch (e) {
+    console.error(`[i18n] Failed to load locale: ${locale}`, e);
+  }
   i18n.activate(locale);
 }
 
@@ -46,7 +47,7 @@ export function ExI18nProvider({
         setLoading(false);
       })
       .catch((error) => {
-        console.error('Failed to activate locale', locale, error);
+        console.error("Failed to activate locale", locale, error);
         setLoading(false);
       });
   }, [locale, onActivate]);

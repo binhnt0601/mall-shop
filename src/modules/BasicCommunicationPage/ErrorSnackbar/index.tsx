@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { Snackbar, Alert } from '@mui/material';
+import { Snackbar, Alert } from "@mui/material";
+import React from "react";
 
 interface ErrorSnackbarProps {
   message: string;
@@ -16,7 +16,7 @@ const ErrorSnackbar: React.FC<ErrorSnackbarProps> = ({
 }) => {
   return (
     <Snackbar open={open} autoHideDuration={4000} onClose={onClose}>
-      <Alert onClose={onClose} severity='warning' sx={{ width: '100%' }}>
+      <Alert onClose={onClose} severity="warning" sx={{ width: "100%" }}>
         {message}
       </Alert>
     </Snackbar>
