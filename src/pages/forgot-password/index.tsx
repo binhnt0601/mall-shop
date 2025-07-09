@@ -11,8 +11,8 @@ import * as Yup from "yup";
 import FormikTextField from "@/components-shared/FormikTextField";
 import { toast } from "@/helpers/toast";
 import MainLayout from "@/layouts/MainLayout";
-import { useLoader } from "@/providers/loading-provider";
 import { UserService } from "@/services/user/user.repo";
+import { useLoadingStore } from "@/stores/loadingStore";
 
 export const dynamic = "force-dynamic";
 
@@ -29,7 +29,7 @@ const gradientTo = "to-indigo-600";
 
 const ForgotPasswordPage = () => {
   const router = useRouter();
-  const { setLoading } = useLoader();
+  const { setLoading } = useLoadingStore();
 
   const handleSubmit = async (
     values: FormikValues,

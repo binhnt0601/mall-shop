@@ -14,6 +14,7 @@
   ],
   "parser": "@typescript-eslint/parser",
   "rules": {
+    "import/named": "error",
     "react-hooks/exhaustive-deps": "off",
     "@next/next/no-img-element": "off",
     "quotes": ["error", "double"],
@@ -68,6 +69,7 @@
     "tailwindcss": {
       "callees": ["clsx"],
       "classRegex": "^(class(Name)|theme)?$"
-    }
+    },
+    "import/resolver": { "typescript": {} }
   }
 }
