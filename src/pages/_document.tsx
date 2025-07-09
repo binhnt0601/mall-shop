@@ -1,17 +1,13 @@
 import createEmotionServer from "@emotion/server/create-instance";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
-import SeoHead from "@/components/SeoHead";
 import createEmotionCache from "@/utils/createEmotionCache";
 
 export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head>
-          {(this.props as any).emotionStyleTags}
-          <SeoHead />
-        </Head>
+        <Head>{(this.props as any).emotionStyleTags}</Head>
 
         <body>
           <Main />

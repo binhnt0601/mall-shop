@@ -4,6 +4,7 @@ import { CacheProvider, EmotionCache } from "@emotion/react";
 import { AppProps } from "next/app";
 import React, { Fragment, useEffect } from "react";
 
+import SeoHead from "@/components/SeoHead";
 import { GetAuthToken } from "@/graphql/auth";
 import AppProviders from "@/providers/app-provider";
 import { useAuthStore } from "@/stores/auth/useAuthStore";
@@ -39,6 +40,8 @@ function MyApp(props: AppProps & { emotionCache?: EmotionCache }) {
   return (
     <CacheProvider value={emotionCache}>
       <AppProviders>
+        <SeoHead />
+
         <Layout {...layoutProps}>
           {getLayout(<Component {...pageProps} />)}
         </Layout>
