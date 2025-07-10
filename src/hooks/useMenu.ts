@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 
-import { getAdminMenu, getUserMenu } from "@/constants/menu";
+import { getMenuByRoleAndType } from "@/constants/menu";
 import { useAuthStore } from "@/stores/auth/useAuthStore";
-
-import { UserRoles } from "../services/user/user.model";
 
 export type MenuData = {
   categoryCode?: string;
   code: string;
-  icon?: string;
+  header: string;
+  icon: string;
   title: any;
   url?: any;
 };
@@ -20,19 +19,15 @@ const useMenu = (): [MenuData[] | null, string[]] => {
 
   useEffect(() => {
     if (!auth?.role) return;
-    // if (!auth?.role || !i18n.locale) return;
+    const menus: MenuData[] = getMenuByRoleAndType(auth.role, auth.userType);
 
-    let menus: MenuData[] = [];
-    if (auth?.role === UserRoles.ADMIN) {
-      menus = getAdminMenu();
-    } else if (auth?.role === UserRoles.USER) {
-      menus = getUserMenu();
-    }
-
-    setMenuCategories(menus.map((i) => i.categoryCode || "").filter((i) => i));
+    const categories = Array.from(
+      new Set(menus.map((i) => i.categoryCode || "").filter(Boolean))
+    );
 
     setMenu(menus);
-  }, [auth?.role]);
+    setMenuCategories(categories);
+  }, [auth?.role, auth?.userType]);
 
   return [menu, menuCategories];
 };

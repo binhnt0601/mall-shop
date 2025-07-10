@@ -32,18 +32,18 @@ const ProfileDropdown = () => {
     <div className="relative inline-block text-left" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className="flex items-center justify-center gap-1 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50"
+        className="flex items-center justify-center gap-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50"
       >
         <div className="relative inline-flex size-10 items-center justify-center overflow-hidden rounded-full bg-[#FF7125]">
           <span className="font-medium text-white">
             {auth?.name?.slice(0, 1).toUpperCase() ||
-              auth?.gmail?.slice(0, 1).toUpperCase()}
+              auth?.email?.slice(0, 1).toUpperCase()}
           </span>
         </div>
         <div>
           <div className="flex flex-col items-start">
-            <p>{auth?.gmail}</p>
             <p>{auth?.name}</p>
+            <p>{auth?.email}</p>
           </div>
         </div>
         <HiChevronDown

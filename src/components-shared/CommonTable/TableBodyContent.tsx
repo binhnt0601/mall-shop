@@ -73,9 +73,9 @@ export default function TableBodyContent<T>({
     <TableBody>
       {data.map((row, idx) => (
         <TableRow key={idx}>
-          {columns.map((col) => (
+          {columns.map((col, cidx) => (
             <TableCell
-              key={String(col.field)}
+              key={col.field ? String(col.field) : cidx}
               align={col.align || "left"}
               className="text-nowrap"
             >
@@ -84,7 +84,9 @@ export default function TableBodyContent<T>({
                     row,
                     idx + (useServerPaging ? 0 : page * rowsPerPage)
                   )
-                : String(row[col.field] ?? "")}
+                : col.field
+                  ? String(row[col.field as keyof typeof row] ?? "")
+                  : ""}
             </TableCell>
           ))}
         </TableRow>

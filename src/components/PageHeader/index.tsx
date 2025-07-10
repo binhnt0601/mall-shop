@@ -23,9 +23,6 @@ const PageHeader: React.FC<PageHeaderProps> = ({ className, children }) => {
   }, [menu, router.pathname]);
 
   const breadcrumbs = React.useMemo(() => {
-    if (router.pathname === HOME_PATH) {
-      return [{ href: HOME_PATH, label: t`Home` }];
-    }
     return [
       { href: HOME_PATH, label: t`Home` },
       { href: menuItem?.url, label: menuItem?.title || t`Page` },
@@ -38,8 +35,12 @@ const PageHeader: React.FC<PageHeaderProps> = ({ className, children }) => {
     return <div className={clsx("mt-5", className)}>{children}</div>;
 
   return (
-    <div className="mb-5">
-      <BreadCrumbs breadcrumbs={breadcrumbs} />
+    <div>
+      {router.pathname !== HOME_PATH && (
+        <div className="mb-5">
+          <BreadCrumbs breadcrumbs={breadcrumbs} />{" "}
+        </div>
+      )}
       <div className={clsx("mt-5", className)}>{children}</div>
     </div>
   );

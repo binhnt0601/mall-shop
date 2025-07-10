@@ -16,8 +16,8 @@ import TableBodyContent from "./TableBodyContent";
 import TableHeader from "./TableHeader";
 
 export type Column<T = any> = {
-  field: keyof T;
-  label: string;
+  field?: keyof T | string;
+  label?: string;
   align?: "left" | "right" | "center";
   render?: (row: T, idx: number) => React.ReactNode;
 };
@@ -25,7 +25,7 @@ export type Column<T = any> = {
 type FilterOption = { label: string; value: string };
 export type FilterConfig<T = any> = {
   label: string;
-  field: keyof T | string;
+  field?: keyof T | string;
   value: string;
   options?: FilterOption[];
   type?: "select" | "search";

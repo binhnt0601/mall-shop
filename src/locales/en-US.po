@@ -14,74 +14,88 @@ msgstr ""
 "Plural-Forms: \n"
 
 #: src/hooks/useStatusLabel.tsx
-msgid "Blocked"
-msgstr "Blocked"
-
-#: src/components/PageHeader/index.tsx
-msgid "Page"
-msgstr "Page"
-
-#: src/constants/menu.ts
-msgid "User"
-msgstr "User"
-
-#: src/constants/menu.ts
-msgid "Dashboard"
-msgstr "Dashboard"
-
-#: src/constants/menu.ts
-msgid "SYSTEM"
-msgstr "SYSTEM"
-
-#: src/constants/menu.ts
-msgid "Setting"
-msgstr "Setting"
-
-#: src/constants/role.ts
-#: src/hooks/useStatusLabel.tsx
-msgid "Unknown"
-msgstr "Unknown"
-
-#: src/hooks/useStatusLabel.tsx
 msgid "Active"
 msgstr "Active"
-
-#: src/hooks/useStatusLabel.tsx
-msgid "Inactive"
-msgstr "Inactive"
 
 #: src/constants/role.ts
 msgid "Admin"
 msgstr "Admin"
 
+#: src/constants/menu.ts
+msgid "ASSIGNMENT"
+msgstr "ASSIGNMENT"
+
+#: src/constants/menu.ts
+msgid "Assignment Management"
+msgstr "Assignment Management"
+
+#: src/constants/menu.ts src/pages/manage/student/assignments/index.tsx
+msgid "Assignments"
+msgstr "Assignments"
+
 #: src/hooks/useStatusLabel.tsx
-msgid "Pending"
-msgstr "Pending"
+msgid "Blocked"
+msgstr "Blocked"
 
-#: src/constants/role.ts
-msgid "Student"
-msgstr "Student"
+#: src/constants/menu.ts
+msgid "CLASS"
+msgstr "CLASS"
 
-#: src/components/ProfileDropdown/index.tsx
-msgid "My profile"
-msgstr "My profile"
+#: src/constants/menu.ts
+msgid "Class Management"
+msgstr "Class Management"
 
-#: src/helpers/locales.ts
-msgid "Vietnamese"
-msgstr "Vietnamese"
+#: src/constants/menu.ts
+msgid "Classes"
+msgstr "Classes"
 
-#: src/components/PageHeader/index.tsx
-#: src/components/PageHeader/index.tsx
-msgid "Home"
-msgstr "Home"
+#: src/constants/menu.ts
+msgid "COURSE"
+msgstr "COURSE"
+
+#: src/constants/menu.ts
+msgid "Course Management"
+msgstr "Course Management"
+
+#: src/constants/menu.ts
+msgid "Course Materials"
+msgstr "Course Materials"
+
+#: src/constants/menu.ts
+msgid "Courses"
+msgstr "Courses"
+
+#: src/constants/menu.ts
+msgid "Dashboard"
+msgstr "Dashboard"
 
 #: src/helpers/locales.ts
 msgid "English"
 msgstr "English"
 
-#: src/constants/role.ts
-msgid "Teacher"
-msgstr "Teacher"
+#: src/constants/menu.ts
+msgid "EVENT"
+msgstr "EVENT"
+
+#: src/constants/menu.ts
+msgid "Event Management"
+msgstr "Event Management"
+
+#: src/constants/menu.ts
+msgid "Events"
+msgstr "Events"
+
+#: src/components/PageHeader/index.tsx
+msgid "Home"
+msgstr "Home"
+
+#: src/hooks/useStatusLabel.tsx
+msgid "Inactive"
+msgstr "Inactive"
+
+#: src/constants/menu.ts
+msgid "LEARNING"
+msgstr "LEARNING"
 
 #: src/components/ProfileDropdown/index.tsx
 msgid "Logout"
@@ -90,3 +104,127 @@ msgstr "Logout"
 #: src/constants/menu.ts
 msgid "MANAGEMENT"
 msgstr "MANAGEMENT"
+
+#: src/constants/menu.ts src/pages/manage/student/materials/index.tsx
+msgid "Materials"
+msgstr "Materials"
+
+#: src/constants/menu.ts
+msgid "My Assignments"
+msgstr "My Assignments"
+
+#: src/constants/menu.ts
+msgid "My Class Scores"
+msgstr "My Class Scores"
+
+#: src/constants/menu.ts src/pages/manage/student/classes/index.tsx
+msgid "My Classes"
+msgstr "My Classes"
+
+#: src/components/ProfileDropdown/index.tsx
+msgid "My profile"
+msgstr "My profile"
+
+#: src/constants/menu.ts src/pages/manage/student/scores/index.tsx
+msgid "My Scores"
+msgstr "My Scores"
+
+#: src/constants/menu.ts
+msgid "Overview Dashboard"
+msgstr "Overview Dashboard"
+
+#: src/components/PageHeader/index.tsx
+msgid "Page"
+msgstr "Page"
+
+#: src/constants/menu.ts
+msgid "PAYMENT"
+msgstr "PAYMENT"
+
+#: src/constants/menu.ts src/pages/manage/student/payment/index.tsx
+msgid "Payment History"
+msgstr "Payment History"
+
+#: src/constants/menu.ts
+msgid "Payment Management"
+msgstr "Payment Management"
+
+#: src/constants/menu.ts
+msgid "Payments"
+msgstr "Payments"
+
+#: src/hooks/useStatusLabel.tsx
+msgid "Pending"
+msgstr "Pending"
+
+#: src/constants/menu.ts
+msgid "SCORE"
+msgstr "SCORE"
+
+#: src/constants/menu.ts
+msgid "Score Management"
+msgstr "Score Management"
+
+#: src/constants/menu.ts
+msgid "Scores"
+msgstr "Scores"
+
+#: src/constants/menu.ts
+msgid "Settings"
+msgstr "Settings"
+
+#: src/constants/role.ts
+msgid "Student"
+msgstr "Student"
+
+#: src/constants/menu.ts
+msgid "Student Management"
+msgstr "Student Management"
+
+#: src/constants/menu.ts
+msgid "Students"
+msgstr "Students"
+
+#: src/constants/menu.ts
+msgid "SYSTEM"
+msgstr "SYSTEM"
+
+#: src/constants/menu.ts
+msgid "System Settings"
+msgstr "System Settings"
+
+#: src/constants/role.ts
+msgid "Teacher"
+msgstr "Teacher"
+
+#: src/constants/menu.ts
+msgid "Teacher Management"
+msgstr "Teacher Management"
+
+#: src/constants/menu.ts
+msgid "Teachers"
+msgstr "Teachers"
+
+#: src/constants/menu.ts
+msgid "TEACHING"
+msgstr "TEACHING"
+
+#: src/constants/menu.ts
+msgid "Teaching Materials"
+msgstr "Teaching Materials"
+
+#: src/constants/role.ts src/hooks/useStatusLabel.tsx
+msgid "Unknown"
+msgstr "Unknown"
+
+#: src/constants/menu.ts
+msgid "User Management"
+msgstr "User Management"
+
+#: src/constants/menu.ts
+msgid "Users"
+msgstr "Users"
+
+#: src/helpers/locales.ts
+msgid "Vietnamese"
+msgstr "Vietnamese"

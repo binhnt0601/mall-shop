@@ -39,6 +39,7 @@
         "singleQuote": false,
         "jsxSingleQuote": false,
         "tabWidth": 2,
+        "trailingComma": "es5",
         "semi": true
       }
     ],
@@ -71,5 +72,23 @@
       "classRegex": "^(class(Name)|theme)?$"
     },
     "import/resolver": { "typescript": {} }
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "next.config.js",
+        "next.config.ts",
+        "tailwind.config.js",
+        "tailwind.config.ts",
+        "*.config.js",
+        "*.config.ts",
+        "postcss.config.js",
+        "postcss.config.mjs",
+        "cleanup-po.js"
+      ],
+      "env": {
+        "node": true
+      }
+    }
+  ]
 }

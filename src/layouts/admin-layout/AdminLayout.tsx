@@ -21,7 +21,7 @@ export default function MainLayout({ children }: LayoutProps) {
   useEffect(() => {
     const token = GetAuthToken();
     if (!token) {
-      window.location.assign("/signin");
+      router.push("/");
     }
 
     if (authStatus === AuthStatuses.LOADED) {

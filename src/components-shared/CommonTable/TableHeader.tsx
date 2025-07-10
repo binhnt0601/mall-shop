@@ -14,7 +14,7 @@ export default function TableHeader<T>({ columns }: Props<T>) {
             align={col.align || "left"}
             className="text-nowrap"
           >
-            <Typography fontWeight="bold">{col.label}</Typography>
+            <Typography fontWeight="bold"> {col.label || ""}</Typography>
           </TableCell>
         ))}
       </TableRow>

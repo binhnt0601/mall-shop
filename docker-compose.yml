@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   app:
@@ -6,7 +6,7 @@ services:
     container_name: mall-shop
     restart: unless-stopped
     ports:
-      - '3000:3000'
+      - "3000:3000"
     env_file:
       - .env.production
     networks:

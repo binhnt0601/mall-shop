@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation"; // App Router
 import React, { useState } from "react";
 
 import Dropdown from "@/components-shared/Dropdown";
-import { UserRoles } from "@/services/user/user.model";
 import { useAuthStore } from "@/stores/auth/useAuthStore";
 
 import LoginModal from "../LoginModal";
@@ -117,16 +116,14 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ menu }) => {
                 sx: { minWidth: 150, py: 1 },
               }}
             >
-              {auth.role === UserRoles.ADMIN && (
-                <MenuItem
-                  component={Link}
-                  href="/manage/dashboard"
-                  onClick={handleClose}
-                  sx={{ fontWeight: "bold" }}
-                >
-                  Management Site
-                </MenuItem>
-              )}
+              <MenuItem
+                component={Link}
+                href="/manage/dashboard"
+                onClick={handleClose}
+                sx={{ fontWeight: "bold" }}
+              >
+                Management Site
+              </MenuItem>
               <MenuItem onClick={handleLogout} sx={{ color: "red" }}>
                 Logout
               </MenuItem>
