@@ -15,9 +15,9 @@ export class ScoreRepository extends CrudRepository<Score> {
   fullFragment = this.parseFragment(`
     ${scoreFields}
     student { id name }
-    class { id name }
-    assignment { id title }
   `);
+  // class { id name }
+  // assignment { id title }
 
   async getScoresByStudent(studentId: string) {
     const api = "getScoresByStudent";

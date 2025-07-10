@@ -16,17 +16,18 @@ export const scoreQuery = `
     id
     name
   }
-  class {
-    id
-    name
-  }
-  assignment {
-    id
-    title
-  }
+ 
   subject
   score
   maxScore
   status
   createdAt
 `;
+// class {
+//   id
+//   name
+// }
+// assignment {
+//   id
+//   title
+// }
