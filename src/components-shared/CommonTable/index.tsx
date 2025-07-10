@@ -99,7 +99,7 @@ export default function CommonTable<T extends object>({
     filters.forEach((f) => {
       if (f.type !== "search" && f.value && f.value !== "ALL") {
         filtered = filtered.filter(
-          (item) => String(item[f.field as keyof T]) === f.value,
+          (item) => String(item[f.field as keyof T]) === f.value
         );
       }
     });
@@ -158,7 +158,7 @@ export default function CommonTable<T extends object>({
                 ))}
               </Select>
             </FormControl>
-          ),
+          )
         )}
       </Stack>
 

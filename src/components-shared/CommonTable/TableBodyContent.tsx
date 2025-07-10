@@ -82,7 +82,7 @@ export default function TableBodyContent<T>({
               {col.render
                 ? col.render(
                     row,
-                    idx + (useServerPaging ? 0 : page * rowsPerPage),
+                    idx + (useServerPaging ? 0 : page * rowsPerPage)
                   )
                 : String(row[col.field] ?? "")}
             </TableCell>

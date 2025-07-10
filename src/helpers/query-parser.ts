@@ -2,7 +2,7 @@ export function queryParser(
   data: any,
   { hasBraces, fileParam }: { hasBraces: boolean; fileParam?: string } = {
     hasBraces: false,
-  },
+  }
 ): string | number | boolean | object | null {
   if (typeof data === "string") {
     if (data.match(/\n/g)) return `"""${data}"""`;

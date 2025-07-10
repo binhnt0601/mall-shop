@@ -20,7 +20,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         setLangLocal(locale);
       }
     },
-    [lang, setLangLocal],
+    [lang, setLangLocal]
   );
 
   return (

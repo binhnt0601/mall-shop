@@ -49,7 +49,7 @@ export async function login(email: string, password: string) {
     if (user?.isFirstLogin) {
       localStorage.setItem(
         "temp_login_credentials",
-        JSON.stringify({ email, password }),
+        JSON.stringify({ email, password })
       );
       window.location.assign("/first-login");
     } else {

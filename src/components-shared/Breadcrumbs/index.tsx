@@ -29,7 +29,7 @@ export default function BreadCrumbs({
                 <Link
                   className={clsx(
                     "hover:text-primary hover:opacity-100 hover:underline text-14",
-                    index === 0 && "opacity-50",
+                    index === 0 && "opacity-50"
                   )}
                   href={breadcrumb.href}
                 >

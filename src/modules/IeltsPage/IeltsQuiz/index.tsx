@@ -33,7 +33,7 @@ export default function IeltsQuiz() {
   const handleSubmit = () => {
     if (selected === quizSample.answer) {
       setFeedback(
-        "Correct! IELTS stands for International English Language Testing System.",
+        "Correct! IELTS stands for International English Language Testing System."
       );
     } else {
       setFeedback("Incorrect. Please try again.");

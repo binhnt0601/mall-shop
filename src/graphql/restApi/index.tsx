@@ -36,7 +36,7 @@ class RestfulApi {
   public request = async (
     method: string = "GET",
     route: string = "",
-    payload: Payload = {},
+    payload: Payload = {}
   ): Promise<any> => {
     const path = getPath(payload.path);
     const params = createUrlParamFromObj(payload.params);

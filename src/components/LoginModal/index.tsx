@@ -1,10 +1,11 @@
 import { Dialog } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
+import ForgetPasswordForm from "./ForgotPasswordForm";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 
-type Screen = "login" | "register";
+export type Screen = "login" | "register" | "forgot-password";
 
 type LoginModalProps = {
   screenView?: Screen;
@@ -47,15 +48,22 @@ export default function LoginModal({
       fullWidth
       scroll="body"
     >
-      {screen === "login" ? (
+      {screen === "login" && (
         <LoginForm
           apiUri={apiUri}
-          onRegisterClick={() => setScreen("register")}
+          onScreen={(e: Screen) => setScreen(e)}
           onClose={handleClose}
         />
-      ) : (
+      )}
+      {screen === "register" && (
         <RegisterForm
           apiUri={apiUri}
+          onLoginClick={() => setScreen("login")}
+          onClose={handleClose}
+        />
+      )}
+      {screen === "forgot-password" && (
+        <ForgetPasswordForm
           onLoginClick={() => setScreen("login")}
           onClose={handleClose}
         />

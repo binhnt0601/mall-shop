@@ -46,6 +46,6 @@ export const useAuthStore = create<AuthState>()(
         auth: state.auth,
         authStatus: state.authStatus,
       }),
-    },
-  ),
+    }
+  )
 );

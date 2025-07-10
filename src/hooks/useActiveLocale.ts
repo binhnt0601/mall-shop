@@ -13,7 +13,7 @@ import { parsedQueryString } from "./useParsedQueryString";
  * @param maybeSupportedLocale the fuzzy locale identifier
  */
 function parseLocale(
-  maybeSupportedLocale: unknown,
+  maybeSupportedLocale: unknown
 ): SupportedLocale | undefined {
   if (typeof maybeSupportedLocale !== "string") return undefined;
   const lowerMaybeSupportedLocale = maybeSupportedLocale.toLowerCase();
@@ -21,7 +21,7 @@ function parseLocale(
   return SUPPORTED_LOCALES.find(
     (locale) =>
       locale.toLowerCase() === lowerMaybeSupportedLocale ||
-      locale.split("-")[0] === lowerMaybeSupportedLocale,
+      locale.split("-")[0] === lowerMaybeSupportedLocale
   );
 }
 

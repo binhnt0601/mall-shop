@@ -68,7 +68,7 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ menu }) => {
             >
               {item.label}
             </Link>
-          ),
+          )
         )}
       </nav>
       <div className="md:block hidden">

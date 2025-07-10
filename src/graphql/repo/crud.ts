@@ -22,7 +22,7 @@ export abstract class CrudRepository<
       fragment?: string;
     } = {
       query: { limit: 10 },
-    },
+    }
   ): string {
     if ((query as QueryInput<T>).limit === 0) {
       (query as QueryInput<T>).limit = 1000;
@@ -44,7 +44,7 @@ export abstract class CrudRepository<
       fragment?: string;
     } = {
       query: { limit: 10 },
-    },
+    }
   ): string {
     if ((query as QueryInput<T>).limit === 0) {
       (query as QueryInput<T>).limit = 1000;
@@ -68,7 +68,7 @@ export abstract class CrudRepository<
       fragment?: string;
     } = {
       query: { limit: 10 },
-    },
+    }
   ): string {
     if ((query as QueryInput<T>).limit === 0) {
       (query as QueryInput<T>).limit = 1000;
@@ -102,8 +102,8 @@ export abstract class CrudRepository<
         `${this.generateGQL(
           "query",
           `${this.getAllQuery(queryData)}`,
-          "($q: QueryGetListInput!)",
-        )}`,
+          "($q: QueryGetListInput!)"
+        )}`
       ),
       variables: { q: query },
       fetchPolicy: cache ? "cache-first" : "network-only",
@@ -143,7 +143,7 @@ export abstract class CrudRepository<
   }) {
     const options = {
       query: this.gql(
-        `${this.generateGQL("query", `${this.getOneQuery({ id, fragment })}`)}`,
+        `${this.generateGQL("query", `${this.getOneQuery({ id, fragment })}`)}`
       ),
       fetchPolicy: cache ? "cache-first" : "network-only",
     } as QueryOptions;
@@ -183,8 +183,8 @@ export abstract class CrudRepository<
           `${this.generateGQL(
             "mutation",
             `${this.createQuery({ data: "$data", fragment })}`,
-            `($data: Create${this.apiName}Input!)`,
-          )}`,
+            `($data: Create${this.apiName}Input!)`
+          )}`
         ),
         fetchPolicy: "no-cache",
         variables: { data },
@@ -278,8 +278,8 @@ export abstract class CrudRepository<
         `${this.generateGQL(
           "mutation",
           `${this.updateQuery({ id, data: "$data", fragment })}`,
-          `($data: Update${this.apiName}Input!)`,
-        )}`,
+          `($data: Update${this.apiName}Input!)`
+        )}`
       ),
       variables: { data },
       fetchPolicy: "no-cache",
@@ -335,8 +335,8 @@ export abstract class CrudRepository<
         mutation: this.gql(
           `${this.generateGQL(
             "mutation",
-            `${this.deleteQuery({ id, fragment })}`,
-          )}`,
+            `${this.deleteQuery({ id, fragment })}`
+          )}`
         ),
         fetchPolicy: "no-cache",
       } as MutationOptions;
@@ -353,8 +353,8 @@ export abstract class CrudRepository<
         mutation: this.gql(
           `${this.generateGQL(
             "mutation",
-            ids.map((id) => `${this.deleteQuery({ id, fragment })}`),
-          )}`,
+            ids.map((id) => `${this.deleteQuery({ id, fragment })}`)
+          )}`
         ),
         fetchPolicy: "no-cache",
       } as MutationOptions;

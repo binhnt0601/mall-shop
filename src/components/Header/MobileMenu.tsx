@@ -1,10 +1,12 @@
-import { Avatar } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 
 import { useAuthStore } from "@/stores/auth/useAuthStore";
+
+import LoginModal from "../LoginModal";
 
 interface MenuItem {
   label: string;
@@ -20,6 +22,7 @@ interface MobileMenuProps {
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose, menu }) => {
   const { auth, logout } = useAuthStore();
+  const [openModal, setOpenModal] = useState<boolean>(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const pathname = usePathname();
 
@@ -73,7 +76,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose, menu }) => {
                   className="flex w-full items-center justify-between gap-1 rounded px-3 py-2 hover:bg-blue-50"
                   onClick={() =>
                     setOpenDropdown(
-                      openDropdown === item.label ? null : item.label,
+                      openDropdown === item.label ? null : item.label
                     )
                   }
                 >
@@ -120,7 +123,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose, menu }) => {
               >
                 {item.label}
               </Link>
-            ),
+            )
           )}
           <hr />
           {/* User Info or Login button */}
@@ -143,13 +146,21 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose, menu }) => {
               </button>
             </div>
           ) : (
-            <Link
-              href="/login"
-              className="mt-4 rounded-full bg-blue-600 px-3 py-2 text-center font-semibold text-white transition hover:bg-blue-700"
-              onClick={onClose}
-            >
-              Login
-            </Link>
+            <>
+              <Button
+                className="mt-4 rounded-full bg-blue-600 px-3 py-2 text-center font-semibold text-white transition hover:bg-blue-700"
+                onClick={() => {
+                  onClose();
+                  setOpenModal(true);
+                }}
+              >
+                Login
+              </Button>
+              <LoginModal
+                open={openModal}
+                onClose={() => setOpenModal(false)}
+              />
+            </>
           )}
         </div>
       </nav>

@@ -14,13 +14,14 @@ import {
 } from "@mui/material";
 import { useFormik } from "formik";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import * as Yup from "yup";
 
 import FormikTextField from "@/components-shared/FormikTextField";
 import { useAuthStore } from "@/stores/auth/useAuthStore";
+
+import { Screen } from ".";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Enter your email"),
@@ -31,13 +32,13 @@ const validationSchema = Yup.object().shape({
 
 type LoginFormProps = {
   apiUri: string;
-  onRegisterClick: () => void;
+  onScreen: (e: Screen) => void;
   onClose: () => void;
 };
 
 export default function LoginForm({
   apiUri,
-  onRegisterClick,
+  onScreen,
   onClose,
 }: LoginFormProps) {
   const { login } = useAuthStore();
@@ -62,7 +63,6 @@ export default function LoginForm({
     <Stack
       direction={{ xs: "column", md: "row" }}
       width="100%"
-      minHeight={{ xs: "100vh", md: 540 }}
       sx={{
         position: "relative",
         maxWidth: 830,
@@ -233,12 +233,12 @@ export default function LoginForm({
             }}
           />
 
-          <Link
+          <button
             className="flex flex-row-reverse bg-transparent text-[14px] text-orange-400 hover:text-orange-500 transition mb-4"
-            href="/forgot-password"
+            onClick={() => onScreen("forgot-password")}
           >
             Forgot password?
-          </Link>
+          </button>
 
           <button
             type="submit"
@@ -253,7 +253,7 @@ export default function LoginForm({
               Don&apos;t have an account?{" "}
               <span
                 className="ml-3 text-[17px] font-medium text-orange-400 hover:text-orange-500 transition cursor-pointer"
-                onClick={onRegisterClick}
+                onClick={() => onScreen("register")}
               >
                 Register
               </span>
@@ -297,7 +297,7 @@ export default function LoginForm({
         </Typography>
         <button
           className="w-full rounded-md bg-white py-3 font-bold text-indigo-600 flex items-center justify-center gap-2 hover:bg-indigo-50 transition"
-          onClick={onRegisterClick}
+          onClick={() => onScreen("register")}
         >
           Register
         </button>

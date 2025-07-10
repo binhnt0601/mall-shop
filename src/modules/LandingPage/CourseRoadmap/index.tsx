@@ -153,7 +153,7 @@ const courseGroups: CourseGroup[] = [
 
 export default function CourseRoadmap() {
   const [selectedGroup, setSelectedGroup] = useState<CourseGroup>(
-    courseGroups[0],
+    courseGroups[0]
   );
 
   return (
@@ -237,7 +237,7 @@ export default function CourseRoadmap() {
                 {ctaLabel}
               </a>
             </div>
-          ),
+          )
         )}
       </div>
     </section>

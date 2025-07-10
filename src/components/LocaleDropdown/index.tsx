@@ -32,7 +32,7 @@ const LocaleDropdown = () => {
         query: { ...router.query, lng: locale },
       },
       undefined,
-      { shallow: true },
+      { shallow: true }
     );
     setIsOpen(false);
   };
@@ -43,7 +43,7 @@ const LocaleDropdown = () => {
         key={locale}
         className={clsx(
           "w-full text-left px-4 py-2 text-sm flex items-center gap-2 hover:bg-gray-100",
-          locale === activeLocale && "font-bold text-[#FF7125]",
+          locale === activeLocale && "font-bold text-[#FF7125]"
         )}
         onClick={() => handleLocaleChange(locale)}
       >
@@ -68,7 +68,7 @@ const LocaleDropdown = () => {
           size={18}
           className={clsx(
             "transition-transform duration-300",
-            isOpen && "rotate-180",
+            isOpen && "rotate-180"
           )}
         />
       </button>

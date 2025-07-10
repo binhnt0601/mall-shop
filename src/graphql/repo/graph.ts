@@ -113,7 +113,7 @@ export class GraphRepository {
   generateGQL(
     type: "query" | "mutation",
     list: string[] | string,
-    variableParams: string = "",
+    variableParams: string = ""
   ) {
     let gql = `${type}${variableParams || ""} {
         `;
@@ -141,7 +141,7 @@ export class GraphRepository {
   handleError(result: ApolloQueryResult<any> | FetchResult) {
     if ((result as ApolloQueryResult<any>).error) {
       throw Error(
-        (result as ApolloQueryResult<any>).error?.message ?? "Unknown error",
+        (result as ApolloQueryResult<any>).error?.message ?? "Unknown error"
       );
     }
     if (result.errors && result.errors.length > 0) {

@@ -58,7 +58,6 @@ export default function RegisterForm({
     <Stack
       direction={{ xs: "column", md: "row" }}
       width="100%"
-      minHeight={{ xs: "100vh", md: 540 }}
       sx={{
         position: "relative",
         maxWidth: 830,

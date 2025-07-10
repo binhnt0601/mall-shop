@@ -50,7 +50,7 @@ const ProfileDropdown = () => {
           size={18}
           className={clsx(
             "transition-transform duration-300",
-            isOpen && "rotate-180",
+            isOpen && "rotate-180"
           )}
         />
       </button>
@@ -63,7 +63,7 @@ const ProfileDropdown = () => {
               className={clsx(
                 pathname === "/profile" && "text-primary",
                 "hover:text-[#FF7125] hover:font-medium flex gap-2 items-center",
-                "border-b pb-2 w-full text-nowrap",
+                "border-b pb-2 w-full text-nowrap"
               )}
             >
               <MdPerson />

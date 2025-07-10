@@ -32,7 +32,7 @@ const AdminSidebarMenu = ({ setCollapseShow }: any) => {
             "flex items-center gap-4",
             active
               ? "border-l-4 border-primary border-[#FF7125] bg-[#FAEEE1] text-[#FF7125]"
-              : "",
+              : ""
           )}
         >
           <IconSVG
