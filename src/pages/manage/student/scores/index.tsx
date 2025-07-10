@@ -2,51 +2,38 @@
 
 import { t } from "@lingui/macro";
 import { Box, Typography, Stack } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import AdminLayout from "@/layouts/admin-layout/AdminLayout";
 import ScoreStatusFilter from "@/modules/ManagementPage/Student/Scores/ScoreStatusFilter";
-import StudentScoreTable, {
-  StudentScore,
-} from "@/modules/ManagementPage/Student/Scores/ScoreTable";
-
-const DUMMY_SCORES: StudentScore[] = [
-  {
-    id: "1",
-    className: "IELTS Foundation",
-    subject: "English",
-    assignment: "Midterm Test",
-    score: 86,
-    maxScore: 100,
-    status: "PASSED",
-  },
-  {
-    id: "2",
-    className: "Speaking Club",
-    subject: "Speaking",
-    assignment: "Presentation",
-    score: 45,
-    maxScore: 100,
-    status: "FAILED",
-  },
-  {
-    id: "3",
-    className: "Business English",
-    subject: "English",
-    assignment: "Final Exam",
-    score: 92,
-    maxScore: 100,
-    status: "PASSED",
-  },
-];
+import StudentScoreTable from "@/modules/ManagementPage/Student/Scores/ScoreTable";
+import { Score } from "@/services/score/score.model";
+import { ScoreService } from "@/services/score/score.repo";
+import { useAuthStore } from "@/stores/auth/useAuthStore";
 
 const StudentScoresPage = () => {
   const [status, setStatus] = useState<string>("ALL");
+  const [scores, setScores] = useState<Score[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>("");
+  const { auth } = useAuthStore();
+
+  useEffect(() => {
+    if (!auth?.id) return;
+    setLoading(true);
+    ScoreService.getScoresByStudent(auth.id)
+      .then((data) => {
+        setScores(data || []);
+        setError("");
+      })
+      .catch((e) => {
+        setError(e?.message || "Failed to fetch scores");
+      })
+      .finally(() => setLoading(false));
+  }, [auth?.id]);
 
   const filteredScores =
-    status === "ALL"
-      ? DUMMY_SCORES
-      : DUMMY_SCORES.filter((c) => c.status === status);
+    status === "ALL" ? scores : scores.filter((c) => c.status === status);
 
   return (
     <Box maxWidth="lg" mx="auto" py={3}>
@@ -56,7 +43,10 @@ const StudentScoresPage = () => {
       <Stack mb={2} direction="row" spacing={2}>
         <ScoreStatusFilter value={status} onChange={setStatus} />
       </Stack>
-      <StudentScoreTable data={filteredScores} />
+
+      {loading && <Typography>{t`Loading...`}</Typography>}
+      {error && <Typography color="error">{error}</Typography>}
+      {!loading && !error && <StudentScoreTable data={filteredScores} />}
     </Box>
   );
 };

@@ -1,23 +1,14 @@
 import React from "react";
 
 import CommonTable, { Column } from "@/components-shared/CommonTable";
-
-export type StudentScore = {
-  id: string;
-  className: string;
-  subject: string;
-  assignment: string;
-  score: number;
-  maxScore: number;
-  status: "PASSED" | "FAILED";
-};
+import { Score } from "@/services/score/score.model";
 
 type Props = {
-  data: StudentScore[];
+  data: Score[];
 };
 
-const columns: Column<StudentScore>[] = [
-  { field: "className", label: "Class" },
+const columns: Column<Score>[] = [
+  { field: "class", label: "Class" },
   { field: "subject", label: "Subject" },
   { field: "assignment", label: "Assignment" },
   {
@@ -44,7 +35,7 @@ const columns: Column<StudentScore>[] = [
 ];
 
 const StudentScoreTable: React.FC<Props> = ({ data }) => (
-  <CommonTable<StudentScore>
+  <CommonTable<Score>
     columns={columns}
     data={data}
     emptyText="No scores found"
