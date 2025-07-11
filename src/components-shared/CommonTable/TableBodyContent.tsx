@@ -8,6 +8,8 @@ import {
   Typography,
 } from "@mui/material";
 
+import { getValueByPath } from "@/utils/getValueByPath";
+
 import { Column } from ".";
 
 type Props<T> = {
@@ -85,7 +87,7 @@ export default function TableBodyContent<T>({
                     idx + (useServerPaging ? 0 : page * rowsPerPage)
                   )
                 : col.field
-                  ? String(row[col.field as keyof typeof row] ?? "")
+                  ? String(getValueByPath(row, String(col.field)) ?? "")
                   : ""}
             </TableCell>
           ))}

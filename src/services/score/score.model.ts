@@ -7,8 +7,8 @@ import { User } from "../user/user.model";
 export interface Score extends BaseModel {
   id: string;
   student: string | User;
-  // class: { id: string; name: string };
-  // assignment: { id: string; title: string };
+  class: { id: string; name: string };
+  assignment: { id: string; title: string };
   subject: string;
   score: number;
   maxScore: number;

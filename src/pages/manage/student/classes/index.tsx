@@ -2,49 +2,37 @@
 
 import { t } from "@lingui/macro";
 import { Box, Typography, Stack } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import AdminLayout from "@/layouts/admin-layout/AdminLayout";
 import ClassStatusFilter from "@/modules/ManagementPage/Student/Classes/ClassStatusFilter";
-import ClassTable, {
-  StudentClass,
-} from "@/modules/ManagementPage/Student/Classes/ClassTable";
-
-const DUMMY_CLASSES: StudentClass[] = [
-  {
-    id: "1",
-    name: "IELTS Foundation",
-    teacher: "Ms. Alice",
-    status: "ACTIVE",
-    startDate: "2024-07-01",
-    endDate: "2024-08-15",
-  },
-  {
-    id: "2",
-    name: "English for Business",
-    teacher: "Mr. Bob",
-    status: "COMPLETED",
-    startDate: "2024-04-01",
-    endDate: "2024-06-15",
-  },
-  {
-    id: "3",
-    name: "Speaking Club",
-    teacher: "Ms. Jenny",
-    status: "UPCOMING",
-    startDate: "2024-09-05",
-    endDate: "2024-11-10",
-  },
-];
+import ClassTable from "@/modules/ManagementPage/Student/Classes/ClassTable";
+import { ClassService } from "@/services/class/class.repo";
+import { useAuthStore } from "@/stores/auth/useAuthStore";
 
 const StudentClassesPage = () => {
-  const [status, setStatus] = useState("ALL");
+  const [status, setStatus] = useState<string>("ALL");
+  const [classes, setClasses] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>("");
+  const { auth } = useAuthStore();
 
-  // Lọc theo trạng thái
+  useEffect(() => {
+    if (!auth?.id) return;
+    setLoading(true);
+    ClassService.getAll()
+      .then((data) => {
+        console.log("🚀 ~ .then ~ data:", data);
+        setError("");
+      })
+      .catch((e) => {
+        setError(e?.message || "Failed to fetch classes");
+      })
+      .finally(() => setLoading(false));
+  }, [auth?.id]);
+
   const filteredClasses =
-    status === "ALL"
-      ? DUMMY_CLASSES
-      : DUMMY_CLASSES.filter((c) => c.status === status);
+    status === "ALL" ? classes : classes.filter((c) => c.status === status);
 
   return (
     <Box maxWidth="lg" mx="auto" py={3}>
@@ -55,7 +43,10 @@ const StudentClassesPage = () => {
         <ClassStatusFilter value={status} onChange={setStatus} />
         {/* Có thể thêm filter theo Teacher, ngày, ... */}
       </Stack>
-      <ClassTable data={filteredClasses} />
+
+      {loading && <Typography>{t`Loading...`}</Typography>}
+      {error && <Typography color="error">{error}</Typography>}
+      {!loading && !error && <ClassTable data={filteredClasses} />}
     </Box>
   );
 };

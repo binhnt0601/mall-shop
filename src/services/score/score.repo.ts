@@ -1,9 +1,9 @@
-import { gql, QueryOptions } from "@apollo/client/core";
-
 import { CrudRepository } from "@/graphql/repo/crud";
 
-import { scoreFields, scoreQuery } from "./score.field";
+import { scoreFields } from "./score.field";
 import { Score } from "./score.model";
+import { classFields } from "../class/class.field";
+import { userFields } from "../user/user.field";
 
 export class ScoreRepository extends CrudRepository<Score> {
   apiName = "Score";
@@ -14,32 +14,13 @@ export class ScoreRepository extends CrudRepository<Score> {
 
   fullFragment = this.parseFragment(`
     ${scoreFields}
-    student { id name }
+    student {
+      ${userFields}
+    }
+    class {
+      ${classFields}
+    }
   `);
-  // class { id name }
-  // assignment { id title }
-
-  async getScoresByStudent(studentId: string) {
-    const api = "getScoresByStudent";
-    const option: QueryOptions = {
-      query: gql`
-        query {
-          ${api}(studentId: "${studentId}") {
-            ${scoreQuery}
-          }
-        }
-      `,
-      variables: {
-        studentId,
-      },
-    };
-
-    const result = await this.apollo.query(option);
-
-    this.handleError(result);
-
-    return result.data[api] as Score[];
-  }
 }
 
 export const ScoreService = new ScoreRepository();
