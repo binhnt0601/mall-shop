@@ -21,7 +21,7 @@ import * as Yup from "yup";
 import FormikTextField from "@/components-shared/FormikTextField";
 import { useAuthStore } from "@/stores/auth/useAuthStore";
 
-import { Screen } from ".";
+import { ScreenView } from ".";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Enter your email"),
@@ -32,7 +32,7 @@ const validationSchema = Yup.object().shape({
 
 type LoginFormProps = {
   apiUri: string;
-  onScreen: (e: Screen) => void;
+  onScreen: (e: ScreenView) => void;
   onClose: () => void;
 };
 

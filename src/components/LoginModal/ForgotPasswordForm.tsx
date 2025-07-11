@@ -2,7 +2,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import EmailIcon from "@mui/icons-material/Email";
 import { IconButton, Stack } from "@mui/material";
 import { FormikHelpers, useFormik } from "formik";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import React from "react";
 import * as Yup from "yup";
 
@@ -10,6 +10,8 @@ import FormikTextField from "@/components-shared/FormikTextField";
 import { toast } from "@/helpers/toast";
 import { UserService } from "@/services/user/user.repo";
 import { useLoadingStore } from "@/stores/loadingStore";
+
+import { ScreenView } from ".";
 
 export const dynamic = "force-dynamic";
 
@@ -22,11 +24,11 @@ const validationSchema = Yup.object().shape({
 });
 
 type Props = {
-  onLoginClick: () => void;
+  onScreen: (e: ScreenView) => void;
   onClose: () => void;
 };
 
-const ForgotPasswordForm: React.FC<Props> = ({ onLoginClick, onClose }) => {
+const ForgotPasswordForm: React.FC<Props> = ({ onScreen, onClose }) => {
   const router = useRouter();
   const { setLoading } = useLoadingStore();
 
@@ -43,8 +45,18 @@ const ForgotPasswordForm: React.FC<Props> = ({ onLoginClick, onClose }) => {
 
       toast.success("Email sent successfully!");
 
-      // Redirect to email verification page
-      router.push(`/verify-email?email=${encodeURIComponent(values.email)}`);
+      router.push(
+        {
+          pathname: router.pathname,
+          query: {
+            ...router.query,
+            email: values.email,
+          },
+        },
+        undefined,
+        { shallow: true }
+      );
+      onScreen("verify-email");
     } catch (error: any) {
       toast.error(
         error?.response?.data?.message || "Failed to send reset email"
@@ -68,7 +80,6 @@ const ForgotPasswordForm: React.FC<Props> = ({ onLoginClick, onClose }) => {
       width="100%"
       sx={{
         position: "relative",
-        maxWidth: 830,
         mx: "auto",
         padding: 5,
       }}
@@ -111,11 +122,11 @@ const ForgotPasswordForm: React.FC<Props> = ({ onLoginClick, onClose }) => {
                 inputProps={{ className: "text-white" }}
                 sx={{
                   "& .MuiOutlinedInput-root": {
-                    backgroundColor: "rgba(255, 255, 255, 0.1)", // nền input trong suốt nhẹ
-                    "& fieldset": { borderColor: "rgba(255,255,255,0.3)" }, // viền mờ
+                    backgroundColor: "rgba(255, 255, 255, 0.1)",
+                    "& fieldset": { borderColor: "rgba(255,255,255,0.3)" },
                     "&:hover fieldset": {
                       borderColor: "rgba(255,255,255,0.6)",
-                    }, // hover sáng hơn
+                    },
                     "&.Mui-focused fieldset": {
                       borderColor: "#A78BFA",
                       borderWidth: 2,
@@ -139,7 +150,7 @@ const ForgotPasswordForm: React.FC<Props> = ({ onLoginClick, onClose }) => {
 
         <button
           className="mt-4 text-white underline hover:text-gray-300"
-          onClick={onLoginClick}
+          onClick={() => onScreen("login")}
         >
           Back to Login
         </button>

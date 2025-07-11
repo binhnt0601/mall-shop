@@ -2,13 +2,17 @@ import { Dialog } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
 import ForgetPasswordForm from "./ForgotPasswordForm";
-import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
+import VerifyEmailForm from "./VerifyOtpForm";
 
-export type Screen = "login" | "register" | "forgot-password";
+export type ScreenView =
+  | "login"
+  | "register"
+  | "forgot-password"
+  | "verify-email";
 
 type LoginModalProps = {
-  screenView?: Screen;
+  screenView?: ScreenView;
   open: boolean;
   onClose: () => void;
 };
@@ -20,7 +24,7 @@ export default function LoginModal({
 }: LoginModalProps) {
   const apiUri = process.env.NEXT_PUBLIC_API_URI || "";
 
-  const [screen, setScreen] = useState<Screen>(screenView);
+  const [screen, setScreen] = useState<ScreenView>(screenView);
 
   const handleClose = () => {
     setScreen("login");
@@ -48,13 +52,13 @@ export default function LoginModal({
       fullWidth
       scroll="body"
     >
-      {screen === "login" && (
+      {/* {screen === "login" && (
         <LoginForm
           apiUri={apiUri}
-          onScreen={(e: Screen) => setScreen(e)}
+          onScreen={(e: ScreenView) => setScreen(e)}
           onClose={handleClose}
         />
-      )}
+      )} */}
       {screen === "register" && (
         <RegisterForm
           apiUri={apiUri}
@@ -64,7 +68,13 @@ export default function LoginModal({
       )}
       {screen === "forgot-password" && (
         <ForgetPasswordForm
-          onLoginClick={() => setScreen("login")}
+          onScreen={(e: ScreenView) => setScreen(e)}
+          onClose={handleClose}
+        />
+      )}
+      {screen === "login" && (
+        <VerifyEmailForm
+          onScreen={(e: ScreenView) => setScreen(e)}
           onClose={handleClose}
         />
       )}
