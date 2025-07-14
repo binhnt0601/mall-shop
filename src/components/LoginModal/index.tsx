@@ -1,42 +1,72 @@
 import { Dialog } from "@mui/material";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
-import ForgetPasswordForm from "./ForgotPasswordForm";
+import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
-import VerifyEmailForm from "./VerifyOtpForm";
+import ForgetPasswordForm from "./ResetPassword/ForgotPasswordForm";
+import PasswordSuccess from "./ResetPassword/PasswordSuccess";
+import ResetPasswordForm from "./ResetPassword/ResetPasswordForm";
+import VerifyEmailForm from "./ResetPassword/VerifyEmailForm";
 
 export type ScreenView =
   | "login"
   | "register"
   | "forgot-password"
-  | "verify-email";
+  | "verify-email"
+  | "reset-password"
+  | "password-success";
 
 type LoginModalProps = {
   screenView?: ScreenView;
-  open: boolean;
+  open?: boolean; // optional, can manage internally
   onClose: () => void;
 };
 
 export default function LoginModal({
-  open,
-  onClose,
   screenView = "login",
+  open: controlledOpen,
+  onClose,
 }: LoginModalProps) {
   const apiUri = process.env.NEXT_PUBLIC_API_URI || "";
+  const router = useRouter();
+  const { screen: screenFromQuery } = router.query;
 
+  const [open, setOpen] = useState<boolean>(controlledOpen ?? false);
   const [screen, setScreen] = useState<ScreenView>(screenView);
 
-  const handleClose = () => {
-    setScreen("login");
-    onClose?.();
-  };
+  useEffect(() => {
+    if (controlledOpen !== undefined) {
+      setOpen(controlledOpen);
+    }
+  }, [controlledOpen]);
 
   useEffect(() => {
-    if (open) setScreen(screenView);
-  }, [screenView, open]);
+    if (screenFromQuery && typeof screenFromQuery === "string") {
+      if (screenFromQuery === "verify-email") {
+        setScreen(screenFromQuery as ScreenView);
+        setOpen(true);
+      }
+    }
+  }, [screenFromQuery]);
+
+  const handleClose = () => {
+    setOpen(false);
+    setScreen("login");
+    onClose?.();
+    router.replace(
+      {
+        pathname: router.pathname,
+        query: {},
+      },
+      undefined,
+      { shallow: true }
+    );
+  };
 
   return (
     <Dialog
+      key={screen}
       open={open}
       onClose={handleClose}
       PaperProps={{
@@ -52,31 +82,28 @@ export default function LoginModal({
       fullWidth
       scroll="body"
     >
-      {/* {screen === "login" && (
-        <LoginForm
-          apiUri={apiUri}
-          onScreen={(e: ScreenView) => setScreen(e)}
-          onClose={handleClose}
-        />
-      )} */}
+      {screen === "login" && (
+        <LoginForm apiUri={apiUri} onScreen={setScreen} onClose={handleClose} />
+      )}
       {screen === "register" && (
         <RegisterForm
           apiUri={apiUri}
-          onLoginClick={() => setScreen("login")}
+          onScreen={setScreen}
           onClose={handleClose}
         />
       )}
       {screen === "forgot-password" && (
-        <ForgetPasswordForm
-          onScreen={(e: ScreenView) => setScreen(e)}
-          onClose={handleClose}
-        />
+        <ForgetPasswordForm onScreen={setScreen} onClose={handleClose} />
       )}
-      {screen === "login" && (
-        <VerifyEmailForm
-          onScreen={(e: ScreenView) => setScreen(e)}
-          onClose={handleClose}
-        />
+      {screen === "verify-email" && (
+        <VerifyEmailForm onScreen={setScreen} onClose={handleClose} />
+      )}
+      {screen === "reset-password" && (
+        <ResetPasswordForm onScreen={setScreen} onClose={handleClose} />
+      )}
+
+      {screen === "password-success" && (
+        <PasswordSuccess onScreen={setScreen} />
       )}
     </Dialog>
   );

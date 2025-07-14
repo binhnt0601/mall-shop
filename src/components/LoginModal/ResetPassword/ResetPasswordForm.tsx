@@ -1,6 +1,7 @@
 import { t } from "@lingui/macro";
 import CloseIcon from "@mui/icons-material/Close";
-import PasswordIcon from "@mui/icons-material/Lock";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import {
   IconButton,
   Stack,
@@ -17,7 +18,7 @@ import { toast } from "@/helpers/toast";
 import { UserService } from "@/services/user/user.repo";
 import { useLoadingStore } from "@/stores/loadingStore";
 
-import { ScreenView } from ".";
+import { ScreenView } from "..";
 
 interface FormikValues {
   newPassword: string;
@@ -46,16 +47,14 @@ const ResetPasswordForm = ({
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
 
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   useEffect(() => {
     const emailParam = router.query.email as string;
     const codeParam = router.query.code as string;
-    if (emailParam && codeParam) {
-      setEmail(emailParam);
-      setCode(codeParam);
-    } else {
-      // Redirect back if no email or code
-      onScreen("forgot-password");
-    }
+    setEmail(emailParam);
+    setCode(codeParam);
   }, [router.query, router]);
 
   const handleSubmit = async (
@@ -69,11 +68,8 @@ const ResetPasswordForm = ({
         code,
         newPassword: values.newPassword,
       });
-
+      onScreen("password-success");
       toast.success(t`Password updated successfully!`);
-
-      // Redirect to success screen or login
-      //   onScreen("success");
     } catch (error: any) {
       toast.error(
         error?.response?.data?.message || t`Failed to update password`
@@ -85,13 +81,14 @@ const ResetPasswordForm = ({
   };
 
   return (
-    <Stack
-      direction={{ xs: "column", md: "row" }}
-      width="100%"
-      sx={{
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        background: "linear-gradient(135deg, #3b82f6 40%, #6366f1 100%)",
         position: "relative",
-        maxWidth: 830,
-        mx: "auto",
+        padding: 16,
       }}
     >
       {/* Close button */}
@@ -111,16 +108,17 @@ const ResetPasswordForm = ({
         <CloseIcon />
       </IconButton>
 
-      {/* Left: Form */}
+      {/* Form container */}
       <Stack
         sx={{
-          px: { xs: 2, sm: 4, md: 5 },
-          py: { xs: 2.5, sm: 6, md: 7 },
-          width: { xs: "100%", md: "60%" },
+          width: "100%",
+          maxWidth: 420,
           bgcolor: "transparent",
-          justifyContent: "center",
-          alignItems: "center",
-          position: "relative",
+          px: { xs: 2, sm: 4, md: 5 },
+          py: { xs: 3, sm: 6, md: 7 },
+          borderRadius: 2,
+          backdropFilter: "blur(10px)",
+          boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
         }}
       >
         <Typography
@@ -151,7 +149,6 @@ const ResetPasswordForm = ({
             <Form
               style={{
                 width: "100%",
-                maxWidth: 420,
                 display: "flex",
                 flexDirection: "column",
                 gap: 24,
@@ -160,7 +157,7 @@ const ResetPasswordForm = ({
               <TextField
                 variant="outlined"
                 label="New Password"
-                type="password"
+                type={showNewPassword ? "text" : "password"}
                 name="newPassword"
                 autoComplete="new-password"
                 value={values.newPassword}
@@ -168,14 +165,28 @@ const ResetPasswordForm = ({
                 onBlur={handleBlur}
                 error={touched.newPassword && Boolean(errors.newPassword)}
                 helperText={touched.newPassword && errors.newPassword}
-                style={{ background: "rgba(255, 255, 255, 0.1)" }}
-                className="w-full rounded-md"
-                InputLabelProps={{ style: { color: "rgba(255,255,255,0.85)" } }}
+                sx={{
+                  backgroundColor: "rgba(255, 255, 255, 0.1)",
+                  borderRadius: 1,
+                  input: { color: "white" },
+                  label: { color: "rgba(255,255,255,0.85)" },
+                }}
                 InputProps={{
-                  style: { color: "white" },
                   endAdornment: (
                     <InputAdornment position="end">
-                      <PasswordIcon className="text-white" />
+                      <IconButton
+                        onClick={() => setShowNewPassword(!showNewPassword)}
+                        edge="end"
+                        aria-label={
+                          showNewPassword ? "Hide password" : "Show password"
+                        }
+                      >
+                        {showNewPassword ? (
+                          <VisibilityOffIcon sx={{ color: "white" }} />
+                        ) : (
+                          <VisibilityIcon sx={{ color: "white" }} />
+                        )}
+                      </IconButton>
                     </InputAdornment>
                   ),
                 }}
@@ -183,7 +194,7 @@ const ResetPasswordForm = ({
               <TextField
                 variant="outlined"
                 label="Confirm Password"
-                type="password"
+                type={showConfirmPassword ? "text" : "password"}
                 name="confirmPassword"
                 autoComplete="new-password"
                 value={values.confirmPassword}
@@ -193,14 +204,32 @@ const ResetPasswordForm = ({
                   touched.confirmPassword && Boolean(errors.confirmPassword)
                 }
                 helperText={touched.confirmPassword && errors.confirmPassword}
-                style={{ background: "rgba(255, 255, 255, 0.1)" }}
-                className="w-full rounded-md"
-                InputLabelProps={{ style: { color: "rgba(255,255,255,0.85)" } }}
+                sx={{
+                  backgroundColor: "rgba(255, 255, 255, 0.1)",
+                  borderRadius: 1,
+                  input: { color: "white" },
+                  label: { color: "rgba(255,255,255,0.85)" },
+                }}
                 InputProps={{
-                  style: { color: "white" },
                   endAdornment: (
                     <InputAdornment position="end">
-                      <PasswordIcon className="text-white" />
+                      <IconButton
+                        onClick={() =>
+                          setShowConfirmPassword(!showConfirmPassword)
+                        }
+                        edge="end"
+                        aria-label={
+                          showConfirmPassword
+                            ? "Hide password"
+                            : "Show password"
+                        }
+                      >
+                        {showConfirmPassword ? (
+                          <VisibilityOffIcon sx={{ color: "white" }} />
+                        ) : (
+                          <VisibilityIcon sx={{ color: "white" }} />
+                        )}
+                      </IconButton>
                     </InputAdornment>
                   ),
                 }}
@@ -221,7 +250,7 @@ const ResetPasswordForm = ({
           )}
         </Formik>
       </Stack>
-    </Stack>
+    </div>
   );
 };
 

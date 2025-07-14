@@ -46,18 +46,11 @@ export async function login(email: string, password: string) {
     const user = profileResult.data.userGetMe;
     setAuth(user);
 
-    if (user?.isFirstLogin) {
-      localStorage.setItem(
-        "temp_login_credentials",
-        JSON.stringify({ email, password })
-      );
-      window.location.assign("/first-login");
-    } else {
-      window.location.assign("/dashboard");
-    }
+    window.location.assign("/manage/dashboard");
 
     toast.success("Login successfully");
     setAuthStatus(AuthStatuses.LOADED);
+    return user;
   } catch (error: any) {
     toast.error(error?.message ?? "Login failed");
     setAuthStatus(AuthStatuses.LOADED);

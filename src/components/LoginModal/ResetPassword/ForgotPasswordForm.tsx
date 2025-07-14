@@ -1,3 +1,4 @@
+import { t, Trans } from "@lingui/macro";
 import CloseIcon from "@mui/icons-material/Close";
 import EmailIcon from "@mui/icons-material/Email";
 import { IconButton, Stack } from "@mui/material";
@@ -11,7 +12,7 @@ import { toast } from "@/helpers/toast";
 import { UserService } from "@/services/user/user.repo";
 import { useLoadingStore } from "@/stores/loadingStore";
 
-import { ScreenView } from ".";
+import { ScreenView } from "..";
 
 export const dynamic = "force-dynamic";
 
@@ -20,7 +21,9 @@ interface FormikValues {
 }
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid email").required("Enter your email"),
+  email: Yup.string()
+    .email(t`Invalid email`)
+    .required(t`Enter your email`),
 });
 
 type Props = {
@@ -43,7 +46,7 @@ const ForgotPasswordForm: React.FC<Props> = ({ onScreen, onClose }) => {
         email: values.email,
       });
 
-      toast.success("Email sent successfully!");
+      toast.success(t`Email sent successfully!`);
 
       router.push(
         {
@@ -59,7 +62,7 @@ const ForgotPasswordForm: React.FC<Props> = ({ onScreen, onClose }) => {
       onScreen("verify-email");
     } catch (error: any) {
       toast.error(
-        error?.response?.data?.message || "Failed to send reset email"
+        error?.response?.data?.message || t`Failed to send reset email`
       );
     } finally {
       setLoading(false);
@@ -102,10 +105,12 @@ const ForgotPasswordForm: React.FC<Props> = ({ onScreen, onClose }) => {
       </IconButton>
       <div className="flex flex-col items-center justify-center w-full text-center">
         <p className="pt-[30px] text-2xl sm:text-4xl md:text-[50px] text-white font-semibold">
-          Yo! Forgot Your Password?
+          <Trans>Yo! Forgot Your Password?</Trans>
         </p>
         <span className="text-md sm:text-xl md:text-[30px] text-white max-w-md mt-4">
-          No worries! Enter your email and we will send you a reset
+          <Trans>
+            No worries! Enter your email and we will send you a reset
+          </Trans>
         </span>
         <form
           onSubmit={formik.handleSubmit}
@@ -116,7 +121,7 @@ const ForgotPasswordForm: React.FC<Props> = ({ onScreen, onClose }) => {
               <FormikTextField
                 formik={formik}
                 name="email"
-                label="Email"
+                label={t`Email`}
                 icon={<EmailIcon className="text-white/70" />}
                 InputLabelProps={{ style: { color: "rgba(255,255,255,0.8)" } }}
                 inputProps={{ className: "text-white" }}
@@ -141,9 +146,42 @@ const ForgotPasswordForm: React.FC<Props> = ({ onScreen, onClose }) => {
             </div>
             <button
               type="submit"
-              className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-indigo-700 py-3 text-white font-semibold shadow-md transition hover:from-blue-700 hover:to-indigo-800"
+              disabled={formik.isSubmitting}
+              className={`w-full rounded-xl py-3 text-white font-semibold shadow-md transition
+                bg-gradient-to-r from-blue-600 to-indigo-700
+                hover:from-blue-700 hover:to-indigo-800
+                disabled:opacity-50 disabled:cursor-not-allowed
+              `}
             >
-              Send Request
+              {formik.isSubmitting ? (
+                <div className="flex items-center justify-center space-x-2">
+                  <svg
+                    className="animate-spin h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                  <span>
+                    <Trans>Sending...</Trans>
+                  </span>
+                </div>
+              ) : (
+                <Trans>Send Request</Trans>
+              )}
             </button>
           </Stack>
         </form>
@@ -152,7 +190,7 @@ const ForgotPasswordForm: React.FC<Props> = ({ onScreen, onClose }) => {
           className="mt-4 text-white underline hover:text-gray-300"
           onClick={() => onScreen("login")}
         >
-          Back to Login
+          <Trans>Back to Login</Trans>
         </button>
       </div>
     </Stack>

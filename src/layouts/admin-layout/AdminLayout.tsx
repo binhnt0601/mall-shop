@@ -29,13 +29,6 @@ export default function MainLayout({ children }: LayoutProps) {
         logout?.();
       }
     }
-    if (
-      auth?.isFirstLogin &&
-      router.pathname !== "/first-login" &&
-      router.isReady
-    ) {
-      router.replace("/first-login");
-    }
   }, [authStatus, auth, router.pathname, router.isReady]);
 
   return (

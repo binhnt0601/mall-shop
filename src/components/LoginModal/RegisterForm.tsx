@@ -11,48 +11,53 @@ import {
   TextField,
   InputAdornment,
   useMediaQuery,
+  FormControlLabel,
 } from "@mui/material";
+import { Formik, Form } from "formik";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
+import * as Yup from "yup";
 
 import { toast } from "@/helpers/toast";
+import { UserService } from "@/services/user/user.repo";
 
-const TERMS_URL = "https://aimalls.app/terms-and-conditions";
-const PRIVACY_URL = "https://aimalls.app/privacy-policy";
+import { ScreenView } from ".";
+
+const TERMS_URL = `${process.env.NEXT_PUBLIC_BRAND_WEBSITE_URL}/terms`;
+const PRIVACY_URL = `${process.env.NEXT_PUBLIC_BRAND_WEBSITE_URL}/privacy`;
+
+const RegisterSchema = Yup.object().shape({
+  name: Yup.string().trim().required("Please enter your name"),
+  email: Yup.string()
+    .email("Invalid email")
+    .required("Please enter your email"),
+  password: Yup.string()
+    .min(6, "Password must be at least 6 characters")
+    .required("Please enter your password"),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("password")], "Passwords do not match")
+    .required("Please confirm your password"),
+  terms: Yup.bool().oneOf([true], "Please accept Terms and Conditions"),
+  privacy: Yup.bool().oneOf([true], "Please accept Privacy Policy"),
+});
 
 export default function RegisterForm({
   apiUri,
-  onLoginClick,
+  onScreen,
   onClose,
 }: {
   apiUri: string;
-  onLoginClick: () => void;
+  onScreen: (e: ScreenView) => void;
+
   onClose: () => void;
 }) {
   const router = useRouter();
-  const [isChecked, setIsChecked] = React.useState({
-    terms: false,
-    privacy: false,
-  });
   const isMobile = useMediaQuery("(max-width:900px)");
-
-  const handleCheck =
-    (key: keyof typeof isChecked) =>
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setIsChecked((prev) => ({ ...prev, [key]: event.target.checked }));
-    };
-
-  const handleRegister = () => {
-    toast.success("Registration successful! Welcome to AI Malls!");
-    // Call API register nếu cần
-  };
 
   const handleGoogle = () => {
     router.push(`${apiUri}/api/google`);
   };
-
-  const disabled = !(isChecked.terms && isChecked.privacy);
 
   return (
     <Stack
@@ -113,180 +118,284 @@ export default function RegisterForm({
         >
           Sign up to create an Account
         </Typography>
-        <form
-          style={{
-            width: "100%",
-            maxWidth: 420,
-            display: "flex",
-            flexDirection: "column",
-            gap: 24,
+        <Formik
+          initialValues={{
+            name: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+            terms: false,
+            privacy: false,
           }}
-          onSubmit={(e) => {
-            e.preventDefault();
-            if (!disabled) handleRegister();
+          validationSchema={RegisterSchema}
+          onSubmit={async (values, { setSubmitting }) => {
+            setSubmitting(true);
+            try {
+              const data = {
+                name: values.name,
+                email: values.email,
+                password: values.password,
+              };
+              await UserService.create({ data });
+              toast.success(
+                "Registration successful! Welcome to English Class!"
+              );
+              onScreen("login");
+            } catch (error: any) {
+              toast.error(error || "Registration failed. Please try again.");
+            } finally {
+              setSubmitting(false);
+            }
           }}
         >
-          <button
-            type="button"
-            className="w-full rounded-md bg-white py-3 font-bold text-indigo-600 flex items-center justify-center gap-2 hover:bg-indigo-50 transition"
-            onClick={handleGoogle}
-          >
-            <GoogleIcon style={{ fontSize: 20 }} />
-            Sign in With Google
-          </button>
-          <div
-            style={{ display: "flex", justifyContent: "center", width: "100%" }}
-          >
-            <Divider
-              sx={{
-                flex: 1,
-                borderColor: "rgba(255,255,255,0.6)",
-                alignSelf: "center",
-              }}
-            />
-            <Typography
-              sx={{
-                color: "#fff",
-                px: 2,
-                fontSize: 15,
-                userSelect: "none",
-                fontWeight: 500,
+          {({
+            values,
+            errors,
+            touched,
+            isSubmitting,
+            handleChange,
+            handleBlur,
+          }) => (
+            <Form
+              style={{
+                width: "100%",
+                maxWidth: 420,
+                display: "flex",
+                flexDirection: "column",
+                gap: 24,
               }}
             >
-              or
-            </Typography>
-            <Divider
-              sx={{
-                flex: 1,
-                borderColor: "rgba(255,255,255,0.6)",
-                alignSelf: "center",
-              }}
-            />
-          </div>
-
-          <TextField
-            variant="outlined"
-            label="Email"
-            autoComplete="email"
-            style={{ background: "rgba(255, 255, 255, 0.1)" }}
-            className="w-full rounded-md"
-            InputLabelProps={{ style: { color: "rgba(255,255,255,0.85)" } }}
-            InputProps={{
-              style: { color: "white" },
-              endAdornment: (
-                <InputAdornment position="end">
-                  <EmailIcon className="text-white" />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            variant="outlined"
-            label="Password"
-            type="password"
-            autoComplete="new-password"
-            style={{ background: "rgba(255, 255, 255, 0.1)" }}
-            className="w-full rounded-md"
-            InputLabelProps={{ style: { color: "rgba(255,255,255,0.85)" } }}
-            InputProps={{
-              style: { color: "white" },
-              endAdornment: (
-                <InputAdornment position="end">
-                  <PasswordIcon className="text-white" />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            variant="outlined"
-            label="Confirm Password"
-            type="password"
-            autoComplete="new-password"
-            style={{ background: "rgba(255, 255, 255, 0.1)" }}
-            className="w-full rounded-md"
-            InputLabelProps={{ style: { color: "rgba(255,255,255,0.85)" } }}
-            InputProps={{
-              style: { color: "white" },
-              endAdornment: (
-                <InputAdornment position="end">
-                  <PasswordIcon className="text-white" />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 8,
-              marginTop: 8,
-            }}
-          >
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <Checkbox
-                sx={{ "&:hover": { bgcolor: "transparent" } }}
-                disableRipple
-                color="default"
-                checked={isChecked.terms}
-                onChange={handleCheck("terms")}
-              />
-              <Typography className="text-white text-sm">
-                I accept the{" "}
-                <a
-                  className="text-[#fc9a14] underline hover:text-yellow-400 transition"
-                  target="_blank"
-                  href={TERMS_URL}
-                  rel="noreferrer"
-                >
-                  Terms and Conditions
-                </a>
-              </Typography>
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <Checkbox
-                sx={{ "&:hover": { bgcolor: "transparent" } }}
-                disableRipple
-                color="default"
-                checked={isChecked.privacy}
-                onChange={handleCheck("privacy")}
-              />
-              <Typography className="text-white text-sm">
-                I agree to the{" "}
-                <a
-                  className="text-[#fc9a14] underline hover:text-yellow-400 transition"
-                  target="_blank"
-                  href={PRIVACY_URL}
-                  rel="noreferrer"
-                >
-                  Privacy Policy
-                </a>
-              </Typography>
-            </div>
-          </div>
-          <button
-            type="submit"
-            disabled={disabled}
-            className={`w-full rounded-md bg-white py-3 font-bold text-indigo-600 flex items-center justify-center gap-2 transition ${
-              disabled
-                ? "opacity-50 cursor-not-allowed"
-                : "hover:bg-indigo-50 cursor-pointer"
-            }`}
-          >
-            Register
-          </button>
-          {/* Login link on mobile */}
-          {isMobile && (
-            <Typography color="white" textAlign="center" sx={{ mt: 2 }}>
-              Already have an account?{" "}
-              <span
-                className="ml-2 text-[17px] font-medium text-[#fc9a14] hover:text-yellow-400 transition cursor-pointer"
-                onClick={onLoginClick}
+              <button
+                type="button"
+                className="w-full rounded-md bg-white py-3 font-bold text-indigo-600 flex items-center justify-center gap-2 hover:bg-indigo-50 transition"
+                onClick={handleGoogle}
+                disabled={isSubmitting}
               >
-                Login
-              </span>
-            </Typography>
+                <GoogleIcon style={{ fontSize: 20 }} />
+                Sign in With Google
+              </button>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  width: "100%",
+                }}
+              >
+                <Divider
+                  sx={{
+                    flex: 1,
+                    borderColor: "rgba(255,255,255,0.6)",
+                    alignSelf: "center",
+                  }}
+                />
+                <Typography
+                  sx={{
+                    color: "#fff",
+                    px: 2,
+                    fontSize: 15,
+                    userSelect: "none",
+                    fontWeight: 500,
+                  }}
+                >
+                  or
+                </Typography>
+                <Divider
+                  sx={{
+                    flex: 1,
+                    borderColor: "rgba(255,255,255,0.6)",
+                    alignSelf: "center",
+                  }}
+                />
+              </div>
+
+              {/* Full Name */}
+              <TextField
+                variant="outlined"
+                label="Full Name"
+                name="name"
+                autoComplete="name"
+                style={{ background: "rgba(255, 255, 255, 0.1)" }}
+                className="w-full rounded-md"
+                InputLabelProps={{ style: { color: "rgba(255,255,255,0.85)" } }}
+                InputProps={{
+                  style: { color: "white" },
+                }}
+                value={values.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={touched.name && !!errors.name}
+                helperText={touched.name && errors.name}
+              />
+
+              {/* Email */}
+              <TextField
+                variant="outlined"
+                label="Email"
+                name="email"
+                autoComplete="email"
+                style={{ background: "rgba(255, 255, 255, 0.1)" }}
+                className="w-full rounded-md"
+                InputLabelProps={{ style: { color: "rgba(255,255,255,0.85)" } }}
+                InputProps={{
+                  style: { color: "white" },
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <EmailIcon className="text-white" />
+                    </InputAdornment>
+                  ),
+                }}
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={touched.email && !!errors.email}
+                helperText={touched.email && errors.email}
+              />
+              {/* Password */}
+              <TextField
+                variant="outlined"
+                label="Password"
+                name="password"
+                type="password"
+                autoComplete="new-password"
+                style={{ background: "rgba(255, 255, 255, 0.1)" }}
+                className="w-full rounded-md"
+                InputLabelProps={{ style: { color: "rgba(255,255,255,0.85)" } }}
+                InputProps={{
+                  style: { color: "white" },
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <PasswordIcon className="text-white" />
+                    </InputAdornment>
+                  ),
+                }}
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={touched.password && !!errors.password}
+                helperText={touched.password && errors.password}
+              />
+              {/* Confirm Password */}
+              <TextField
+                variant="outlined"
+                label="Confirm Password"
+                name="confirmPassword"
+                type="password"
+                autoComplete="new-password"
+                style={{ background: "rgba(255, 255, 255, 0.1)" }}
+                className="w-full rounded-md"
+                InputLabelProps={{ style: { color: "rgba(255,255,255,0.85)" } }}
+                InputProps={{
+                  style: { color: "white" },
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <PasswordIcon className="text-white" />
+                    </InputAdornment>
+                  ),
+                }}
+                value={values.confirmPassword}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={touched.confirmPassword && !!errors.confirmPassword}
+                helperText={touched.confirmPassword && errors.confirmPassword}
+              />
+
+              {/* Terms & Privacy */}
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 8,
+                  marginTop: 8,
+                }}
+              >
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      name="terms"
+                      color="default"
+                      checked={values.terms}
+                      onChange={handleChange}
+                      sx={{ "&:hover": { bgcolor: "transparent" } }}
+                      disableRipple
+                    />
+                  }
+                  label={
+                    <Typography className="text-white text-sm">
+                      I accept the{" "}
+                      <a
+                        className="text-[#fc9a14] underline hover:text-yellow-400 transition"
+                        target="_blank"
+                        href={TERMS_URL}
+                        rel="noreferrer"
+                      >
+                        Terms and Conditions
+                      </a>
+                    </Typography>
+                  }
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      name="privacy"
+                      color="default"
+                      checked={values.privacy}
+                      onChange={handleChange}
+                      sx={{ "&:hover": { bgcolor: "transparent" } }}
+                      disableRipple
+                    />
+                  }
+                  label={
+                    <Typography className="text-white text-sm">
+                      I agree to the{" "}
+                      <a
+                        className="text-[#fc9a14] underline hover:text-yellow-400 transition"
+                        target="_blank"
+                        href={PRIVACY_URL}
+                        rel="noreferrer"
+                      >
+                        Privacy Policy
+                      </a>
+                    </Typography>
+                  }
+                />
+                {/* Error messages for checkbox */}
+                {touched.terms && errors.terms && (
+                  <Typography color="error" fontSize={12}>
+                    {errors.terms}
+                  </Typography>
+                )}
+                {touched.privacy && errors.privacy && (
+                  <Typography color="error" fontSize={12}>
+                    {errors.privacy}
+                  </Typography>
+                )}
+              </div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={`w-full rounded-md bg-white py-3 font-bold text-indigo-600 flex items-center justify-center gap-2 transition ${
+                  isSubmitting
+                    ? "opacity-50 cursor-not-allowed"
+                    : "hover:bg-indigo-50 cursor-pointer"
+                }`}
+              >
+                {isSubmitting ? "Registering..." : "Register"}
+              </button>
+              {/* Login link on mobile */}
+              {isMobile && (
+                <Typography color="white" textAlign="center" sx={{ mt: 2 }}>
+                  Already have an account?{" "}
+                  <span
+                    className="ml-2 text-[17px] font-medium text-[#fc9a14] hover:text-yellow-400 transition cursor-pointer"
+                    onClick={() => onScreen("login")}
+                  >
+                    Login
+                  </span>
+                </Typography>
+              )}
+            </Form>
           )}
-        </form>
+        </Formik>
       </Stack>
       {/* Right: Welcome section, only on desktop */}
       <Stack
@@ -321,7 +430,7 @@ export default function RegisterForm({
         </Typography>
         <button
           className="w-full rounded-md bg-white py-3 font-bold text-indigo-600 flex items-center justify-center gap-2 hover:bg-indigo-50 transition"
-          onClick={onLoginClick}
+          onClick={() => onScreen("login")}
         >
           Login
         </button>

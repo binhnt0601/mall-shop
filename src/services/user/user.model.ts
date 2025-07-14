@@ -30,7 +30,6 @@ export interface User extends BaseModel {
   level?: number;
   lastLoginAt?: Date;
   status?: UserStatuses;
-  isFirstLogin?: boolean;
   referralCode?: string;
   referrenceId?: string;
   payment?: Payment;

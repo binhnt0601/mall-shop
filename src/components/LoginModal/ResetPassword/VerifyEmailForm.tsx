@@ -15,6 +15,8 @@ import { toast } from "@/helpers/toast";
 import { UserService } from "@/services/user/user.repo";
 import { useLoadingStore } from "@/stores/loadingStore";
 
+import { ScreenView } from "..";
+
 interface FormikValues {
   code: string;
 }
@@ -26,10 +28,8 @@ const validationSchema = Yup.object().shape({
     .required(t`Verification code is required`),
 });
 
-type Screen = "forgot-password" | "verify-email";
-
 const VerifyEmailForm: React.FC<{
-  onScreen: (e: Screen) => void;
+  onScreen: (e: ScreenView) => void;
   onClose: () => void;
 }> = ({ onScreen, onClose }) => {
   const { setLoading } = useLoadingStore();
@@ -61,8 +61,17 @@ const VerifyEmailForm: React.FC<{
       });
       toast.success(t`Code verified successfully!`);
       router.push(
-        `/new-password?email=${encodeURIComponent(email)}&code=${values.code}`
+        {
+          pathname: router.pathname,
+          query: {
+            email,
+            code: values.code,
+          },
+        },
+        undefined,
+        { shallow: true }
       );
+      onScreen("reset-password");
     } catch (error: any) {
       toast.error(
         error?.response?.data?.message || t`Invalid verification code`

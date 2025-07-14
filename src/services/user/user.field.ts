@@ -16,7 +16,6 @@ export const userFields = `
   lastLoginAt: DateTime
   activeAt: DateTime
   status: String
-  isFirstLogin: Boolean
   referralCode: String
   referrenceId: String
   createdAt: DateTime
@@ -41,7 +40,6 @@ export const userQuery = `
   lastLoginAt
   activeAt
   status
-  isFirstLogin
   referralCode
   referrenceId
   createdAt

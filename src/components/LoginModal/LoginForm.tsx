@@ -50,8 +50,8 @@ export default function LoginForm({
     initialValues: { email: "", password: "" },
     validationSchema,
     onSubmit: async (values) => {
-      await login(values.email, values.password);
-      onClose?.();
+      const res = (await login(values.email, values.password)) as any;
+      if (res) onClose?.();
     },
   });
 
@@ -290,10 +290,9 @@ export default function LoginForm({
           New Here?
         </Typography>
         <Typography maxWidth={320}>
-          Welcome to the future of shopping, where AI takes you on a
-          personalized retail journey like never before. Sign up today and
-          discover the extraordinary convenience, tailored experiences, and
-          endless possibilities of AI malls.
+          Welcome to our English class, where you will embark on a fun and
+          engaging journey to improve your language skills. Join us today to
+          discover new ways to speak, read, and write English confidently!
         </Typography>
         <button
           className="w-full rounded-md bg-white py-3 font-bold text-indigo-600 flex items-center justify-center gap-2 hover:bg-indigo-50 transition"
