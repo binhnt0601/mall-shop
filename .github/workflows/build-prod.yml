@@ -41,7 +41,7 @@ jobs:
     needs: build
     steps:
       - name: Create .env file
-        run: echo "${{ secrets.ENV_FILE }}" > .env
+        run: echo "${{ secrets.ENV_FILE }}" > .env.production
 
       - name: Install SSH Client
         run: sudo apt-get update && sudo apt-get install -y openssh-client
