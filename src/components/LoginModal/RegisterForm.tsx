@@ -1,3 +1,4 @@
+import { t, Trans } from "@lingui/macro";
 import CloseIcon from "@mui/icons-material/Close";
 import EmailIcon from "@mui/icons-material/Email";
 import GoogleIcon from "@mui/icons-material/Google";
@@ -28,18 +29,20 @@ const TERMS_URL = `${process.env.NEXT_PUBLIC_BRAND_WEBSITE_URL}/terms`;
 const PRIVACY_URL = `${process.env.NEXT_PUBLIC_BRAND_WEBSITE_URL}/privacy`;
 
 const RegisterSchema = Yup.object().shape({
-  name: Yup.string().trim().required("Please enter your name"),
+  name: Yup.string()
+    .trim()
+    .required(t`Please enter your name`),
   email: Yup.string()
-    .email("Invalid email")
-    .required("Please enter your email"),
+    .email(t`Invalid email`)
+    .required(t`Please enter your email`),
   password: Yup.string()
-    .min(6, "Password must be at least 6 characters")
-    .required("Please enter your password"),
+    .min(6, t`Password must be at least 6 characters`)
+    .required(t`Please enter your password`),
   confirmPassword: Yup.string()
-    .oneOf([Yup.ref("password")], "Passwords do not match")
-    .required("Please confirm your password"),
-  terms: Yup.bool().oneOf([true], "Please accept Terms and Conditions"),
-  privacy: Yup.bool().oneOf([true], "Please accept Privacy Policy"),
+    .oneOf([Yup.ref("password")], t`Passwords do not match`)
+    .required(t`Please confirm your password`),
+  terms: Yup.bool().oneOf([true], t`Please accept Terms and Conditions`),
+  privacy: Yup.bool().oneOf([true], t`Please accept Privacy Policy`),
 });
 
 export default function RegisterForm({
@@ -49,7 +52,6 @@ export default function RegisterForm({
 }: {
   apiUri: string;
   onScreen: (e: ScreenView) => void;
-
   onClose: () => void;
 }) {
   const router = useRouter();
@@ -81,10 +83,11 @@ export default function RegisterForm({
           "&:hover": { bgcolor: "rgba(255,255,255,0.13)" },
           zIndex: 10,
         }}
-        aria-label="Close"
+        aria-label={t`Close`}
       >
         <CloseIcon />
       </IconButton>
+
       {/* Left: Form */}
       <Stack
         sx={{
@@ -116,7 +119,7 @@ export default function RegisterForm({
           mb={2}
           sx={{ textShadow: "0 2px 8px rgba(0,0,0,0.12)" }}
         >
-          Sign up to create an Account
+          {t`Sign up to create an Account`}
         </Typography>
         <Formik
           initialValues={{
@@ -138,11 +141,11 @@ export default function RegisterForm({
               };
               await UserService.create({ data });
               toast.success(
-                "Registration successful! Welcome to English Class!"
+                t`Registration successful! Welcome to English Class!`
               );
               onScreen("login");
             } catch (error: any) {
-              toast.error(error || "Registration failed. Please try again.");
+              toast.error(error || t`Registration failed. Please try again.`);
             } finally {
               setSubmitting(false);
             }
@@ -172,7 +175,7 @@ export default function RegisterForm({
                 disabled={isSubmitting}
               >
                 <GoogleIcon style={{ fontSize: 20 }} />
-                Sign in With Google
+                {t`Sign in With Google`}
               </button>
               <div
                 style={{
@@ -197,7 +200,7 @@ export default function RegisterForm({
                     fontWeight: 500,
                   }}
                 >
-                  or
+                  {t`or`}
                 </Typography>
                 <Divider
                   sx={{
@@ -211,7 +214,7 @@ export default function RegisterForm({
               {/* Full Name */}
               <TextField
                 variant="outlined"
-                label="Full Name"
+                label={t`Full Name`}
                 name="name"
                 autoComplete="name"
                 style={{ background: "rgba(255, 255, 255, 0.1)" }}
@@ -230,7 +233,7 @@ export default function RegisterForm({
               {/* Email */}
               <TextField
                 variant="outlined"
-                label="Email"
+                label={t`Email`}
                 name="email"
                 autoComplete="email"
                 style={{ background: "rgba(255, 255, 255, 0.1)" }}
@@ -253,7 +256,7 @@ export default function RegisterForm({
               {/* Password */}
               <TextField
                 variant="outlined"
-                label="Password"
+                label={t`Password`}
                 name="password"
                 type="password"
                 autoComplete="new-password"
@@ -277,7 +280,7 @@ export default function RegisterForm({
               {/* Confirm Password */}
               <TextField
                 variant="outlined"
-                label="Confirm Password"
+                label={t`Confirm Password`}
                 name="confirmPassword"
                 type="password"
                 autoComplete="new-password"
@@ -321,15 +324,17 @@ export default function RegisterForm({
                   }
                   label={
                     <Typography className="text-white text-sm">
-                      I accept the{" "}
-                      <a
-                        className="text-[#fc9a14] underline hover:text-yellow-400 transition"
-                        target="_blank"
-                        href={TERMS_URL}
-                        rel="noreferrer"
-                      >
-                        Terms and Conditions
-                      </a>
+                      <Trans>
+                        I accept the{" "}
+                        <a
+                          className="text-[#fc9a14] underline hover:text-yellow-400 transition"
+                          target="_blank"
+                          href={TERMS_URL}
+                          rel="noreferrer"
+                        >
+                          Terms and Conditions
+                        </a>
+                      </Trans>
                     </Typography>
                   }
                 />
@@ -346,15 +351,17 @@ export default function RegisterForm({
                   }
                   label={
                     <Typography className="text-white text-sm">
-                      I agree to the{" "}
-                      <a
-                        className="text-[#fc9a14] underline hover:text-yellow-400 transition"
-                        target="_blank"
-                        href={PRIVACY_URL}
-                        rel="noreferrer"
-                      >
-                        Privacy Policy
-                      </a>
+                      <Trans>
+                        I agree to the{" "}
+                        <a
+                          className="text-[#fc9a14] underline hover:text-yellow-400 transition"
+                          target="_blank"
+                          href={PRIVACY_URL}
+                          rel="noreferrer"
+                        >
+                          Privacy Policy
+                        </a>
+                      </Trans>
                     </Typography>
                   }
                 />
@@ -379,17 +386,17 @@ export default function RegisterForm({
                     : "hover:bg-indigo-50 cursor-pointer"
                 }`}
               >
-                {isSubmitting ? "Registering..." : "Register"}
+                {isSubmitting ? t`Registering...` : t`Register`}
               </button>
               {/* Login link on mobile */}
               {isMobile && (
                 <Typography color="white" textAlign="center" sx={{ mt: 2 }}>
-                  Already have an account?{" "}
+                  <Trans>Already have an account?</Trans>
                   <span
                     className="ml-2 text-[17px] font-medium text-[#fc9a14] hover:text-yellow-400 transition cursor-pointer"
                     onClick={() => onScreen("login")}
                   >
-                    Login
+                    <Trans>Login</Trans>
                   </span>
                 </Typography>
               )}
@@ -397,6 +404,7 @@ export default function RegisterForm({
           )}
         </Formik>
       </Stack>
+
       {/* Right: Welcome section, only on desktop */}
       <Stack
         display={{ xs: "none", md: "flex" }}
@@ -422,17 +430,19 @@ export default function RegisterForm({
           className="drop-shadow-[0_4px_8px_rgba(255,255,255,0.5)]"
         />
         <Typography fontSize={34} fontWeight="bold">
-          Welcome Back!
+          {t`Welcome Back!`}
         </Typography>
         <Typography maxWidth={320}>
-          Already a member? Log in and enjoy your AI shopping experience with
-          your personalized dashboard, rewards, and more.
+          <Trans>
+            Already a member? Log in and enjoy your AI shopping experience with
+            your personalized dashboard, rewards, and more.
+          </Trans>
         </Typography>
         <button
           className="w-full rounded-md bg-white py-3 font-bold text-indigo-600 flex items-center justify-center gap-2 hover:bg-indigo-50 transition"
           onClick={() => onScreen("login")}
         >
-          Login
+          {t`Login`}
         </button>
       </Stack>
     </Stack>

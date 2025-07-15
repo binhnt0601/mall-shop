@@ -11,7 +11,7 @@ const PageLoading = ({ isLoading }: any) => {
 
         {/* Loading screen */}
         {isLoading && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20">
+          <div className="fixed inset-0 z-[2000] flex items-center justify-center bg-black/20">
             <div>
               <Image
                 src="/images/english/loading.svg"

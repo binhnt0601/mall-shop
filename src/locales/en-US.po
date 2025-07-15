@@ -21,6 +21,14 @@ msgstr "Active"
 msgid "Admin"
 msgstr "Admin"
 
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Already a member? Log in and enjoy your AI shopping experience with your personalized dashboard, rewards, and more."
+msgstr "Already a member? Log in and enjoy your AI shopping experience with your personalized dashboard, rewards, and more."
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Already have an account?"
+msgstr "Already have an account?"
+
 #: src/constants/menu.ts
 msgid "ASSIGNMENT"
 msgstr "ASSIGNMENT"
@@ -33,9 +41,21 @@ msgstr "Assignment Management"
 msgid "Assignments"
 msgstr "Assignments"
 
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Back"
+msgstr "Back"
+
+#: src/components/LoginModal/ResetPassword/ForgotPasswordForm.tsx
+msgid "Back to Login"
+msgstr "Back to Login"
+
 #: src/hooks/useStatusLabel.tsx
 msgid "Blocked"
 msgstr "Blocked"
+
+#: src/components/LoginModal/LoginForm.tsx
+msgid "Brand Logo"
+msgstr "Brand Logo"
 
 #: src/constants/menu.ts
 msgid "CLASS"
@@ -48,6 +68,26 @@ msgstr "Class Management"
 #: src/constants/menu.ts
 msgid "Classes"
 msgstr "Classes"
+
+#: src/components/LoginModal/LoginForm.tsx src/components/LoginModal/RegisterForm.tsx src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "Close"
+msgstr "Close"
+
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Code verified successfully!"
+msgstr "Code verified successfully!"
+
+#: src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "Confirm"
+msgstr "Confirm"
+
+#: src/components/LoginModal/RegisterForm.tsx src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "Confirm Password"
+msgstr "Confirm Password"
+
+#: src/components/LoginModal/ResetPassword/PasswordSuccess.tsx
+msgid "Continue to login"
+msgstr "Continue to login"
 
 #: src/constants/menu.ts
 msgid "COURSE"
@@ -69,9 +109,37 @@ msgstr "Courses"
 msgid "Dashboard"
 msgstr "Dashboard"
 
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Didn't receive anything?"
+msgstr "Didn't receive anything?"
+
+#: src/components/LoginModal/LoginForm.tsx
+msgid "Don't have an account?"
+msgstr "Don't have an account?"
+
+#: src/components/LoginModal/LoginForm.tsx src/components/LoginModal/RegisterForm.tsx src/components/LoginModal/ResetPassword/ForgotPasswordForm.tsx
+msgid "Email"
+msgstr "Email"
+
+#: src/components/LoginModal/ResetPassword/ForgotPasswordForm.tsx
+msgid "Email sent successfully!"
+msgstr "Email sent successfully!"
+
 #: src/helpers/locales.ts
 msgid "English"
 msgstr "English"
+
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Enter Email Code"
+msgstr "Enter Email Code"
+
+#: src/components/LoginModal/LoginForm.tsx src/components/LoginModal/ResetPassword/ForgotPasswordForm.tsx
+msgid "Enter your email"
+msgstr "Enter your email"
+
+#: src/components/LoginModal/LoginForm.tsx
+msgid "Enter your password"
+msgstr "Enter your password"
 
 #: src/constants/menu.ts
 msgid "EVENT"
@@ -85,17 +153,69 @@ msgstr "Event Management"
 msgid "Events"
 msgstr "Events"
 
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Failed to resend code"
+msgstr "Failed to resend code"
+
+#: src/components/LoginModal/ResetPassword/ForgotPasswordForm.tsx
+msgid "Failed to send reset email"
+msgstr "Failed to send reset email"
+
+#: src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "Failed to update password"
+msgstr "Failed to update password"
+
+#: src/components/LoginModal/LoginForm.tsx
+msgid "Forgot password?"
+msgstr "Forgot password?"
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Full Name"
+msgstr "Full Name"
+
+#: src/components/LoginModal/LoginForm.tsx src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "Hide password"
+msgstr "Hide password"
+
 #: src/components/PageHeader/index.tsx
 msgid "Home"
 msgstr "Home"
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "I accept the <0>Terms and Conditions</0>"
+msgstr "I accept the <0>Terms and Conditions</0>"
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "I agree to the <0>Privacy Policy</0>"
+msgstr "I agree to the <0>Privacy Policy</0>"
 
 #: src/hooks/useStatusLabel.tsx
 msgid "Inactive"
 msgstr "Inactive"
 
+#: src/components/LoginModal/LoginForm.tsx src/components/LoginModal/RegisterForm.tsx src/components/LoginModal/ResetPassword/ForgotPasswordForm.tsx
+msgid "Invalid email"
+msgstr "Invalid email"
+
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Invalid verification code"
+msgstr "Invalid verification code"
+
 #: src/constants/menu.ts
 msgid "LEARNING"
 msgstr "LEARNING"
+
+#: src/pages/manage/student/classes/index.tsx
+msgid "Loading..."
+msgstr "Loading..."
+
+#: src/components/LoginModal/LoginForm.tsx src/components/LoginModal/RegisterForm.tsx
+msgid "Login"
+msgstr "Login"
+
+#: src/components/LoginModal/LoginForm.tsx
+msgid "Login to your Account"
+msgstr "Login to your Account"
 
 #: src/components/ProfileDropdown/index.tsx
 msgid "Logout"
@@ -125,9 +245,29 @@ msgstr "My Classes"
 msgid "My profile"
 msgstr "My profile"
 
-#: src/constants/menu.ts src/pages/manage/student/scores/index.tsx
+#: src/constants/menu.ts
 msgid "My Scores"
 msgstr "My Scores"
+
+#: src/components/LoginModal/LoginForm.tsx
+msgid "New Here?"
+msgstr "New Here?"
+
+#: src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "New Password"
+msgstr "New Password"
+
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Next"
+msgstr "Next"
+
+#: src/components/LoginModal/ResetPassword/ForgotPasswordForm.tsx
+msgid "No worries! Enter your email and we will send you a reset"
+msgstr "No worries! Enter your email and we will send you a reset"
+
+#: src/components/LoginModal/LoginForm.tsx src/components/LoginModal/RegisterForm.tsx
+msgid "or"
+msgstr "or"
 
 #: src/constants/menu.ts
 msgid "Overview Dashboard"
@@ -136,6 +276,30 @@ msgstr "Overview Dashboard"
 #: src/components/PageHeader/index.tsx
 msgid "Page"
 msgstr "Page"
+
+#: src/components/LoginModal/LoginForm.tsx src/components/LoginModal/RegisterForm.tsx
+msgid "Password"
+msgstr "Password"
+
+#: src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "Password is required"
+msgstr "Password is required"
+
+#: src/components/LoginModal/RegisterForm.tsx src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "Password must be at least 6 characters"
+msgstr "Password must be at least 6 characters"
+
+#: src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "Password updated successfully!"
+msgstr "Password updated successfully!"
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Passwords do not match"
+msgstr "Passwords do not match"
+
+#: src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "Passwords must match"
+msgstr "Passwords must match"
 
 #: src/constants/menu.ts
 msgid "PAYMENT"
@@ -157,6 +321,66 @@ msgstr "Payments"
 msgid "Pending"
 msgstr "Pending"
 
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Please accept Privacy Policy"
+msgstr "Please accept Privacy Policy"
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Please accept Terms and Conditions"
+msgstr "Please accept Terms and Conditions"
+
+#: src/components/LoginModal/RegisterForm.tsx src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "Please confirm your password"
+msgstr "Please confirm your password"
+
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Please enter only numbers"
+msgstr "Please enter only numbers"
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Please enter your email"
+msgstr "Please enter your email"
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Please enter your name"
+msgstr "Please enter your name"
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Please enter your password"
+msgstr "Please enter your password"
+
+#: src/components/LoginModal/LoginForm.tsx src/components/LoginModal/RegisterForm.tsx
+msgid "Register"
+msgstr "Register"
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Registering..."
+msgstr "Registering..."
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Registration failed. Please try again."
+msgstr "Registration failed. Please try again."
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Registration successful! Welcome to English Class!"
+msgstr "Registration successful! Welcome to English Class!"
+
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Resend code"
+msgstr "Resend code"
+
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Resend code ({countdown})"
+msgstr "Resend code ({countdown})"
+
+#: src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "Reset Password"
+msgstr "Reset Password"
+
+#: src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "Saving..."
+msgstr "Saving..."
+
 #: src/constants/menu.ts
 msgid "SCORE"
 msgstr "SCORE"
@@ -169,9 +393,33 @@ msgstr "Score Management"
 msgid "Scores"
 msgstr "Scores"
 
+#: src/components/LoginModal/ResetPassword/ForgotPasswordForm.tsx
+msgid "Send Request"
+msgstr "Send Request"
+
+#: src/components/LoginModal/ResetPassword/ForgotPasswordForm.tsx
+msgid "Sending..."
+msgstr "Sending..."
+
 #: src/constants/menu.ts
 msgid "Settings"
 msgstr "Settings"
+
+#: src/components/LoginModal/LoginForm.tsx src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "Show password"
+msgstr "Show password"
+
+#: src/components/LoginModal/LoginForm.tsx src/components/LoginModal/RegisterForm.tsx
+msgid "Sign in With Google"
+msgstr "Sign in With Google"
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Sign up to create an Account"
+msgstr "Sign up to create an Account"
+
+#: src/components/LoginModal/LoginForm.tsx
+msgid "Sorry, your password must be at least 8 characters"
+msgstr "Sorry, your password must be at least 8 characters"
 
 #: src/constants/role.ts
 msgid "Student"
@@ -184,6 +432,10 @@ msgstr "Student Management"
 #: src/constants/menu.ts
 msgid "Students"
 msgstr "Students"
+
+#: src/components/LoginModal/ResetPassword/PasswordSuccess.tsx
+msgid "successfully"
+msgstr "successfully"
 
 #: src/constants/menu.ts
 msgid "SYSTEM"
@@ -213,6 +465,10 @@ msgstr "TEACHING"
 msgid "Teaching Materials"
 msgstr "Teaching Materials"
 
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Unable to verify?"
+msgstr "Unable to verify?"
+
 #: src/constants/role.ts src/hooks/useStatusLabel.tsx
 msgid "Unknown"
 msgstr "Unknown"
@@ -225,6 +481,46 @@ msgstr "User Management"
 msgid "Users"
 msgstr "Users"
 
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Verification code is required"
+msgstr "Verification code is required"
+
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Verification code must be 6 digits"
+msgstr "Verification code must be 6 digits"
+
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Verification code resent!"
+msgstr "Verification code resent!"
+
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Verifying..."
+msgstr "Verifying..."
+
 #: src/helpers/locales.ts
 msgid "Vietnamese"
 msgstr "Vietnamese"
+
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "We've sent a code to {email}"
+msgstr "We've sent a code to {email}"
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Welcome Back!"
+msgstr "Welcome Back!"
+
+#: src/components/LoginModal/LoginForm.tsx
+msgid "Welcome to our English class, where you will embark on a fun and engaging journey to improve your language skills. Join us today to discover new ways to speak, read, and write English confidently!"
+msgstr "Welcome to our English class, where you will embark on a fun and engaging journey to improve your language skills. Join us today to discover new ways to speak, read, and write English confidently!"
+
+#: src/components/LoginModal/ResetPassword/ForgotPasswordForm.tsx
+msgid "Yo! Forgot Your Password?"
+msgstr "Yo! Forgot Your Password?"
+
+#: src/components/LoginModal/ResetPassword/PasswordSuccess.tsx
+msgid "You can now use it to login to your account. Remember, always keep your password confidential and complex."
+msgstr "You can now use it to login to your account. Remember, always keep your password confidential and complex."
+
+#: src/components/LoginModal/ResetPassword/PasswordSuccess.tsx
+msgid "You've updated the password"
+msgstr "You've updated the password"

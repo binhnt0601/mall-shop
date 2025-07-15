@@ -21,6 +21,14 @@ msgstr "Hoạt động"
 msgid "Admin"
 msgstr "Quản trị viên"
 
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Already a member? Log in and enjoy your AI shopping experience with your personalized dashboard, rewards, and more."
+msgstr "Đã là thành viên? Đăng nhập để trải nghiệm mua sắm AI, dashboard cá nhân, nhận thưởng và nhiều tiện ích khác."
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Already have an account?"
+msgstr "Đã có tài khoản?"
+
 #: src/constants/menu.ts
 msgid "ASSIGNMENT"
 msgstr "BÀI TẬP"
@@ -33,9 +41,21 @@ msgstr "Quản lý bài tập"
 msgid "Assignments"
 msgstr "Bài tập"
 
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Back"
+msgstr "Trở về"
+
+#: src/components/LoginModal/ResetPassword/ForgotPasswordForm.tsx
+msgid "Back to Login"
+msgstr "Trở về trang đăng nhập"
+
 #: src/hooks/useStatusLabel.tsx
 msgid "Blocked"
 msgstr "Bị khóa"
+
+#: src/components/LoginModal/LoginForm.tsx
+msgid "Brand Logo"
+msgstr "Logo thương hiệu"
 
 #: src/constants/menu.ts
 msgid "CLASS"
@@ -48,6 +68,26 @@ msgstr "Quản lý lớp học"
 #: src/constants/menu.ts
 msgid "Classes"
 msgstr "Lớp học"
+
+#: src/components/LoginModal/LoginForm.tsx src/components/LoginModal/RegisterForm.tsx src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "Close"
+msgstr "Đóng"
+
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Code verified successfully!"
+msgstr "Mã đã được xác minh thành công!"
+
+#: src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "Confirm"
+msgstr "Xác nhận"
+
+#: src/components/LoginModal/RegisterForm.tsx src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "Confirm Password"
+msgstr "Xác nhận mật khẩu"
+
+#: src/components/LoginModal/ResetPassword/PasswordSuccess.tsx
+msgid "Continue to login"
+msgstr "Tiếp tục đăng nhập"
 
 #: src/constants/menu.ts
 msgid "COURSE"
@@ -69,9 +109,37 @@ msgstr "Khóa học"
 msgid "Dashboard"
 msgstr "Bảng điều khiển"
 
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Didn't receive anything?"
+msgstr "Bạn không nhận được mã otp?"
+
+#: src/components/LoginModal/LoginForm.tsx
+msgid "Don't have an account?"
+msgstr "Chưa có tài khoản?"
+
+#: src/components/LoginModal/LoginForm.tsx src/components/LoginModal/RegisterForm.tsx src/components/LoginModal/ResetPassword/ForgotPasswordForm.tsx
+msgid "Email"
+msgstr "Email"
+
+#: src/components/LoginModal/ResetPassword/ForgotPasswordForm.tsx
+msgid "Email sent successfully!"
+msgstr "Email đã được gửi thành công!"
+
 #: src/helpers/locales.ts
 msgid "English"
 msgstr "Tiếng Anh"
+
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Enter Email Code"
+msgstr "Nhập mã email"
+
+#: src/components/LoginModal/LoginForm.tsx src/components/LoginModal/ResetPassword/ForgotPasswordForm.tsx
+msgid "Enter your email"
+msgstr "Nhập email của bạn"
+
+#: src/components/LoginModal/LoginForm.tsx
+msgid "Enter your password"
+msgstr "Nhập mật khẩu của bạn"
 
 #: src/constants/menu.ts
 msgid "EVENT"
@@ -85,17 +153,69 @@ msgstr "Quản lý sự kiện"
 msgid "Events"
 msgstr "Sự kiện"
 
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Failed to resend code"
+msgstr "Gửi lại mã thất bại"
+
+#: src/components/LoginModal/ResetPassword/ForgotPasswordForm.tsx
+msgid "Failed to send reset email"
+msgstr "Gửi email đặt lại mật khẩu thất bại"
+
+#: src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "Failed to update password"
+msgstr "Cập nhật mật khẩu thất bại"
+
+#: src/components/LoginModal/LoginForm.tsx
+msgid "Forgot password?"
+msgstr "Quên mật khẩu?"
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Full Name"
+msgstr "Họ và tên"
+
+#: src/components/LoginModal/LoginForm.tsx src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "Hide password"
+msgstr "Ẩn mật khẩu"
+
 #: src/components/PageHeader/index.tsx
 msgid "Home"
 msgstr "Trang chủ"
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "I accept the <0>Terms and Conditions</0>"
+msgstr "Tôi đồng ý với <0>Điều khoản dịch vụ</0>"
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "I agree to the <0>Privacy Policy</0>"
+msgstr "Tôi đồng ý với <0>Chính sách bảo mật</0>"
 
 #: src/hooks/useStatusLabel.tsx
 msgid "Inactive"
 msgstr "Ngừng hoạt động"
 
+#: src/components/LoginModal/LoginForm.tsx src/components/LoginModal/RegisterForm.tsx src/components/LoginModal/ResetPassword/ForgotPasswordForm.tsx
+msgid "Invalid email"
+msgstr "Email không hợp lệ"
+
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Invalid verification code"
+msgstr "Mã xác minh không hợp lệ"
+
 #: src/constants/menu.ts
 msgid "LEARNING"
 msgstr "HỌC TẬP"
+
+#: src/pages/manage/student/classes/index.tsx
+msgid "Loading..."
+msgstr "Đang tải..."
+
+#: src/components/LoginModal/LoginForm.tsx src/components/LoginModal/RegisterForm.tsx
+msgid "Login"
+msgstr "Đăng nhập"
+
+#: src/components/LoginModal/LoginForm.tsx
+msgid "Login to your Account"
+msgstr "Đăng nhập vào tài khoản của bạn"
 
 #: src/components/ProfileDropdown/index.tsx
 msgid "Logout"
@@ -125,9 +245,29 @@ msgstr "Lớp của tôi"
 msgid "My profile"
 msgstr "Hồ sơ của tôi"
 
-#: src/constants/menu.ts src/pages/manage/student/scores/index.tsx
+#: src/constants/menu.ts
 msgid "My Scores"
 msgstr "Điểm của tôi"
+
+#: src/components/LoginModal/LoginForm.tsx
+msgid "New Here?"
+msgstr "Người mới?"
+
+#: src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "New Password"
+msgstr "Mật khẩu mới"
+
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Next"
+msgstr "Tiếp tục"
+
+#: src/components/LoginModal/ResetPassword/ForgotPasswordForm.tsx
+msgid "No worries! Enter your email and we will send you a reset"
+msgstr "Đừng lo! Nhập email của bạn và chúng tôi sẽ gửi cho bạn liên kết đặt lại mật khẩu"
+
+#: src/components/LoginModal/LoginForm.tsx src/components/LoginModal/RegisterForm.tsx
+msgid "or"
+msgstr "hoặc"
 
 #: src/constants/menu.ts
 msgid "Overview Dashboard"
@@ -136,6 +276,30 @@ msgstr "Tổng quan"
 #: src/components/PageHeader/index.tsx
 msgid "Page"
 msgstr "Trang"
+
+#: src/components/LoginModal/LoginForm.tsx src/components/LoginModal/RegisterForm.tsx
+msgid "Password"
+msgstr "Mật khẩu"
+
+#: src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "Password is required"
+msgstr "Mật khẩu là bắt buộc"
+
+#: src/components/LoginModal/RegisterForm.tsx src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "Password must be at least 6 characters"
+msgstr "Mật khẩu tối thiểu 6 ký tự"
+
+#: src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "Password updated successfully!"
+msgstr "Mật khẩu đã được cập nhật thành công!"
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Passwords do not match"
+msgstr "Mật khẩu nhập lại không khớp"
+
+#: src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "Passwords must match"
+msgstr "Mật khẩu phải khớp nhau"
 
 #: src/constants/menu.ts
 msgid "PAYMENT"
@@ -157,6 +321,66 @@ msgstr "Thanh toán"
 msgid "Pending"
 msgstr "Đang chờ"
 
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Please accept Privacy Policy"
+msgstr "Vui lòng chấp nhận Chính sách bảo mật"
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Please accept Terms and Conditions"
+msgstr "Vui lòng chấp nhận Điều khoản dịch vụ"
+
+#: src/components/LoginModal/RegisterForm.tsx src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "Please confirm your password"
+msgstr "Vui lòng xác nhận mật khẩu"
+
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Please enter only numbers"
+msgstr "Vui lòng chỉ nhập số"
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Please enter your email"
+msgstr "Vui lòng nhập email"
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Please enter your name"
+msgstr "Vui lòng chỉ nhập tên"
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Please enter your password"
+msgstr "Vui lòng nhập mật khẩu"
+
+#: src/components/LoginModal/LoginForm.tsx src/components/LoginModal/RegisterForm.tsx
+msgid "Register"
+msgstr "Đăng ký"
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Registering..."
+msgstr "Đang đăng ký..."
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Registration failed. Please try again."
+msgstr "Đăng ký thất bại. Vui lòng thử lại."
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Registration successful! Welcome to English Class!"
+msgstr "Đăng ký thành công! Chào mừng bạn đến với English Class!"
+
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Resend code"
+msgstr "Gửi lại mã"
+
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Resend code ({countdown})"
+msgstr "Gửi lại mã ({countdown})"
+
+#: src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "Reset Password"
+msgstr "Đặt lại mật khẩu"
+
+#: src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "Saving..."
+msgstr "Đang lưu..."
+
 #: src/constants/menu.ts
 msgid "SCORE"
 msgstr "ĐIỂM SỐ"
@@ -169,9 +393,33 @@ msgstr "Quản lý điểm số"
 msgid "Scores"
 msgstr "Điểm số"
 
+#: src/components/LoginModal/ResetPassword/ForgotPasswordForm.tsx
+msgid "Send Request"
+msgstr "Gửi yêu cầu"
+
+#: src/components/LoginModal/ResetPassword/ForgotPasswordForm.tsx
+msgid "Sending..."
+msgstr "Đang gửi..."
+
 #: src/constants/menu.ts
 msgid "Settings"
 msgstr "Cài đặt"
+
+#: src/components/LoginModal/LoginForm.tsx src/components/LoginModal/ResetPassword/ResetPasswordForm.tsx
+msgid "Show password"
+msgstr "Hiện mật khẩu"
+
+#: src/components/LoginModal/LoginForm.tsx src/components/LoginModal/RegisterForm.tsx
+msgid "Sign in With Google"
+msgstr "Đăng nhập với Google"
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Sign up to create an Account"
+msgstr "Đăng ký tài khoản mới"
+
+#: src/components/LoginModal/LoginForm.tsx
+msgid "Sorry, your password must be at least 8 characters"
+msgstr "Mật khẩu phải có ít nhất 8 ký tự"
 
 #: src/constants/role.ts
 msgid "Student"
@@ -184,6 +432,10 @@ msgstr "Quản lý học viên"
 #: src/constants/menu.ts
 msgid "Students"
 msgstr "Học viên"
+
+#: src/components/LoginModal/ResetPassword/PasswordSuccess.tsx
+msgid "successfully"
+msgstr "thành công"
 
 #: src/constants/menu.ts
 msgid "SYSTEM"
@@ -213,6 +465,10 @@ msgstr "GIẢNG DẠY"
 msgid "Teaching Materials"
 msgstr "Tài liệu giảng dạy"
 
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Unable to verify?"
+msgstr "Không thể xác minh?"
+
 #: src/constants/role.ts src/hooks/useStatusLabel.tsx
 msgid "Unknown"
 msgstr "Không xác định"
@@ -225,6 +481,46 @@ msgstr "Quản lý người dùng"
 msgid "Users"
 msgstr "Người dùng"
 
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Verification code is required"
+msgstr "Mã xác minh là bắt buộc"
+
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Verification code must be 6 digits"
+msgstr "Mã xác minh phải gồm 6 chữ số"
+
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Verification code resent!"
+msgstr "Mã xác thực đã được gửi lại!"
+
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "Verifying..."
+msgstr "Đang xác minh..."
+
 #: src/helpers/locales.ts
 msgid "Vietnamese"
 msgstr "Tiếng Việt"
+
+#: src/components/LoginModal/ResetPassword/VerifyEmailForm.tsx
+msgid "We've sent a code to {email}"
+msgstr "Chúng tôi đã gửi mã đến {email}"
+
+#: src/components/LoginModal/RegisterForm.tsx
+msgid "Welcome Back!"
+msgstr "Chào mừng quay lại!"
+
+#: src/components/LoginModal/LoginForm.tsx
+msgid "Welcome to our English class, where you will embark on a fun and engaging journey to improve your language skills. Join us today to discover new ways to speak, read, and write English confidently!"
+msgstr "Chào mừng đến với lớp học tiếng Anh của chúng tôi, nơi bạn sẽ bắt đầu hành trình nâng cao kỹ năng ngôn ngữ một cách thú vị và hiệu quả. Hãy tham gia ngay hôm nay để khám phá những cách mới để nói, đọc và viết tiếng Anh tự tin hơn!"
+
+#: src/components/LoginModal/ResetPassword/ForgotPasswordForm.tsx
+msgid "Yo! Forgot Your Password?"
+msgstr "Bạn quên mật khẩu à?"
+
+#: src/components/LoginModal/ResetPassword/PasswordSuccess.tsx
+msgid "You can now use it to login to your account. Remember, always keep your password confidential and complex."
+msgstr "Bây giờ bạn có thể sử dụng mật khẩu này để đăng nhập vào tài khoản. Hãy luôn giữ mật khẩu bí mật và đủ phức tạp."
+
+#: src/components/LoginModal/ResetPassword/PasswordSuccess.tsx
+msgid "You've updated the password"
+msgstr "Bạn đã cập nhật mật khẩu"

@@ -1,4 +1,4 @@
-import { t } from "@lingui/macro";
+import { t, Trans } from "@lingui/macro";
 import CloseIcon from "@mui/icons-material/Close";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
@@ -103,7 +103,7 @@ const ResetPasswordForm = ({
           "&:hover": { bgcolor: "rgba(255,255,255,0.13)" },
           zIndex: 10,
         }}
-        aria-label="Close"
+        aria-label={t`Close`}
       >
         <CloseIcon />
       </IconButton>
@@ -130,7 +130,7 @@ const ResetPasswordForm = ({
           mb={2}
           sx={{ textShadow: "0 2px 8px rgba(0,0,0,0.12)" }}
         >
-          Reset Password
+          <Trans>Reset Password</Trans>
         </Typography>
 
         <Formik
@@ -156,7 +156,7 @@ const ResetPasswordForm = ({
             >
               <TextField
                 variant="outlined"
-                label="New Password"
+                label={t`New Password`}
                 type={showNewPassword ? "text" : "password"}
                 name="newPassword"
                 autoComplete="new-password"
@@ -178,7 +178,7 @@ const ResetPasswordForm = ({
                         onClick={() => setShowNewPassword(!showNewPassword)}
                         edge="end"
                         aria-label={
-                          showNewPassword ? "Hide password" : "Show password"
+                          showNewPassword ? t`Hide password` : t`Show password`
                         }
                       >
                         {showNewPassword ? (
@@ -193,7 +193,7 @@ const ResetPasswordForm = ({
               />
               <TextField
                 variant="outlined"
-                label="Confirm Password"
+                label={t`Confirm Password`}
                 type={showConfirmPassword ? "text" : "password"}
                 name="confirmPassword"
                 autoComplete="new-password"
@@ -220,8 +220,8 @@ const ResetPasswordForm = ({
                         edge="end"
                         aria-label={
                           showConfirmPassword
-                            ? "Hide password"
-                            : "Show password"
+                            ? t`Hide password`
+                            : t`Show password`
                         }
                       >
                         {showConfirmPassword ? (
@@ -244,7 +244,7 @@ const ResetPasswordForm = ({
                     : "hover:bg-indigo-50 cursor-pointer"
                 }`}
               >
-                {isSubmitting ? "Saving..." : "Confirm"}
+                {isSubmitting ? t`Saving...` : t`Confirm`}
               </button>
             </Form>
           )}

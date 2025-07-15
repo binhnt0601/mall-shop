@@ -11,7 +11,7 @@
     "format": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --fix && prettier --write .",
     "extract": "lingui extract",
     "compile": "lingui compile",
-    "clean-locales": "node cleanup-po.js"
+    "clean:locale": "node cleanup-po.js"
   },
   "eslintIgnore": [
     "!.next"

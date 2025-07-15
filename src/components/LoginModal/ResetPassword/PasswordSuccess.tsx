@@ -1,3 +1,4 @@
+import { Trans } from "@lingui/macro";
 import { Stack, Typography, Button } from "@mui/material";
 import React from "react";
 
@@ -20,14 +21,21 @@ const PasswordSuccess: React.FC<Props> = ({ onScreen }) => {
       spacing={4}
     >
       <Typography variant="h3" fontWeight={700}>
-        You&apos;ve updated the password
+        <Trans>You&apos;ve updated the password</Trans>
       </Typography>
-      <Typography variant="h4" fontWeight={700} color="#0ea5e9">
-        successfully
+      <Typography
+        variant="h4"
+        fontWeight={700}
+        color="#0ea5e9"
+        textTransform="uppercase"
+      >
+        <Trans>successfully</Trans>
       </Typography>
       <Typography sx={{ fontSize: 16, color: "#e5e7eb" }}>
-        You can now use it to login to your account. Remember, always keep your
-        password confidential and complex.
+        <Trans>
+          You can now use it to login to your account. Remember, always keep
+          your password confidential and complex.
+        </Trans>
       </Typography>
 
       <Button
@@ -44,7 +52,7 @@ const PasswordSuccess: React.FC<Props> = ({ onScreen }) => {
         }}
         onClick={() => onScreen("login")}
       >
-        Continue to login
+        <Trans>Continue to login</Trans>
       </Button>
     </Stack>
   );

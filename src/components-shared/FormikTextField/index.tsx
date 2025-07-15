@@ -1,8 +1,8 @@
 import { TextField, InputAdornment, Typography } from "@mui/material";
+import { useFormikContext } from "formik";
 import React from "react";
 
 interface FormikTextFieldProps {
-  formik: any;
   name: string;
   label: string;
   type?: string;
@@ -11,14 +11,14 @@ interface FormikTextFieldProps {
 }
 
 const FormikTextField: React.FC<FormikTextFieldProps> = ({
-  formik,
   name,
   label,
   type = "text",
   icon,
   ...props
 }) => {
-  const showError = formik.touched[name] && Boolean(formik.errors[name]);
+  const formik = useFormikContext<any>();
+  const showError = formik?.touched[name] && Boolean(formik?.errors[name]);
 
   return (
     <div style={{ width: "100%" }}>
@@ -27,9 +27,9 @@ const FormikTextField: React.FC<FormikTextFieldProps> = ({
         label={label}
         name={name}
         type={type}
-        value={formik.values[name]}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
+        value={formik?.values[name]}
+        onChange={formik?.handleChange}
+        onBlur={formik?.handleBlur}
         error={showError}
         style={{ background: "rgba(255, 252, 252, 0.349)" }}
         className="w-full rounded-md"
@@ -56,7 +56,7 @@ const FormikTextField: React.FC<FormikTextFieldProps> = ({
           variant="caption"
           style={{ marginLeft: "10px" }}
         >
-          {formik.errors[name] as string}
+          {formik?.errors[name] as string}
         </Typography>
       )}
     </div>

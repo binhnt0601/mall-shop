@@ -59,7 +59,7 @@ const ProfileDropdown = () => {
         <div className="absolute right-0 z-10 origin-top-right rounded-md bg-white shadow-lg">
           <div className="flex flex-col items-start gap-1 p-4">
             <Link
-              href="/profile"
+              href="/manage/profile"
               className={clsx(
                 pathname === "/profile" && "text-primary",
                 "hover:text-[#FF7125] hover:font-medium flex gap-2 items-center",

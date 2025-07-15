@@ -1,10 +1,7 @@
-"use client";
-
-import { t } from "@lingui/macro";
-import { Trans } from "@lingui/macro";
+import { t, Trans } from "@lingui/macro";
 import CloseIcon from "@mui/icons-material/Close";
 import { IconButton } from "@mui/material";
-import { Formik, Form, FormikHelpers } from "formik";
+import { Formik, Form } from "formik";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { MdEmail } from "react-icons/md";
@@ -16,10 +13,6 @@ import { UserService } from "@/services/user/user.repo";
 import { useLoadingStore } from "@/stores/loadingStore";
 
 import { ScreenView } from "..";
-
-interface FormikValues {
-  code: string;
-}
 
 const validationSchema = Yup.object().shape({
   code: Yup.string()
@@ -50,8 +43,8 @@ const VerifyEmailForm: React.FC<{
   }, [countdown]);
 
   const handleSubmit = async (
-    values: FormikValues,
-    { setSubmitting }: FormikHelpers<FormikValues>
+    values: { code: string },
+    { setSubmitting }: any
   ) => {
     try {
       setLoading(true);
@@ -119,12 +112,11 @@ const VerifyEmailForm: React.FC<{
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
           >
-            {(formik) => (
+            {({ isSubmitting, values, errors }) => (
               <Form className="flex flex-col gap-6">
                 <FormikTextField
-                  formik={formik}
                   name="code"
-                  label="Verification Code"
+                  label={t`Verification Code`}
                   icon={<MdEmail className="text-white/70" />}
                   InputLabelProps={{
                     style: { color: "rgba(255,255,255,0.8)" },
@@ -152,21 +144,19 @@ const VerifyEmailForm: React.FC<{
                 <button
                   type="submit"
                   disabled={
-                    formik.isSubmitting ||
-                    !formik.values.code ||
-                    formik.values.code.length !== 6 ||
-                    !!formik.errors.code
+                    isSubmitting ||
+                    !values.code ||
+                    values.code.length !== 6 ||
+                    !!errors.code
                   }
                   className={`w-full rounded-xl py-3 font-semibold shadow-md transition 
                     ${
-                      formik.values.code &&
-                      formik.values.code.length === 6 &&
-                      !formik.errors.code
+                      values.code && values.code.length === 6 && !errors.code
                         ? "bg-gradient-to-r from-blue-600 to-indigo-700 text-white hover:from-blue-700 hover:to-indigo-800"
                         : "bg-gray-600 text-white cursor-not-allowed opacity-50"
                     }`}
                 >
-                  {formik.isSubmitting ? (
+                  {isSubmitting ? (
                     <div className="flex items-center justify-center space-x-2">
                       <svg
                         className="animate-spin h-5 w-5 text-white"
