@@ -1,3 +1,4 @@
+import { t } from "@lingui/macro";
 import { Stack } from "@mui/material";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -26,19 +27,19 @@ export default function PaymentInfoForm({ user, editing, onSubmit }: any) {
         <Stack spacing={2}>
           <FormikTextField
             name="bankName"
-            label="Bank Name"
+            label={t`Bank Name`}
             fullWidth
             disabled={!editing}
           />
           <FormikTextField
             name="accountBankName"
-            label="Account Holder Name"
+            label={t`Account Holder Name`}
             fullWidth
             disabled={!editing}
           />
           <FormikTextField
             name="bankNumber"
-            label="Bank Number"
+            label={t`Bank Number`}
             fullWidth
             disabled={!editing}
           />

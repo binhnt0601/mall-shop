@@ -1,4 +1,5 @@
 import { Trans } from "@lingui/macro";
+import { Avatar } from "@mui/material";
 import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -34,16 +35,16 @@ const ProfileDropdown = () => {
         onClick={() => setIsOpen((prev) => !prev)}
         className="flex items-center justify-center gap-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50"
       >
-        <div className="relative inline-flex size-10 items-center justify-center overflow-hidden rounded-full bg-[#FF7125]">
-          <span className="font-medium text-white">
-            {auth?.name?.slice(0, 1).toUpperCase() ||
-              auth?.email?.slice(0, 1).toUpperCase()}
-          </span>
-        </div>
+        <Avatar
+          src={auth?.avatar}
+          sx={{ width: 40, height: 40, boxShadow: 2 }}
+        />
         <div>
           <div className="flex flex-col items-start">
             <p>{auth?.name}</p>
-            <p>{auth?.email}</p>
+            <p className="md:max-w-[160px] max-w-[120px] truncate">
+              {auth?.email}
+            </p>
           </div>
         </div>
         <HiChevronDown
@@ -65,6 +66,9 @@ const ProfileDropdown = () => {
                 "hover:text-[#FF7125] hover:font-medium flex gap-2 items-center",
                 "border-b pb-2 w-full text-nowrap"
               )}
+              onClick={() => {
+                setIsOpen(false);
+              }}
             >
               <MdPerson />
               <Trans>My profile</Trans>

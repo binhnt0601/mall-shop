@@ -59,6 +59,29 @@ export class UserRepository extends CrudRepository<User> {
     };
   }
 
+  updateProfile = async (data: any) => {
+    const api = "updateUserMyProfile";
+
+    const option: MutationOptions = {
+      mutation: this.gql`
+         mutation UpdateUserMyProfile($data: UpdateUserInput!) {
+          ${api}(data: $data) {
+             ${userQuery} 
+          }
+        }
+      `,
+      variables: {
+        data,
+      },
+    };
+
+    const result = await this.apollo.mutate(option);
+
+    this.handleError(result);
+
+    return result.data[api];
+  };
+
   async updatePassword({
     currentPassword,
     newPassword,

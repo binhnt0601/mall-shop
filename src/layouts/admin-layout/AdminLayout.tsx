@@ -13,13 +13,13 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-export default function MainLayout({ children }: LayoutProps) {
+export default function AdminLayout({ children }: LayoutProps) {
   const { auth, authStatus, logout } = useAuthStore();
+  const token = GetAuthToken();
   const router = useRouter();
   const [collapseShow, setCollapseShow] = useState<boolean>(false);
 
   useEffect(() => {
-    const token = GetAuthToken();
     if (!token) {
       router.push("/");
     }

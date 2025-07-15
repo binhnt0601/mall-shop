@@ -1,14 +1,14 @@
 import { BaseModel } from "@/helpers/base-model";
 
-// import { Assignment } from "./assignment.model";
-// import { Class } from "./class.model";
+import { Assignment } from "../assignment/assignment.model";
+import { Class } from "../class/class.model";
 import { User } from "../user/user.model";
 
 export interface Score extends BaseModel {
   id: string;
   student: string | User;
-  class: { id: string; name: string };
-  assignment: { id: string; title: string };
+  class: Class;
+  assignment: Assignment;
   subject: string;
   score: number;
   maxScore: number;

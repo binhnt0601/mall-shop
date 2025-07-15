@@ -6,6 +6,7 @@ import { IoMdClose } from "react-icons/io";
 
 import { useAuthStore } from "@/stores/auth/useAuthStore";
 
+import LocaleDropdown from "../LocaleDropdown";
 import LoginModal from "../LoginModal";
 
 interface MenuItem {
@@ -127,6 +128,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose, menu }) => {
           )}
           <hr />
           {/* User Info or Login button */}
+          <LocaleDropdown />
           {auth ? (
             <div className="flex flex-col">
               <Link

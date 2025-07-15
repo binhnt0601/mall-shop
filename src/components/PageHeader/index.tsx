@@ -6,12 +6,22 @@ import React from "react";
 import BreadCrumbs from "@/components-shared/Breadcrumbs";
 import useMenu from "@/hooks/useMenu";
 
+const HOME_PATH = "/manage/dashboard";
+
+function pathToTitle(path: string) {
+  if (!path) return "";
+  const arr = path.split("/").filter(Boolean);
+  const last = arr.slice(-2).join(" ");
+  return last
+    .split(/[- ]/)
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+}
+
 interface PageHeaderProps {
   className?: string;
   children?: React.ReactNode;
 }
-
-const HOME_PATH = "/manage/dashboard";
 
 const PageHeader: React.FC<PageHeaderProps> = ({ className, children }) => {
   const router = useRouter();
@@ -23,9 +33,13 @@ const PageHeader: React.FC<PageHeaderProps> = ({ className, children }) => {
   }, [menu, router.pathname]);
 
   const breadcrumbs = React.useMemo(() => {
+    let label = menuItem?.title;
+    if (!label) {
+      label = pathToTitle(router.pathname);
+    }
     return [
       { href: HOME_PATH, label: t`Home` },
-      { href: menuItem?.url, label: menuItem?.title || t`Page` },
+      { href: router.pathname, label: label || t`Page` },
     ];
   }, [router.pathname, menuItem]);
 
@@ -38,7 +52,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ className, children }) => {
     <div>
       {router.pathname !== HOME_PATH && (
         <div className="mb-5">
-          <BreadCrumbs breadcrumbs={breadcrumbs} />{" "}
+          <BreadCrumbs breadcrumbs={breadcrumbs} />
         </div>
       )}
       <div className={clsx("mt-5", className)}>{children}</div>

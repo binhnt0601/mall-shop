@@ -1,7 +1,6 @@
 import { TextField, InputAdornment, Typography } from "@mui/material";
 import { useFormikContext } from "formik";
 import React from "react";
-
 interface FormikTextFieldProps {
   name: string;
   label: string;
@@ -39,11 +38,9 @@ const FormikTextField: React.FC<FormikTextFieldProps> = ({
             whiteSpace: "nowrap",
             overflow: "hidden",
             width: "100%",
-            color: "white",
           },
         }}
         InputProps={{
-          style: { color: "white" },
           endAdornment: icon ? (
             <InputAdornment position="end">{icon}</InputAdornment>
           ) : undefined,

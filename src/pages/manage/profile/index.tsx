@@ -1,140 +1,126 @@
-import { Box, Avatar, Stack, Typography } from "@mui/material";
+import { t, Trans } from "@lingui/macro";
+import { Box, Stack, Typography } from "@mui/material";
 import { useState } from "react";
 
+import AvatarUploader from "@/components/AvatarUploader";
 import ProfileSection from "@/components/ProfileSection";
+import { toast } from "@/helpers/toast";
+import AdminLayout from "@/layouts/admin-layout/AdminLayout";
 import BasicInfoForm from "@/modules/ManagementPage/Profile/BasicInfoForm";
 import PasswordForm from "@/modules/ManagementPage/Profile/PasswordForm";
 import PaymentInfoForm from "@/modules/ManagementPage/Profile/PaymentInfoForm";
 import PersonalInfoForm from "@/modules/ManagementPage/Profile/PersonalInfoForm";
+import { UserService } from "@/services/user/user.repo";
 import { useAuthStore } from "@/stores/auth/useAuthStore";
+import { useLoadingStore } from "@/stores/loadingStore";
+
+const SECTIONS = [
+  {
+    key: "personal",
+    title: t`Personal Information`,
+    FormComponent: PersonalInfoForm,
+    formId: "personalForm",
+    toastSuccess: t`Updated personal info!`,
+    api: async (data: any) => UserService.updateProfile(data),
+    setAuthOnSuccess: true,
+  },
+  {
+    key: "basic",
+    title: t`Basic Information`,
+    FormComponent: BasicInfoForm,
+    formId: "basicForm",
+    toastSuccess: t`Updated basic information!`,
+    api: async (data: any) => UserService.updateProfile(data),
+    setAuthOnSuccess: true,
+  },
+  {
+    key: "payment",
+    title: t`Payment Method`,
+    FormComponent: PaymentInfoForm,
+    formId: "paymentForm",
+    toastSuccess: t`Updated payment method!`,
+    api: async (data: any) => UserService.updateProfile(data),
+    setAuthOnSuccess: true,
+  },
+  {
+    key: "password",
+    title: t`Change Password`,
+    FormComponent: PasswordForm,
+    formId: "passwordForm",
+    toastSuccess: t`Password changed successfully!`,
+    api: async (data: any) => UserService.updatePassword(data),
+    setAuthOnSuccess: false,
+  },
+] as const;
 
 const ProfilePage = () => {
-  const { auth: user } = useAuthStore();
+  const { auth: user, setAuth } = useAuthStore();
+  const { setLoading } = useLoadingStore();
+  const [editState, setEditState] = useState<Record<string, boolean>>({});
 
-  const [editPersonal, setEditPersonal] = useState(false);
-  const [editBasic, setEditBasic] = useState(false);
-  const [editPayment, setEditPayment] = useState(false);
-  const [editPassword, setEditPassword] = useState(false);
-
-  const handlePersonalSave = async (data: any) => {
-    // await api.updatePersonal(data);
-    setEditPersonal(false);
-  };
-  const handleBasicSave = async (data: any) => {
-    setEditBasic(false);
-  };
-  const handlePaymentSave = async (data: any) => {
-    setEditPayment(false);
-  };
-  const handlePasswordSave = async (data: any) => {
-    setEditPassword(false);
-  };
+  const handleSubmit =
+    (section: (typeof SECTIONS)[number]) => async (data: any) => {
+      try {
+        setLoading(true);
+        const res = await section.api(data);
+        if (section.setAuthOnSuccess && res) setAuth(res);
+        toast.success(section.toastSuccess);
+        setEditState((s) => ({ ...s, [section.key]: false }));
+      } catch (error: any) {
+        toast.error(error?.message || t`Something went wrong!`);
+      } finally {
+        setLoading(false);
+      }
+    };
 
   return (
-    <Box sx={{ minHeight: "100vh", bgcolor: "#f4f6fa", py: 5 }}>
+    <Box sx={{ bgcolor: "#f4f6fa", py: 5, px: 3, borderRadius: 8 }}>
       <Box sx={{ maxWidth: 630, mx: "auto" }}>
         <Stack alignItems="center" mb={3} gap={1.5}>
-          <Avatar
-            src={user?.avatar}
-            sx={{ width: 84, height: 84, boxShadow: 2 }}
+          <AvatarUploader
+            user={user}
+            onUploaded={(url) => {
+              setAuth({ ...user, avatar: url });
+            }}
           />
           <Typography fontWeight={700} fontSize={22}>
-            {user?.name || "No Name"}
+            {user?.name || <Trans>No Name</Trans>}
           </Typography>
           <Typography color="text.secondary" fontSize={16}>
             {user?.email}
           </Typography>
         </Stack>
 
-        {/* Personal Info */}
-        <ProfileSection
-          title="Personal Information"
-          editing={editPersonal}
-          onEdit={() => setEditPersonal(true)}
-          onSave={() =>
-            document
-              .getElementById("personalForm")
-              ?.dispatchEvent(
-                new Event("submit", { cancelable: true, bubbles: true })
-              )
-          }
-          onCancel={() => setEditPersonal(false)}
-        >
-          <PersonalInfoForm
-            user={user}
-            editing={editPersonal}
-            onSubmit={handlePersonalSave}
-            formId="personalForm"
-          />
-        </ProfileSection>
-
-        {/* Basic Info */}
-        <ProfileSection
-          title="Basic Information"
-          editing={editBasic}
-          onEdit={() => setEditBasic(true)}
-          onSave={() =>
-            document
-              .getElementById("basicForm")
-              ?.dispatchEvent(
-                new Event("submit", { cancelable: true, bubbles: true })
-              )
-          }
-          onCancel={() => setEditBasic(false)}
-        >
-          <BasicInfoForm
-            user={user}
-            editing={editBasic}
-            onSubmit={handleBasicSave}
-            formId="basicForm"
-          />
-        </ProfileSection>
-
-        {/* Payment Info */}
-        <ProfileSection
-          title="Payment Method"
-          editing={editPayment}
-          onEdit={() => setEditPayment(true)}
-          onSave={() =>
-            document
-              .getElementById("paymentForm")
-              ?.dispatchEvent(
-                new Event("submit", { cancelable: true, bubbles: true })
-              )
-          }
-          onCancel={() => setEditPayment(false)}
-        >
-          <PaymentInfoForm
-            user={user}
-            editing={editPayment}
-            onSubmit={handlePaymentSave}
-            formId="paymentForm"
-          />
-        </ProfileSection>
-
-        {/* Change Password */}
-        <ProfileSection
-          title="Change Password"
-          editing={editPassword}
-          onEdit={() => setEditPassword(true)}
-          onSave={() =>
-            document
-              .getElementById("passwordForm")
-              ?.dispatchEvent(
-                new Event("submit", { cancelable: true, bubbles: true })
-              )
-          }
-          onCancel={() => setEditPassword(false)}
-        >
-          <PasswordForm
-            editing={editPassword}
-            onSubmit={handlePasswordSave}
-            formId="passwordForm"
-          />
-        </ProfileSection>
+        {SECTIONS.map((section) => {
+          const { key, title, FormComponent, formId } = section;
+          return (
+            <ProfileSection
+              key={key}
+              title={title}
+              editing={!!editState[key]}
+              onEdit={() => setEditState((s) => ({ ...s, [key]: true }))}
+              onSave={() =>
+                document
+                  .getElementById(formId)
+                  ?.dispatchEvent(
+                    new Event("submit", { cancelable: true, bubbles: true })
+                  )
+              }
+              onCancel={() => setEditState((s) => ({ ...s, [key]: false }))}
+            >
+              <FormComponent
+                user={user}
+                editing={!!editState[key]}
+                onSubmit={handleSubmit(section)}
+                formId={formId}
+              />
+            </ProfileSection>
+          );
+        })}
       </Box>
     </Box>
   );
 };
 
+ProfilePage.Layout = AdminLayout;
 export default ProfilePage;

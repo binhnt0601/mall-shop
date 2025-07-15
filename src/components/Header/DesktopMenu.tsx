@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import Dropdown from "@/components-shared/Dropdown";
 import { useAuthStore } from "@/stores/auth/useAuthStore";
 
+import LocaleDropdown from "../LocaleDropdown";
 import LoginModal from "../LoginModal";
 
 interface MenuItem {
@@ -69,6 +70,7 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ menu }) => {
             </Link>
           )
         )}
+        <LocaleDropdown />
       </nav>
       <div className="md:block hidden">
         {!auth ? (

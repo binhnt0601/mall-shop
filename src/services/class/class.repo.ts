@@ -2,6 +2,7 @@ import { CrudRepository } from "@/graphql/repo/crud";
 
 import { classFields } from "./class.field";
 import { Class } from "./class.model";
+import { userFields } from "../user/user.field";
 
 export class ClassRepository extends CrudRepository<Class> {
   apiName = "Class";
@@ -12,6 +13,12 @@ export class ClassRepository extends CrudRepository<Class> {
 
   fullFragment = this.parseFragment(`
     ${classFields}
+    teacher {
+      ${userFields}
+    }
+    students {
+      ${userFields}
+    }
   `);
 }
 

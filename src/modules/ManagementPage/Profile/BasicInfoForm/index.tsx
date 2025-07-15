@@ -1,3 +1,4 @@
+import { t } from "@lingui/macro";
 import { Stack } from "@mui/material";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -26,19 +27,19 @@ export default function BasicInfoForm({ user, editing, onSubmit }: any) {
         <Stack spacing={2}>
           <FormikTextField
             name="phone"
-            label="Phone"
+            label={t`Phone`}
             fullWidth
             disabled={!editing}
           />
           <FormikTextField
             name="address"
-            label="Address"
+            label={t`Address`}
             fullWidth
             disabled={!editing}
           />
           <FormikTextField
             name="referralCode"
-            label="Referral Code"
+            label={t`Referral Code`}
             fullWidth
             disabled
           />

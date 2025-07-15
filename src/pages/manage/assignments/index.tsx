@@ -1,5 +1,7 @@
 "use client";
 
+import { t, Trans } from "@lingui/macro";
+import { Box, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -8,47 +10,25 @@ import CommonTable, {
   FilterConfig,
 } from "@/components-shared/CommonTable";
 import AdminLayout from "@/layouts/admin-layout/AdminLayout";
-import { Score } from "@/services/score/score.model";
-import { ScoreService } from "@/services/score/score.repo";
+import { Assignment } from "@/services/assignment/assignment.model";
+import { AssignmentService } from "@/services/assignment/assignment.repo";
 
 const statusOptions = [
-  { label: "All", value: "ALL" },
-  { label: "Passed", value: "PASSED" },
-  { label: "Failed", value: "FAILED" },
+  { label: t`All`, value: "ALL" },
+  { label: t`Graded`, value: "GRADED" },
+  { label: t`Submitted`, value: "SUBMITTED" },
+  { label: t`Pending`, value: "PENDING" },
+  { label: t`Overdue`, value: "OVERDUE" },
 ];
 
-const columns: Column<Score>[] = [
-  { field: "id", label: "ID" },
-  { field: "class.name", label: "Class Name" },
-  { field: "subject", label: "Subject" },
-  { field: "assignment.title", label: "Assignment" },
-  { field: "score", label: "Score" },
-  { field: "maxScore", label: "Max Score" },
-  {
-    field: "status",
-    label: "Status",
-    align: "center",
-    render: (row) => (
-      <span
-        style={{
-          color: row.status === "PASSED" ? "green" : "red",
-          fontWeight: "bold",
-        }}
-      >
-        {row.status}
-      </span>
-    ),
-  },
-];
-
-const StudentScoresPage = () => {
+const ManageAssignmentsPage = () => {
   const router = useRouter();
   const { query, pathname } = router;
 
   const status = String(query.status || "ALL");
   const search = (query.search as string) || "";
 
-  const [data, setData] = useState<Score[]>([]);
+  const [data, setData] = useState<Assignment[]>([]);
   const [pagination, setPagination] = useState({
     page: 1,
     limit: 10,
@@ -66,20 +46,19 @@ const StudentScoresPage = () => {
     setLoading(true);
     try {
       const offset = (page - 1) * length;
-
       const filter: any = {};
       if (status !== "ALL") filter.status = status;
       if (search) filter.search = search;
 
-      const result = await ScoreService.getAll({
+      const result = await AssignmentService.getAll({
         query: {
           limit: length,
           offset,
           filter,
-          order: { createdAt: -1 },
+          order: { dueDate: -1 },
         },
         cache: false,
-        fragment: ScoreService.fullFragment,
+        fragment: AssignmentService.fullFragment,
       });
 
       setData(result.data);
@@ -89,7 +68,7 @@ const StudentScoresPage = () => {
         total: result.total,
       });
     } catch (error) {
-      console.error("Failed to fetch scores", error);
+      console.error("Failed to fetch assignments", error);
     } finally {
       setLoading(false);
     }
@@ -110,15 +89,15 @@ const StudentScoresPage = () => {
 
   const filters: FilterConfig[] = [
     {
-      label: "Search",
+      label: t`Search`,
       field: "search",
       value: search,
       type: "search",
       onChange: (v: string) => handleFilterChange("search", v),
-      placeholder: "Search by class, subject, assignment...",
+      placeholder: t`Search by assignment, class...`,
     },
     {
-      label: "Status",
+      label: t`Status`,
       field: "status",
       value: status,
       type: "select",
@@ -127,20 +106,32 @@ const StudentScoresPage = () => {
     },
   ];
 
+  const columns: Column<Assignment>[] = [
+    { field: "title", label: t`Title` },
+    { field: "class.name", label: t`Class Name` },
+    { field: "dueDate", label: t`Due Date` },
+    { field: "status", label: t`Status` },
+    { field: "grade", label: t`Grade` },
+  ];
+
   return (
-    <CommonTable
-      columns={columns}
-      data={data}
-      filters={filters}
-      loading={loading}
-      pagination={pagination}
-      onPageChange={(page: number, limit: number) => {
-        getData({ page, length: limit });
-      }}
-    />
+    <Box maxWidth="lg" mx="auto" py={3}>
+      <Typography variant="h4" fontWeight={700} mb={2}>
+        <Trans>Assignments</Trans>
+      </Typography>
+      <CommonTable
+        columns={columns}
+        data={data}
+        filters={filters}
+        loading={loading}
+        pagination={pagination}
+        onPageChange={(page: number, limit: number) => {
+          getData({ page, length: limit });
+        }}
+      />
+    </Box>
   );
 };
 
-(StudentScoresPage as any).Layout = AdminLayout;
-
-export default StudentScoresPage;
+(ManageAssignmentsPage as any).Layout = AdminLayout;
+export default ManageAssignmentsPage;
