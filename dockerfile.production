@@ -7,7 +7,6 @@ RUN yarn install --frozen-lockfile
 # Stage 2: build
 FROM base AS build
 COPY . .
-COPY .env .env   
 RUN yarn build
 
 # Stage 3: production
@@ -22,6 +21,8 @@ COPY --from=build /app/.next/static ./.next/static
 
 # Copy public folder
 COPY --from=build /app/public ./public
+
+COPY --from=build /app/.env ./.env
 
 EXPOSE 3000
 
