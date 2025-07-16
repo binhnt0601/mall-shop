@@ -8,6 +8,7 @@ import { useAuthStore } from "@/stores/auth/useAuthStore";
 
 const DashboardAdmin = () => {
   const { auth } = useAuthStore();
+  console.log("API URI:", process.env.NEXT_PUBLIC_API_URI);
 
   const renderUserRole = useMemo(() => {
     if (!auth) return null;

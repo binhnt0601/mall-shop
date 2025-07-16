@@ -7,6 +7,7 @@ RUN yarn install --frozen-lockfile
 # Stage 2: build
 FROM base AS build
 COPY . .
+COPY .env .env   
 RUN yarn build
 
 # Stage 3: production
