@@ -41,7 +41,7 @@ jobs:
     needs: build
     steps:
       - name: Create .env file
-        run: echo "${{ secrets.ENV_FILE }}" > .env.production
+        run: echo "${{ secrets.ENV_FILE }}" > .env
 
       - name: Install SSH Client
         run: sudo apt-get update && sudo apt-get install -y openssh-client
@@ -55,7 +55,7 @@ jobs:
 
       - name: Upload .env.production to server
         run: |
-          scp -i ~/.ssh/mall-shop.pem .env.production ${{ secrets.MALL_SHOP_SSH_USERNAME }}@${{ secrets.MALL_SHOP_IP }}:/home/www/english-class/fe-deploy/.env.production
+          scp -i ~/.ssh/mall-shop.pem .env.production ${{ secrets.MALL_SHOP_SSH_USERNAME }}@${{ secrets.MALL_SHOP_IP }}:/home/www/english-class/fe-deploy/.env
 
       - name: Deploy container on server
         run: |
