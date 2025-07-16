@@ -5,6 +5,8 @@ export const assignmentFields = `
   deadline: String
   attachmentUrl: String
   createdAt: DateTime
+  updatedAt: DateTime
+  status: String
 `;
 
 export const assignmentQuery = `
@@ -14,4 +16,6 @@ export const assignmentQuery = `
   deadline
   attachmentUrl
   createdAt
+  updatedAt
+  status
 `;

@@ -1,70 +1,48 @@
-import {
-  TableBody,
-  TableRow,
-  TableCell,
-  Skeleton,
-  Box,
-  CircularProgress,
-  Typography,
-} from "@mui/material";
+import { TableBody, TableRow, TableCell, Skeleton } from "@mui/material";
+import React from "react";
 
-import { getValueByPath } from "@/utils/getValueByPath";
+import { Column, getNestedValue } from ".";
 
-import { Column } from ".";
-
-type Props<T> = {
+type TableBodyContentProps<T> = {
   columns: Column<T>[];
   data: T[];
-  loading: boolean;
-  emptyText: string;
-  skeletonRows: number;
-  useServerPaging: boolean;
-  page: number;
-  rowsPerPage: number;
+  loading?: boolean;
+  emptyText?: string;
+  skeletonRows?: number;
+  useServerPaging?: boolean;
+  page?: number;
+  rowsPerPage?: number;
 };
 
 export default function TableBodyContent<T>({
   columns,
   data,
-  loading,
-  emptyText,
-  skeletonRows,
-  useServerPaging,
-  page,
-  rowsPerPage,
-}: Props<T>) {
+  loading = false,
+  emptyText = "No data",
+  skeletonRows = 5,
+}: TableBodyContentProps<T>) {
   if (loading) {
     return (
       <TableBody>
         {[...Array(skeletonRows)].map((_, idx) => (
           <TableRow key={idx}>
-            {columns.map((col, j) => (
-              <TableCell
-                key={String(col.field) + j}
-                align={col.align || "left"}
-              >
-                <Skeleton variant="rectangular" height={28} animation="wave" />
+            {columns.map((col, colIdx) => (
+              <TableCell key={colIdx}>
+                <Skeleton />
               </TableCell>
             ))}
           </TableRow>
         ))}
-        <TableRow>
-          <TableCell colSpan={columns.length} align="center" sx={{ border: 0 }}>
-            <Box sx={{ py: 2, display: "flex", justifyContent: "center" }}>
-              <CircularProgress size={32} />
-            </Box>
-          </TableCell>
-        </TableRow>
       </TableBody>
     );
   }
 
-  if (data.length === 0) {
+  if (!data.length) {
     return (
       <TableBody>
         <TableRow>
           <TableCell colSpan={columns.length} align="center">
-            <Typography color="text.secondary">{emptyText}</Typography>
+            {emptyText}
           </TableCell>
         </TableRow>
       </TableBody>
@@ -74,21 +52,22 @@ export default function TableBodyContent<T>({
   return (
     <TableBody>
       {data.map((row, idx) => (
-        <TableRow key={idx}>
-          {columns.map((col, cidx) => (
+        <TableRow hover tabIndex={-1} key={idx}>
+          {columns.map((col, colIdx) => (
             <TableCell
-              key={col.field ? String(col.field) : cidx}
+              key={colIdx}
               align={col.align || "left"}
-              className="text-nowrap"
+              sx={{
+                minWidth: col.minWidth ? col.minWidth : undefined,
+                maxWidth: col.minWidth ? col.minWidth : undefined,
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+              }}
             >
               {col.render
-                ? col.render(
-                    row,
-                    idx + (useServerPaging ? 0 : page * rowsPerPage)
-                  )
-                : col.field
-                  ? String(getValueByPath(row, String(col.field)) ?? "")
-                  : ""}
+                ? col.render(row, idx)
+                : String(getNestedValue(row, col.field as string) ?? "")}
             </TableCell>
           ))}
         </TableRow>

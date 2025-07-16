@@ -1,10 +1,13 @@
 "use client";
 
-import { t, Trans } from "@lingui/macro";
-import { Box, Typography } from "@mui/material";
+import { t } from "@lingui/macro";
+import { IconButton, Tooltip } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { BiEdit } from "react-icons/bi";
+import { MdVisibility } from "react-icons/md";
 
+import BadgeStatus from "@/components-shared/BadgeStatus";
 import CommonTable, {
   Column,
   FilterConfig,
@@ -109,37 +112,107 @@ const StudentClassesPage = () => {
 
   const columns: Column<Class>[] = [
     { field: "name", label: t`Class Name` },
+    { field: "type", label: t`Type` },
+    { field: "level", label: t`Level` },
     { field: "teacher.name", label: t`Teacher` },
+    {
+      field: "schedule",
+      label: t`Schedule`,
+      render: (row: Class) =>
+        row.schedule && row.schedule.length
+          ? row.schedule.map((item) => (
+              <span
+                key={item.dayOfWeek + item.startTime}
+                style={{ marginRight: 4 }}
+              >
+                {["CN", "T2", "T3", "T4", "T5", "T6", "T7"][item.dayOfWeek]}
+                &nbsp;
+                {item.startTime}-{item.endTime}
+              </span>
+            ))
+          : "-",
+    },
     ...(role === "ADMIN"
       ? [
           {
             field: "students",
             label: t`Students`,
             align: "center" as any,
-            render: (row: Class) => <span>{row.students?.length}</span>,
+            minWidth: 150,
+            render: (row: Class) => (
+              <span>{row.students?.map((i) => i.name).join(", ")}</span>
+            ),
           },
         ]
       : []),
-    { field: "status", label: t`Status` },
+    {
+      field: "status",
+      label: t`Status`,
+      render: (row: Class) => <BadgeStatus status={row.status} />,
+    },
+    {
+      field: "fee",
+      label: t`Fee`,
+      align: "right" as any,
+      render: (row: Class) =>
+        typeof row.fee === "number" ? row.fee.toLocaleString() : "-",
+    },
+    {
+      field: "description",
+      label: t`Description`,
+      minWidth: 300,
+    },
+    {
+      field: "createdAt",
+      label: t`Created`,
+      render: (row: Class) =>
+        row.createdAt ? new Date(row.createdAt).toLocaleDateString() : "-",
+    },
+    {
+      field: "updatedAt",
+      label: t`Updated`,
+      render: (row: Class) =>
+        row.updatedAt ? new Date(row.updatedAt).toLocaleDateString() : "-",
+    },
+    {
+      label: t`Actions`,
+      align: "center",
+      render: (row: Class) => (
+        <>
+          <Tooltip title={t`View details`} placement="top">
+            <IconButton
+              onClick={() => router.push(`/manage/classes/${row.id}`)}
+            >
+              <MdVisibility />
+            </IconButton>
+          </Tooltip>
+          {role === "ADMIN" && (
+            <Tooltip title={t`Edit`} placement="top">
+              <IconButton
+                onClick={() =>
+                  router.push(`/manage/classes/${row.id}?edit=true`)
+                }
+              >
+                <BiEdit />
+              </IconButton>
+            </Tooltip>
+          )}
+        </>
+      ),
+    },
   ];
 
   return (
-    <Box maxWidth="lg" mx="auto" py={3}>
-      <Typography variant="h4" fontWeight={700} mb={2}>
-        <Trans>My Classes</Trans>
-      </Typography>
-
-      <CommonTable
-        columns={columns}
-        data={data}
-        filters={filters}
-        loading={loading}
-        pagination={pagination}
-        onPageChange={(page: number, limit: number) => {
-          getData({ page, length: limit });
-        }}
-      />
-    </Box>
+    <CommonTable
+      columns={columns}
+      data={data}
+      filters={filters}
+      loading={loading}
+      pagination={pagination}
+      onPageChange={(page: number, limit: number) => {
+        getData({ page, length: limit });
+      }}
+    />
   );
 };
 

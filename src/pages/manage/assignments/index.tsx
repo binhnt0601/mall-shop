@@ -1,10 +1,13 @@
 "use client";
 
-import { t, Trans } from "@lingui/macro";
-import { Box, Typography } from "@mui/material";
+import { t } from "@lingui/macro";
+import { IconButton, Tooltip } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { BiEdit } from "react-icons/bi";
+import { MdVisibility } from "react-icons/md";
 
+import BadgeStatus from "@/components-shared/BadgeStatus";
 import CommonTable, {
   Column,
   FilterConfig,
@@ -12,6 +15,7 @@ import CommonTable, {
 import AdminLayout from "@/layouts/admin-layout/AdminLayout";
 import { Assignment } from "@/services/assignment/assignment.model";
 import { AssignmentService } from "@/services/assignment/assignment.repo";
+import { useAuthStore } from "@/stores/auth/useAuthStore";
 
 const statusOptions = [
   { label: t`All`, value: "ALL" },
@@ -25,10 +29,14 @@ const ManageAssignmentsPage = () => {
   const router = useRouter();
   const { query, pathname } = router;
 
+  const { auth } = useAuthStore();
+  const role = auth?.role;
+
   const status = String(query.status || "ALL");
   const search = (query.search as string) || "";
 
   const [data, setData] = useState<Assignment[]>([]);
+
   const [pagination, setPagination] = useState({
     page: 1,
     limit: 10,
@@ -109,27 +117,75 @@ const ManageAssignmentsPage = () => {
   const columns: Column<Assignment>[] = [
     { field: "title", label: t`Title` },
     { field: "class.name", label: t`Class Name` },
-    { field: "dueDate", label: t`Due Date` },
-    { field: "status", label: t`Status` },
-    { field: "grade", label: t`Grade` },
+    {
+      field: "deadline",
+      label: t`Deadline`,
+      render: (row) =>
+        row.deadline ? new Date(row.deadline).toLocaleString() : "-",
+    },
+    {
+      field: "status",
+      label: t`Status`,
+      align: "center",
+      render: (row) => <BadgeStatus status={row.status as any} />,
+    },
+    // Nếu muốn show tổng số bài đã nộp:
+    // {
+    //   field: "submissions",
+    //   label: t`Submissions`,
+    //   render: (row) => row.submissions?.length ?? "-",
+    // },
+    {
+      field: "createdAt",
+      label: t`Created`,
+      render: (row) =>
+        row.createdAt ? new Date(row.createdAt).toLocaleDateString() : "-",
+    },
+    {
+      field: "updatedAt",
+      label: t`Updated`,
+      render: (row) =>
+        row.updatedAt ? new Date(row.updatedAt).toLocaleString() : "-",
+    },
+    {
+      label: t`Actions`,
+      align: "center",
+      render: (row) => (
+        <>
+          <Tooltip title={t`View details`} placement="top">
+            <IconButton
+              onClick={() => router.push(`/manage/classes/${row.id}`)}
+            >
+              <MdVisibility />
+            </IconButton>
+          </Tooltip>
+          {role === "ADMIN" && (
+            <Tooltip title={t`Edit`} placement="top">
+              <IconButton
+                onClick={() =>
+                  router.push(`/manage/classes/${row.id}?edit=true`)
+                }
+              >
+                <BiEdit />
+              </IconButton>
+            </Tooltip>
+          )}
+        </>
+      ),
+    },
   ];
 
   return (
-    <Box maxWidth="lg" mx="auto" py={3}>
-      <Typography variant="h4" fontWeight={700} mb={2}>
-        <Trans>Assignments</Trans>
-      </Typography>
-      <CommonTable
-        columns={columns}
-        data={data}
-        filters={filters}
-        loading={loading}
-        pagination={pagination}
-        onPageChange={(page: number, limit: number) => {
-          getData({ page, length: limit });
-        }}
-      />
-    </Box>
+    <CommonTable
+      columns={columns}
+      data={data}
+      filters={filters}
+      loading={loading}
+      pagination={pagination}
+      onPageChange={(page: number, limit: number) => {
+        getData({ page, length: limit });
+      }}
+    />
   );
 };
 

@@ -15,10 +15,13 @@ import { useEffect, useMemo, useState } from "react";
 import TableBodyContent from "./TableBodyContent";
 import TableHeader from "./TableHeader";
 
+// ===== TYPE DEFINITIONS =====
+
 export type Column<T = any> = {
   field?: keyof T | string;
   label?: string;
   align?: "left" | "right" | "center";
+  minWidth?: number | string;
   render?: (row: T, idx: number) => React.ReactNode;
 };
 
@@ -51,6 +54,16 @@ type CommonTableProps<T extends object> = {
   onPageChange?: (page: number, limit: number) => void;
   loading?: boolean;
 };
+
+export function getNestedValue(obj: any, path?: string) {
+  if (!path) return obj;
+  return path.split(".").reduce((acc, key) => {
+    if (acc == null) return undefined;
+    // hỗ trợ cả mảng như students.0.name nếu cần
+    if (key.match(/^\d+$/)) return acc[parseInt(key, 10)];
+    return acc[key];
+  }, obj);
+}
 
 export default function CommonTable<T extends object>({
   loading = false,
@@ -106,7 +119,6 @@ export default function CommonTable<T extends object>({
     return filtered;
   }, [data, filters]);
 
-  // PAGING
   const paginatedData = useServerPaging
     ? filteredData
     : filteredData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
@@ -122,7 +134,15 @@ export default function CommonTable<T extends object>({
 
   return (
     <Paper
-      sx={{ width: "100%", overflow: "hidden", p: 2, position: "relative" }}
+      sx={{
+        width: "100%",
+        overflow: "hidden",
+        p: 2,
+        borderRadius: 3,
+        boxShadow: 3,
+        bgcolor: "#fafbfc",
+        border: "1px solid #f0f1f4",
+      }}
     >
       <Stack direction="row" spacing={2} alignItems="center" mb={2}>
         {filters.map((filter) =>
@@ -130,7 +150,7 @@ export default function CommonTable<T extends object>({
             <FormControl
               size="small"
               key={String(filter.field)}
-              sx={{ minWidth: 200 }}
+              sx={{ minWidth: 220, bgcolor: "#fff" }}
               variant="outlined"
             >
               <OutlinedInput
@@ -139,7 +159,7 @@ export default function CommonTable<T extends object>({
                 value={filter.value}
                 onChange={(e) => filter.onChange(e.target.value)}
                 placeholder={filter.placeholder || filter.label}
-                sx={{ bgcolor: "#fff" }}
+                sx={{ borderRadius: 2, boxShadow: "0 1px 2px #0001" }}
               />
             </FormControl>
           ) : (
@@ -149,7 +169,7 @@ export default function CommonTable<T extends object>({
                 label={filter.label}
                 value={filter.value || "ALL"}
                 onChange={(e) => filter.onChange(e.target.value)}
-                sx={{ minWidth: 120, fontWeight: 500 }}
+                sx={{ minWidth: 130, borderRadius: 2, bgcolor: "#fff" }}
               >
                 {filter.options?.map((opt) => (
                   <MenuItem value={opt.value} key={opt.value}>
@@ -162,8 +182,26 @@ export default function CommonTable<T extends object>({
         )}
       </Stack>
 
-      <TableContainer>
-        <Table size={dense ? "small" : "medium"}>
+      <TableContainer sx={{ borderRadius: 3 }}>
+        <Table
+          size={dense ? "small" : "medium"}
+          sx={{
+            "& thead th": {
+              bgcolor: "#f4f7fb",
+              fontWeight: 700,
+              color: "#2d3a4a",
+              borderBottom: "2px solid #e2e8f0",
+            },
+            "& tbody tr:hover": {
+              bgcolor: "#f6f9fd",
+              transition: "background 0.2s",
+            },
+            "& tbody td": {
+              borderBottom: "1px solid #f0f1f4",
+            },
+            minWidth: 750,
+          }}
+        >
           <TableHeader columns={columns} />
           <TableBodyContent
             columns={columns}
@@ -187,6 +225,11 @@ export default function CommonTable<T extends object>({
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
         labelRowsPerPage="Rows per page:"
+        sx={{
+          mt: 1,
+          ".MuiTablePagination-toolbar": { minHeight: 50 },
+          ".MuiTablePagination-actions": { mx: 1 },
+        }}
       />
     </Paper>
   );

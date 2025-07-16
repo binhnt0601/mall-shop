@@ -19,6 +19,11 @@ export class ClassRepository extends CrudRepository<Class> {
     students {
       ${userFields}
     }
+    schedule {
+      dayOfWeek
+      startTime
+      endTime
+    }
   `);
 }
 

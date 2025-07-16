@@ -12,6 +12,5 @@ export interface Assignment extends BaseModel {
   teacher: User;
   deadline: string;
   attachmentUrl: string;
-  createdAt: string;
   submissions: [AssignmentSubmission];
 }

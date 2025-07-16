@@ -1,8 +1,10 @@
 "use client";
 
+import { t } from "@lingui/macro";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
+import BadgeStatus from "@/components-shared/BadgeStatus";
 import CommonTable, {
   Column,
   FilterConfig,
@@ -117,18 +119,8 @@ const ManagementScoresPage = () => {
     { field: "subject", label: "Subject" },
     {
       field: "status",
-      label: "Status",
-      align: "center",
-      render: (row) => (
-        <span
-          style={{
-            color: row.status === "PASSED" ? "green" : "red",
-            fontWeight: "bold",
-          }}
-        >
-          {row.status}
-        </span>
-      ),
+      label: t`Status`,
+      render: (row: Score) => <BadgeStatus status={row.status} />,
     },
   ];
 
