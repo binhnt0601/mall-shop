@@ -25,22 +25,27 @@ export class MediaRepository extends CrudRepository<Media> {
       ${MediaFields}
     `);
 
-  async uploadImage({ file, token }: { file: any; token: string }) {
+  async uploadImage({
+    file,
+    oldAvatarUrl,
+  }: {
+    file: any;
+    oldAvatarUrl: string;
+  }) {
     const api = "uploadImage";
     const option: MutationOptions = {
       mutation: this.gql`
-            mutation UploadImage($file: Upload!) {
-                ${api}(file: $file) {
-                    url
-                }
+          mutation UploadImage($file: Upload!, $oldAvatarUrl: String) {
+            ${api}(file: $file, oldAvatarUrl: $oldAvatarUrl) {
+              url
             }
+          }
         `,
       variables: {
         file,
+        oldAvatarUrl,
       },
     };
-
-    option.context = { headers: { "x-token": token } };
 
     const result = await client.mutate(option);
 

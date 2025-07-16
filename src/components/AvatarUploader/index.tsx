@@ -1,8 +1,9 @@
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
-import { Avatar, IconButton, Box } from "@mui/material";
-import { useRef } from "react";
+import { Avatar, IconButton, Box, CircularProgress } from "@mui/material";
+import { useRef, useState } from "react";
 
 import { toast } from "@/helpers/toast";
+import { mediaService } from "@/services/media/media.repo";
 import { User } from "@/services/user/user.model";
 import { UserService } from "@/services/user/user.repo";
 
@@ -11,24 +12,70 @@ type Props = {
   onUploaded?: (url: string) => void;
 };
 
+const allowedTypes = [
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/gif",
+  "image/heic",
+  "image/heif",
+];
+
 export default function AvatarUploader({ user, onUploaded }: Props) {
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  async function uploadImage(file: File): Promise<string> {
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(URL.createObjectURL(file)), 1200);
-    });
-  }
+  const [isUploading, setIsUploading] = useState(false);
 
   async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file || !user?.id) return;
+
+    let processedFile = file;
+    if (
+      !allowedTypes.includes(processedFile.type) &&
+      !file.name.toLowerCase().endsWith(".heic")
+    ) {
+      toast.error("File type must be JPG, PNG, GIF or HEIC.");
+      return;
+    }
+
+    if (
+      file.type === "image/heic" ||
+      file.type === "image/heif" ||
+      file.name.toLowerCase().endsWith(".heic") ||
+      file.name.toLowerCase().endsWith(".heif")
+    ) {
+      try {
+        const heic2any = (await import("heic2any")).default;
+        const convertedBlob = await heic2any({
+          blob: file,
+          toType: "image/jpeg",
+          quality: 0.9,
+        });
+        processedFile = new File(
+          [convertedBlob as Blob],
+          file.name.replace(/\.heic$|\.heif$/i, ".jpg"),
+          { type: "image/jpeg" }
+        );
+      } catch (err: any) {
+        toast.error(err?.message || "Cannot convert HEIC image!");
+        return;
+      }
+    }
+
     try {
-      const url = await uploadImage(file);
-      await UserService.updateProfile({ avatar: url });
+      setIsUploading(true);
+      const result = await mediaService.uploadImage({
+        file: processedFile,
+        oldAvatarUrl: String(user?.avatar || ""),
+      });
+      setIsUploading(false);
+      if (!result?.url) throw new Error("No image url returned!");
+
+      await UserService.updateProfile({ avatar: result.url });
       toast.success("Avatar updated!");
-      onUploaded?.(url);
+      onUploaded?.(result.url);
     } catch (err: any) {
+      setIsUploading(false);
       toast.error(err?.message || "Update avatar failed!");
     }
   }
@@ -51,6 +98,7 @@ export default function AvatarUploader({ user, onUploaded }: Props) {
           "&:hover": { bgcolor: "primary.main" },
         }}
         onClick={() => fileInputRef.current?.click()}
+        disabled={isUploading}
       >
         <PhotoCameraIcon fontSize="small" />
       </IconButton>
@@ -60,7 +108,27 @@ export default function AvatarUploader({ user, onUploaded }: Props) {
         accept="image/*"
         hidden
         onChange={handleFileChange}
+        disabled={isUploading}
       />
+      {isUploading && (
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: 84,
+            height: 84,
+            bgcolor: "rgba(255,255,255,0.7)",
+            zIndex: 1,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: "50%",
+          }}
+        >
+          <CircularProgress size={32} />
+        </Box>
+      )}
     </Box>
   );
 }
