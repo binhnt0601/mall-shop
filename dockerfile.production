@@ -22,7 +22,7 @@ COPY --from=build /app/.next/static ./.next/static
 # Copy public folder
 COPY --from=build /app/public ./public
 
-COPY --from=build /app/.env ./.env
+COPY .env .env
 
 EXPOSE 3000
 
